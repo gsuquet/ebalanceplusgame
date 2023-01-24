@@ -1,7 +1,9 @@
 <template>
     <div :class="alertClass+' alert'" v-if="display">
-        <span class="closebtn" @click="closeAlert">&times;</span>
-        <p>{{ alertText }}</p>
+        <div class="alert-background">
+            <span class="closebtn" @click="closeAlert">&times;</span>
+            <p>{{ alertText }}</p>
+        </div>
     </div>
 </template>
 
