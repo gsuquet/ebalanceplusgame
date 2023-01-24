@@ -8,7 +8,11 @@ export const useGameParametersStore = defineStore({
             id: '',
             date: new Date(),
             scenario: '',
-            productionCurve: null as ProductionCurve | null,
+            productionCurve: {
+                id: '0',
+                name: 'No production curve',
+                data: []
+            } as ProductionCurve,
             user: '',
             score: 0,
             moneyWon: 0,
