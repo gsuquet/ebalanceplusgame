@@ -31,6 +31,12 @@ export const useConsumptionStore = defineStore({
         },
 
     },
+
+    getters: {
+        isOverConsumption(): Boolean {
+            return this.overConsumptionMap.size > 0;
+        }
+    }
 });
 
 interface Consumption{
