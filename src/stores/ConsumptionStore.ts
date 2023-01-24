@@ -1,8 +1,8 @@
-import { defineStore } from "pinia";
-import { useGameParametersStore } from "./GameParametersStore";
+import { defineStore } from 'pinia';
+import { useGameParametersStore } from './GameParametersStore';
 
 export const useConsumptionStore = defineStore({
-    id: "ConsumptionStore",
+    id: 'ConsumptionStore',
     state: () => {
         return {
             consumptionCurve: {
@@ -19,21 +19,23 @@ export const useConsumptionStore = defineStore({
     actions: {
         getListOfOverConsumption() {
             const productionCurve = useGameParametersStore().productionCurve;
-            for (const [time, consumption] of this.consumptionCurve.consumption) {
-                if (consumption > productionCurve.data[time]) {
-                    this.overConsumptionMap.set(time, consumption - productionCurve.data[time]);
+            if (productionCurve) {
+                for (const [time, consumption] of this.consumptionCurve.consumption) {
+                    if (consumption > productionCurve.data[time]) {
+                        this.overConsumptionMap.set(time, consumption - productionCurve.data[time]);
+                    }
                 }
             }
             return this.overConsumptionMap;
         },
         addToConsumptionCurve(index:number, value:number) {
             this.consumptionCurve.consumption.set(index, value);
-        },
+        }
 
     },
 
     getters: {
-        isOverConsumption(): Boolean {
+        isOverConsumption(): boolean {
             return this.overConsumptionMap.size > 0;
         }
     }
@@ -47,7 +49,7 @@ interface Consumption{
 
 interface ConsumptionCurve {
     consumption: Map<number, number>;
-    peak: Number | null;
-    peakIndex: Number | null;
-    peakTime: Number | null;
+    peak: number | null;
+    peakIndex: number | null;
+    peakTime: number | null;
 }

@@ -1,26 +1,31 @@
-import { defineStore } from "pinia";
-import { useProductionStore, ProductionCurve } from "./ProductionStore";
+import { defineStore } from 'pinia';
+import { useProductionStore, ProductionCurve } from './ProductionStore';
 
 export const useGameParametersStore = defineStore({
-    id: "GameParametersStore",
+    id: 'GameParametersStore',
     state: () => {
         return {
-            id: "",
+            id: '',
             date: new Date(),
-            scenario: "",
+            scenario: '',
             productionCurve: null as ProductionCurve | null,
-            user: "",
+            user: '',
             score: 0,
             moneyWon: 0,
-            availableMoney: 0,
+            availableMoney: 0
         };
     },
     actions: {
         setProductionCurve(productionCurveId: string) {
-            this.productionCurve = useProductionStore().getProductionCurveById(productionCurveId);
+            const productionCurveImport = useProductionStore().getProductionCurveById(productionCurveId);
+            if(productionCurveImport){
+                this.productionCurve = productionCurveImport;
+            } else{
+                this.productionCurve = null;
+            }
         },
         setScenario(scenarioId: string) {
-        },
+        }
     },
     getters: {}
 });
