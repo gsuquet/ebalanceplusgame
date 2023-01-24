@@ -45,6 +45,8 @@ interface Consumption{
     id: string;
     startIndex: number;
     endIndex: number;
+    amount: number;
+    color: string;
 }
 
 interface ConsumptionCurve {
