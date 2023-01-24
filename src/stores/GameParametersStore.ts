@@ -21,7 +21,11 @@ export const useGameParametersStore = defineStore({
             if(productionCurveImport){
                 this.productionCurve = productionCurveImport;
             } else{
-                this.productionCurve = null;
+                this.productionCurve = {
+                    id: '0',
+                    name: 'No production curve',
+                    data: []
+                };
             }
         },
         setScenario(scenarioId: string) {

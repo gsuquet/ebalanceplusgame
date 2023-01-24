@@ -3,7 +3,7 @@ import { useGameParametersStore } from '../stores/GameParametersStore';
 import { useConsumptionStore } from '../stores/ConsumptionStore';
 const gameParametersStore = useGameParametersStore();
 const consumptionStore = useConsumptionStore();
-gameParametersStore.setProductionCurve("0");
+gameParametersStore.setProductionCurve('0');
 consumptionStore.addToConsumptionCurve(0,2);
 consumptionStore.addToConsumptionCurve(1,0);
 </script>
@@ -32,7 +32,7 @@ consumptionStore.addToConsumptionCurve(1,0);
     export default {
         props: {
             width: Number,
-            height: Number,
+            height: Number
         }
-    }
+    };
 </script>
