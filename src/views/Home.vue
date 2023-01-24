@@ -7,6 +7,9 @@
             <a href="https://vuejs.org/" target="_blank">
             <img src="/vue.svg" class="logo vue" alt="Vue logo" />
             </a>
+            <RouterLink to="/game">
+                game
+            </RouterLink>
         </div>
         <h1>Home Page</h1>
     </div>

@@ -6,8 +6,8 @@ const consumptionStore = useConsumptionStore();
 </script>
 
 <template>
-    <Alert :should-display="consumptionStore.isOverConsumption" 
-        alert-class="danger-alert" 
+    <Alert :should-display="consumptionStore.isOverConsumption"
+        alert-class="danger-alert"
         alert-text="Votre demande dépasse la production !"/>
     <Board />
 </template>
