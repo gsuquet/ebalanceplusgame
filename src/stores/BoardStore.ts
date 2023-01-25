@@ -24,9 +24,9 @@ export const useBoardStore = defineStore({
                 const tile = {
                     id: consumption.id,
                     x: consumption.startIndex * this.tileParams.pxSizeFor15min,
-                    y: this.board.height-(consumption.amount * this.tileParams.pxSizeFor10W),
-                    width: (consumption.endIndex - consumption.startIndex) * this.tileParams.pxSizeFor15min,
-                    height: consumption.amount * this.tileParams.pxSizeFor10W,
+                    y: this.board.height-((consumption.amount/10) * this.tileParams.pxSizeFor10W),
+                    width: ((consumption.endIndex - consumption.startIndex) + 1) * this.tileParams.pxSizeFor15min,
+                    height: (consumption.amount/10) * this.tileParams.pxSizeFor10W,
                     color: consumption.color
                 } as Tile;
 
@@ -34,9 +34,10 @@ export const useBoardStore = defineStore({
                     tile.y = storedY-tile.height;
                 } else {
                     storedStopIndex=consumption.endIndex;
-                    storedY=tile.y;
                 }
+                storedY=tile.y;
                 tiles.push(tile);
+                console.log(tile, storedY,storedStopIndex)
             };
             this.board.tiles = tiles;
         }

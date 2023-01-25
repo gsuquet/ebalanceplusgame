@@ -17,22 +17,12 @@ export const useConsumptionStore = defineStore({
     },
 
     actions: {
-        getListOfOverConsumption() {
-            const productionCurve = useGameParametersStore().productionCurve;
-            if (productionCurve) {
-                for (const [time, consumption] of this.consumptionCurve.consumption) {
-                    if (consumption > productionCurve.data[time]) {
-                        this.overConsumptionMap.set(time, consumption - productionCurve.data[time]);
-                    }
-                }
-            }
-            return this.overConsumptionMap;
-        },
         addToConsumptionList(newConsumption:Consumption) {
             this.consumptionList.push(newConsumption)
             for(let i=newConsumption.startIndex; i<=newConsumption.endIndex; i++){
                 this.addToConsumptionCurve(i,newConsumption.amount)
             }
+            this.setListOfOverConsumption();
         },
         addToConsumptionCurve(index:number, value:number) {
             const existingConsumption = this.consumptionCurve.consumption.get(index)
@@ -45,6 +35,16 @@ export const useConsumptionStore = defineStore({
             const existingConsumption = this.consumptionCurve.consumption.get(index)
             if(existingConsumption){
                 this.consumptionCurve.consumption.set(index, existingConsumption - value);
+            }
+        },
+        setListOfOverConsumption() {
+            const productionCurve = useGameParametersStore().productionCurve;
+            if (productionCurve) {
+                for (const [time, consumption] of this.consumptionCurve.consumption) {
+                    if (consumption > productionCurve.data[time]) {
+                        this.overConsumptionMap.set(time, consumption - productionCurve.data[time]);
+                    }
+                }
             }
         }
     },
