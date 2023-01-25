@@ -45,13 +45,15 @@ consumptionStore.addToConsumptionCurve(1,0);
                 canvasId: 'canvas',
                 width: 1500,
                 height: 1500,
-                canvas: null as HTMLCanvasElement | null,
+                canvas: null as CanvasRenderingContext2D | null,
             };
         },
         mounted() {
-            const c = document.getElementById(this.canvasId);
-            var ctx = c.getContext("2d");    
-            this.canvas = ctx;
+            const c = document.getElementById(this.canvasId) as HTMLCanvasElement | null;
+            if(c){
+                const ctx = c.getContext("2d");    
+                this.canvas = ctx;
+            }
         },
         methods: {
             clearCanvas() {
