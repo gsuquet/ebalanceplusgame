@@ -2,10 +2,9 @@
 import Canvas from '../components/Canvas.vue';
 import { useGameParametersStore } from '../stores/GameParametersStore';
 import { useConsumptionStore } from '../stores/ConsumptionStore';
-import { useBoardStore, Tile} from '../stores/BoardStore';
+import { Tile } from '../stores/BoardStore';
 const gameParametersStore = useGameParametersStore();
 const consumptionStore = useConsumptionStore();
-const boardStore = useBoardStore();
 gameParametersStore.setProductionCurve('0');
 consumptionStore.addToConsumptionCurve(0,2);
 consumptionStore.addToConsumptionCurve(1,0);
@@ -28,8 +27,8 @@ consumptionStore.addToConsumptionCurve(1,0);
                 <p>{{consumptionStore.overConsumptionMap}}</p>
             </div>
         </div>
-        <Canvas :canvas-id="canvasId" :width="boardStore.board.width" :height="boardStore.board.height"/>
-        <button @click="clearCanvas(0,0,boardStore.board.width, boardStore.board.height)">Clear Canvas</button>
+        <Canvas :canvas-id="canvasId" :width="canvasWidth" :height="canvasHeight"/>
+        <button @click="clearCanvas(0,0,canvasWidth, canvasHeight)">Clear Canvas</button>
         <button @click="drawTilesConsumption(tiles)">Draw Consumption</button>
     </section>
 </template>
@@ -38,7 +37,9 @@ consumptionStore.addToConsumptionCurve(1,0);
     export default {
         name: 'Board',
         props: {
-            tiles: Tile[]
+            boardWidth: Number,
+            boardHeight: Number,
+            tiles: null
         },
         components: {
             Canvas
@@ -46,7 +47,9 @@ consumptionStore.addToConsumptionCurve(1,0);
         data() {
             return {
                 canvasId: 'canvas',
-                canvas: null as CanvasRenderingContext2D | null
+                canvas: null as CanvasRenderingContext2D | null,
+                canvasWidth: 1440,
+                canvasHeight: 1500
             };
         },
         mounted() {
@@ -83,13 +86,25 @@ consumptionStore.addToConsumptionCurve(1,0);
             }
         },
         watch: {
-             tiles : {
+            boardWidth : {
+                handler(newWidth) {
+                    this.canvasWidth=newWidth
+                },
+                immediate: true
+            },
+            boardHeight : {
+                handler(newHeight) {
+                    this.canvasHeight=newHeight
+                },
+                immediate: true
+            },
+            tiles : {
                 handler(newTiles) {
-                    this.clearCanvas(0,0,boardStore.board.width,boardStore.board.height);
+                    this.clearCanvas(0,0,this.canvasWidth,this.canvasHeight);
                     this.drawTilesConsumption(newTiles);
                 },
                 immediate: true
-             }
+            }
         }
     };
 </script>

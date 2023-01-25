@@ -11,6 +11,6 @@ const boardStore = useBoardStore();
     <Alert :should-display="consumptionStore.isOverConsumption"
         alert-class="danger-alert"
         alert-text="Votre demande dépasse la production !"/>
-    <Board :tiles="boardStore.board.tiles"/>
+    <Board :board-width="boardStore.board.width" :board-height="boardStore.board.height" :tiles="boardStore.board.tiles"/>
 </template>
 
