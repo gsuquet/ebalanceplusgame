@@ -1,5 +1,5 @@
 <template>
-    <div id="home-page">
+    <div id="home-page" class="vue">
         <div class="logos">
             <a href="https://vitejs.dev" target="_blank">
             <img src="/vite.svg" class="logo" alt="Vite logo" />

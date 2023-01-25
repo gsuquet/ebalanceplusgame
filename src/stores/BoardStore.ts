@@ -37,13 +37,19 @@ export const useBoardStore = defineStore({
                 }
                 storedY=tile.y;
                 tiles.push(tile);
-                console.log(tile, storedY,storedStopIndex)
             };
             this.board.tiles = tiles;
         }
         // TODO : define method to sort tiles (according to size on x-axis ?
     },
     getters: {
+        getProductionCurvePointsInPixels(state) {
+            const productionCurvePoints = useGameParametersStore().productionCurve.data;
+            if(productionCurvePoints){
+                return productionCurvePoints.forEach((element: number) => (element*state.tileParams.pxSizeFor10W)/10);
+            }
+            return [];
+        }
     }
 });
 

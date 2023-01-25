@@ -1,6 +1,6 @@
 <template>
     <div class="canvas-container">
-            <canvas :id="canvasId" :width="width" :height="height" />
+            <canvas :id="canvasId" :width="width" :height="height"/>
         </div>
 </template>
 
