@@ -6,7 +6,7 @@ export const useBoardStore = defineStore({
         return {
             board: {
                 width: 1440,
-                height: 1000,
+                height: 1500,
                 tiles: []
             } as Board,
             tileParams: {
@@ -16,40 +16,31 @@ export const useBoardStore = defineStore({
         };
     },
     actions: {
-        getTilesFromConsumptionMap() {
+        setTilesFromConsumptionList() {
             const tiles: Tile[] = [];
-            const consumptionMap = useConsumptionStore().consumptionMap;
-            consumptionMap.forEach((consumption) => {
+            const consumptionList = useConsumptionStore().getConsumptionListSortedByStartIndex;
+            let storedY=this.board.height; let storedStopIndex=0; 
+            for (const consumption of consumptionList) {
                 const tile = {
                     id: consumption.id,
                     x: consumption.startIndex * this.tileParams.pxSizeFor15min,
-                    y: 0,
-                    height: consumption.amount * this.tileParams.pxSizeFor10W,
+                    y: this.board.height-(consumption.amount * this.tileParams.pxSizeFor10W),
                     width: (consumption.endIndex - consumption.startIndex) * this.tileParams.pxSizeFor15min,
+                    height: consumption.amount * this.tileParams.pxSizeFor10W,
                     color: consumption.color
                 } as Tile;
-                tiles.push(tile);
-            });
-            this.board.tiles = tiles;
-        },
-        getTilesYAxisPosition() {
-            // Sort tiles by y axis
-            // TODO : only sort tiles that have a conflicting x axis position
-            const tiles = this.board.tiles;
-            const tilesByY = tiles.sort((a, b) => a.y - b.y);
-            let currentY = 0;
-            let currentHeight = 0;
-            tilesByY.forEach((tile) => {
-                if (tile.y > currentY) {
-                    currentY = tile.y;
-                    currentHeight = tile.height;
+
+                if(consumption.startIndex <= storedStopIndex) {
+                    tile.y = storedY-tile.height;
                 } else {
-                    tile.y = currentY + currentHeight;
-                    currentHeight = tile.height;
+                    storedStopIndex=consumption.endIndex;
+                    storedY=tile.y;
                 }
-            });
-            this.board.tiles = tilesByY;
+                tiles.push(tile);
+            };
+            this.board.tiles = tiles;
         }
+        // TODO : define method to sort tiles (according to size on x-axis ?
     },
     getters: {
     }
@@ -61,12 +52,12 @@ interface Board {
     tiles: Tile[];
 }
 
-interface Tile {
+export interface Tile {
     id: string;
     x: number;
     y: number;
-    height: number;
     width: number;
+    height: number;
     color: string;
 }
 

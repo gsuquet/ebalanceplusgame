@@ -7,11 +7,11 @@ export const useConsumptionStore = defineStore({
         return {
             consumptionCurve: {
                 consumption: new Map<number, number>(),
-                peak: null,
-                peakIndex: null,
-                peakTime: null
+                peak: 0,
+                peakIndex: 0,
+                peakTime: "00:00"
             } as ConsumptionCurve,
-            consumptionMap: new Map() as Map<string, Consumption>,
+            consumptionList: [] as Consumption[],
             overConsumptionMap: new Map() as Map<number, number>
         };
     },
@@ -28,15 +28,34 @@ export const useConsumptionStore = defineStore({
             }
             return this.overConsumptionMap;
         },
+        addToConsumptionList(newConsumption:Consumption) {
+            this.consumptionList.push(newConsumption)
+            for(let i=newConsumption.startIndex; i<=newConsumption.endIndex; i++){
+                this.addToConsumptionCurve(i,newConsumption.amount)
+            }
+        },
         addToConsumptionCurve(index:number, value:number) {
+            const existingConsumption = this.consumptionCurve.consumption.get(index)
+            if(existingConsumption){
+                value = value + existingConsumption;
+            }
             this.consumptionCurve.consumption.set(index, value);
+        },
+        removeFromConsumptionCurve(index:number, value:number) {
+            const existingConsumption = this.consumptionCurve.consumption.get(index)
+            if(existingConsumption){
+                this.consumptionCurve.consumption.set(index, existingConsumption - value);
+            }
         }
-
     },
 
     getters: {
-        isOverConsumption(): boolean {
-            return this.overConsumptionMap.size > 0;
+        isOverConsumption(state) {
+            return state.overConsumptionMap.size > 0;
+        },
+        getConsumptionListSortedByStartIndex(state) {
+            // return List of consumptions in ConsumptionList ordered by start index (asc)
+            return state.consumptionList.sort((a,b) => (a.startIndex > b.startIndex) ? 1 : -1)
         }
     }
 });
@@ -51,7 +70,7 @@ interface Consumption{
 
 interface ConsumptionCurve {
     consumption: Map<number, number>;
-    peak: number | null;
-    peakIndex: number | null;
-    peakTime: number | null;
+    peak: number;
+    peakIndex: number;
+    peakTime: string;
 }
