@@ -39,8 +39,11 @@ export const useBoardStore = defineStore({
                 tiles.push(tile);
             };
             this.board.tiles = tiles;
-        }
+        },
         // TODO : define method to sort tiles (according to size on x-axis ?
+        removeTileFromBoard(tileId: string) {
+            this.board.tiles = this.board.tiles.filter(tile => tile.id !== tileId);
+        }
     },
     getters: {
         getProductionCurvePointsInPixels(state) {

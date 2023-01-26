@@ -24,6 +24,16 @@ export const useConsumptionStore = defineStore({
             }
             this.setListOfOverConsumption();
         },
+        removeFromConsumptionList(consumptionId:string) {
+            const consumptionToRemove = this.consumptionList.find(consumption => consumption.id === consumptionId);
+            if(consumptionToRemove){
+                for(let i=consumptionToRemove.startIndex; i<=consumptionToRemove.endIndex; i++){
+                    this.removeFromConsumptionCurve(i,consumptionToRemove.amount)
+                }
+                this.consumptionList = this.consumptionList.filter(consumption => consumption.id !== consumptionId);
+                this.setListOfOverConsumption();
+            }
+        },
         addToConsumptionCurve(index:number, value:number) {
             const existingConsumption = this.consumptionCurve.consumption.get(index)
             if(existingConsumption){
