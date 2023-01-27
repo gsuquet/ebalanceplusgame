@@ -1,0 +1,3 @@
+alert: {
+  overConsumption: "You have consumed more than your quota at time {time}"
+}

@@ -1,0 +1,32 @@
+.alert{
+    z-index: 10;
+    position: fixed;
+    width: 100%;
+    opacity: 0.9;
+    transition: opacity 0.6s;
+
+    .alert-background{
+        padding: 20px;
+        background-color: red;
+        color: white;
+        margin: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 15px;
+
+        .closebtn{
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .closebtn:hover{
+            color: black;
+        }
+    }
+}
