@@ -25,28 +25,14 @@ function addConsumption() {
             :should-display="consumptionStore.isOverConsumption"
             alert-class="danger-alert"
             alert-text="Votre demande dépasse la production !"/>
-        <div>
-            <div>
-                <h1>Production Curve</h1>
-                <p>{{gameParametersStore.productionCurve.data}}</p>
-            </div>
-            <div>
-                <h1>Consumption Curve</h1>
-                <p>{{consumptionStore.consumptionCurve.consumption}}</p>
-            </div>
-            <div>
-                <h1>Over Consumption Curve</h1>
-                <p>{{consumptionStore.overConsumptionMap}}</p>
-            </div>
-            <button @click="addConsumption()">Add Test Consumption</button>
-        </div>
         <EquipementList />
+        <button @click="addConsumption()">Add Test Consumption</button>
         <Board
             :board-width="boardStore.board.width"
             :board-height="boardStore.board.height"
             :px-size-for15m="boardStore.tileParams.pxSizeFor15min"
             :px-size-for10-w="boardStore.tileParams.pxSizeFor10W"
-            :tiles="boardStore.board.tiles"
-            :production-curve-points="gameParametersStore.productionCurve.data"/>
+            :tiles-list="boardStore.board.tiles"
+            :production-curve="gameParametersStore.productionCurve.data"/>
     </div>
 </template>
