@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { Equipment } from './EquipmentStore';
 import { useGameParametersStore } from './GameParametersStore';
 
 export const useConsumptionStore = defineStore({
@@ -70,12 +71,13 @@ export const useConsumptionStore = defineStore({
     }
 });
 
-interface Consumption{
+export interface Consumption{
     id: string;
     startIndex: number;
     endIndex: number;
     amount: number;
     color: string;
+    equipment: Equipment;
 }
 
 interface ConsumptionCurve {

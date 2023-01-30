@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Canvas from '../components/Canvas.vue';
-import { Tile } from '../stores/BoardStore';
+import { Tile, useBoardStore } from '../stores/BoardStore';
 </script>
 
 <template>
@@ -21,6 +21,7 @@ import { Tile } from '../stores/BoardStore';
 </style>
 
 <script lang="ts">
+    const boardStore = useBoardStore();
     export default {
         name: 'Board',
         props: {
@@ -60,7 +61,9 @@ import { Tile } from '../stores/BoardStore';
                 console.log(`x: ${x}, y: ${y}`);
                 const clickedTile = this.tiles.filter((tile: Tile) => this.isInsideTile(x, y, tile));
                 if(clickedTile.length){
-                    console.log(clickedTile[0]);
+                    boardStore.setClickedTile(clickedTile[0]);
+                } else{
+                    boardStore.setClickedTile(null);
                 }
             },
             canvasMouseMove(event: MouseEvent) {

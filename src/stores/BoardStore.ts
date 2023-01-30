@@ -12,7 +12,8 @@ export const useBoardStore = defineStore({
             tileParams: {
                 pxSizeFor10W: 5,
                 pxSizeFor15min: 15,
-            } as TileParams
+            } as TileParams,
+            clickedTile: null as Tile | null
         };
     },
     actions: {
@@ -43,6 +44,9 @@ export const useBoardStore = defineStore({
         // TODO : define method to sort tiles (according to size on x-axis ?
         removeTileFromBoard(tileId: string) {
             this.board.tiles = this.board.tiles.filter(tile => tile.id !== tileId);
+        },
+        setClickedTile(tile: Tile) {
+            this.clickedTile = tile;
         }
     },
     getters: {
