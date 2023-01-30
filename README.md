@@ -56,7 +56,8 @@ The desired format is a Single Page Application (SPA)
 - **vite.config.ts**: Vite configuration file, it contains the configuration of the Vite server and the plugins used in the project
 
 ### Application pages
-
+- **Home (/)**: Home page of the application, contains the main menu allowing you to start a new game in solo or multiplayer mode
+- **Game (/game)**: Game page, contains the list of electrical appliances and the game board allowing you to add, remove and modify your consumption
 
 ## Recommended IDE Setup
 
