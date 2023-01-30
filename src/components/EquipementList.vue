@@ -1,43 +1,76 @@
 <script lang="ts">
-    import {ref} from "vue";
-    import WashingMachineIcon from "~icons/mdi/washing-machine";
-    import { useEquipmentStore } from "../stores/EquipmentStore";
-    //import EquipmentList from "../components/EquipementList.vue";
-    //import Equipments from "../components/Equipments.vue";
-
-    /*
+    import { useEquipmentStore} from "../stores/EquipmentStore";
+    //import EquipmentType from "../components/EquipementType.vue";
+    import WashingMachine from "../icons/WashingMachine.vue";
+    import Dishwasher from "../icons/Dishwasher.vue";
+    import ArrowRight from "../icons/ArrowRight.vue";
+    import Equipments from "../components/Equipments.vue";
+    
     export default {
+        setup() {
+            const store = useEquipmentStore();
+            store.getEquipmentData();
+
+            return {store}
+
+        }, 
+        data() {
+            return {
+                showList: false as boolean 
+            }
+        },
         components: {
-            EquipmentList,
-            Equipments
+            //EquipmentType,
+            WashingMachine, 
+            Dishwasher,
+            ArrowRight,
+            Equipments,
+        },
+        methods: {
+            expandList(showList: boolean) {
+                if(showList == false) 
+                    showList = true;
+                else 
+                    showList = false;
+                return (showList);
+            }
         }
     }
-    */
-
-    const equipmentStore = useEquipmentStore;
-    equipmentStore.fill();
-
-    const showList = ref(true);
+    
+    let showList = false;        
 </script>
 
 <template>
-    <main>
-        <div v-if="showList = true" class="container">
-            <div class="list-container">
-                <div class="equipment-container">
-                    <h1> 
-                        Dishwasher
-                    </h1>
-                    <WashingMachineIcon />
-                   
+    <main>   
+        <!--        
+        <div class="menu-toggle-wrap">
+            <button class="menu-toggle">
+                <ArrowRight class="material-icons"/>
+            </button>
+        </div>
+        -->
+        <div class="list-container">
+            <div class="type-list">
+                <div class="boucle" v-for="equipment_type in store.getTypeOnly()" >  
+                    <div class="container" @click="showList = expandList(showList)">
+                        <h1>
+                            {{ equipment_type }}
+                        </h1>
+                        <!-- TODO: change that !!! -->
+                        <div class="icon" v-if="equipment_type == 'lave-vaisselle'">
+                            <Dishwasher class="material-icons"/>
+                        </div>
+                        <div class="icon" v-else >
+                            <WashingMachine class="material-icons"/>
+                        </div> 
+                    </div>
+                    <div class="equipment-container" v-if="showList" >
+                            <Equipments v-for="equipment in store.getEquipmentByType(equipment_type)" :key="equipment_type"  :equipment="equipment"/>
+                    </div>
                 </div>
             </div>
         </div>
-
-
-        <button v-if="showList = true" @click="showList = false "> + </button>
-        <button v-else @click="showList = true"> - </button>
-    </main>
+    </main> 
 </template>
 
 <style lang="scss">
