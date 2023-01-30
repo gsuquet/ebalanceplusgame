@@ -67,11 +67,16 @@ export const useConsumptionStore = defineStore({
         getConsumptionListSortedByStartIndex(state) {
             // return List of consumptions in ConsumptionList ordered by start index (asc)
             return state.consumptionList.sort((a,b) => (a.startIndex > b.startIndex) ? 1 : -1)
+        },
+        getConsumptionById(state) {
+            return (id:string) => {
+                return state.consumptionList.find(consumption => consumption.id === id)
+            }
         }
     }
 });
 
-export interface Consumption{
+export interface Consumption {
     id: string;
     startIndex: number;
     endIndex: number;

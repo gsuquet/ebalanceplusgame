@@ -47,6 +47,13 @@ export const useBoardStore = defineStore({
         },
         setClickedTile(tile: Tile) {
             this.clickedTile = tile;
+        },
+        deleteClickedTileConsumption() {
+            if(this.clickedTile) {
+                useConsumptionStore().removeFromConsumptionList(this.clickedTile.id);
+                this.setTilesFromConsumptionList();
+            }
+            this.clickedTile = null;
         }
     },
     getters: {
