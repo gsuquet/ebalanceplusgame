@@ -1,11 +1,4 @@
 <!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -33,6 +26,8 @@ The desired format is a Single Page Application (SPA)
   - [Technologies Used](#technologies-used)
     - [Main technologies](#main-technologies)
     - [Development tools, frameworks and libraries](#development-tools-frameworks-and-libraries)
+  - [License](#license)
+  - [Contact](#contact)
 
 ## Project Structure
 
@@ -41,7 +36,12 @@ The desired format is a Single Page Application (SPA)
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
 ## Project Setup
-First clone the repository, then install [pnpm](https://pnpm.io/), then run the following command:
+1. Clone the repo
+```sh
+git clone https://github.com/gabrieljunia/ebalanceplusgame.git
+```
+2. Install [pnpm](https://pnpm.io/installation)
+3. Install pnpm packages
 ```
 pnpm install
 ```
@@ -57,15 +57,20 @@ pnpm build
 ```
 ## Technologies Used
 ### Main technologies
-- [Vue 3](https://v3.vuejs.org/)
-- [Vue Router](https://next.router.vuejs.org/)
-- [Vue I18n](https://vue-i18n.intlify.dev/)
-- [Pinia](https://pinia.esm.dev/)
+- [![Vue 3][Vue.js]][Vue-url]
+- [![Vue Router][Vue-router]][Vue-router-url]
+- [![Vue I18n][Vue-i18n]][Vue-i18n-url]
+- [![Pinia][Pinia]][Pinia-url]
 
 ### Development tools, frameworks and libraries
-- [Vite](https://vitejs.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Sass](https://sass-lang.com/)
+- [![Vite][Vite]][Vite-url]
+- [![TypeScript][TypeScript]][TypeScript-url]
+- [![Sass][Sass]][Sass-url]
+
+## License
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Contact
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
@@ -80,4 +85,16 @@ pnpm build
 [license-shield]: https://img.shields.io/github/license/gabrieljunia/ebalanceplusgame.svg?style=for-the-badge
 [license-url]: https://github.com/gabrieljunia/ebalanceplusgame/blob/master/LICENSE.txt
 [Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
+[Vue-url]: https://v3.vuejs.org/
+[Vue-router]: https://img.shields.io/badge/Vue_Router-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
+[Vue-router-url]: https://next.router.vuejs.org/
+[Vue-i18n]: https://img.shields.io/badge/Vue_I18n-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
+[Vue-i18n-url]: https://vue-i18n.intlify.dev/
+[Pinia]: https://img.shields.io/badge/Pinia-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
+[Pinia-url]: https://pinia.esm.dev/
+[Vite]: https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white
+[Vite-url]: https://vitejs.dev/
+[Typescript]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
+[Typescript-url]: https://www.typescriptlang.org/
+[Sass]: https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white
+[Sass-url]: https://sass-lang.com/
