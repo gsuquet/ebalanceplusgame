@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@iconify/json': ^2.2.10
+  '@iconify/vue': ^4.1.0
   '@intlify/unplugin-vue-i18n': ^0.8.1
   '@vitejs/plugin-vue': ^4.0.0
   '@vueuse/core': ^9.11.1
@@ -19,6 +20,7 @@ specifiers:
   vue-tsc: ^1.0.11
 
 dependencies:
+  '@iconify/vue': 4.1.0_vue@3.2.45
   '@vueuse/core': 9.11.1_vue@3.2.45
   pinia: 2.0.29_prq2uz4lho2pwp6irk4cfkrxwu
   vue: 3.2.45
@@ -1422,7 +1424,6 @@ packages:
 
   /@iconify/types/2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
-    dev: true
 
   /@iconify/utils/2.0.12:
     resolution: {integrity: sha512-hhUyt1/k5RRhfcW/PRRdBw8e1ACehJT5QEZJRm7HnkCiUx11/0ccLr7K0OMlPSwjnfYcBS2gAUD3EpmL0iJCkQ==}
@@ -1436,6 +1437,15 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@iconify/vue/4.1.0_vue@3.2.45:
+    resolution: {integrity: sha512-rBQVxNoSDooqgWkQg2MqkIHkH/huNuvXGqui5wijc1zLnU7TKzbBHW9VGmbnV4asNTmIHmqV4Nvt0M2rZ/9nHA==}
+    peerDependencies:
+      vue: '>=3'
+    dependencies:
+      '@iconify/types': 2.0.0
+      vue: 3.2.45
+    dev: false
 
   /@intlify/bundle-utils/3.4.0_vue-i18n@9.2.2:
     resolution: {integrity: sha512-2UQkqiSAOSPEHMGWlybqWm4G2K0X+FyYho5AwXz6QklSX1EY5EDmOSxZmwscn2qmKBnp6OYsme5kUrnN9xrWzQ==}

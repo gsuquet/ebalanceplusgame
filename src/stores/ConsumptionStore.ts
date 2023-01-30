@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { Equipment } from './EquipmentStore';
 import { useGameParametersStore } from './GameParametersStore';
 
 export const useConsumptionStore = defineStore({
@@ -66,16 +67,22 @@ export const useConsumptionStore = defineStore({
         getConsumptionListSortedByStartIndex(state) {
             // return List of consumptions in ConsumptionList ordered by start index (asc)
             return state.consumptionList.sort((a,b) => (a.startIndex > b.startIndex) ? 1 : -1)
+        },
+        getConsumptionById(state) {
+            return (id:string) => {
+                return state.consumptionList.find(consumption => consumption.id === id)
+            }
         }
     }
 });
 
-interface Consumption{
+export interface Consumption {
     id: string;
     startIndex: number;
     endIndex: number;
     amount: number;
     color: string;
+    equipment: Equipment;
 }
 
 interface ConsumptionCurve {
