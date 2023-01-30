@@ -7,6 +7,11 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AddConsumptionWindow: typeof import('./components/AddConsumptionWindow.vue')['default']
+    Equipement: typeof import('./components/Equipement.vue')['default']
+    EquipementList: typeof import('./components/EquipementList.vue')['default']
+    EquipementType: typeof import('./components/EquipementType.vue')['default']
+    Equipments: typeof import('./components/Equipments.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
