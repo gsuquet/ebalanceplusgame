@@ -41,7 +41,7 @@
 </script>
 
 <template>
-    <main>   
+    <section class="list-equipment">
         <!--        
         <div class="menu-toggle-wrap">
             <button class="menu-toggle">
@@ -52,7 +52,7 @@
         <div class="list-container">
             <div class="type-list">
                 <div class="boucle" v-for="equipment_type in store.getTypeOnly()" >  
-                    <div class="container" @click="showList = expandList(showList)">
+                    <div class="type-container" @click="showList = expandList(showList)">
                         <h1>
                             {{ equipment_type }}
                         </h1>
@@ -70,9 +70,9 @@
                 </div>
             </div>
         </div>
-    </main> 
+    </section> 
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
     @import "../styles/components/list.scss";
 </style>

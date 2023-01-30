@@ -4,27 +4,18 @@ import {defineStore} from "pinia"
 export const useHourStore = defineStore({id :'EquipmentStore',
     state: () => {
         return {
-            hours: {
-                hour: 0,
-                min: 0,
-            } as Hour,
+            hour: Date
         };
     },
+    actions: {
+        getNewHour(hour: Date) {
+            const newHour: Date = hour;
+            return newHour;
+        }
+    }, 
+    getters: {
+
+    },
+
 });
 
-//     actions: {
-//         getNewHour(hour: number, min: number) {
-//             const newHour: Hour = {hour, min}
-//             return newHour
-//         }
-//     }, 
-//     getters: {
-
-//     },
-
-// });
-
- export interface Hour{
-     hour: number, 
-     min: number,
-}

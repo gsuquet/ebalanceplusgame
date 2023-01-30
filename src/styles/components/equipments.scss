@@ -67,4 +67,15 @@ $class_en:  (A, #009136),
 
 }
 
+.modal {
+    width: 750px;
+    background-color: beige;
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+}
+
 
