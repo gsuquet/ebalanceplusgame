@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Alert from '../components/Alert.vue';
 import Board from '../components/Board.vue';
+import EquipementList from '../components/EquipementList.vue';
 import { useConsumptionStore } from '../stores/ConsumptionStore';
 import { useBoardStore } from '../stores/BoardStore';
 const consumptionStore = useConsumptionStore();
@@ -39,6 +40,7 @@ function addConsumption() {
             </div>
             <button @click="addConsumption()">Add Test Consumption</button>
         </div>
+        <EquipementList />
         <Board
             :board-width="boardStore.board.width"
             :board-height="boardStore.board.height"

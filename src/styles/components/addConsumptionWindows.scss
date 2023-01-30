@@ -1,0 +1,61 @@
+body {
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+    min-height: 100vh;
+    background-color: aliceblue;
+}
+
+.modal {
+
+    width: 80vw;
+    height: 50vh;
+    background-color: aquamarine;
+    border-radius: 15px;
+    padding: 20px 25px 40px;
+
+
+    .information {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        
+        .type {
+            font-size: larger;
+            font-weight: bolder;
+            margin-right: 1rem;
+            
+        }
+        .conso, .price {
+            font-size: large;
+            margin-right: 1rem;
+        }
+    }
+
+    .start-end-container {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+
+        .choice-container {
+            .input-start-hour, .input-start-min, .input-end-hour, .input-end-min {
+                width: 2rem;
+                display: flex;
+                margin: 30px 0 35PX;
+            }
+        }
+
+    }
+
+    .save {
+        width: 30px;
+        height: 30px;
+    }
+
+
+
+
+    
+}
+
