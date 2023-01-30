@@ -1,3 +1,17 @@
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+
 # eBalance Plus Game
 
 This project is a game designed to help people get a better idea of what impact renewable energy has on our electrical consumption.   It's goal is to help players understand how to change their consumption habits to better fit the constraints of green energy production.  The main objectives are as follows : 
@@ -53,3 +67,17 @@ pnpm build
 - [TypeScript](https://www.typescriptlang.org/)
 - [Sass](https://sass-lang.com/)
 
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/gabrieljunia/ebalanceplusgame.svg?style=for-the-badge
+[contributors-url]: https://github.com/gabrieljunia/ebalanceplusgame/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/gabrieljunia/ebalanceplusgame.svg?style=for-the-badge
+[forks-url]: https://github.com/gabrieljunia/ebalanceplusgame/network/members
+[stars-shield]: https://img.shields.io/github/stars/gabrieljunia/ebalanceplusgame.svg?style=for-the-badge
+[stars-url]: https://github.com/gabrieljunia/ebalanceplusgame/stargazers
+[issues-shield]: https://img.shields.io/github/issues/gabrieljunia/ebalanceplusgame.svg?style=for-the-badge
+[issues-url]: https://github.com/gabrieljunia/ebalanceplusgame/issues
+[license-shield]: https://img.shields.io/github/license/gabrieljunia/ebalanceplusgame.svg?style=for-the-badge
+[license-url]: https://github.com/gabrieljunia/ebalanceplusgame/blob/master/LICENSE.txt
+[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
+[Vue-url]: https://vuejs.org/
