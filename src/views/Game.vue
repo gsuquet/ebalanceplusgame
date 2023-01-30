@@ -19,8 +19,8 @@ const testConsumption = {
         points:0,
         price:0,
         name_icon: 'mdi:dishwasher',
-        point_gap:0,
-        price_gap:0}};
+        point_gap:[0],
+        price_gap:[0]}};
 const testConsumption2 = { id: "1", startIndex: 2, endIndex: 6, amount: 500, color: '#5BA7A9', equipment: {id:1, type_fr: 'Machine à laver', type_en: 'Washing machine', energy_class: 'A',conso:500,points:0,price:0, name_icon: 'mdi:washing-machine',point_gap:[0],price_gap:[0]} };
 const testConsumption3 = { id: "2", startIndex: 7, endIndex: 7, amount: 1500, color: '#7d4800', equipment: {id:2, type_fr: 'Lave-vaisselle', type_en: 'Dishwasher', energy_class: 'A',conso:1500,points:0,price:0, name_icon: 'mdi:dishwasher',point_gap:[0],price_gap:[0]} };
 function addConsumption() {
