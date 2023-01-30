@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import Canvas from '../components/Canvas.vue';
-import { Tile } from '../stores/BoardStore';
+import { Tile, useBoardStore } from '../stores/BoardStore';
 </script>
 
 <template>
     <section id="game-board" class="board">
-        <Canvas :canvas-id="canvasId" :width="canvasWidth" :height="canvasHeight"/>
+        <Canvas
+            :canvas-id="canvasId"
+            :width="canvasWidth"
+            :height="canvasHeight"
+            @click="canvasClick"
+            @mousemove="canvasMouseMove"/>
         <button @click="clearCanvas(0,0,canvasWidth, canvasHeight)">Clear Canvas</button>
         <button @click="drawTilesConsumption(tiles)">Draw Consumption</button>
     </section>
@@ -16,6 +21,7 @@ import { Tile } from '../stores/BoardStore';
 </style>
 
 <script lang="ts">
+    const boardStore = useBoardStore();
     export default {
         name: 'Board',
         props: {
@@ -23,8 +29,8 @@ import { Tile } from '../stores/BoardStore';
             boardHeight: Number,
             pxSizeFor15m: Number,
             pxSizeFor10W: Number,
-            productionCurvePoints: null,
-            tiles: null
+            productionCurve: null,
+            tilesList: null
         },
         components: {
             Canvas
@@ -34,7 +40,10 @@ import { Tile } from '../stores/BoardStore';
                 canvasId: 'canvas',
                 canvas: null as CanvasRenderingContext2D | null,
                 canvasWidth: 1440,
-                canvasHeight: 1500
+                canvasHeight: 1500,
+                lastPosition: { x: 0, y: 0 } as { x: number, y: number },
+                productionCurvePoints: [] as number[],
+                tiles: [] as Tile[]
             };
         },
         mounted() {
@@ -43,8 +52,26 @@ import { Tile } from '../stores/BoardStore';
                 const ctx = canvasHTMLElement.getContext("2d");    
                 this.canvas = ctx;
             }
+            this.render();
         },
         methods: {
+            canvasClick(event: MouseEvent) {
+                const x = event.offsetX;
+                const y = event.offsetY;
+                console.log(`x: ${x}, y: ${y}`);
+                const clickedTile = this.tiles.filter((tile: Tile) => this.isInsideTile(x, y, tile));
+                if(clickedTile.length){
+                    boardStore.setClickedTile(clickedTile[0]);
+                } else{
+                    boardStore.setClickedTile(null);
+                }
+            },
+            canvasMouseMove(event: MouseEvent) {
+                const x = event.offsetX;
+                const y = event.offsetY;
+                this.lastPosition = { x, y };
+                this.render();
+            },
             clearCanvas(startX: number, startY: number, endX: number, endY: number) {
                 if(this.canvas){
                     this.canvas.clearRect(startX,startY,endX,endY);
@@ -54,8 +81,6 @@ import { Tile } from '../stores/BoardStore';
                 for(const tile of tiles){
                     this.drawConsumption(tile.x,tile.y,tile.width,tile.height,tile.color)
                 }
-                // TODO : Un-comment this line when production curve is ready
-                //this.drawProductionCurve(this.productionCurvePoints);
             },
             drawConsumption(x: number, y: number, width: number, height: number, color:string) {
                 if(this.canvas){
@@ -80,31 +105,42 @@ import { Tile } from '../stores/BoardStore';
                     this.canvas.lineTo(endX, endY);
                     this.canvas.stroke();
                 }
+            },
+            isInsideTile(x: number, y: number, tile: Tile) {
+                return (x >= tile.x && x <= tile.x + tile.width) && (y >= tile.y && y <= tile.y + tile.height);
+            },
+            render() {
+                this.clearCanvas(0,0,this.canvasWidth,this.canvasHeight);
+                this.drawTilesConsumption(this.tiles);
+                this.drawProductionCurve(this.productionCurvePoints);
             }
         },
         watch: {
             boardWidth : {
                 handler(newWidth) {
                     this.canvasWidth=newWidth;
+                    this.render();
                 },
                 immediate: true
             },
             boardHeight : {
                 handler(newHeight) {
                     this.canvasHeight=newHeight;
+                    this.render();
                 },
                 immediate: true
             },
-            productionCurvePoints : {
+            productionCurve : {
                 handler(newProductionCurvePoints) {
-                    this.drawProductionCurve(newProductionCurvePoints);
+                    this.productionCurvePoints=newProductionCurvePoints;
+                    this.render();
                 },
                 immediate: true
             },
-            tiles : {
+            tilesList : {
                 handler(newTiles) {
-                    this.clearCanvas(0,0,this.canvasWidth,this.canvasHeight);
-                    this.drawTilesConsumption(newTiles);
+                    this.tiles=newTiles;
+                    this.render();
                 },
                 immediate: true
             }
