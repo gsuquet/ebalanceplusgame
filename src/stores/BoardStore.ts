@@ -45,7 +45,7 @@ export const useBoardStore = defineStore({
         removeTileFromBoard(tileId: string) {
             this.board.tiles = this.board.tiles.filter(tile => tile.id !== tileId);
         },
-        setClickedTile(tile: Tile) {
+        setClickedTile(tile: Tile | null) {
             this.clickedTile = tile;
         },
         deleteClickedTileConsumption() {

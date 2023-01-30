@@ -9,7 +9,7 @@ import { useBoardStore } from '../stores/BoardStore';
         <div class="card">
             <div class="card-header">
                 <Icon :icon="consumption.equipment.name_icon" class="icon"/>
-                <h1 class="consumption-details-title">{{consumption.equipment.name}}</h1>
+                <h1 class="consumption-details-title">{{consumptionType}}</h1>
                 <span class="closebtn" @click="closeDetails">&times;</span>
             </div>
             <div class="card-content">
@@ -40,7 +40,7 @@ import { useBoardStore } from '../stores/BoardStore';
         },
         data() {
             return {
-                
+                consumptionType: ''
             };
         },
         methods: {
@@ -53,6 +53,18 @@ import { useBoardStore } from '../stores/BoardStore';
             deleteConsumption() {
                 boardStore.deleteClickedTileConsumption();
             }   
+        },
+        watch: {
+            consumption: {
+                handler() {
+                    if(useGameParametersStore().language === 'en'){
+                        this.consumptionType = this.consumption.equipment.type_en;
+                    } else{
+                        this.consumptionType = this.consumption.equipment.type_fr;
+                    }
+                },
+                immediate: true
+            }
         }
     };
 </script>
