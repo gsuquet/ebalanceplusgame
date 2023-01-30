@@ -1,20 +1,16 @@
-body {
+* {
     display: flex;
-    align-items: center;
-
     justify-content: center;
-    min-height: 100vh;
-    background-color: aliceblue;
 }
 
 .modal {
 
+    margin-bottom: 30rem;
     width: 80vw;
     height: 50vh;
     background-color: aquamarine;
     border-radius: 15px;
     padding: 20px 25px 40px;
-
 
     .information {
         display: flex;
@@ -39,23 +35,19 @@ body {
         flex-direction: row;
 
         .choice-container {
-            .input-start-hour, .input-start-min, .input-end-hour, .input-end-min {
-                width: 2rem;
+            .input-start-hour, .input-end-hour {
+                width: 8rem;
                 display: flex;
                 margin: 30px 0 35PX;
             }
         }
-
     }
 
     .save {
-        width: 30px;
-        height: 30px;
+        width: 60px;
+        height: 60px;
     }
 
-
-
-
-    
 }
+
 

@@ -4,6 +4,8 @@ import Board from '../components/Board.vue';
 import EquipementList from '../components/EquipementList.vue';
 import { useConsumptionStore } from '../stores/ConsumptionStore';
 import { useBoardStore } from '../stores/BoardStore';
+import AddConsumptionWindow from "../components/AddConsumptionWindow.vue";
+
 const consumptionStore = useConsumptionStore();
 const boardStore = useBoardStore();
 const gameParametersStore = useGameParametersStore();
@@ -20,6 +22,9 @@ function addConsumption() {
 </script>
 
 <template>
+    <div class="overlay">
+
+    </div>
     <div id="game-page" class="vue">
         <Alert
             :should-display="consumptionStore.isOverConsumption"
@@ -40,13 +45,21 @@ function addConsumption() {
             </div>
             <button @click="addConsumption()">Add Test Consumption</button>
         </div>
-        <EquipementList />
-        <Board
-            :board-width="boardStore.board.width"
-            :board-height="boardStore.board.height"
-            :px-size-for15m="boardStore.tileParams.pxSizeFor15min"
-            :px-size-for10-w="boardStore.tileParams.pxSizeFor10W"
-            :tiles="boardStore.board.tiles"
-            :production-curve-points="gameParametersStore.productionCurve.data"/>
+        <div class="board-list-container">
+            <EquipementList />
+            <Board
+                :board-width="boardStore.board.width"
+                :board-height="boardStore.board.height"
+                :px-size-for15m="boardStore.tileParams.pxSizeFor15min"
+                :px-size-for10-w="boardStore.tileParams.pxSizeFor10W"
+                :tiles="boardStore.board.tiles"
+                :production-curve-points="gameParametersStore.productionCurve.data"/>
+
+            <AddConsumptionWindow class="popup-window"/>
+        </div>
     </div>
 </template>
+
+<style scoped lang="scss">
+    @import "../styles/views/game.scss";
+</style>

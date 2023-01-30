@@ -15,6 +15,7 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
                 point_gap: [0,0],
                 price_gap: [0,0]
             }] as Equipment [],
+            clickedEquipment: null as null | Equipment
         };
     },
 
@@ -55,8 +56,13 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
                 }
             }
             return icon; 
-        }
+        },
 
+        setClickedEquipment(equipment: Equipment | null) {
+            this.clickedEquipment = equipment;
+        }
+        
+        
         /*
         setPriceAndScoreGap(type: string) { //maybe not the best solution don't do it or automate it
             let listePoints: number[] = []
