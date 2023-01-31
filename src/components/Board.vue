@@ -59,7 +59,6 @@ import { ProductionCurve } from '../stores/ProductionStore';
             canvasClick(event: MouseEvent) {
                 const x = event.offsetX;
                 const y = event.offsetY;
-                console.log(`x: ${x}, y: ${y}`);
                 const clickedTile = this.tiles.filter((tile: Tile) => this.isInsideTile(x, y, tile));
                 if(clickedTile.length){
                     boardStore.setClickedTile(clickedTile[0]);
@@ -89,22 +88,17 @@ import { ProductionCurve } from '../stores/ProductionStore';
                 }
             },
             drawProductionCurve(productionCurve: ProductionCurve | null) {
-                console.log('drawProductionCurve' + productionCurve);
                 if(productionCurve){
                     if(productionCurve.solar.length>0){
-                        console.log('drawProductionCurve solar');
                         this.drawCurve(productionCurve.solar, 'yellow');
                     }
                     if(productionCurve.wind.length>0){
-                        console.log('drawProductionCurve wind');
                         this.drawCurve(productionCurve.wind, 'green');
                     }
                     if(productionCurve.hydro.length>0){
-                        console.log('drawProductionCurve hydro');
                         this.drawCurve(productionCurve.hydro, 'blue');
                     }
                     if(productionCurve.total.length>0){
-                        console.log('drawProductionCurve total');
                         this.drawCurve(productionCurve.total, 'black');
                     }
                 }
@@ -128,7 +122,6 @@ import { ProductionCurve } from '../stores/ProductionStore';
             },
             getProductionCurveInPixels(productionCurve: ProductionCurve | null) {
                 if(productionCurve){
-                    console.log('getProductionCurveInPixels');
                     const pxSize = this.pxSizeFor10W ? this.pxSizeFor10W : 5;
                     productionCurve.solar = productionCurve.solar.map((point: number) => (point*pxSize)/10);
                     productionCurve.wind = productionCurve.wind.map((point: number) => (point*pxSize)/10);
