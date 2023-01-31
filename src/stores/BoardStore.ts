@@ -57,15 +57,20 @@ export const useBoardStore = defineStore({
         }
     },
     getters: {
-        getProductionCurvePointsInPixels(state) {
-            const productionCurvePoints = useGameParametersStore().productionCurve.data;
-            if(productionCurvePoints){
-                return productionCurvePoints.forEach((element: number) => (element*state.tileParams.pxSizeFor10W)/10);
-            }
-            return [];
+        getProductionCurveInPixels(state) {
+            const productionCurve = useGameParametersStore().productionCurve;
+            productionCurve.solar = productionCurve.solar.map((element: number) => convertToPx(element, state.tileParams.pxSizeFor10W));
+            productionCurve.wind = productionCurve.wind.map((element: number) => convertToPx(element, state.tileParams.pxSizeFor10W));
+            productionCurve.hydro = productionCurve.hydro.map((element: number) => convertToPx(element, state.tileParams.pxSizeFor10W));
+            productionCurve.total = productionCurve.total.map((element: number) => convertToPx(element, state.tileParams.pxSizeFor10W));
+            return productionCurve;
         }
     }
 });
+
+function convertToPx(value: number, pxSizeFor10W: number) {
+    return (value * pxSizeFor10W) / 10;
+}
 
 interface Board {
     width: number;

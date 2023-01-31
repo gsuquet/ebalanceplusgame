@@ -28,13 +28,15 @@ gameParametersStore.setProductionCurve('0');
         <div class="board-list-container">
             <EquipementList />
             <Board
-            :board-width="boardStore.board.width"
-            :board-height="boardStore.board.height"
-            :px-size-for15m="boardStore.tileParams.pxSizeFor15min"
-            :px-size-for10-w="boardStore.tileParams.pxSizeFor10W"
-            :tiles-list="boardStore.board.tiles"
-            :production-curve="gameParametersStore.productionCurve.data"/>
+              :board-width="boardStore.board.width"
+              :board-height="boardStore.board.height"
+              :px-size-for15m="boardStore.tileParams.pxSizeFor15min"
+              :px-size-for10-w="boardStore.tileParams.pxSizeFor10W"
+              :tiles-list="boardStore.board.tiles"
+              :production-curve-props="gameParametersStore.productionCurve"/>
             <BoardConsumptionDetails 
+            v-if="boardStore.clickedTile"
+            :consumption="consumptionStore.getConsumptionById(boardStore.clickedTile.id)"/>
             v-if="boardStore.clickedTile"
             :consumption="consumptionStore.getConsumptionById(boardStore.clickedTile.id)"/>
         </div>

@@ -51,11 +51,12 @@ export const useConsumptionStore = defineStore({
             }
         },
         setListOfOverConsumption() {
+            this.overConsumptionMap.clear();
             const productionCurve = useGameParametersStore().productionCurve;
             if (productionCurve) {
                 for (const [time, consumption] of this.consumptionCurve.consumption) {
-                    if (consumption > productionCurve.data[time]) {
-                        this.overConsumptionMap.set(time, consumption - productionCurve.data[time]);
+                    if (consumption > productionCurve.total[time]) {
+                        this.overConsumptionMap.set(time, consumption - productionCurve.total[time]);
                     }
                 }
             }
@@ -69,7 +70,7 @@ export const useConsumptionStore = defineStore({
             return index;
         },
 
-        getConsumption(indexStart: number, indexEnd: number, equipment: Equipment) {
+        addConsumption(indexStart: number, indexEnd: number, equipment: Equipment) {
             let amount: number = equipment.conso;
             let color: string = equipment.color;
             let id: string = Math.floor(Math.random() * (1000000)).toString();
