@@ -37,11 +37,13 @@
         </div>
 
         <div class="schedule-prog">
-            <div class="start-end-container">
-                <div class="start-input field">
-                    <p>Start</p>
-                    <div class="choice-container">
-                        <input type="time" class="input-start" step="900" id="startHour" v-model="startHour">
+            <div class="slider-container">
+                <div class="start-end-container">
+                    <div class="start-input field">
+                        <p>Start</p>
+                        <div class="choice-container">
+                            <input type="time" class="input-start" step="900" id="startHour" v-model="startHour">
+                        </div>
                     </div>
                 </div>
                 <div class="end-input field">
