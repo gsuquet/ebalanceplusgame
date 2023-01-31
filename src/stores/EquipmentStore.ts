@@ -12,6 +12,7 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
                 points: 0,
                 price: 0,
                 name_icon: "vide",
+                color: "#000000",
                 point_gap: [0,0],
                 price_gap: [0,0]
             }] as Equipment [],
@@ -100,6 +101,7 @@ export interface Equipment{
     points: number,
     price: number,
     name_icon: string,
+    color: string,
     point_gap: number[],
     price_gap: number[];
 }

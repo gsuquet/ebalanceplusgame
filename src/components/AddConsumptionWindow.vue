@@ -1,19 +1,26 @@
 <script setup lang="ts">
     import Close from "../icons/Close.vue";
     import Save from "../icons/Save.vue";
-    import {useEquipmentStore} from "../stores/EquipmentStore";
+    import { useEquipmentStore } from "../stores/EquipmentStore";
+    import { useConsumptionStore } from "../stores/ConsumptionStore";
 
     const store = useEquipmentStore();
     store.getEquipmentData();
+    const storeConsumption = useConsumptionStore();
 
-    function getHour(date: Date): Date {
-        const newHour: Date = date;
-        console.log(newHour);
-        return newHour;
+    function checkIfEquipmentNotNull() {
+        if(store.clickedEquipment != null) {
+            storeConsumption.getConsumption(storeConsumption.getTimeToIndex(startHour), 
+                        storeConsumption.getTimeToIndex(endHour), store.clickedEquipment);
+            
+        }
+        else {
+            console.log("equipment not selected")
+        }
     }
 
-    let startHour: Date;
-    let endHour: Date;
+    let startHour: string;
+    let endHour: string;
 </script>
 
 <template>
@@ -53,8 +60,7 @@
                 </div>
             </div>
         </div>
-
-        <button class="save" @click="getHour(startHour), getHour(endHour)">
+        <button class="save" @click="checkIfEquipmentNotNull()">
             <Save style="width:60px; height:60px" />
         </button>
     </div>

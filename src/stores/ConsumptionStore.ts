@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { Equipment } from './EquipmentStore';
 import { useGameParametersStore } from './GameParametersStore';
+import { useBoardStore } from './BoardStore';
 
 export const useConsumptionStore = defineStore({
     id: 'ConsumptionStore',
@@ -24,6 +25,7 @@ export const useConsumptionStore = defineStore({
                 this.addToConsumptionCurve(i,newConsumption.amount)
             }
             this.setListOfOverConsumption();
+            useBoardStore().setTilesFromConsumptionList();
         },
         removeFromConsumptionList(consumptionId:string) {
             const consumptionToRemove = this.consumptionList.find(consumption => consumption.id === consumptionId);
@@ -57,6 +59,27 @@ export const useConsumptionStore = defineStore({
                     }
                 }
             }
+        }, 
+
+        getTimeToIndex(hour: string): (number) {
+            let listHour: string[] = hour.split(":", 2);
+            let h:number = Number(listHour[0]);
+            let m:number = Number(listHour[1]);
+            let index:number = h*4+ m/4;
+            return index;
+        },
+
+        getConsumption(indexStart: number, indexEnd: number, equipment: Equipment) {
+            let amount: number = equipment.conso;
+            let color: string = equipment.color;
+            let id: string = Math.floor(Math.random() * (1000000)).toString();
+            let newConsumption: Consumption = { id:id,
+                startIndex:indexStart,
+                endIndex: indexEnd,
+                amount:amount,
+                color:color,
+                equipment:equipment };
+            this.addToConsumptionList(newConsumption);
         }
     },
 
