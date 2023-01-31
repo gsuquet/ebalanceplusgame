@@ -8,8 +8,9 @@
     position: relative;
 
     .close {
-
+        margin-left: 95%;
     }
+
 
     .information {
         display: flex;
@@ -92,6 +93,23 @@
         }
     }
 
+    .slider {
+        height: 5px;
+        border-radius: 5px;
+        background-color: #fff;
+        margin-top: 4rem;
+
+    }
+
+    .slider .progress {
+        height: 5px;
+        left: 25%;
+        right: 25%;
+        position: absolute;
+        border-radius: 5px;
+        background-color: aqua;
+    }
+
 
 
 
@@ -101,7 +119,10 @@
         cursor: pointer;
         position: absolute;
         bottom: 15px;
+        margin-left: 40%;
     }
+
+
 }
 
 
