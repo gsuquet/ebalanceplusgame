@@ -37,23 +37,33 @@
         </div>
 
         <div class="schedule-prog">
-            <div class="slider-container">
-                <div class="start-end-container">
-                    <div class="start-input field">
-                        <p>Start</p>
-                        <div class="choice-container">
-                            <input type="time" class="input-start" step="900" id="startHour" v-model="startHour">
-                        </div>
+            <div class="start-end-container">
+                <div class="start-input field">
+                    <p>Start</p>
+                    <div class="choice-container">
+                        <input type="time" class="input-start" step="900" id="startHour" v-model="startHour">
                     </div>
-                    <div class="end-input field">
-                        <p>End</p>
-                        <div class="choice-container">
-                            <input type="time" class="input-end" step="900" id="endHour" v-model="endHour">
-                        </div>
+                </div>
+                <div class="end-input field">
+                    <p>End</p>
+                    <div class="choice-container">
+                        <input type="time" class="input-end" step="900" id="endHour" v-model="endHour">
                     </div>
                 </div>
             </div>
+
+            <div class="slider">
+                <div class="progress">
+                </div>
+                <div class="range-input">
+                    <input type="range" class="range-min" min="0" max="24">
+                </div>
+            </div>
+
         </div>
+
+
+    
         <button class="save" @click="checkIfEquipmentNotNull()">
             <Save style="width:60px; height:60px" />
         </button>
