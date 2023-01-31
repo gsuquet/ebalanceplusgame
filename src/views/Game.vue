@@ -29,7 +29,7 @@ gameParametersStore.setProductionCurve('0');
               :px-size-for15m="boardStore.tileParams.pxSizeFor15min"
               :px-size-for10-w="boardStore.tileParams.pxSizeFor10W"
               :tiles-list="boardStore.board.tiles"
-              :production-curve-props="gameParametersStore.productionCurve"/>
+              :production-curve-props="gameParametersStore.getProductionCurve"/>
             <BoardConsumptionDetails 
               v-if="boardStore.clickedTile"
               :consumption="consumptionStore.getConsumptionById(boardStore.clickedTile.id)"/>

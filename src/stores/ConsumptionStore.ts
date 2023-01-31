@@ -68,7 +68,7 @@ export const useConsumptionStore = defineStore({
         },
         setListOfOverConsumption() {
             this.overConsumptionMap.clear();
-            const productionCurve = useGameParametersStore().productionCurve;
+            const productionCurve = useGameParametersStore().getProductionCurve;
             if (productionCurve) {
                 for (const [time, consumption] of this.consumptionCurve.consumption) {
                     if (consumption > productionCurve.total[time]) {
@@ -76,7 +76,7 @@ export const useConsumptionStore = defineStore({
                     }
                 }
             }
-        }, 
+        },
         getTimeToIndex(hour: string): (number) {
             let listHour: string[] = hour.split(":", 2);
             let h:number = Number(listHour[0]);
