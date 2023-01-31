@@ -1,0 +1,154 @@
+#board-consumption-details{
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: white;
+    width:700px;
+    text-align: center;
+    position : fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .color-banner{
+        width: 100%;
+        height: 10px;
+        border-radius: 5px 5px 0 0;
+    }
+    .btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 35px;
+        width: 130px;
+        cursor: pointer;
+        border:none;
+        border-radius: 5px;
+        padding: 3px;
+        font-size: medium;
+        .btn-icon{
+            margin-right: 10px;
+        }
+    }
+    .card{
+        padding: 0 5px 15px 5px;
+        .card-header{
+            margin: 5px 0 0 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .icon{}
+            .consumption-details-title{
+                font-size: x-large;
+            }
+            .closebtn{
+                background-color: red;
+                height:22px;
+                width: 22px;
+                border-radius: 50%;
+                margin-left: 15px;
+                color: black;
+                font-weight: bold;
+                float: right;
+                font-size: 22px;
+                cursor: pointer;
+                transition: 0.3s;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .closebtn:hover{
+                color: white;
+                background-color: darkred;
+            }
+        }
+        .card-content{
+            margin: 15px 0 15px 0;
+            h2{
+                display: flex;
+                align-items: center;
+                font-size: larger;
+                svg{
+                    height: 30px;
+                    width: 30px;
+                }
+            }
+            align-items: center;
+            .card-content-consumption{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0 0 5px 0;
+                .consumption-amount{
+                    .icon-consumption{
+                        margin-right: 10px;
+                        color: rgba(255, 217, 0, 0.605);
+                    }
+                }
+                .money-amount{
+                    margin-left: 10px;
+                    .icon-price{
+                        margin-right: 10px;
+                        color: green;
+                    }
+                }
+            }
+            .card-content-time{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .icon-time{
+                    margin-right: 10px;
+                    color:blue;
+                }
+            }
+        }
+        .card-choice-buttons{
+            display: flex;
+            justify-content: center;
+            .btn-modify{
+                margin-right: 10px;
+            }
+            .btn-delete{
+                margin-left: 10px;
+                background-color: red;
+                color: white;
+            }
+        }
+        .card-time-modifier{
+            display: flex;
+            justify-content: center;
+            .field{
+                display: flex;
+                align-items: center;
+                .input-error{
+                    border: solid 1px red;
+                }
+                .choice-container{
+                    padding: 5px;
+                    border-radius: 10px;
+                    background-color: white;
+                    margin: 0 0 0 10px;
+                    .input{
+                        border: none;
+                    }
+                }
+            }
+            .start-input{
+                margin-right: 10px;
+            }
+            .end-input{
+                margin-left: 10px;
+            }
+        }
+        .card-save-modification{
+            margin: 15px 0 0 0;
+            display: flex;
+            justify-content: center;
+            .btn-save{
+                margin-right: 10px;
+            }
+            .btn-cancel{
+                margin-left: 10px;
+            }
+        }
+    }
+}

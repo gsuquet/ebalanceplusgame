@@ -12,8 +12,6 @@ import { ProductionCurve } from '../stores/ProductionStore';
             :height="canvasHeight"
             @click="canvasClick"
             @mousemove="canvasMouseMove"/>
-        <button @click="clearCanvas(0,0,canvasWidth, canvasHeight)">Clear Canvas</button>
-        <button @click="drawTilesConsumption(tiles)">Draw Consumption</button>
     </section>
 </template>
 
