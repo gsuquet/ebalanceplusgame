@@ -4,15 +4,15 @@
     import { useEquipmentStore } from "../stores/EquipmentStore";
     import { useConsumptionStore } from "../stores/ConsumptionStore";
 
-    const store = useEquipmentStore();
-    store.getEquipmentData();
-    const storeConsumption = useConsumptionStore();
+    const equipmentStore = useEquipmentStore();
+    equipmentStore.getEquipmentData();
+    const consumptionStore = useConsumptionStore();
 
     function checkIfEquipmentNotNull() {
-        if(store.clickedEquipment != null) {
-            storeConsumption.getConsumption(storeConsumption.getTimeToIndex(startHour), 
-                        storeConsumption.getTimeToIndex(endHour), store.clickedEquipment);
-            
+        if(equipmentStore.clickedEquipment != null) {
+            consumptionStore.addConsumption(consumptionStore.getTimeToIndex(startHour), 
+                        consumptionStore.getTimeToIndex(endHour), equipmentStore.clickedEquipment);
+            equipmentStore.setClickedEquipment(null);
         }
         else {
             console.log("equipment not selected")
@@ -25,14 +25,14 @@
 
 <template>
     
-    <div class="modal" v-if="store.clickedEquipment">
+    <div class="modal" v-if="equipmentStore.clickedEquipment">
         <div class="information">
-            <h1 class="type">{{store.clickedEquipment.type_fr }}</h1>
-            <p class="conso"> {{ store.clickedEquipment.conso }}</p>
-            <p class="price"> {{ store.clickedEquipment.price }}</p>
+            <h1 class="type">{{equipmentStore.clickedEquipment.type_fr }}</h1>
+            <p class="conso"> {{ equipmentStore.clickedEquipment.conso }}</p>
+            <p class="price"> {{ equipmentStore.clickedEquipment.price }}</p>
         </div>
 
-        <div class="close" @click="store.setClickedEquipment(null)">
+        <div class="close" @click="equipmentStore.setClickedEquipment(null)">
             <Close style="width: 30px; height: 30px; cursor: pointer;"/>
         </div>
 

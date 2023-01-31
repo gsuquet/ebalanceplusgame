@@ -25,7 +25,6 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
             const data = (await import ('../data/equipments.json')).default;
             this.equipments = data as Equipment[];
         },
-
         getEquipmentByType(type : string) {
             const equipmentsByType: Equipment [] = [];
             for(let i =0; i < this.equipments.length; i++) {
@@ -34,7 +33,6 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
             }
             return equipmentsByType;
         },
-
         getTypeOnly() {
             const type: string[] = []
             for(let i=0; i<this.equipments.length; i++) {
@@ -58,7 +56,6 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
             }
             return icon; 
         },
-
         setClickedEquipment(equipment: Equipment | null) {
             this.clickedEquipment = equipment;
         }
