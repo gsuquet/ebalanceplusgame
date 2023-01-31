@@ -2,18 +2,24 @@
     import Close from "../icons/Close.vue";
     import Save from "../icons/Save.vue";
     import {useEquipmentStore} from "../stores/EquipmentStore";
+    import { useHourStore } from "../stores/HoursStore";
 
     const store = useEquipmentStore();
     store.getEquipmentData();
 
-    function getHour(date: Date): Date {
-        const newHour: Date = date;
+    const storeHours = useHourStore();
+
+    function getHour(date: string): number {
+        const newHour: string = date;
         console.log(newHour);
-        return newHour;
+        let index = storeHours.getTimeToIndex(date)
+        console.log(index);
+        return index;
+
     }
 
-    let startHour: Date;
-    let endHour: Date;
+    let startHour: string;
+    let endHour: string;
 </script>
 
 <template>
