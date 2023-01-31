@@ -33,16 +33,10 @@
         </div>
 
         <div class="close" @click="store.setClickedEquipment(null)">
-            <Close />
+            <Close style="width: 30px; height: 30px; cursor: pointer;"/>
         </div>
 
         <div class="schedule-prog">
-            <div class="hour-start">
-
-            </div>
-            <div class="hour-stop">
-
-            </div>
             <div class="slider-container">
                 <div class="start-end-container">
                     <div class="start-input field">
