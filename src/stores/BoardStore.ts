@@ -51,7 +51,12 @@ export const useBoardStore = defineStore({
         deleteClickedTileConsumption() {
             if(this.clickedTile) {
                 useConsumptionStore().removeFromConsumptionList(this.clickedTile.id);
-                this.setTilesFromConsumptionList();
+            }
+            this.clickedTile = null;
+        },
+        modifyClickedTileConsumptionHours(startHour: string, endHour: string) {
+            if(this.clickedTile) {
+                useConsumptionStore().modifyConsumptionHours(this.clickedTile.id, startHour, endHour);
             }
             this.clickedTile = null;
         }

@@ -35,6 +35,22 @@ export const useConsumptionStore = defineStore({
                 }
                 this.consumptionList = this.consumptionList.filter(consumption => consumption.id !== consumptionId);
                 this.setListOfOverConsumption();
+                useBoardStore().setTilesFromConsumptionList();
+            }
+        },
+        modifyConsumptionHours(consumptionId:string, startHour:string, endHour:string) {
+            const consumptionToModify = this.consumptionList.find(consumption => consumption.id === consumptionId);
+            if(consumptionToModify){
+                for(let i=consumptionToModify.startIndex; i<=consumptionToModify.endIndex; i++){
+                    this.removeFromConsumptionCurve(i,consumptionToModify.amount)
+                }
+                consumptionToModify.startIndex = this.getTimeToIndex(startHour);
+                consumptionToModify.endIndex = this.getTimeToIndex(endHour);
+                for(let i=consumptionToModify.startIndex; i<=consumptionToModify.endIndex; i++){
+                    this.addToConsumptionCurve(i,consumptionToModify.amount)
+                }
+                this.setListOfOverConsumption();
+                useBoardStore().setTilesFromConsumptionList();
             }
         },
         addToConsumptionCurve(index:number, value:number) {
@@ -61,15 +77,13 @@ export const useConsumptionStore = defineStore({
                 }
             }
         }, 
-
         getTimeToIndex(hour: string): (number) {
             let listHour: string[] = hour.split(":", 2);
             let h:number = Number(listHour[0]);
             let m:number = Number(listHour[1]);
-            let index:number = h*4+ m/4;
+            let index:number = h*4+ m/15;
             return index;
         },
-
         getConsumption(indexStart: number, indexEnd: number, equipment: Equipment) {
             let amount: number = equipment.conso;
             let color: string = equipment.color;
@@ -96,7 +110,15 @@ export const useConsumptionStore = defineStore({
             return (id:string) => {
                 return state.consumptionList.find(consumption => consumption.id === id)
             }
-        }
+        },
+        getIndexToTime() {
+            return (index:number) => {
+                let h:number = Math.floor(index/4);
+                let m:number = (index%4)*15;
+                let time:string = h.toString().padStart(2, '0') + ":" + m.toString().padStart(2, '0');
+                return time;
+            }
+        },
     }
 });
 
