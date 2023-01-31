@@ -163,7 +163,30 @@
         right: 25%;
         position: absolute;
         border-radius: 5px;
-        background-color: aqua;
+        background: aqua;
+    }
+
+    .range-input {
+        position: relative;
+    }
+
+    .range-input input{
+        position: absolute;
+        top: -5px;
+        height: 5px;
+        width: 100%;
+        background: none;
+        appearance: none;
+        pointer-events: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        height: 17px;
+        width: 17px;
+        border-radius: 50%;
+        appearance: none;
+        background: aqua;
+        pointer-events: auto;
     }
 
 

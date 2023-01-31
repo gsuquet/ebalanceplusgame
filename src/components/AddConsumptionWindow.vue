@@ -3,6 +3,8 @@
     import Save from "../icons/Save.vue";
     import { useEquipmentStore } from "../stores/EquipmentStore";
     import { useConsumptionStore } from "../stores/ConsumptionStore";
+    import { Icon } from "@iconify/vue"
+     
 
     const equipmentStore = useEquipmentStore();
     equipmentStore.getEquipmentData();
@@ -21,11 +23,23 @@
 
     let startHour: string;
     let endHour: string;
+
+    // const rangeInput = document.querySelectorAll(".range-input input");
+    // rangeInput.forEach(input =>{
+    //     input.addEventListener("input", ()=>{
+    //         let minval = parseInt(rangeInput[0].value);
+    //         let maxVal = parseInt(rangeInput[1].value);
+    //         console
+    //     })
+    // })
+
 </script>
 
 <template>
     
     <div class="modal" v-if="equipmentStore.clickedEquipment">
+
+        
         <div class="information">
             <h1 class="type">{{equipmentStore.clickedEquipment.type_fr }}</h1>
             <p class="conso"> {{ equipmentStore.clickedEquipment.conso }}</p>
@@ -44,12 +58,12 @@
                         <div class="choice-container">
                             <input type="time" class="input-start" step="900" id="startHour" v-model="startHour">
                         </div>
-                    </div>
-                </div>
-                <div class="end-input field">
-                    <p>End</p>
-                    <div class="choice-container">
-                        <input type="time" class="input-end" step="900" id="endHour" v-model="endHour">
+                    </div>                
+                    <div class="end-input field">
+                        <p>End</p>
+                        <div class="choice-container">
+                            <input type="time" class="input-end" step="900" id="endHour" v-model="endHour">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -58,7 +72,8 @@
                 <div class="progress">
                 </div>
                 <div class="range-input">
-                    <input type="range" class="range-min" min="0" max="24">
+                    <input type="range" class="range-min" min="0" max="24" v-model="startHour">
+                    <input type="range" class="range-max" min="0" max="24" v-model="endHour">
                 </div>
             </div>
 

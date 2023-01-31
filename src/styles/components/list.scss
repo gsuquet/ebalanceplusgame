@@ -1,77 +1,86 @@
-
-
 .list-equipment {
 
+	
 	position: absolute;
 	display: flex;
 	flex-direction: column;
-
-	background-color: aquamarine;
-
-	width: calc(11rem + 32px);
 	overflow: hidden;
-	height: 1520px;
-	padding: 1rem;
-	margin-top: 0.4rem;
-
+	background-color: aquamarine;
 	border-radius: 15px;
 
-	transition: 0.2s ease-in-out;
 
+	.icon-container {
 
-	.menu-toggle-wrap {
-		display: flex;
-		justify-content: flex-end;
-		margin-bottom: 1rem;
-		position: relative;
-		top: 0;
-		transition: 0.2s ease-in-out;
-		.menu-toggle {
-			transition: 0.2s ease-in-out;
-			.material-icons {
-				font-size: 2rem;
-				//color: var();
-				transition: 0.2s ease-out;
-			}
-			
-			&:hover {
-				.material-icons {
-					color: var(--primary);
-					transform: translateX(0.5rem);
-				}
-			}
+		.icon-menu-extend {
+		cursor: pointer;
+		height: 30px;
+		width: 30px;
+		margin-left: 0.3rem;
+		margin-top: 0.3rem;
 		}
 	}
 
-	.list-container {
-		overflow-y: scroll;
-		margin: 0 -1rem;
 
-		.type-container {
-			display: flex;
-			align-items: center;
-			text-decoration: none;
-			transition: 0.2s ease-in-out;
-			padding: 0.5rem 1rem;
-			margin-bottom: 0.5rem;
+	.type-list-normal {
 
 
-			.material-icons {
-				font-size: 2rem;
-				//color: var();
+		width: calc(11rem + 32px);
+
+		height: 1520px;
+		padding: 1rem;
+		margin-top: 0.4rem;
+
+		transition: 0.2s ease-in-out;
+		overflow-y: auto;
+
+		.boucle {
+			
+			margin: 0 -1rem;
+
+			.type-container {
+				display: flex;
+				align-items: center;
+				text-decoration: none;
 				transition: 0.2s ease-in-out;
-			}
-			h1 {
-				transition: 0.2s ease-in-out;
-			}
+				padding: 0.5rem 1rem;
+				margin-bottom: 0.5rem;
 
-			&:hover {
-				background-color: gray;
-				border-radius: 10px;
-				.material-icons, .text {
-					color: white;
+
+				.material-icons {
+					font-size: 2.5rem;
+					//color: var();
+					transition: 0.2s ease-in-out;
+				}
+				h1 {
+					transition: 0.2s ease-in-out;
+				}
+
+				&:hover {
+					background-color: gray;
+					border-radius: 10px;
+					.material-icons, .text {
+						color: white;
+					}
 				}
 			}
+		}
+
+	}
+
+
+	.type-list-reduce {
+		width: calc(4rem + 20px );
+
+		height: 1520px;
+		padding: 1rem;
+		margin-top: 0.4rem;
+
+		transition: 0.2s ease-in-out;
+		overflow-y: auto;
+
+		.boucle {
+			font-size: 3rem;
+			margin-bottom: 1rem;
 		}
 	}
 }
