@@ -3,11 +3,9 @@
     import Save from "../icons/Save.vue";
     import { useEquipmentStore } from "../stores/EquipmentStore";
     import { useConsumptionStore } from "../stores/ConsumptionStore";
-    
 
     const store = useEquipmentStore();
     store.getEquipmentData();
-
     const storeConsumption = useConsumptionStore();
 
     function checkIfEquipmentNotNull() {
@@ -62,7 +60,6 @@
                 </div>
             </div>
         </div>
-
         <button class="save" @click="checkIfEquipmentNotNull()">
             <Save style="width:60px; height:60px" />
         </button>

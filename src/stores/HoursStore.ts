@@ -6,7 +6,6 @@ import { Consumption } from "./ConsumptionStore";
 export const useHourStore = defineStore({id :'HoursStore',
     state: () => {
         return {
-            
         };
     },
     actions: {
