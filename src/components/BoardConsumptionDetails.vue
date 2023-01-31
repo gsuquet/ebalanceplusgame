@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
 import { useBoardStore } from '../stores/BoardStore';
+import { useConsumptionStore } from '../stores/ConsumptionStore';
 </script>
 
 <template>
@@ -14,14 +15,29 @@ import { useBoardStore } from '../stores/BoardStore';
             </div>
             <div class="card-content">
                 <h2 class="consumption-amount">{{ consumption.amount }} W</h2>
-                <h3 class="consumption-time">{{ consumption.startIndex }}h - {{ consumption.endIndex }}h</h3>
+                <h3 class="consumption-time">{{ useConsumptionStore().getIndexToTime(consumption.startIndex) }} - {{ useConsumptionStore().getIndexToTime(consumption.endIndex) }}</h3>
             </div>
-            <div class="card-choice-buttons">
+            <div class="card-choice-buttons" v-if="!modify">
                 <button class="btn btn-primary" @click="modifyConsumption">Modifier</button>
                 <button class="btn btn-danger" @click="deleteConsumption">Supprimer</button>
             </div>
-            <div class="card-time-modifier">
-
+            <div class="card-time-modifier" v-if="modify">
+                <div class="start-input field">
+                    <p>Start</p>
+                    <div class="choice-container">
+                        <input type="time" class="input-start" step="900" id="startHour" v-model="startHour">
+                    </div>
+                </div>
+                <div class="end-input field">
+                    <p>End</p>
+                    <div class="choice-container">
+                        <input type="time" class="input-end" step="900" id="endHour" v-model="endHour">
+                    </div>
+                </div>
+            </div>
+            <div class="card-save-modification">
+                <button class="btn btn-save" v-if="modify" @click="saveModifiedConsumption">Sauvegarder</button>
+                <button class="btn btn-cancel" v-if="modify" @click="modify = false">Annuler</button>
             </div>
         </div>
     </section>
@@ -40,7 +56,10 @@ import { useBoardStore } from '../stores/BoardStore';
         },
         data() {
             return {
-                consumptionType: ''
+                consumptionType: '',
+                modify: false as boolean,
+                startHour: '' as string,
+                endHour: '' as string
             };
         },
         methods: {
@@ -48,7 +67,14 @@ import { useBoardStore } from '../stores/BoardStore';
                 boardStore.setClickedTile(null);
             },
             modifyConsumption() {
-                console.log('modify consumption');
+                this.modify = true;
+            },
+            saveModifiedConsumption() {
+                if(this.startHour === '' || this.endHour === '') {
+                    alert('Veuillez remplir les champs');
+                    return;
+                }
+                boardStore.modifyClickedTileConsumptionHours(this.startHour, this.endHour);
             },
             deleteConsumption() {
                 boardStore.deleteClickedTileConsumption();
