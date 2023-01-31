@@ -1,17 +1,15 @@
 import {defineStore} from "pinia"
+import { Consumption } from "./ConsumptionStore";
+
+//TODO delete this file 
 
 export const useHourStore = defineStore({id :'HoursStore',
     state: () => {
         return {
-            hours: [] as Date[]
+            
         };
     },
     actions: {
-        getNewHour(hour: Date) {
-            const newHour: Date = hour;
-            return newHour;
-        },
-
         getTimeToIndex(hour: string): (number) {
             let index: number;
             let h:number;
@@ -22,6 +20,10 @@ export const useHourStore = defineStore({id :'HoursStore',
             index = h*4+ m/4;
             console.log(index);
             return index;
+        },
+
+        getObject(consumption: Consumption) {
+
         }
 
     }, 

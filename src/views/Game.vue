@@ -28,7 +28,6 @@ function addConsumption() {
     consumptionStore.addToConsumptionList(testConsumption);
     consumptionStore.addToConsumptionList(testConsumption2);
     consumptionStore.addToConsumptionList(testConsumption3);
-    boardStore.setTilesFromConsumptionList();
 }
 </script>
 
