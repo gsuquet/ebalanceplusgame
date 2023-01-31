@@ -51,11 +51,12 @@ export const useConsumptionStore = defineStore({
             }
         },
         setListOfOverConsumption() {
+            this.overConsumptionMap.clear();
             const productionCurve = useGameParametersStore().productionCurve;
             if (productionCurve) {
                 for (const [time, consumption] of this.consumptionCurve.consumption) {
-                    if (consumption > productionCurve.data[time]) {
-                        this.overConsumptionMap.set(time, consumption - productionCurve.data[time]);
+                    if (consumption > productionCurve.total[time]) {
+                        this.overConsumptionMap.set(time, consumption - productionCurve.total[time]);
                     }
                 }
             }

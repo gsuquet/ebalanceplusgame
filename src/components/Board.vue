@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Canvas from '../components/Canvas.vue';
 import { Tile, useBoardStore } from '../stores/BoardStore';
+import { ProductionCurve } from '../stores/ProductionStore';
 </script>
 
 <template>
@@ -29,7 +30,7 @@ import { Tile, useBoardStore } from '../stores/BoardStore';
             boardHeight: Number,
             pxSizeFor15m: Number,
             pxSizeFor10W: Number,
-            productionCurve: null,
+            productionCurveProps: null,
             tilesList: null
         },
         components: {
@@ -42,7 +43,7 @@ import { Tile, useBoardStore } from '../stores/BoardStore';
                 canvasWidth: 1440,
                 canvasHeight: 1500,
                 lastPosition: { x: 0, y: 0 } as { x: number, y: number },
-                productionCurvePoints: [] as number[],
+                productionCurve: null as ProductionCurve | null,
                 tiles: [] as Tile[]
             };
         },
@@ -70,7 +71,6 @@ import { Tile, useBoardStore } from '../stores/BoardStore';
                 const x = event.offsetX;
                 const y = event.offsetY;
                 this.lastPosition = { x, y };
-                this.render();
             },
             clearCanvas(startX: number, startY: number, endX: number, endY: number) {
                 if(this.canvas){
@@ -88,31 +88,63 @@ import { Tile, useBoardStore } from '../stores/BoardStore';
                     this.canvas.fillRect(x, y, width, height);
                 }
             },
-            drawProductionCurve(points:number[]) {
+            drawProductionCurve(productionCurve: ProductionCurve | null) {
+                console.log('drawProductionCurve' + productionCurve);
+                if(productionCurve){
+                    if(productionCurve.solar.length>0){
+                        console.log('drawProductionCurve solar');
+                        this.drawCurve(productionCurve.solar, 'yellow');
+                    }
+                    if(productionCurve.wind.length>0){
+                        console.log('drawProductionCurve wind');
+                        this.drawCurve(productionCurve.wind, 'green');
+                    }
+                    if(productionCurve.hydro.length>0){
+                        console.log('drawProductionCurve hydro');
+                        this.drawCurve(productionCurve.hydro, 'blue');
+                    }
+                    if(productionCurve.total.length>0){
+                        console.log('drawProductionCurve total');
+                        this.drawCurve(productionCurve.total, 'black');
+                    }
+                }
+            },
+            drawCurve(points: number[], color: string){
                 const xSize = this.pxSizeFor15m ? this.pxSizeFor15m : 15;
-                const pxSize = this.pxSizeFor10W ? this.pxSizeFor10W : 5;
-                const pointsInPx = points.map((point: number) => (point*pxSize)/10);
                 let x=0;
-                for(let i =0; i<pointsInPx.length-1; i++) {
-                    this.drawProduction(x,this.canvasHeight-pointsInPx[i],x+xSize,this.canvasHeight-pointsInPx[i+1]);
+                for(let i =0; i<points.length-1; i++) {
+                    this.drawProduction(x,this.canvasHeight-points[i],x+xSize,this.canvasHeight-points[i+1], color);
                     x=x+xSize;
                 }
             },
-            drawProduction(startX: number, startY: number, endX: number, endY: number) {
+            drawProduction(startX: number, startY: number, endX: number, endY: number, color: string) {
                 if(this.canvas){
+                    this.canvas.strokeStyle = color;
                     this.canvas.beginPath();
                     this.canvas.moveTo(startX, startY);
                     this.canvas.lineTo(endX, endY);
                     this.canvas.stroke();
                 }
             },
+            getProductionCurveInPixels(productionCurve: ProductionCurve | null) {
+                if(productionCurve){
+                    console.log('getProductionCurveInPixels');
+                    const pxSize = this.pxSizeFor10W ? this.pxSizeFor10W : 5;
+                    productionCurve.solar = productionCurve.solar.map((point: number) => (point*pxSize)/10);
+                    productionCurve.wind = productionCurve.wind.map((point: number) => (point*pxSize)/10);
+                    productionCurve.hydro = productionCurve.hydro.map((point: number) => (point*pxSize)/10);
+                    productionCurve.total = productionCurve.total.map((point: number) => (point*pxSize)/10);
+                    return productionCurve;
+                }
+                return null;
+            },   
             isInsideTile(x: number, y: number, tile: Tile) {
                 return (x >= tile.x && x <= tile.x + tile.width) && (y >= tile.y && y <= tile.y + tile.height);
             },
             render() {
                 this.clearCanvas(0,0,this.canvasWidth,this.canvasHeight);
                 this.drawTilesConsumption(this.tiles);
-                this.drawProductionCurve(this.productionCurvePoints);
+                this.drawProductionCurve(this.productionCurve);
             }
         },
         watch: {
@@ -130,9 +162,9 @@ import { Tile, useBoardStore } from '../stores/BoardStore';
                 },
                 immediate: true
             },
-            productionCurve : {
-                handler(newProductionCurvePoints) {
-                    this.productionCurvePoints=newProductionCurvePoints;
+            productionCurveProps : {
+                handler(newProductionCurve) {
+                    this.productionCurve=this.getProductionCurveInPixels(newProductionCurve);
                     this.render();
                 },
                 immediate: true
