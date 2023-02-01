@@ -62,6 +62,7 @@ import CardPopupHeader from './CardPopupHeader.vue';
 
 <script lang="ts">
     const boardStore = useBoardStore();
+    const consumptionStore = useConsumptionStore();
     export default {
         name: 'BoardConsumptionDetails',
         props: {
@@ -78,6 +79,8 @@ import CardPopupHeader from './CardPopupHeader.vue';
                 modify: false as boolean,
                 startHour: '' as string,
                 endHour: '' as string,
+                startIndex: 0 as number,
+                endIndex: 0 as number,
                 inputError: false as boolean,
             };
         },
@@ -88,8 +91,18 @@ import CardPopupHeader from './CardPopupHeader.vue';
             modifyConsumption() {
                 this.modify = true;
             },
+            setStartAndEndIndex() {
+                const indexes = consumptionStore.convertTimesToIndexes(this.startHour, this.endHour);
+                this.startIndex = indexes.indexStart;
+                this.endIndex = indexes.indexEnd;
+            },
             saveModifiedConsumption() {
+                this.setStartAndEndIndex();
                 if(this.startHour === '' || this.endHour === '') {
+                    this.inputError = true;
+                    return;
+                }
+                if(this.startIndex > this.endIndex) {
                     this.inputError = true;
                     return;
                 }

@@ -102,6 +102,7 @@
                     this.startIndex, this.endIndex, this.equipment
                 );
                 equipmentStore.clickedEquipment = null;
+                this.inputError = false;
             }
         },
         watch: {
