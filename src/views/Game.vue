@@ -16,14 +16,16 @@ gameParametersStore.setProductionCurve('0');
 </script>
 
 <template>
-    <div class="overlay" v-if="equipmentStore.clickedEquipment"></div>
+    <div class="overlay" v-if="equipmentStore.clickedEquipment || boardStore.clickedTile"/>
     <div id="game-page" class="vue">
         <Alert
             :should-display="consumptionStore.isOverConsumption"
             alert-class="danger-alert"
             alert-text="Votre demande dépasse la production !"/>        
         <div class="consuption-window-container">
-            <AddConsumptionWindow class="popup-window"/>
+            <AddConsumptionWindow 
+                v-if="equipmentStore.clickedEquipment"
+                :equipment="equipmentStore.clickedEquipment"/>
         </div>
         <div class="board-list-container">
             <EquipementList />
@@ -35,8 +37,8 @@ gameParametersStore.setProductionCurve('0');
               :tiles-list="boardStore.board.tiles"
               :production-curve-props="gameParametersStore.getProductionCurve"/>
             <BoardConsumptionDetails 
-            v-if="boardStore.clickedTile"
-            :consumption="consumptionStore.getConsumptionById(boardStore.clickedTile.id)"/>
+                v-if="boardStore.clickedTile"
+                :consumption="consumptionStore.getConsumptionById(boardStore.clickedTile.id)"/>
         </div>
     </div>
 </template>

@@ -44,8 +44,9 @@ export const useConsumptionStore = defineStore({
                 for(let i=consumptionToModify.startIndex; i<=consumptionToModify.endIndex; i++){
                     this.removeFromConsumptionCurve(i,consumptionToModify.amount)
                 }
-                consumptionToModify.startIndex = this.getTimeToIndex(startHour);
-                consumptionToModify.endIndex = this.getTimeToIndex(endHour);
+                const indexes = this.convertTimesToIndexes(startHour, endHour);
+                consumptionToModify.startIndex = indexes.indexStart;
+                consumptionToModify.endIndex = indexes.indexEnd;
                 for(let i=consumptionToModify.startIndex; i<=consumptionToModify.endIndex; i++){
                     this.addToConsumptionCurve(i,consumptionToModify.amount)
                 }
@@ -77,15 +78,8 @@ export const useConsumptionStore = defineStore({
                 }
             }
         },
-        getTimeToIndex(hour: string): (number) {
-            let listHour: string[] = hour.split(":", 2);
-            let h:number = Number(listHour[0]);
-            let m:number = Number(listHour[1]);
-            let index:number = h*4+ m/15;
-            return index;
-        },
         addConsumption(indexStart: number, indexEnd: number, equipment: Equipment) {
-            let amount: number = equipment.conso;
+            let amount: number = equipment.consumption;
             let color: string = equipment.color;
             let id: string = Math.floor(Math.random() * (1000000)).toString();
             let newConsumption: Consumption = { id:id,
@@ -95,6 +89,29 @@ export const useConsumptionStore = defineStore({
                 color:color,
                 equipment:equipment };
             this.addToConsumptionList(newConsumption);
+        },
+        convertTimeToIndex(hour: string): (number) {
+            let listHour: string[] = hour.split(":", 2);
+            let h:number = Number(listHour[0]);
+            let m:number = Number(listHour[1]);
+            let index:number = h*4+ m/15;
+            return index;
+        },
+        convertIndexToTime(index:number) {
+            let h:number = Math.floor(index/4);
+            let m:number = (index%4)*15;
+            let time:string = h.toString().padStart(2, '0') + ":" + m.toString().padStart(2, '0');
+            return time;
+        },
+        convertIndexesToTimes(indexStart:number, indexEnd:number) {
+            let timeStart:string = this.convertIndexToTime(indexStart);
+            let timeEnd:string = this.convertIndexToTime(indexEnd+1);
+            return {timeStart:timeStart, timeEnd:timeEnd};
+        },
+        convertTimesToIndexes(timeStart:string, timeEnd:string) {
+            let indexStart:number = this.convertTimeToIndex(timeStart);
+            let indexEnd:number = this.convertTimeToIndex(timeEnd)-1;
+            return {indexStart:indexStart, indexEnd:indexEnd};
         }
     },
 
@@ -110,15 +127,7 @@ export const useConsumptionStore = defineStore({
             return (id:string) => {
                 return state.consumptionList.find(consumption => consumption.id === id)
             }
-        },
-        getIndexToTime() {
-            return (index:number) => {
-                let h:number = Math.floor(index/4);
-                let m:number = (index%4)*15;
-                let time:string = h.toString().padStart(2, '0') + ":" + m.toString().padStart(2, '0');
-                return time;
-            }
-        },
+        }
     }
 });
 

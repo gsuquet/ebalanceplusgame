@@ -1,42 +1,39 @@
 .list-equipment {
-
-	
 	position: absolute;
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
-	background-color: aquamarine;
+	background-color: var(--theme-color-secondary);
 	border-radius: 15px;
-
-
 	.icon-container {
-
-		.icon-menu-extend {
-		cursor: pointer;
-		height: 30px;
-		width: 30px;
-		margin-left: 0.3rem;
-		margin-top: 0.3rem;
+		display: flex;
+		align-items: center;
+		.icon-menu{
+			cursor: pointer;
+			height: 30px;
+			width: 30px;
+			margin-top: 0.3rem;
+			color: var(--theme-color-background);
 		}
 	}
-
-
+	.icon-container-extended {
+		justify-content: flex-end;
+		margin-right: 10px;
+	}
+	.icon-container-reduced {
+		justify-content: center;
+	}
 	.type-list-normal {
-
-
-		width: calc(11rem + 32px);
-
+		//width: calc(11rem + 32px);
 		height: 1520px;
 		padding: 1rem;
 		margin-top: 0.4rem;
-
 		transition: 0.2s ease-in-out;
 		overflow-y: auto;
-
-		.boucle {
-			
-			margin: 0 -1rem;
-
+		.boucle {			
+			margin: 0 0.5rem 0.5rem 0;
+			background-color: var(--theme-color-background-secondary);
+			border-radius: 10px;
 			.type-container {
 				display: flex;
 				align-items: center;
@@ -44,8 +41,8 @@
 				transition: 0.2s ease-in-out;
 				padding: 0.5rem 1rem;
 				margin-bottom: 0.5rem;
-
-
+				cursor: pointer;
+				color: var(--theme-color-text);
 				.material-icons {
 					font-size: 2.5rem;
 					//color: var();
@@ -54,30 +51,25 @@
 				h1 {
 					transition: 0.2s ease-in-out;
 				}
-
 				&:hover {
-					background-color: gray;
-					border-radius: 10px;
-					.material-icons, .text {
-						color: white;
-					}
+					background-color: var(--theme-color-tertiary);
+					color: var(--theme-color-accent-secondary);
+					border-radius:10px;
 				}
+			}
+			.equipment-container{
+				padding-bottom: 10px;
 			}
 		}
 
 	}
-
-
 	.type-list-reduce {
 		width: calc(4rem + 20px );
-
 		height: 1520px;
 		padding: 1rem;
 		margin-top: 0.4rem;
-
 		transition: 0.2s ease-in-out;
 		overflow-y: auto;
-
 		.boucle {
 			font-size: 3rem;
 			margin-bottom: 1rem;

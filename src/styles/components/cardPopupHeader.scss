@@ -1,0 +1,34 @@
+.card-header{
+    margin: 5px 0 0 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .icon{
+        height:30px;
+        width: 30px;
+    }
+    .consumption-details-title{
+        font-size: x-large;
+        color:var(--theme-color-text);
+    }
+    .closebtn{
+        background-color: red;
+        height:22px;
+        width: 22px;
+        border-radius: 50%;
+        margin-left: 15px;
+        color: black;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        cursor: pointer;
+        transition: 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .closebtn:hover{
+        color: white;
+        background-color: darkred;
+    }
+}

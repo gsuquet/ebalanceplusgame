@@ -9,4 +9,77 @@ $color-black-75:#1A1A1A;
 $color-black-100:#0d0d0d;
 $color-black-200:#000000;
 
-/*----*/
+$color-blue-00737D-50:#00B9CA;
+$color-blue-00737D-75:#00A2B0;
+$color-blue-00737D-100:#008A97;
+$color-blue-00737D-200:#00737D;
+$color-blue-00737D-300:#005C64;
+$color-blue-00737D-400:#00444A;
+$color-blue-00737D-500:#002D31;
+
+$color-blue-5BA7A9-50:#8DC2C3;
+$color-blue-5BA7A9-75:#7CB9BB;
+$color-blue-5BA7A9-100:#6CB0B2;
+$color-blue-5BA7A9-200:#5BA7A9;
+$color-blue-5BA7A9-300:#51989A;
+$color-blue-5BA7A9-400:#488789;
+$color-blue-5BA7A9-500:#3F7778;
+
+$color-blue-DBEBE7-200:#DBEBE7;
+$color-blue-DBEBE7-300:#CBE2DC;
+$color-blue-DBEBE7-400:#BAD9D1;
+$color-blue-DBEBE7-500:#AAD0C6;
+
+$color-red-7D0A00-50:#CA1000;
+$color-red-7D0A00-75:#B00E00;
+$color-red-7D0A00-100:#970C00;
+$color-red-7D0A00-200:#7D0A00;
+$color-red-7D0A00-300:#640800;
+$color-red-7D0A00-400:#4A0600;
+$color-red-7D0A00-500:#310400;
+
+$color-red-A95D5B-50:#C38F8D;
+$color-red-A95D5B-75:#BB7E7C;
+$color-red-A95D5B-100:#B26E6C;
+$color-red-A95D5B-200:#A95D5B;
+$color-red-A95D5B-300:#9A5351;
+$color-red-A95D5B-400:#894A48;
+$color-red-A95D5B-500:#78413F;
+
+
+
+/*--Themes variables Definition--*/
+$theme-color-primary:--theme-color-primary;
+$theme-color-secondary:--theme-color-secondary;
+$theme-color-tertiary:--theme-color-tertiary;
+$theme-color-accent:--theme-color-accent;
+$theme-color-accent-secondary:--theme-color-accent-secondary;
+$theme-color-background:--theme-color-background;
+$theme-color-background-secondary:--theme-color-background-secondary;
+$theme-color-text:--theme-color-text;
+$theme-color-text-secondary:--theme-color-text-secondary;
+
+/*--Themes Definition--*/
+$theme-map-light: (
+    $theme-color-primary: $color-blue-00737D-200,
+    $theme-color-secondary: $color-blue-5BA7A9-200,
+    $theme-color-tertiary: $color-blue-DBEBE7-200,
+    $theme-color-accent: $color-red-7D0A00-200,
+    $theme-color-accent-secondary: $color-red-A95D5B-200,
+    $theme-color-background: $color-white-200,
+    $theme-color-background-secondary: $color-white-100,
+    $theme-color-text: $color-black-200,
+    $theme-color-text-secondary: $color-white-200
+);
+
+$theme-map-dark: (
+    $theme-color-primary: $color-blue-00737D-75,
+    $theme-color-secondary: $color-blue-5BA7A9-400,
+    $theme-color-tertiary: $color-blue-DBEBE7-500,
+    $theme-color-accent: $color-red-7D0A00-75,
+    $theme-color-accent-secondary: $color-red-A95D5B-500,
+    $theme-color-background: $color-black-200,
+    $theme-color-background-secondary: $color-black-50,
+    $theme-color-text: $color-white-200,
+    $theme-color-text-secondary: $color-black-200
+)
