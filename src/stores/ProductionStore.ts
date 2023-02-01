@@ -7,7 +7,6 @@ export const useProductionStore = defineStore({
             productionCurves: new Map<string, ProductionCurve>()
         };
     },
-
     actions: {
         async fetchProductionCurves() {
             const data = (await import ('../data/productionCurves.json')).default;
@@ -31,7 +30,6 @@ export const useProductionStore = defineStore({
             this.productionCurves = new Map(JSON.parse(localStorage.getItem('productionCurves') || '{}'));
         }
     },
-
     getters: {
         getProductionCurveById: state => (id: string) => state.productionCurves.get(id),
         getProductionCurveByName: state => (name: string) => {

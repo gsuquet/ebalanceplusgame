@@ -40,7 +40,28 @@ export const useGameParametersStore = defineStore({
             }
         },
         setScenario(scenarioId: string) {
+        },
+        setLanguage(languageId: string) {
+        },
+        storeToLocalStorage() {
+            localStorage.setItem('gameParameters', JSON.stringify(this));
+        },
+        getFromLocalStorage() {
+            const gameParameters = JSON.parse(localStorage.getItem('gameParameters') || '{}');
+            if(gameParameters){
+                this.id = gameParameters.id;
+                this.date = gameParameters.date;
+                this.language = gameParameters.language;
+                this.scenario = gameParameters.scenario;
+                this.productionCurve = gameParameters.productionCurve;
+                this.user = gameParameters.user;
+                this.score = gameParameters.score;
+                this.moneyWon = gameParameters.moneyWon;
+                this.availableMoney = gameParameters.availableMoney;
+            }
         }
     },
-    getters: {}
+    getters: {
+        getProductionCurve: (state) => state.productionCurve
+    }
 });
