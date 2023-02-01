@@ -87,19 +87,27 @@ import { ProductionCurve } from '../stores/ProductionStore';
             },
             drawProductionCurve(productionCurve: ProductionCurve | null) {
                 if(productionCurve){
+                    const pxSize = this.pxSizeFor10W ? this.pxSizeFor10W : 5;
                     if(productionCurve.solar.length>0){
-                        this.drawCurve(productionCurve.solar, 'yellow');
+                        this.drawCurve(this.getPointsInPixels(productionCurve.solar,pxSize), 'yellow');
                     }
                     if(productionCurve.wind.length>0){
-                        this.drawCurve(productionCurve.wind, 'green');
+                        this.drawCurve(this.getPointsInPixels(productionCurve.wind,pxSize), 'green');
                     }
                     if(productionCurve.hydro.length>0){
-                        this.drawCurve(productionCurve.hydro, 'blue');
+                        this.drawCurve(this.getPointsInPixels(productionCurve.hydro,pxSize), 'blue');
                     }
                     if(productionCurve.total.length>0){
-                        this.drawCurve(productionCurve.total, 'black');
+                        this.drawCurve(this.getPointsInPixels(productionCurve.total,pxSize), 'black');
                     }
                 }
+            },
+            getPointsInPixels(points: number[], pxSize: number) {
+                let pointsInPixels = [];
+                for(const point of points) {
+                    pointsInPixels.push(point*pxSize/10);
+                }
+                return pointsInPixels;
             },
             drawCurve(points: number[], color: string){
                 const xSize = this.pxSizeFor15m ? this.pxSizeFor15m : 15;
@@ -117,18 +125,7 @@ import { ProductionCurve } from '../stores/ProductionStore';
                     this.canvas.lineTo(endX, endY);
                     this.canvas.stroke();
                 }
-            },
-            getProductionCurveInPixels(productionCurve: ProductionCurve | null) {
-                if(productionCurve){
-                    const pxSize = this.pxSizeFor10W ? this.pxSizeFor10W : 5;
-                    productionCurve.solar = productionCurve.solar.map((point: number) => (point*pxSize)/10);
-                    productionCurve.wind = productionCurve.wind.map((point: number) => (point*pxSize)/10);
-                    productionCurve.hydro = productionCurve.hydro.map((point: number) => (point*pxSize)/10);
-                    productionCurve.total = productionCurve.total.map((point: number) => (point*pxSize)/10);
-                    return productionCurve;
-                }
-                return null;
-            },   
+            }, 
             isInsideTile(x: number, y: number, tile: Tile) {
                 return (x >= tile.x && x <= tile.x + tile.width) && (y >= tile.y && y <= tile.y + tile.height);
             },
@@ -155,7 +152,7 @@ import { ProductionCurve } from '../stores/ProductionStore';
             },
             productionCurveProps : {
                 handler(newProductionCurve) {
-                    this.productionCurve=this.getProductionCurveInPixels(newProductionCurve);
+                    this.productionCurve=newProductionCurve;
                     this.render();
                 },
                 immediate: true
