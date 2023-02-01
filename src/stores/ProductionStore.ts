@@ -4,7 +4,9 @@ export const useProductionStore = defineStore({
     id: 'ProductionStore',
     state: () => {
         return {
-            productionCurves: new Map<string, ProductionCurve>()
+            productionCurves: new Map<string, ProductionCurve>(), 
+            clickedProductionCurve: null as null| ProductionCurve, // Add from Antoine
+            //listProductionCurve: [] as ProductionCurve[], 
         };
     },
     actions: {
@@ -28,7 +30,11 @@ export const useProductionStore = defineStore({
         },
         getFromLocalStorage() {
             this.productionCurves = new Map(JSON.parse(localStorage.getItem('productionCurves') || '{}'));
-        }
+        },
+        //Add from Antoine
+        setClickedProductionCurve(productionCurve: ProductionCurve | null) {
+            this.clickedProductionCurve = productionCurve;
+        }, 
     },
     getters: {
         getProductionCurveById: state => (id: string) => state.productionCurves.get(id),
@@ -38,13 +44,24 @@ export const useProductionStore = defineStore({
                     return curve;
                 }
             }
+        },
+
+        //Add from Antoine
+        getAllProductionCurves: state => () => {
+            let allProductionCurves: ProductionCurve[] = []
+            for (const curve of state.productionCurves.values()) {
+                allProductionCurves.push(curve);
+            }
+            return allProductionCurves;
         }
+
     }
 });
 
 export interface ProductionCurve {
     id : string;
     name: string;
+    svg: string;
     solar: number[];
     wind: number[];
     hydro: number[];
