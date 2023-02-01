@@ -15,6 +15,7 @@ declare module '@vue/runtime-core' {
     EquipementList: typeof import('./components/EquipementList.vue')['default']
     Equipments: typeof import('./components/Equipments.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
+    ProductionList: typeof import('./components/ProductionList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
