@@ -2,32 +2,22 @@
 import { Icon } from '@iconify/vue';
 import { useBoardStore } from '../stores/BoardStore';
 import { useConsumptionStore } from '../stores/ConsumptionStore';
+import CardPopupContent from './CardPopupContent.vue';
+import CardPopupHeader from './CardPopupHeader.vue';
 </script>
 
 <template>
-    <section id="board-consumption-details">
+    <section id="board-consumption-details" class="popup-window">
         <div class="color-banner" :style="{'background-color':consumption.color}"/>
         <div class="card">
-            <div class="card-header">
-                <Icon :icon="consumption.equipment.name_icon" class="icon"/>
-                <h1 class="consumption-details-title">{{consumptionType}}</h1>
-                <span class="closebtn" @click="closeDetails">&times;</span>
-            </div>
-            <div class="card-content">
-                <div class="card-content-consumption">
-                    <h2 class="consumption-amount">
-                        <Icon icon="mdi:flash" class="icon-consumption"/>
-                        {{ consumption.amount }} W</h2>
-                    <h2 class="money-amount">
-                        <Icon icon="mdi:cash" class="icon-price"/>
-                        {{ consumption.equipment.price }} €</h2>
-                </div>
-                <div class="card-content-time">
-                    <h2 class="consumption-time">
-                        <Icon icon="mdi:clock" class="icon-time"/>
-                        {{ useConsumptionStore().getIndexToTime(consumption.startIndex) }} - {{ useConsumptionStore().getIndexToTime(consumption.endIndex) }}</h2>
-                </div>
-            </div>
+            <CardPopupHeader
+                :equipment-icon="consumption.equipment.name_icon"
+                :consumption-type="consumptionType"
+                :close-popup="closeDetails"/>
+            <CardPopupContent
+                :consumption-amount="consumption.amount"
+                :equipment-price="consumption.equipment.price"
+                :times="useConsumptionStore().convertIndexesToTimes(consumption.startIndex, consumption.endIndex)"/>
             <div class="card-choice-buttons" v-if="!modify">
                 <button class="btn btn-modify" @click="modifyConsumption">
                     <Icon icon="mdi:pencil" class="btn-icon"/>
@@ -78,11 +68,13 @@ import { useConsumptionStore } from '../stores/ConsumptionStore';
             consumption: {} as any
         },
         components: {
-            Icon
+            Icon,
+            CardPopupHeader,
+            CardPopupContent
         },
         data() {
             return {
-                consumptionType: '',
+                consumptionType: '' as string,
                 modify: false as boolean,
                 startHour: '' as string,
                 endHour: '' as string,
@@ -112,10 +104,10 @@ import { useConsumptionStore } from '../stores/ConsumptionStore';
         watch: {
             consumption: {
                 handler() {
-                    if(useGameParametersStore().language === 'en'){
-                        this.consumptionType = this.consumption.equipment.type_en;
-                    } else{
+                    if(useGameParametersStore().language === 'fr'){
                         this.consumptionType = this.consumption.equipment.type_fr;
+                    } else{
+                        this.consumptionType = this.consumption.equipment.type_en;
                     }
                 },
                 immediate: true
