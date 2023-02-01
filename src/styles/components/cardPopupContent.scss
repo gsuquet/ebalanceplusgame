@@ -1,0 +1,42 @@
+.card-content{
+    margin: 15px 0 15px 0;
+    h2{
+        display: flex;
+        align-items: center;
+        font-size: larger;
+        color: var(--theme-color-text);
+        svg{
+            height: 30px;
+            width: 30px;
+        }
+    }
+    align-items: center;
+    .card-content-consumption{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 0 5px 0;
+        .consumption-amount{
+            .icon-consumption{
+                margin-right: 10px;
+                color: rgba(255, 217, 0, 0.605);
+            }
+        }
+        .money-amount{
+            margin-left: 10px;
+            .icon-price{
+                margin-right: 10px;
+                color: green;
+            }
+        }
+    }
+    .card-content-time{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .icon-time{
+            margin-right: 10px;
+            color:blue;
+        }
+    }
+}

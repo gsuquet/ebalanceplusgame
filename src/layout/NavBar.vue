@@ -6,7 +6,7 @@
         <div class="nav-bar-links">
             <Router-link to="/">Home</Router-link>
             <Router-link to="/setup">Setup</Router-link>
-            <RouterLink to="/game">Game</RouterLink>
+            <Router-Link to="/game">Game</Router-Link>
         </div>
         <div class="nav-bar-user">
         </div>

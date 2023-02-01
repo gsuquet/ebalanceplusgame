@@ -1,22 +1,83 @@
-
-// .overlay {
-//     position: absolute;
-//     height: 100vh;
-//     background-color: rgba(0,0,0,0.77);
-//     opacity: 50%;
-//     z-index: 18;
-
-// }
-
-.consumption-window-container {
-    position: relative;
+.overlay{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: var(--theme-color-background-secondary);
+    z-index: 9;
+    opacity: 0.4;
 }
-
-
 .popup-window {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 20;
-}   
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: var(--theme-color-background);
+    width:700px;
+    text-align: center;
+    .color-banner{
+        width: 100%;
+        height: 10px;
+        border-radius: 5px 5px 0 0;
+    }
+    .card{
+        padding: 0 5px 15px 5px;
+        .btn{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 35px;
+            width: 130px;
+            cursor: pointer;
+            border:none;
+            border-radius: 5px;
+            padding: 3px;
+            font-size: medium;
+            .btn-icon{
+                margin-right: 10px;
+            }
+        }
+        .card-time-modifier{
+            display: flex;
+            justify-content: center;
+            .field{
+                display: flex;
+                align-items: center;
+                color:var(--theme-color-text);
+                .input-error{
+                    border: solid 1px red;
+                }
+                .choice-container{
+                    padding: 5px;
+                    border-radius: 10px;
+                    background-color: var(--theme-color-background);
+                    margin: 0 0 0 10px;
+                    .input{
+                        border: none;
+                    }
+                }
+            }
+            .start-input{
+                margin-right: 10px;
+            }
+            .end-input{
+                margin-left: 10px;
+            }
+        }
+        .card-save-modification{
+            margin: 15px 0 0 0;
+            display: flex;
+            justify-content: center;
+            .btn-save{
+                margin-right: 10px;
+            }
+            .btn-cancel{
+                margin-left: 10px;
+            }
+        }
+    }
+}
