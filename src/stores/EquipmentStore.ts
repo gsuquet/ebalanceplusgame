@@ -16,7 +16,11 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
                 point_gap: [0,0],
                 price_gap: [0,0]
             }] as Equipment [],
-            clickedEquipment: null as null | Equipment
+            clickedEquipment: null as null | Equipment,
+            typeAndIcons : [{
+                type: " ",
+                name_icon : " "
+            }] as TypeAndIcon[]
         };
     },
 
@@ -25,7 +29,6 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
             const data = (await import ('../data/equipments.json')).default;
             this.equipments = data as Equipment[];
         },
-
         getEquipmentByType(type : string) {
             const equipmentsByType: Equipment [] = [];
             for(let i =0; i < this.equipments.length; i++) {
@@ -34,7 +37,6 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
             }
             return equipmentsByType;
         },
-
         getTypeOnly() {
             const type: string[] = []
             for(let i=0; i<this.equipments.length; i++) {
@@ -57,6 +59,25 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
                 }
             }
             return icon; 
+        },
+        getTypeAndIcon() {
+            const listTypeAndIcon: TypeAndIcon[] = [];
+            const type: string[] = [];
+            const icon: string[] = [];
+            for(let i=0; i<this.equipments.length; i++) {
+                if(type.find(x=>x == this.equipments[i].type_fr)){
+                }
+                else {
+                    type.push(this.equipments[i].type_fr);
+                    icon.push(this.equipments[i].name_icon);
+                }
+            }
+            for(let i = 0; i<type.length; i++) {
+                let typeAndIcon: TypeAndIcon 
+                typeAndIcon = { type:type[i], name_icon:icon[i]};
+                listTypeAndIcon.push(typeAndIcon);
+            }
+            return listTypeAndIcon;
         },
 
         setClickedEquipment(equipment: Equipment | null) {
@@ -104,5 +125,10 @@ export interface Equipment{
     color: string,
     point_gap: number[],
     price_gap: number[];
+}
+
+export interface TypeAndIcon {
+    type: string;
+    name_icon: string;
 }
 

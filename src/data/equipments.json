@@ -8,7 +8,7 @@
         "points": 500,
         "price": 500,
         "color": "#000000",
-        "name_icon":"https://api.iconify.design/material-symbols:dishwasher-gen-outline.svg"    },
+        "name_icon":"mdi:dishwasher"    },
     {
         "id":2,
         "type_fr":"lave-vaisselle",
@@ -18,7 +18,7 @@
         "points": 400,
         "price": 400,
         "color": "#000000",
-        "name_icon":"https://api.iconify.design/material-symbols:dishwasher-gen-outline.svg"    }, 
+        "name_icon":"mdi:dishwasher"    },
     {
         "id":3,
         "type_fr":"lave-vaisselle",
@@ -28,7 +28,7 @@
         "points": 300,
         "price": 300,
         "color": "#000000",
-        "name_icon":"https://api.iconify.design/material-symbols:dishwasher-gen-outline.svg"    }, 
+        "name_icon":"mdi:dishwasher"    },
     {
         "id":14,
         "type_fr":"lave-vaisselle",
@@ -38,7 +38,7 @@
         "points": 250,
         "price": 250,
         "color": "#000000",
-        "name_icon":"https://api.iconify.design/material-symbols:dishwasher-gen-outline.svg"    }, 
+        "name_icon":"mdi:dishwasher"    },
     {
         "id":4,
         "type_fr":"lave-vaisselle",
@@ -48,7 +48,7 @@
         "points": 200,
         "price": 200,
         "color": "#000000",
-        "name_icon":"https://api.iconify.design/material-symbols:dishwasher-gen-outline.svg"    }, 
+        "name_icon":"mdi:dishwasher"    },
     {
         "id":5,
         "type_fr":"lave-vaisselle",
@@ -58,7 +58,7 @@
         "points": 100,
         "price": 100,
         "color": "#000000",
-        "name_icon":"https://api.iconify.design/material-symbols:dishwasher-gen-outline.svg"    }, 
+        "name_icon":"mdi:dishwasher"    },
     {
         "id":6,
         "type_fr":"lave-vaisselle",
@@ -68,7 +68,7 @@
         "points": 50,
         "price": 50,
         "color": "#000000",
-        "name_icon":"https://api.iconify.design/material-symbols:dishwasher-gen-outline.svg"    },
+        "name_icon":"mdi:dishwasher"    },
     {
         "id":7,
         "type_fr":"machine à laver",
@@ -78,7 +78,7 @@
         "points": 500,
         "price": 500,
         "color": "#000000",
-        "name_icon":"https://api.iconify.design/mdi:washing-machine.svg"
+        "name_icon":"mdi:washing-machine"
     },
     {
         "id":8,
@@ -89,7 +89,7 @@
         "points": 400,
         "price": 400,
         "color": "#000000",
-        "name_icon":"https://api.iconify.design/mdi:washing-machine.svg"
+        "name_icon":"mdi:washing-machine"
     },
     {
         "id":9,
@@ -100,7 +100,7 @@
         "points": 300,
         "price": 300,
         "color": "#000000",
-        "name_icon":"https://api.iconify.design/mdi:washing-machine.svg"
+        "name_icon":"mdi:washing-machine"
     },
     {
         "id":10,
@@ -111,7 +111,7 @@
         "points": 200,
         "price": 200,
         "color": "#000000",
-        "name_icon":"https://api.iconify.design/mdi:washing-machine.svg"
+        "name_icon":"mdi:washing-machine"
     },
     {
         "id":11,
@@ -122,7 +122,7 @@
         "points": 100,
         "price": 100,
         "color": "#000000",
-        "name_icon":"https://api.iconify.design/mdi:washing-machine.svg"
+        "name_icon":"mdi:washing-machine"
     },
     {
         "id":12,
@@ -133,7 +133,7 @@
         "points": 50,
         "price": 50,
         "color": "#000000",
-        "name_icon":"https://api.iconify.design/mdi:washing-machine.svg"
+        "name_icon":"mdi:washing-machine"
     },
     {
         "id":13,
@@ -144,6 +144,6 @@
         "points": 25,
         "price": 25,
         "color": "#000000",
-        "name_icon":"https://api.iconify.design/mdi:washing-machine.svg"
+        "name_icon":"mdi:washing-machine"
     }
 ]

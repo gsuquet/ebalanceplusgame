@@ -3,16 +3,17 @@
     import Save from "../icons/Save.vue";
     import { useEquipmentStore } from "../stores/EquipmentStore";
     import { useConsumptionStore } from "../stores/ConsumptionStore";
+     
 
-    const store = useEquipmentStore();
-    store.getEquipmentData();
-    const storeConsumption = useConsumptionStore();
+    const equipmentStore = useEquipmentStore();
+    equipmentStore.getEquipmentData();
+    const consumptionStore = useConsumptionStore();
 
     function checkIfEquipmentNotNull() {
-        if(store.clickedEquipment != null) {
-            storeConsumption.getConsumption(storeConsumption.getTimeToIndex(startHour), 
-                        storeConsumption.getTimeToIndex(endHour), store.clickedEquipment);
-            
+        if(equipmentStore.clickedEquipment != null) {
+            consumptionStore.addConsumption(consumptionStore.getTimeToIndex(startHour), 
+                        consumptionStore.getTimeToIndex(endHour), equipmentStore.clickedEquipment);
+            equipmentStore.setClickedEquipment(null);
         }
         else {
             console.log("equipment not selected")
@@ -21,28 +22,34 @@
 
     let startHour: string;
     let endHour: string;
+
+    // const rangeInput = document.querySelectorAll(".range-input input");
+    // rangeInput.forEach(input =>{
+    //     input.addEventListener("input", ()=>{
+    //         let minval = parseInt(rangeInput[0].value);
+    //         let maxVal = parseInt(rangeInput[1].value);
+    //         console
+    //     })
+    // })
+
 </script>
 
 <template>
     
-    <div class="modal" v-if="store.clickedEquipment">
+    <div class="modal" v-if="equipmentStore.clickedEquipment">
+
+        
         <div class="information">
-            <h1 class="type">{{store.clickedEquipment.type_fr }}</h1>
-            <p class="conso"> {{ store.clickedEquipment.conso }}</p>
-            <p class="price"> {{ store.clickedEquipment.price }}</p>
+            <h1 class="type">{{equipmentStore.clickedEquipment.type_fr }}</h1>
+            <p class="conso"> {{ equipmentStore.clickedEquipment.conso }}</p>
+            <p class="price"> {{ equipmentStore.clickedEquipment.price }}</p>
         </div>
 
-        <div class="close" @click="store.setClickedEquipment(null)">
-            <Close />
+        <div class="close" @click="equipmentStore.setClickedEquipment(null)">
+            <Close style="width: 30px; height: 30px; cursor: pointer;"/>
         </div>
 
         <div class="schedule-prog">
-            <div class="hour-start">
-
-            </div>
-            <div class="hour-stop">
-
-            </div>
             <div class="slider-container">
                 <div class="start-end-container">
                     <div class="start-input field">
@@ -50,7 +57,7 @@
                         <div class="choice-container">
                             <input type="time" class="input-start" step="900" id="startHour" v-model="startHour">
                         </div>
-                    </div>
+                    </div>                
                     <div class="end-input field">
                         <p>End</p>
                         <div class="choice-container">
@@ -59,7 +66,20 @@
                     </div>
                 </div>
             </div>
+
+            <div class="slider">
+                <div class="progress">
+                </div>
+                <div class="range-input">
+                    <input type="range" class="range-min" min="0" max="24" v-model="startHour">
+                    <input type="range" class="range-max" min="0" max="24" v-model="endHour">
+                </div>
+            </div>
+
         </div>
+
+
+    
         <button class="save" @click="checkIfEquipmentNotNull()">
             <Save style="width:60px; height:60px" />
         </button>

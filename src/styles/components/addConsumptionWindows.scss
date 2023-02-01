@@ -1,16 +1,17 @@
-* {
-    display: flex;
-    justify-content: center;
-}
-
 .modal {
-
     margin-bottom: 30rem;
-    width: 80vw;
+    width: 50vw;
+    width: 50vw;
     height: 50vh;
     background-color: aquamarine;
     border-radius: 15px;
     padding: 20px 25px 40px;
+    position: relative;
+
+    .close {
+        margin-left: 95%;
+    }
+
 
     .information {
         display: flex;
@@ -20,33 +21,186 @@
         .type {
             font-size: larger;
             font-weight: bolder;
-            margin-right: 1rem;
-            
+            margin-right: 1rem;  
+            margin-right: 1rem;  
         }
         .conso, .price {
             font-size: large;
             margin-right: 1rem;
         }
-    }
 
+
+    }
     .start-end-container {
         display: flex;
         align-items: center;
+        justify-content: center;
+        justify-content: center;
         flex-direction: row;
 
+
+
         .choice-container {
+
+            margin-right: 20px;
+
+            margin-right: 20px;
             .input-start-hour, .input-end-hour {
-                width: 8rem;
                 display: flex;
-                margin: 30px 0 35PX;
+
+            }
+
+            input[type=time] {
+                border: none;
+                color: #2a2c2d;
+                font-size: x-large;
+                font-weight: bold;
+                width: 10rem;
+                border-radius: 5px;
+                background-color: whitesmoke;
+            }
+                
+
+            input[type=time]::-webkit-datetime-edit-fields-wrapper {
+                display: flex;
+
+            }
+
+            input[type=time] {
+                border: none;
+                color: #2a2c2d;
+                font-size: x-large;
+                font-weight: bold;
+                width: 10rem;
+                border-radius: 5px;
+                background-color: whitesmoke;
+            }
+                
+
+            input[type=time]::-webkit-datetime-edit-fields-wrapper {
+                display: flex;
+                border-radius: 5px;
+            }
+                
+
+            input[type=time]::-webkit-datetime-edit-text {
+                padding: 19px 4px;
+            }
+                
+            input[type=time]::-webkit-datetime-edit-hour-field {
+                background-color: #f2f4f5;
+                border-radius: 15%;
+                padding: 19px 13px;
+            }
+                
+            input[type=time]::-webkit-datetime-edit-minute-field {
+                background-color: #f2f4f5;
+                border-radius: 15%;
+                padding: 19px 13px;
+            }
+                
+            input[type=time]::-webkit-datetime-edit-ampm-field {
+                background-color: #7155d3;
+                border-radius: 15%;
+                color: #fff;
+                padding: 19px 13px;
+            }
+                
+            input[type=time]::-webkit-clear-button {
+                display: none;
+            }
+                
+            input[type=time]::-webkit-inner-spin-button {
+                display: none;
+                border-radius: 5px;
+            }
+                
+
+            input[type=time]::-webkit-datetime-edit-text {
+                padding: 19px 4px;
+            }
+                
+            input[type=time]::-webkit-datetime-edit-hour-field {
+                background-color: #f2f4f5;
+                border-radius: 15%;
+                padding: 19px 13px;
+            }
+                
+            input[type=time]::-webkit-datetime-edit-minute-field {
+                background-color: #f2f4f5;
+                border-radius: 15%;
+                padding: 19px 13px;
+            }
+                
+            input[type=time]::-webkit-datetime-edit-ampm-field {
+                background-color: #7155d3;
+                border-radius: 15%;
+                color: #fff;
+                padding: 19px 13px;
+            }
+                
+            input[type=time]::-webkit-clear-button {
+                display: none;
+            }
+                
+            input[type=time]::-webkit-inner-spin-button {
+                display: none;
             }
         }
     }
 
+    .slider {
+        height: 5px;
+        border-radius: 5px;
+        background-color: #fff;
+        margin-top: 4rem;
+
+    }
+
+    .slider .progress {
+        height: 5px;
+        left: 25%;
+        right: 25%;
+        position: absolute;
+        border-radius: 5px;
+        background: aqua;
+    }
+
+    .range-input {
+        position: relative;
+    }
+
+    .range-input input{
+        position: absolute;
+        top: -5px;
+        height: 5px;
+        width: 100%;
+        background: none;
+        appearance: none;
+        pointer-events: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        height: 17px;
+        width: 17px;
+        border-radius: 50%;
+        appearance: none;
+        background: aqua;
+        pointer-events: auto;
+    }
+
+
+
+
     .save {
         width: 60px;
         height: 60px;
+        cursor: pointer;
+        position: absolute;
+        bottom: 15px;
+        margin-left: 40%;
     }
+
 
 }
 
