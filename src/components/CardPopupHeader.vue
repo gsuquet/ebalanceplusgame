@@ -30,7 +30,7 @@ import { Icon } from '@iconify/vue';
                 required: true
             },
             closePopup: {
-                type: Function,
+                type: MouseEvent,
                 required: true
             }
         }
