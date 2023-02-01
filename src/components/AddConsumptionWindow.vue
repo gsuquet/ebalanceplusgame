@@ -1,6 +1,4 @@
 <script setup lang="ts">
-    import Close from '../icons/Close.vue';
-    import Save from '../icons/Save.vue';
     import { useEquipmentStore } from '../stores/EquipmentStore';
     import { useConsumptionStore } from '../stores/ConsumptionStore';
      
