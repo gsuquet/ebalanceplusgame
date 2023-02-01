@@ -1,7 +1,7 @@
 #board-consumption-details{
     margin: 0 auto;
     border-radius: 5px;
-    background-color: white;
+    background-color: var(--theme-color-background);
     width:700px;
     text-align: center;
     position : fixed;
@@ -35,9 +35,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            .icon{}
+            .icon{
+                height:30px;
+                width: 30px;
+            }
             .consumption-details-title{
                 font-size: x-large;
+                color:var(--theme-color-text);
             }
             .closebtn{
                 background-color: red;
@@ -66,6 +70,7 @@
                 display: flex;
                 align-items: center;
                 font-size: larger;
+                color: var(--theme-color-text);
                 svg{
                     height: 30px;
                     width: 30px;
@@ -119,13 +124,14 @@
             .field{
                 display: flex;
                 align-items: center;
+                color:var(--theme-color-text);
                 .input-error{
                     border: solid 1px red;
                 }
                 .choice-container{
                     padding: 5px;
                     border-radius: 10px;
-                    background-color: white;
+                    background-color: var(--theme-color-background);
                     margin: 0 0 0 10px;
                     .input{
                         border: none;

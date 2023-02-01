@@ -7,7 +7,8 @@ export const useGameParametersStore = defineStore({
         return {
             id: '',
             date: new Date(),
-            language: 'en',
+            language: 'fr',
+            theme: 'light',
             scenario: '',
             productionCurve: {
                 id: '0',

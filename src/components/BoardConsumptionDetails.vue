@@ -67,7 +67,7 @@ import { useConsumptionStore } from '../stores/ConsumptionStore';
 </template>
 
 <style lang="scss">
-@import '../styles/components/boardConsumptionDetails.scss';
+    @import '../styles/components/boardConsumptionDetails.scss';
 </style>
 
 <script lang="ts">

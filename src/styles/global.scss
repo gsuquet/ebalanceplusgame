@@ -5,7 +5,10 @@
 @import './layout/navigation.scss';
 @import './layout/vue.scss';
 
+@import './themes/themes.scss';
+
 @import './utilities/mixins.scss';
 @import './utilities/variables.scss';
 
 @import './views/home.scss';
+@import './views/game.scss';
