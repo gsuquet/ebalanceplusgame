@@ -89,18 +89,25 @@ import { ProductionCurve } from '../stores/ProductionStore';
                 if(productionCurve){
                     const pxSize = this.pxSizeFor10W ? this.pxSizeFor10W : 5;
                     if(productionCurve.solar.length>0){
-                        this.drawCurve(productionCurve.solar.map((point: number) => (point*pxSize)/10), 'yellow');
+                        this.drawCurve(this.getPointsInPixels(productionCurve.solar,pxSize), 'yellow');
                     }
                     if(productionCurve.wind.length>0){
-                        this.drawCurve(productionCurve.wind.map((point: number) => (point*pxSize)/10), 'green');
+                        this.drawCurve(this.getPointsInPixels(productionCurve.wind,pxSize), 'green');
                     }
                     if(productionCurve.hydro.length>0){
-                        this.drawCurve(productionCurve.hydro.map((point: number) => (point*pxSize)/10), 'blue');
+                        this.drawCurve(this.getPointsInPixels(productionCurve.hydro,pxSize), 'blue');
                     }
                     if(productionCurve.total.length>0){
-                        this.drawCurve(productionCurve.total.map((point: number) => (point*pxSize)/10), 'black');
+                        this.drawCurve(this.getPointsInPixels(productionCurve.total,pxSize), 'black');
                     }
                 }
+            },
+            getPointsInPixels(points: number[], pxSize: number) {
+                let pointsInPixels = [];
+                for(const point of points) {
+                    pointsInPixels.push(point*pxSize/10);
+                }
+                return pointsInPixels;
             },
             drawCurve(points: number[], color: string){
                 const xSize = this.pxSizeFor15m ? this.pxSizeFor15m : 15;
