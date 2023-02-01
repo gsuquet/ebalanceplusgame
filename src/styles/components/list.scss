@@ -7,13 +7,18 @@
 	border-radius: 15px;
 	.icon-container {
 		display: flex;
-		justify-content: center;
 		align-items: center;
-		.icon-menu-extend {
+		.icon-menu{
 			cursor: pointer;
 			height: 30px;
 			width: 30px;
 			margin-top: 0.3rem;
+		}
+		.icon-menu-extended {
+			justify-content: flex-end;
+		}
+		.icon-menu-reduced {
+			justify-content: center;
 		}
 	}
 	.type-list-normal {
