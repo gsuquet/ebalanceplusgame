@@ -1,16 +1,12 @@
 <script lang="ts">
-    import { useEquipmentStore} from "../stores/EquipmentStore";
-    //import EquipmentType from "../components/EquipementType.vue";
-    import WashingMachine from "../icons/WashingMachine.vue";
-    import Dishwasher from "../icons/Dishwasher.vue";
-    import ArrowRight from "../icons/ArrowRight.vue";
-    import Equipments from "../components/Equipments.vue";
-    import { Icon } from "@iconify/vue"
+    import { useEquipmentStore } from '../stores/EquipmentStore';
+    import Equipments from '../components/Equipments.vue';
+    import { Icon } from '@iconify/vue';
     export default {
         setup() {
-            const store = useEquipmentStore();
-            store.getEquipmentData();
-            return {store}
+            const equipmentStore = useEquipmentStore();
+            equipmentStore.getEquipmentData();
+            return {equipmentStore}
         }, 
         data() {
             return {
@@ -20,10 +16,6 @@
             }
         },
         components: {
-            //EquipmentType,
-            WashingMachine, 
-            Dishwasher,
-            ArrowRight,
             Equipments,
             Icon,
         },
@@ -54,7 +46,7 @@
             </div>
             
             <div class="type-list-normal type" v-if="listSizeExtended">
-                <div class="boucle" v-for="equipment_type_icon in store.getTypeAndIcon()" > 
+                <div class="boucle" v-for="equipment_type_icon in equipmentStore.getListOfEquipmentTypesAndIcons">
                     <div class="type-container" @click="handleShowEquipments(equipment_type_icon.type)">
                         <Icon class="material-icons" :icon="equipment_type_icon.name_icon"/>
                         <h1>
@@ -62,16 +54,14 @@
                         </h1>
                     </div>
                     <div class="equipment-container" v-if="showEquipmentType===equipment_type_icon.type" >
-                            <Equipments v-for="equipment in store.getEquipmentByType(equipment_type_icon.type)" :key="equipment_type_icon.type"  :equipment="equipment"/>
+                            <Equipments v-for="equipment in equipmentStore.getEquipmentByType(equipment_type_icon.type)" :key="equipment_type_icon.type"  :equipment="equipment"/>
                     </div>
                 </div>
             </div>
-            <!-- Reduce List -->
             <div class="type-list-reduce type" v-else>
-                <div class="boucle" v-for="icon in store.getIconOnly()">
+                <div class="boucle" v-for="icon in equipmentStore.getListOfEquipmentIcons">
                     <Icon :icon="icon" class="icon-type" />
                 </div>
-
             </div>
         </div>
     </section> 

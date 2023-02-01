@@ -1,8 +1,8 @@
 <script setup lang="ts">
-    import Close from "../icons/Close.vue";
-    import Save from "../icons/Save.vue";
-    import { useEquipmentStore } from "../stores/EquipmentStore";
-    import { useConsumptionStore } from "../stores/ConsumptionStore";
+    import Close from '../icons/Close.vue';
+    import Save from '../icons/Save.vue';
+    import { useEquipmentStore } from '../stores/EquipmentStore';
+    import { useConsumptionStore } from '../stores/ConsumptionStore';
      
 
     const equipmentStore = useEquipmentStore();
@@ -16,13 +16,11 @@
             equipmentStore.setClickedEquipment(null);
         }
         else {
-            console.log("equipment not selected")
+            console.log('equipment not selected')
         }
     }
-
     let startHour: string;
     let endHour: string;
-
     // const rangeInput = document.querySelectorAll(".range-input input");
     // rangeInput.forEach(input =>{
     //     input.addEventListener("input", ()=>{
@@ -31,7 +29,6 @@
     //         console
     //     })
     // })
-
 </script>
 
 <template>
@@ -41,7 +38,7 @@
         
         <div class="information">
             <h1 class="type">{{equipmentStore.clickedEquipment.type_fr }}</h1>
-            <p class="conso"> {{ equipmentStore.clickedEquipment.conso }}</p>
+            <p class="conso"> {{ equipmentStore.clickedEquipment.consumption }}</p>
             <p class="price"> {{ equipmentStore.clickedEquipment.price }}</p>
         </div>
 
