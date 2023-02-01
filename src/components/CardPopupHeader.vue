@@ -6,7 +6,7 @@ import { Icon } from '@iconify/vue';
     <div class="card-header">
         <Icon :icon="equipmentIcon" class="icon"/>
         <h1 class="consumption-details-title">{{consumptionType}}</h1>
-        <span class="closebtn" @click="closePopup">&times;</span>
+        <span class="closebtn" @click="$emit('close-popup')">&times;</span>
     </div>
 </template>
 
@@ -27,10 +27,6 @@ import { Icon } from '@iconify/vue';
             },
             consumptionType: {
                 type: String,
-                required: true
-            },
-            closePopup: {
-                type: MouseEvent,
                 required: true
             }
         }
