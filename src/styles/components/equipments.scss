@@ -1,53 +1,42 @@
-$class_en:  (A, #009136),
-            (B, #55AB26),
-            (C, #C8D200),
-            (D, #FEED01),
-            (E, #FBB900),
-            (F, #EB6909),
-            (G, #E3001B);
-
-
-
 .equi-container {
     display: flex;
     flex-direction:row;
     justify-content: center;
     align-items:center;
     margin-bottom: 1rem;
-    background-color: green;
-
+    background-color: var(--theme-color-secondary);
+    color: var(--theme-color-text-secondary);
     width: auto;
     overflow: hidden;
-
     min-height: 5vh;
-    padding: 1rem;
-
-    margin-left: 0.7rem;
-
+    padding: 0.5rem;
+    margin-left: 0.5rem;
     transition: 0.2s ease-in-out;
-
     border-radius: 20px;
     cursor: pointer;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
 
     .conso-class {
-        color: var($class_en);
-        background-color: lightgrey;
+        background-color: var(--theme-color-background);
         width: 3rem;
         height: 3rem;
         border-radius: 70%;
         font-weight: bolder;
         font-size: larger;
-
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 1rem;
-        margin: 0rem 1rem 0rem 1rem;
-    
+        margin: 0rem 1rem 0rem 0rem;
     }
+    .A { color: #009136; }
+    .B { color: #55AB26; }
+    .C { color: #C8D200; }
+    .D { color: #FEED01; }
+    .E { color: #FBB900; }
+    .F { color: #EB6909; }
+    .G { color: #E3001B; }
     h1 {
-        
         margin-right: 1rem;
         font-weight: bold;
     }
@@ -57,9 +46,9 @@ $class_en:  (A, #009136),
 
 
     &:hover {
-        background-color: lightgreen;
+        background-color: var(--theme-color-primary);
         .conso-class{
-            background-color: darkgray;
+            background-color: var(--theme-color-background-secondary);
             transform: translateX(0.2rem);
         }
 

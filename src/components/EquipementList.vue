@@ -59,13 +59,13 @@
                 <Icon icon="mdi:menu" class="icon-menu-extend" @click="listSizeExtended = listSize(listSizeExtended)"/>
             </div>
             
-            <div class="type-list-normal" v-if="listSizeExtended">
+            <div class="type-list-normal type" v-if="listSizeExtended">
                 <div class="boucle" v-for="equipment_type_icon in store.getTypeAndIcon()" > 
                     <div class="type-container" @click="showList = expandList(showList)">
+                        <Icon class="material-icons" :icon="equipment_type_icon.name_icon"/>
                         <h1>
                             {{ equipment_type_icon.type }}
                         </h1>
-                        <Icon class="material-icons" :icon="equipment_type_icon.name_icon"/>
                     </div>
                     <div class="equipment-container" v-if="showList" >
                             <Equipments v-for="equipment in store.getEquipmentByType(equipment_type_icon.type)" :key="equipment_type_icon.type"  :equipment="equipment"/>
@@ -73,7 +73,7 @@
                 </div>
             </div>
             <!-- Reduce List -->
-            <div class="type-list-reduce" v-else>
+            <div class="type-list-reduce type" v-else>
                 <div class="boucle" v-for="icon in store.getIconOnly()">
                     <Icon :icon="icon" class="icon-type" />
                 </div>

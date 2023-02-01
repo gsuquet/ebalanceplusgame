@@ -3,21 +3,17 @@
     width: 50vw;
     width: 50vw;
     height: 50vh;
-    background-color: aquamarine;
+    background-color: var(--theme-color-secondary);
     border-radius: 15px;
     padding: 20px 25px 40px;
     position: relative;
-
     .close {
         margin-left: 95%;
     }
-
-
     .information {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        
         .type {
             font-size: larger;
             font-weight: bolder;
@@ -28,8 +24,6 @@
             font-size: large;
             margin-right: 1rem;
         }
-
-
     }
     .start-end-container {
         display: flex;
@@ -37,19 +31,12 @@
         justify-content: center;
         justify-content: center;
         flex-direction: row;
-
-
-
         .choice-container {
-
             margin-right: 20px;
-
             margin-right: 20px;
             .input-start-hour, .input-end-hour {
                 display: flex;
-
             }
-
             input[type=time] {
                 border: none;
                 color: #2a2c2d;
@@ -59,13 +46,9 @@
                 border-radius: 5px;
                 background-color: whitesmoke;
             }
-                
-
             input[type=time]::-webkit-datetime-edit-fields-wrapper {
                 display: flex;
-
             }
-
             input[type=time] {
                 border: none;
                 color: #2a2c2d;
@@ -75,80 +58,63 @@
                 border-radius: 5px;
                 background-color: whitesmoke;
             }
-                
-
             input[type=time]::-webkit-datetime-edit-fields-wrapper {
                 display: flex;
                 border-radius: 5px;
             }
-                
-
             input[type=time]::-webkit-datetime-edit-text {
                 padding: 19px 4px;
-            }
-                
+            } 
             input[type=time]::-webkit-datetime-edit-hour-field {
                 background-color: #f2f4f5;
                 border-radius: 15%;
                 padding: 19px 13px;
-            }
-                
+            }  
             input[type=time]::-webkit-datetime-edit-minute-field {
                 background-color: #f2f4f5;
                 border-radius: 15%;
                 padding: 19px 13px;
-            }
-                
+            } 
             input[type=time]::-webkit-datetime-edit-ampm-field {
-                background-color: #7155d3;
+                background-color: #f2f4f5;
                 border-radius: 15%;
                 color: #fff;
                 padding: 19px 13px;
-            }
-                
+            } 
             input[type=time]::-webkit-clear-button {
                 display: none;
-            }
-                
+            } 
             input[type=time]::-webkit-inner-spin-button {
                 display: none;
                 border-radius: 5px;
             }
-                
-
             input[type=time]::-webkit-datetime-edit-text {
                 padding: 19px 4px;
-            }
-                
+            }  
             input[type=time]::-webkit-datetime-edit-hour-field {
                 background-color: #f2f4f5;
                 border-radius: 15%;
                 padding: 19px 13px;
-            }
-                
+            }   
             input[type=time]::-webkit-datetime-edit-minute-field {
                 background-color: #f2f4f5;
                 border-radius: 15%;
                 padding: 19px 13px;
-            }
-                
+            }   
             input[type=time]::-webkit-datetime-edit-ampm-field {
                 background-color: #7155d3;
                 border-radius: 15%;
                 color: #fff;
                 padding: 19px 13px;
-            }
-                
+            }  
             input[type=time]::-webkit-clear-button {
                 display: none;
-            }
-                
+            }  
             input[type=time]::-webkit-inner-spin-button {
                 display: none;
             }
         }
     }
-
     .slider {
         height: 5px;
         border-radius: 5px;
@@ -156,7 +122,6 @@
         margin-top: 4rem;
 
     }
-
     .slider .progress {
         height: 5px;
         left: 25%;
@@ -165,11 +130,9 @@
         border-radius: 5px;
         background: aqua;
     }
-
     .range-input {
         position: relative;
     }
-
     .range-input input{
         position: absolute;
         top: -5px;
@@ -179,7 +142,6 @@
         appearance: none;
         pointer-events: none;
     }
-
     input[type="range"]::-webkit-slider-thumb {
         height: 17px;
         width: 17px;
@@ -188,10 +150,6 @@
         background: aqua;
         pointer-events: auto;
     }
-
-
-
-
     .save {
         width: 60px;
         height: 60px;
@@ -200,8 +158,4 @@
         bottom: 15px;
         margin-left: 40%;
     }
-
-
 }
-
-

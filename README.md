@@ -57,6 +57,7 @@ The desired format is a Single Page Application (SPA)
 
 ### Application pages
 - **Home (/)**: Home page of the application, contains the main menu allowing you to start a new game in solo or multiplayer mode
+- **Setup (/setup)**: Setup page, when creating a new game it lets you choose your production curve and your scenario
 - **Game (/game)**: Game page, contains the list of electrical appliances and the game board allowing you to add, remove and modify your consumption
 
 ## Recommended IDE Setup
@@ -111,7 +112,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [issues-shield]: https://img.shields.io/github/issues/gabrieljunia/ebalanceplusgame.svg?style=for-the-badge
 [issues-url]: https://github.com/gabrieljunia/ebalanceplusgame/issues
 [license-shield]: https://img.shields.io/github/license/gabrieljunia/ebalanceplusgame.svg?style=for-the-badge
-[license-url]: https://github.com/gabrieljunia/ebalanceplusgame/blob/master/LICENSE.txt
+[license-url]: https://github.com/gabrieljunia/ebalanceplusgame/blob/main/LICENSE
 [Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
 [Vue-url]: https://v3.vuejs.org/
 [Vue-router]: https://img.shields.io/badge/Vue_Router-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
