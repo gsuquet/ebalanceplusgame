@@ -48,9 +48,9 @@
 <template>
     <section class="list-equipment">
         <div class="list-container" >
-            <div class="icon-container">
-                <Icon icon="mdi:arrow-left" class="icon-menu-extended icon-menu" @click="listSizeExtended = listSize(listSizeExtended)" v-if="listSizeExtended"/>
-                <Icon icon="mdi:arrow-right" class="icon-menu-reduced icon-menu" @click="listSizeExtended = listSize(listSizeExtended)" v-else/>
+            <div class="icon-container" :class="listSizeExtended ? 'icon-container-extended':'icon-container-reduced'">
+                <Icon icon="mdi:arrow-left" class="icon-menu" @click="listSizeExtended = listSize(listSizeExtended)" v-if="listSizeExtended"/>
+                <Icon icon="mdi:arrow-right" class="icon-menu" @click="listSizeExtended = listSize(listSizeExtended)" v-else/>
             </div>
             
             <div class="type-list-normal type" v-if="listSizeExtended">
