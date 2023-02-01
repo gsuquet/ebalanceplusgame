@@ -16,7 +16,7 @@ gameParametersStore.setProductionCurve('0');
 </script>
 
 <template>
-    <div class="overlay" v-if="equipmentStore.clickedEquipment"></div>
+    <div class="overlay" v-if="equipmentStore.clickedEquipment || boardStore.clickedTile"/>
     <div id="game-page" class="vue">
         <Alert
             :should-display="consumptionStore.isOverConsumption"
