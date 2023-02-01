@@ -3,7 +3,6 @@
     import Save from "../icons/Save.vue";
     import { useEquipmentStore } from "../stores/EquipmentStore";
     import { useConsumptionStore } from "../stores/ConsumptionStore";
-    import { Icon } from "@iconify/vue"
      
 
     const equipmentStore = useEquipmentStore();
