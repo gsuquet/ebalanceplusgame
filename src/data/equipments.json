@@ -7,7 +7,7 @@
         "consumption": 1300,
         "points": 500,
         "price": 500,
-        "color": "#000000",
+        "color": "#9A7751",
         "name_icon":"mdi:dishwasher"    },
     {
         "id":2,
@@ -17,7 +17,7 @@
         "consumption": 1400,
         "points": 400,
         "price": 400,
-        "color": "#000000",
+        "color": "#9A7751",
         "name_icon":"mdi:dishwasher"    },
     {
         "id":3,
@@ -27,7 +27,7 @@
         "consumption": 1600,
         "points": 300,
         "price": 300,
-        "color": "#000000",
+        "color": "#9A7751",
         "name_icon":"mdi:dishwasher"    },
     {
         "id":14,
@@ -37,7 +37,7 @@
         "consumption": 1800,
         "points": 250,
         "price": 250,
-        "color": "#000000",
+        "color": "#9A7751",
         "name_icon":"mdi:dishwasher"    },
     {
         "id":4,
@@ -47,7 +47,7 @@
         "consumption": 2000,
         "points": 200,
         "price": 200,
-        "color": "#000000",
+        "color": "#9A7751",
         "name_icon":"mdi:dishwasher"    },
     {
         "id":5,
@@ -57,7 +57,7 @@
         "consumption": 2100,
         "points": 100,
         "price": 100,
-        "color": "#000000",
+        "color": "#9A7751",
         "name_icon":"mdi:dishwasher"    },
     {
         "id":6,
@@ -67,7 +67,7 @@
         "energy_class": "G",
         "points": 50,
         "price": 50,
-        "color": "#000000",
+        "color": "#9A7751",
         "name_icon":"mdi:dishwasher"    },
     {
         "id":7,
@@ -77,7 +77,7 @@
         "consumption": 1200,
         "points": 500,
         "price": 500,
-        "color": "#000000",
+        "color": "#00447C",
         "name_icon":"mdi:washing-machine"
     },
     {
@@ -88,7 +88,7 @@
         "consumption": 1400,
         "points": 400,
         "price": 400,
-        "color": "#000000",
+        "color": "#00447C",
         "name_icon":"mdi:washing-machine"
     },
     {
@@ -99,7 +99,7 @@
         "consumption": 1600,
         "points": 300,
         "price": 300,
-        "color": "#000000",
+        "color": "#00447C",
         "name_icon":"mdi:washing-machine"
     },
     {
@@ -110,7 +110,7 @@
         "consumption": 1800,
         "points": 200,
         "price": 200,
-        "color": "#000000",
+        "color": "#00447C",
         "name_icon":"mdi:washing-machine"
     },
     {
@@ -121,7 +121,7 @@
         "consumption": 2000,
         "points": 100,
         "price": 100,
-        "color": "#000000",
+        "color": "#00447C",
         "name_icon":"mdi:washing-machine"
     },
     {
@@ -132,7 +132,7 @@
         "consumption": 2200,
         "points": 50,
         "price": 50,
-        "color": "#000000",
+        "color": "#00447C",
         "name_icon":"mdi:washing-machine"
     },
     {
@@ -143,7 +143,7 @@
         "consumption": 2400,
         "points": 25,
         "price": 25,
-        "color": "#000000",
+        "color": "#00447C",
         "name_icon":"mdi:washing-machine"
     }
 ]

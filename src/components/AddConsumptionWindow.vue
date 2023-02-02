@@ -13,6 +13,7 @@
             <CardPopupHeader
                 :equipment-icon="equipment.name_icon"
                 :consumption-type="equipmentType"
+                :equipment-color="equipment.color"
                 @close-popup="closeAddPopup"/>
             <CardPopupContent 
                 :consumption-amount="equipment.consumption"

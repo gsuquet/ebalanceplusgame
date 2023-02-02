@@ -13,6 +13,7 @@ import CardPopupHeader from './CardPopupHeader.vue';
             <CardPopupHeader
                 :equipment-icon="consumption.equipment.name_icon"
                 :consumption-type="consumptionType"
+                :equipment-color="consumption.equipment.color"
                 @close-popup="closeDetails"/>
             <CardPopupContent
                 :consumption-amount="consumption.amount"

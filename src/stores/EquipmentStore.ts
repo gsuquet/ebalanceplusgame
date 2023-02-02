@@ -17,10 +17,11 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
                 price_gap: [0,0]
             }] as Equipment [],
             clickedEquipment: null as null | Equipment,
-            typeAndIcons : [{
+            typeAndIconsAndColors : [{
                 type: " ",
-                name_icon : " "
-            }] as TypeAndIcon[]
+                name_icon : " ",
+                color: " "
+            }] as TypeAndIconAndColor[]
         };
     },
     actions: {
@@ -75,33 +76,33 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
             }
             return equipmentTypes;
         },
-        getListOfEquipmentIcons: (state) => {
-            const equipmentIcons: string[] = [];
+        getListOfEquipmentIconsAndColors: (state) => {
+            const equipmentIconsAndColors: IconAndColor[] = [];
             for(const equipment of state.equipments) {
-                if(!equipmentIcons.includes(equipment.name_icon)) {
-                    equipmentIcons.push(equipment.name_icon);
+                if(!equipmentIconsAndColors.find(x => x.icon_name === equipment.name_icon)) {
+                    equipmentIconsAndColors.push({icon_name: equipment.name_icon, color: equipment.color});
                 }
             }
-            return equipmentIcons;
+            return equipmentIconsAndColors;
         },
-        getListOfEquipmentTypesAndIcons: (state) => {
-            const equipmentTypesAndIcons: TypeAndIcon[] = [];
+        getListOfEquipmentTypesAndIconsAndColors: (state) => {
+            const equipmentTypesAndIconsAndColors: TypeAndIconAndColor[] = [];
             const isFrench = useGameParametersStore().language === 'fr';
             if(isFrench) {
                 for(const equipment of state.equipments) {
-                    if(!equipmentTypesAndIcons.find(x => x.type === equipment.type_fr)) {
-                        equipmentTypesAndIcons.push({type: equipment.type_fr, name_icon: equipment.name_icon});
+                    if(!equipmentTypesAndIconsAndColors.find(x => x.type === equipment.type_fr)) {
+                        equipmentTypesAndIconsAndColors.push({type: equipment.type_fr, name_icon: equipment.name_icon, color: equipment.color});
                     }
                 }
             }
             else {
                 for(const equipment of state.equipments) {
-                    if(!equipmentTypesAndIcons.find(x => x.type === equipment.type_en)) {
-                        equipmentTypesAndIcons.push({type: equipment.type_en, name_icon: equipment.name_icon});
+                    if(!equipmentTypesAndIconsAndColors.find(x => x.type === equipment.type_en)) {
+                        equipmentTypesAndIconsAndColors.push({type: equipment.type_en, name_icon: equipment.name_icon, color: equipment.color});
                     }
                 }
             }
-            return equipmentTypesAndIcons;
+            return equipmentTypesAndIconsAndColors;
         }
     },
 });
@@ -120,7 +121,13 @@ export interface Equipment{
     price_gap: number[];
 }
 
-export interface TypeAndIcon {
+export interface TypeAndIconAndColor {
     type: string;
     name_icon: string;
+    color: string;
+}
+
+export interface IconAndColor {
+    icon_name: string;
+    color: string;
 }

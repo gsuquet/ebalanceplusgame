@@ -20,19 +20,16 @@
             Icon,
         },
         methods: {
+            handleEquipmentTypeIconClick(equipmentType : string) {
+                this.handleShowEquipments(equipmentType);
+                this.listSizeExtended = true;
+            },
             handleShowEquipments(equipmentType : string) {
                 if(this.showEquipmentType === equipmentType)
                     this.showEquipmentType = "";
                 else
                     this.showEquipmentType = equipmentType;
             },
-            listSize(listSizeExtended: boolean) {
-                if(listSizeExtended == false)
-                    listSizeExtended = true;
-                else
-                    listSizeExtended = false;
-                return listSizeExtended
-            }
         }
     }
 </script>
@@ -41,14 +38,14 @@
     <section class="list-equipment">
         <div class="list-container" >
             <div class="icon-container" :class="listSizeExtended ? 'icon-container-extended':'icon-container-reduced'">
-                <Icon icon="mdi:arrow-left" class="icon-menu" @click="listSizeExtended = listSize(listSizeExtended)" v-if="listSizeExtended"/>
-                <Icon icon="mdi:arrow-right" class="icon-menu" @click="listSizeExtended = listSize(listSizeExtended)" v-else/>
+                <Icon icon="mdi:arrow-left" class="icon-menu" @click="listSizeExtended = false" v-if="listSizeExtended"/>
+                <Icon icon="mdi:arrow-right" class="icon-menu" @click="listSizeExtended = true" v-else/>
             </div>
             
             <div class="type-list-normal type" v-if="listSizeExtended">
-                <div class="boucle" v-for="equipment_type_icon in equipmentStore.getListOfEquipmentTypesAndIcons">
+                <div class="boucle" v-for="equipment_type_icon in equipmentStore.getListOfEquipmentTypesAndIconsAndColors">
                     <div class="type-container" @click="handleShowEquipments(equipment_type_icon.type)">
-                        <Icon class="material-icons" :icon="equipment_type_icon.name_icon"/>
+                        <Icon class="material-icons" :icon="equipment_type_icon.name_icon" :style="{'color':equipment_type_icon.color}"/>
                         <h1>
                             {{ equipment_type_icon.type }}
                         </h1>
@@ -59,8 +56,8 @@
                 </div>
             </div>
             <div class="type-list-reduce type" v-else>
-                <div class="boucle" v-for="icon in equipmentStore.getListOfEquipmentIcons">
-                    <Icon :icon="icon" class="icon-type" />
+                <div class="boucle" v-for="equipment in equipmentStore.getListOfEquipmentTypesAndIconsAndColors">
+                    <Icon :icon="equipment.name_icon" class="icon-type" :style="{'color':equipment.color}" @click="handleEquipmentTypeIconClick(equipment.type)"/>
                 </div>
             </div>
         </div>
