@@ -8,12 +8,12 @@
 
 <template>
     <section id="board-consumption-add" class="popup-window">
-        <div class="color-banner" :style="{'background-color':equipment.color}"/>
+        <div class="color-banner" :style="{'background-color':equipment.type.color}"/>
         <div class="card">
             <CardPopupHeader
-                :equipment-icon="equipment.name_icon"
+                :equipment-icon="equipment.type.icon"
                 :consumption-type="equipmentType"
-                :equipment-color="equipment.color"
+                :equipment-color="equipment.type.color"
                 @close-popup="closeAddPopup"/>
             <CardPopupContent 
                 :consumption-amount="equipment.consumption"
@@ -109,10 +109,7 @@
         watch: {
             equipment: {
                 handler: function (equipment: any) {
-                    if(useGameParametersStore().language ==='fr')
-                        this.equipmentType = equipment.type_fr;
-                    else
-                        this.equipmentType = equipment.type_en;
+                    this.equipmentType = equipmentStore.convertEquipmentToEquipmentLocale(equipment).type.name;
                 },
                 immediate: true
             }

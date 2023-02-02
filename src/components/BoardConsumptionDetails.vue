@@ -2,6 +2,7 @@
 import { Icon } from '@iconify/vue';
 import { useBoardStore } from '../stores/BoardStore';
 import { useConsumptionStore } from '../stores/ConsumptionStore';
+import { useEquipmentStore } from '../stores/EquipmentStore';
 import CardPopupContent from './CardPopupContent.vue';
 import CardPopupHeader from './CardPopupHeader.vue';
 </script>
@@ -11,9 +12,9 @@ import CardPopupHeader from './CardPopupHeader.vue';
         <div class="color-banner" :style="{'background-color':consumption.color}"/>
         <div class="card">
             <CardPopupHeader
-                :equipment-icon="consumption.equipment.name_icon"
+                :equipment-icon="consumption.equipment.type.icon_name"
                 :consumption-type="consumptionType"
-                :equipment-color="consumption.equipment.color"
+                :equipment-color="consumption.equipment.type.color"
                 @close-popup="closeDetails"/>
             <CardPopupContent
                 :consumption-amount="consumption.amount"
@@ -63,6 +64,7 @@ import CardPopupHeader from './CardPopupHeader.vue';
 
 <script lang="ts">
     const boardStore = useBoardStore();
+    const equipmentStore = useEquipmentStore();
     const consumptionStore = useConsumptionStore();
     export default {
         name: 'BoardConsumptionDetails',
@@ -118,11 +120,7 @@ import CardPopupHeader from './CardPopupHeader.vue';
         watch: {
             consumption: {
                 handler() {
-                    if(useGameParametersStore().language === 'fr'){
-                        this.consumptionType = this.consumption.equipment.type_fr;
-                    } else{
-                        this.consumptionType = this.consumption.equipment.type_en;
-                    }
+                    this.consumptionType = equipmentStore.convertEquipmentToEquipmentLocale(this.consumption.equipment).type.name;
                 },
                 immediate: true
             }
