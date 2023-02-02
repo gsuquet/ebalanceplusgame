@@ -34,6 +34,9 @@ export const useProductionStore = defineStore({
         setClickedProductionCurve(productionCurve: ProductionCurve | null) {
             this.clickedProductionCurve = productionCurve;
         }, 
+        setClickedProductionCurveToFirstCurve() {
+            this.clickedProductionCurve = this.productionCurves.values().next().value;
+        }
     },
     getters: {
         getProductionCurveById: state => (id: string) => state.productionCurves.get(id),
