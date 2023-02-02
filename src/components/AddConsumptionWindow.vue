@@ -21,13 +21,13 @@
                 :times="{timeStart:startHour,timeEnd:endHour}"/>
             <div class="card-time-modifier">
                 <div class="start-input field">
-                    <p>Start</p>
+                    <p>{{ $t("input.start") }}</p>
                     <div class="choice-container" :class="{'input-error' : inputError}">
                         <input type="time" class="input-start input" step="900" id="startHour" v-model="startHour">
                     </div>
                 </div>
                 <div class="end-input field">
-                    <p>End</p>
+                    <p>{{ $t("input.end") }}</p>
                     <div class="choice-container" :class="{'input-error' : inputError}">
                         <input type="time" class="input-end input" step="900" id="endHour" v-model="endHour">
                     </div>
@@ -36,11 +36,11 @@
             <div class="card-save-modification">
                 <button class="btn btn-save" @click="saveConsumption">
                     <Icon icon="mdi:content-save" class="btn-icon"/>
-                    Sauvegarder
+                    {{ $t("button.save") }}
                 </button>
                 <button class="btn btn-cancel" @click="closeAddPopup">
                     <Icon icon="mdi:close" class="btn-icon"/>
-                    Annuler
+                    {{ $t("button.cancel") }}
                 </button>
             </div>
         </div>

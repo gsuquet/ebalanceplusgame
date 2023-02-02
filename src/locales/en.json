@@ -1,3 +1,22 @@
 {
-
+    "page":{
+        "home": "Home",
+        "setup": "Setup",
+        "game": "Game",
+        "account": "Account",
+        "about": "About"
+    },
+    "button":{
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
+        "save": "Save"
+    },
+    "input":{
+        "start": "Start",
+        "end": "End"
+    },
+    "alert":{
+        "overConsumption": "Your demand is higher than your production. You will have to buy energy !"
+    }
 }

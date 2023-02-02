@@ -22,22 +22,22 @@ import CardPopupHeader from './CardPopupHeader.vue';
             <div class="card-choice-buttons" v-if="!modify">
                 <button class="btn btn-modify" @click="modifyConsumption">
                     <Icon icon="mdi:pencil" class="btn-icon"/>
-                    Modifier
+                    {{ $t("button.edit") }}
                 </button>
                 <button class="btn btn-delete" @click="deleteConsumption">
                     <Icon icon="mdi:delete" class="btn-icon"/>
-                    Supprimer
+                    {{ $t("button.delete") }}
                 </button>
             </div>
             <div class="card-time-modifier" v-if="modify">
                 <div class="start-input field">
-                    <p>Start</p>
+                    <p>{{ $t("input.start") }}</p>
                     <div class="choice-container" :class="{'input-error' : inputError}">
                         <input type="time" class="input-start input" step="900" id="startHour" v-model="startHour">
                     </div>
                 </div>
                 <div class="end-input field">
-                    <p>End</p>
+                    <p>{{ $t("input.end") }}</p>
                     <div class="choice-container" :class="{'input-error' : inputError}">
                         <input type="time" class="input-end input" step="900" id="endHour" v-model="endHour">
                     </div>
@@ -46,11 +46,11 @@ import CardPopupHeader from './CardPopupHeader.vue';
             <div class="card-save-modification">
                 <button class="btn btn-save" v-if="modify" @click="saveModifiedConsumption">
                     <Icon icon="mdi:content-save" class="btn-icon"/>
-                    Sauvegarder
+                    {{ $t("button.save") }}
                 </button>
                 <button class="btn btn-cancel" v-if="modify" @click="modify = false">
                     <Icon icon="mdi:close" class="btn-icon"/>
-                    Annuler
+                    {{ $t("button.cancel") }}
                 </button>
             </div>
         </div>

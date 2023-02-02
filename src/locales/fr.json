@@ -1,7 +1,22 @@
 {
-    "pages":{
+    "page":{
         "home": "Accueil",
         "setup": "Configuration",
-        "about": "A propos",
+        "game": "Jeu",
+        "account": "Compte",
+        "about": "A propos"
+    },
+    "button":{
+        "cancel": "Annuler",
+        "delete": "Supprimer",
+        "edit": "Modifier",
+        "save": "Sauvegarder"
+    },
+    "input":{
+        "start": "Début",
+        "end": "Fin"
+    },
+    "alert":{
+        "overConsumption": "Votre demande est supérieure à la production !"
     }
 }

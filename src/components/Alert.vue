@@ -2,7 +2,7 @@
     <div :class="alertClass+' alert'" v-if="display">
         <div class="alert-background">
             <span class="closebtn" @click="closeAlert">&times;</span>
-            <p>{{ alertText }}</p>
+            <p>{{ $t(alertText) }}</p>
         </div>
     </div>
 </template>

@@ -3,7 +3,6 @@ import fr from '../locales/fr.json'
 import en from '../locales/en.json'
 
 const messages = { fr:fr, en:en };
-console.log(messages);
 const i18n = createI18n({
     legacy: false,
     locale: 'fr',

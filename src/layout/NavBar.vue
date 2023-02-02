@@ -4,9 +4,9 @@
             <img src="/logo-nav-ebalance-game.png" alt="Logo of the game" />
         </div>
         <div class="nav-bar-links">
-            <Router-link to="/">Home</Router-link>
-            <Router-link to="/setup">Setup</Router-link>
-            <Router-Link to="/game">Game</Router-Link>
+            <Router-link to="/">{{ $t("page.home") }}</Router-link>
+            <Router-link to="/setup">{{ $t("page.setup") }}</Router-link>
+            <Router-Link to="/game">{{ $t("page.game") }}</Router-Link>
         </div>
         <div class="nav-bar-user">
         </div>
