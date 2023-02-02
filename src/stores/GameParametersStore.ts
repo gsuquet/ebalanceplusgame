@@ -13,6 +13,8 @@ export const useGameParametersStore = defineStore({
             productionCurve: {
                 id: '0',
                 name: 'No production curve',
+                svg: '',
+                description: '', 
                 solar: [],
                 wind: [],
                 hydro: [],
@@ -33,6 +35,8 @@ export const useGameParametersStore = defineStore({
                 this.productionCurve = {
                     id: '0',
                     name: 'No production curve',
+                    svg: '',
+                    description: '',
                     solar: [],
                     wind: [],
                     hydro: [],
