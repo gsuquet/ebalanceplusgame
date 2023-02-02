@@ -11,41 +11,63 @@
             return {productionStore};
         },
         computed: {
-            //const getList = [] as ProductionCurve[];
             getList: productionStore.getAllProductionCurves
         },
         data() {
             return {
-
             }
         },
         methods: {
-            isClicked(productionCurve: ProductionCurve) {
+            isClicked(productionCurve: ProductionCurve ) {
                 productionStore.setClickedProductionCurve(productionCurve);
+            },
+
+            isEmpty(listProd: number[]) {
+                let empty: boolean;
+                if(listProd.length == 0)
+                    empty = true;
+                else
+                    empty = false 
+                return empty
             }
+        },
+        components: {
+            Icon
         }
-    }
-    
-
-
+    };
 </script>
 
 <template>
-    <section class="list-production">
-        <div class="list-container">
-            <div class="boucle" v-for="curve in getList">
+    <section class="list-container">
+        <div class="boucle" v-for="curve in getList" @click="isClicked(curve)">
+            <div class="box-container">
                 <h1>
-                    {{ curve.name }}
+                {{ curve.name }}
                 </h1>
+                <!-- <div class="svg-container">
+                    <object  :data="curve.svg" width="300px" height="300px"></object>
+                </div> -->
                 <div class="svg-container">
-                    <object :data="curve.svg" width="300px" height="300px"></object>
+                    <img :src="curve.svg" alt="curve">
+                </div>
+                <div class="icon-container">
+                    <div class="icon-type-prod" v-if="isEmpty(curve.solar)">
+                        <Icon icon="mdi:solar-power"/>
+                    </div>
+                    <div class="icon-type-prod" v-if="isEmpty(curve.hydro)">
+                        <Icon icon="mdi:hydro-power"/>
+                    </div>
+                    <div class="icon-type-prod" v-if="isEmpty(curve.wind)">
+                        <Icon icon="mdi:wind-power"/>
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>
 
 </template>
 
-<style lang="scss">
-    @import "../styles/components/productionList.scss"
+<style scoped lang="scss">
+    @import "../styles/components/productionList.scss";
 </style>
