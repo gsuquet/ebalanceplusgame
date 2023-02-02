@@ -6,7 +6,6 @@ export const useProductionStore = defineStore({
         return {
             productionCurves: new Map<string, ProductionCurve>(), 
             clickedProductionCurve: null as null| ProductionCurve, // Add from Antoine
-            //listProductionCurve: [] as ProductionCurve[], 
         };
     },
     actions: {
@@ -62,6 +61,7 @@ export interface ProductionCurve {
     id : string;
     name: string;
     svg: string;
+    description: string,
     solar: number[];
     wind: number[];
     hydro: number[];
