@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { useProductionStore, ProductionCurve } from './ProductionStore';
+import i18n from '../modules/i18n';
 
 export const useGameParametersStore = defineStore({
     id: 'GameParametersStore',
@@ -7,7 +8,8 @@ export const useGameParametersStore = defineStore({
         return {
             id: '',
             date: new Date(),
-            language: 'fr',
+            language: 'en',
+            languageIsUserSet: false,
             theme: 'light',
             scenario: '',
             productionCurve: {
@@ -46,7 +48,29 @@ export const useGameParametersStore = defineStore({
         },
         setScenario(scenarioId: string) {
         },
+        setLanguageFromBrowser() {
+            if(!this.languageIsUserSet){
+                const language = navigator.language.substring(0, 2);
+                if(language && this.isLanguageAvailable(language)){
+                    this.language = language;
+                } else{
+                    this.language = 'en';
+                }
+            }
+        },
+        isLanguageAvailable(languageId: string) {
+            for (const language of i18n.global.availableLocales) {
+                if(languageId === language){
+                    return true;
+                }
+            }
+        },
         setLanguage(languageId: string) {
+            if(this.isLanguageAvailable(languageId)){
+                this.language = languageId;
+                i18n.global.locale.value = i18n.global.availableLocales.find((locale) => locale === languageId) || 'en';
+                this.languageIsUserSet = true;
+            }
         },
         storeToLocalStorage() {
             localStorage.setItem('gameParameters', JSON.stringify(this));

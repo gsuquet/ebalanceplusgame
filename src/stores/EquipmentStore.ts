@@ -5,23 +5,15 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
         return {
             equipments: [{
                 id: 0,
-                type_fr: '',
-                type_en: '',
+                type:{id:'0',names: [{lang: 'fr',name: 'Vide'},{lang: 'en',name: 'Empty'}],icon_name:'vide',color: '#000000'},
                 energy_class: '',
                 consumption: 0,
                 points: 0,
                 price: 0,
-                name_icon: 'vide',
-                color: '#000000',
                 point_gap: [0,0],
                 price_gap: [0,0]
             }] as Equipment [],
-            clickedEquipment: null as null | Equipment,
-            typeAndIconsAndColors : [{
-                type: " ",
-                name_icon : " ",
-                color: " "
-            }] as TypeAndIconAndColor[]
+            clickedEquipment: null as null | Equipment
         };
     },
     actions: {
@@ -31,103 +23,90 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
         },
         setClickedEquipment(equipment: Equipment | null) {
             this.clickedEquipment = equipment;
-        }  
-        /*
-        setPriceAndScoreGap(type: string) { //maybe not the best solution don't do it or automate it
-            let listePoints: number[] = []
-            let listePrice: number[] = []
-            let equipmentlist: Equipment[] = []
-            equipmentlist =  this.getEquipmentByType(type);
-            for(let i=0; i< equipmentlist.length; i++){
-                listePoints.push(equipmentlist[i].points)
-                listePrice.push(equipmentlist[i].price)
+        },
+        getEquipmentTypeLocale(type: EquipmentType, locale:string){
+            for(const name of type.names) {
+                if(name.lang === locale){
+                    return {name: name.name, icon_name: type.icon_name, color: type.color, id: type.id} as EquipmentTypeLocale;
+                }
             }
-        }, 
-        */
+            return {name: type.names[0].name, icon_name: type.icon_name, color: type.color, id: type.id} as EquipmentTypeLocale;
+        },
+        getListOfEquipmentTypesLocale() {
+            const locale = useGameParametersStore().language;
+            const equipmentTypesLocale: EquipmentTypeLocale[] = [];
+            for(const equipment of this.equipments) {
+                const equipmentTypeLocale = this.getEquipmentTypeLocale(equipment.type, locale);
+                if(!equipmentTypesLocale.find(type => type.id === equipmentTypeLocale.id))
+                    equipmentTypesLocale.push(equipmentTypeLocale);
+            }
+            return equipmentTypesLocale;
+        },
+        convertEquipmentToEquipmentLocale(equipment: Equipment) {
+            const locale = useGameParametersStore().language;
+            const equipmentTypeLocale = this.getEquipmentTypeLocale(equipment.type, locale);
+            return {id: equipment.id, type: equipmentTypeLocale, energy_class: equipment.energy_class, consumption: equipment.consumption, points: equipment.points, price: equipment.price, point_gap: equipment.point_gap, price_gap: equipment.price_gap} as EquipmentLocale;
+        }
     },
     getters: {
         getEquipmentById:(state) => (id: number) => {
-            return state.equipments.find(equipment => equipment.id == id);
+            return state.equipments.find(equipment => equipment.id === id);
         },
-        getEquipmentByType:(state) => (type: string) => {
+        getEquipmentByTypeId:(state) => (id:string) => {
             const equipmentByType: Equipment[] = [];
             for(const equipment of state.equipments) {
-                if(equipment.type_fr == type || equipment.type_en == type)
+                if(equipment.type.id === id)
                     equipmentByType.push(equipment);
             }
             return equipmentByType;
         },
         getListOfEquipmentTypes: (state) => {
-            const equipmentTypes: string[] = [];
-            const isFrench = useGameParametersStore().language === 'fr';
-            if(isFrench) {
-                for(const equipment of state.equipments) {
-                    if(!equipmentTypes.includes(equipment.type_fr)) {
-                        equipmentTypes.push(equipment.type_fr);
-                    }
-                }
-            }
-            else {
-                for(const equipment of state.equipments) {
-                    if(!equipmentTypes.includes(equipment.type_en)) {
-                        equipmentTypes.push(equipment.type_en);
-                    }
-                }
-            }
-            return equipmentTypes;
-        },
-        getListOfEquipmentIconsAndColors: (state) => {
-            const equipmentIconsAndColors: IconAndColor[] = [];
+            const equipmentTypes: EquipmentType[] = [];
             for(const equipment of state.equipments) {
-                if(!equipmentIconsAndColors.find(x => x.icon_name === equipment.name_icon)) {
-                    equipmentIconsAndColors.push({icon_name: equipment.name_icon, color: equipment.color});
-                }
+                if(!equipmentTypes.includes(equipment.type))
+                    equipmentTypes.push(equipment.type);
             }
-            return equipmentIconsAndColors;
-        },
-        getListOfEquipmentTypesAndIconsAndColors: (state) => {
-            const equipmentTypesAndIconsAndColors: TypeAndIconAndColor[] = [];
-            const isFrench = useGameParametersStore().language === 'fr';
-            if(isFrench) {
-                for(const equipment of state.equipments) {
-                    if(!equipmentTypesAndIconsAndColors.find(x => x.type === equipment.type_fr)) {
-                        equipmentTypesAndIconsAndColors.push({type: equipment.type_fr, name_icon: equipment.name_icon, color: equipment.color});
-                    }
-                }
-            }
-            else {
-                for(const equipment of state.equipments) {
-                    if(!equipmentTypesAndIconsAndColors.find(x => x.type === equipment.type_en)) {
-                        equipmentTypesAndIconsAndColors.push({type: equipment.type_en, name_icon: equipment.name_icon, color: equipment.color});
-                    }
-                }
-            }
-            return equipmentTypesAndIconsAndColors;
         }
     },
 });
 
 export interface Equipment{
     id: number,
-    type_fr: string ,
-    type_en: string,
+    type: EquipmentType,
     energy_class: string, 
     consumption: number,
     points: number,
     price: number,
-    name_icon: string,
-    color: string,
     point_gap: number[],
     price_gap: number[];
 }
 
-export interface TypeAndIconAndColor {
-    type: string;
-    name_icon: string;
-    color: string;
+export interface EquipmentLocale{
+    id: number,
+    type: EquipmentTypeLocale,
+    energy_class: string,
+    consumption: number,
+    points: number,
+    price: number,
+    point_gap: number[],
+    price_gap: number[]
 }
 
-export interface IconAndColor {
-    icon_name: string;
-    color: string;
+export interface EquipmentType{
+    id: string,
+    names: EquipmentTypeName[],
+    icon_name: string,
+    color: string
+}
+
+export interface EquipmentTypeLocale{
+    id: string,
+    name: string,
+    icon_name: string,
+    color: string
+}
+
+export interface EquipmentTypeName{
+    lang: string,
+    name: string
 }

@@ -1,13 +1,20 @@
+<script setup lang="ts">
+    import LanguageSelector from '../components/LanguageSelector.vue'
+</script>
+
 <template>
     <div class="nav-bar">
-        <div class="nav-bar-logo">
-            <img src="/logo-nav-ebalance-game.png" alt="Logo of the game" />
+        <div class="nav-bar-logo-links">
+            <div class="nav-bar-logo">
+                <img src="/logo-nav-ebalance-game.png" alt="Logo of the game" />
+            </div>
+            <div class="nav-bar-links">
+                <Router-link to="/">{{ $t("page.home") }}</Router-link>
+                <Router-link to="/setup">{{ $t("page.setup") }}</Router-link>
+                <Router-Link to="/game">{{ $t("page.game") }}</Router-Link>
+            </div>
         </div>
-        <div class="nav-bar-links">
-            <Router-link to="/">Home</Router-link>
-            <Router-link to="/setup">Setup</Router-link>
-            <Router-Link to="/game">Game</Router-Link>
-        </div>
+        <LanguageSelector />
         <div class="nav-bar-user">
         </div>
     </div>
