@@ -2,7 +2,7 @@
     <div :class="alertClass+' alert'" v-if="display">
         <div class="alert-background">
             <span class="closebtn" @click="closeAlert">&times;</span>
-            <p>{{ alertText }}</p>
+            <p>{{ text }}</p>
         </div>
     </div>
 </template>
@@ -17,17 +17,29 @@
       },
       data() {
           return {
-              display: false as boolean
+              display: false as boolean,
+              text : '' as string
           };
       },
       watch: {
           shouldDisplay: function (newVal: boolean) {
-              this.display = newVal;
+                this.display = newVal;
+          },
+          alertText: {
+            handler: function (newVal: string) {
+                if(newVal){
+                    this.setTextFromI18n(newVal);
+                }
+            },
+            immediate: true
           }
       },
       methods: {
           closeAlert() {
               this.display = false;
+          },
+          setTextFromI18n(key: string) {
+              this.text = this.$t(key);
           }
       }
     };

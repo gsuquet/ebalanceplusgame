@@ -21,7 +21,7 @@ gameParametersStore.setProductionCurve('0');
         <Alert
             :should-display="consumptionStore.isOverConsumption"
             alert-class="danger-alert"
-            alert-text="Votre demande dépasse la production !"/>        
+            alert-text="alert.overConsumption"/>        
         <div class="consuption-window-container">
             <AddConsumptionWindow 
                 v-if="equipmentStore.clickedEquipment"

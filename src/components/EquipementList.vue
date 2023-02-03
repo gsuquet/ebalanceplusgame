@@ -43,21 +43,21 @@
             </div>
             
             <div class="type-list-normal type" v-if="listSizeExtended">
-                <div class="boucle" v-for="equipment_type_icon in equipmentStore.getListOfEquipmentTypesAndIconsAndColors">
-                    <div class="type-container" @click="handleShowEquipments(equipment_type_icon.type)">
-                        <Icon class="material-icons" :icon="equipment_type_icon.name_icon" :style="{'color':equipment_type_icon.color}"/>
+                <div class="boucle" v-for="equipmentTypeLocale in equipmentStore.getListOfEquipmentTypesLocale()">
+                    <div class="type-container" @click="handleShowEquipments(equipmentTypeLocale.id)">
+                        <Icon class="material-icons" :icon="equipmentTypeLocale.icon_name" :style="{'color':equipmentTypeLocale.color}"/>
                         <h1>
-                            {{ equipment_type_icon.type }}
+                            {{ equipmentTypeLocale.name }}
                         </h1>
                     </div>
-                    <div class="equipment-container" v-if="showEquipmentType===equipment_type_icon.type" >
-                            <Equipments v-for="equipment in equipmentStore.getEquipmentByType(equipment_type_icon.type)" :key="equipment_type_icon.type"  :equipment="equipment"/>
+                    <div class="equipment-container" v-if="showEquipmentType===equipmentTypeLocale.id" >
+                            <Equipments v-for="equipment in equipmentStore.getEquipmentByTypeId(equipmentTypeLocale.id)" :key="equipmentTypeLocale.id"  :equipment="equipment"/>
                     </div>
                 </div>
             </div>
             <div class="type-list-reduce type" v-else>
-                <div class="boucle" v-for="equipment in equipmentStore.getListOfEquipmentTypesAndIconsAndColors">
-                    <Icon :icon="equipment.name_icon" class="icon-type" :style="{'color':equipment.color}" @click="handleEquipmentTypeIconClick(equipment.type)"/>
+                <div class="boucle" v-for="equipmentTypeLocale in equipmentStore.getListOfEquipmentTypesLocale()">
+                    <Icon :icon="equipmentTypeLocale.icon_name" class="icon-type" :style="{'color':equipmentTypeLocale.color}" @click="handleEquipmentTypeIconClick(equipmentTypeLocale.id)"/>
                 </div>
             </div>
         </div>

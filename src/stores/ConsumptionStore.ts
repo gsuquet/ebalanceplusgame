@@ -80,7 +80,7 @@ export const useConsumptionStore = defineStore({
         },
         addConsumption(indexStart: number, indexEnd: number, equipment: Equipment) {
             let amount: number = equipment.consumption;
-            let color: string = equipment.color;
+            let color: string = equipment.type.color;
             let id: string = Math.floor(Math.random() * (1000000)).toString();
             let newConsumption: Consumption = { id:id,
                 startIndex:indexStart,
