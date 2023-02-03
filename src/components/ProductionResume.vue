@@ -65,5 +65,5 @@
 </template>
 
 <style scoped lang="scss">
-    @import "../styles/components/productionResume.scss";
+    @import "../styles/components/productionAndScenarioResume.scss";
 </style>

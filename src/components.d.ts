@@ -23,5 +23,8 @@ declare module '@vue/runtime-core' {
     ProductionResume: typeof import('./components/ProductionResume.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ScenarioList: typeof import('./components/ScenarioList.vue')['default']
+    ScenarioResume: typeof import('./components/ScenarioResume.vue')['default']
+    ValidationSetup: typeof import('./components/ValidationSetup.vue')['default']
   }
 }
