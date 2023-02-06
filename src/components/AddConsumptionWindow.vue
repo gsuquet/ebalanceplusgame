@@ -11,7 +11,7 @@
         <div class="color-banner" :style="{'background-color':equipment.type.color}"/>
         <div class="card">
             <CardPopupHeader
-                :equipment-icon="equipment.type.icon"
+                :equipment-icon="equipment.type.icon_name"
                 :consumption-type="equipmentType"
                 :equipment-color="equipment.type.color"
                 @close-popup="closeAddPopup"/>
