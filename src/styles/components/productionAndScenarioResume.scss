@@ -1,5 +1,7 @@
 
 .recap-container {
+
+    height: 100%; 
     background-color: var(--theme-color-background-secondary);
 
     padding: 1rem;
@@ -10,13 +12,42 @@
     .card-content {
         
         
-        h1 {
+        .name {
             margin-top: 0.5rem;
             font-size: larger;
             font-weight: bold;
             text-align: center;
         }
+        .meteo-container {
 
+            display: flex;
+            flex-direction: row;
+
+            .day {
+                margin-top: 3rem;
+                font-size: larger;
+                font-weight: bold;
+                text-align: left;
+                margin-left: 2rem;
+            }
+
+            .icon-season {
+                margin-top: 2.3rem;
+                font-size: 45px;
+                margin-left: 0.6rem;
+                margin-right:0.6rem;
+            }
+
+        }
+
+        .separator {
+            height: 0.1rem;
+            border-radius: 10px;
+            background-color: lightgray;
+            margin-top: 0.3rem;
+            margin-bottom: 0.3rem;
+        }
+        
         .svg-container {
             margin: 1rem;
             border-radius: 5px;
@@ -32,7 +63,13 @@
             flex-direction: row;
             margin-bottom: 1rem;
             .icon-type-prod{
-                font-size: 60px;
+                font-size: 45px;
+                margin-left: 0.6rem;
+                margin-right:0.6rem;
+            }
+
+            .icon-type-equipement {
+                font-size: 45px;
                 margin-left: 0.6rem;
                 margin-right:0.6rem;
             }

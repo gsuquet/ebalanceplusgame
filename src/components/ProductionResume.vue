@@ -37,7 +37,7 @@
 <template>
     <div class="recap-container">
         <div class="card-content" v-if="productionStore.clickedProductionCurve">
-            <h1>
+            <h1 class="name">
                 {{productionStore.clickedProductionCurve.name}}
             </h1>
 

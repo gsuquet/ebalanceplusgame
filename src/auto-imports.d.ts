@@ -65,7 +65,6 @@ declare global {
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
   const useEquipmentStore: typeof import('./stores/EquipmentStore')['useEquipmentStore']
-  const useEquipmentTypeStore: typeof import('./stores/EquipmentTypeStore')['useEquipmentTypeStore']
   const useGameParametersStore: typeof import('./stores/GameParametersStore')['useGameParametersStore']
   const useHourStore: typeof import('./stores/HoursStore')['useHourStore']
   const useI18n: typeof import('vue-i18n')['useI18n']

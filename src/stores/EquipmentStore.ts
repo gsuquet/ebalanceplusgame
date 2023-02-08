@@ -60,7 +60,7 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
             }
             return equipmentByType;
         },
-        getListOfEquipmentTypes: (state) => {
+        getListOfEquipmentTypes: (state) => () => {
             const equipmentTypes: EquipmentType[] = [];
             for(const equipment of state.equipments) {
                 if(!equipmentTypes.includes(equipment.type))

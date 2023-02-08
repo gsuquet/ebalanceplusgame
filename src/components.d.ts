@@ -18,7 +18,6 @@ declare module '@vue/runtime-core' {
     Equipments: typeof import('./components/Equipments.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     LanguageSelector: typeof import('./components/LanguageSelector.vue')['default']
-    LanguageToggle: typeof import('./components/LanguageToggle.vue')['default']
     ProductionList: typeof import('./components/ProductionList.vue')['default']
     ProductionResume: typeof import('./components/ProductionResume.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
