@@ -37,7 +37,7 @@
 <template>
     <div class="recap-container">
         <div class="card-content" v-if="productionStore.clickedProductionCurve">
-            <h1>
+            <h1 class="name">
                 {{productionStore.clickedProductionCurve.name}}
             </h1>
 
@@ -65,5 +65,5 @@
 </template>
 
 <style scoped lang="scss">
-    @import "../styles/components/productionResume.scss";
+    @import "../styles/components/productionAndScenarioResume.scss";
 </style>
