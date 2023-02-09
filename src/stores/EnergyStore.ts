@@ -1,16 +1,22 @@
 import { defineStore } from 'pinia';
+import { Consumption } from './ConsumptionStore';
 
 export const useEnergyStore = defineStore({
     id: 'EnergyStore',
     state: () => {
         return {
             storedEnergy: 0 as number,
-            maxEnergy: 0 as number,
+            maxEnergy: 200 as number,
+            totalStoredEnergyOverTheGame: 0 as number,
+            totalUSedEnergyOverTheGame: 0 as number,
             numberOfBatteries: 1 as number,
-            batteryIndividualCapacity: 0 as number,
+            batteryIndividualCapacity: 200 as number,
             batteryPrice: 0 as number,
             energyPrice: 0 as number,
             clickedEnergyIcon: false as boolean,
+            clickedStoreEnergy: false as boolean,
+            clickedConsumeEnergy: false as boolean,
+            storedEnergyList: [] as Consumption[]
         };
     },
     actions: {
@@ -24,8 +30,26 @@ export const useEnergyStore = defineStore({
                 this.maxEnergy -= this.batteryIndividualCapacity;
             }
         },
+        storeEnergy(storedEnergy: Consumption) {
+            this.storedEnergy += storedEnergy.amount;
+            this.totalStoredEnergyOverTheGame += storedEnergy.amount;
+            this.storedEnergyList.push(storedEnergy);
+            useConsumptionStore().addToConsumptionList(storedEnergy);
+        },
+        consumeEnergy(consumedEnergy: Consumption) {
+            this.storedEnergy -= consumedEnergy.amount;
+            this.totalUSedEnergyOverTheGame += consumedEnergy.amount;
+            this.storedEnergyList = this.storedEnergyList.filter((energy) => energy.id !== consumedEnergy.id);
+            useConsumptionStore().removeFromConsumptionList(consumedEnergy.id);
+        },
         clickOnEnergyIcon() {
             this.clickedEnergyIcon = this.clickedEnergyIcon ? false : true;
+        },
+        clickOnStoreEnergy() {
+            this.clickedStoreEnergy = this.clickedStoreEnergy ? false : true;
+        },
+        clickOnConsumeEnergy() {
+            this.clickedConsumeEnergy = this.clickedConsumeEnergy ? false : true;
         }
     },
     getters: {
@@ -62,6 +86,12 @@ export const useEnergyStore = defineStore({
             } else {
                 return 'purple';
             }
+        },
+        getEnergyStoragePercentage(state) {
+            if( state.maxEnergy <= 0 || state.storedEnergy <= 0 ){
+                return 0;
+            }
+            return Math.round((state.storedEnergy / state.maxEnergy) * 100);
         }
     },
 });

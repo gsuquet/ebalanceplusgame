@@ -4,7 +4,7 @@ import { Icon } from '@iconify/vue';
 </script>
 
 <template>
-    <section id="energy-menu">
+    <section id="energy-menu-icon">
         <div class="energy-amount" v-if="energyStore.storedEnergy > 0">
             <p>{{ energyStore.storedEnergy }} W</p>
         </div>
@@ -18,10 +18,6 @@ import { Icon } from '@iconify/vue';
         </div>
     </section>
 </template>
-
-<style scoped lang="scss">
-    @import "../styles/components/energyIcon.scss";
-</style>
 
 <script lang="ts">
     const energyStore = useEnergyStore();
