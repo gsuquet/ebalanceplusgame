@@ -10,7 +10,15 @@
         "cancel": "Cancel",
         "delete": "Delete",
         "edit": "Edit",
-        "save": "Save"
+        "save": "Save",
+        "add": "Add",
+        "login": "Login",
+        "logout": "Logout",
+        "register": "Register",
+        "play": "Play",
+        "store": "Store",
+        "use": "Use",
+        "buy": "Buy"
     },
     "input":{
         "start": "Start",
@@ -18,5 +26,15 @@
     },
     "alert":{
         "overConsumption": "Your demand is higher than your production. You will have to buy energy !"
+    },
+    "money":{
+        "cost": "Cost"
+    },
+    "energy":{
+        "header": "Energy storage",
+        "stored": "Stored",
+        "max": "Max",
+        "batteriesManagement": "Batteries management",
+        "capacity": "Capacity"
     }
 }

@@ -10,7 +10,15 @@
         "cancel": "Annuler",
         "delete": "Supprimer",
         "edit": "Modifier",
-        "save": "Sauvegarder"
+        "save": "Sauvegarder",
+        "add": "Ajouter",
+        "login": "Connexion",
+        "logout": "Déconnexion",
+        "register": "Inscription",
+        "play": "Jouer",
+        "store": "Stocker",
+        "use": "Utiliser",
+        "buy": "Acheter"
     },
     "input":{
         "start": "Début",
@@ -18,5 +26,16 @@
     },
     "alert":{
         "overConsumption": "Votre demande est supérieure à la production !"
+    },
+    "money":{
+        "cost": "Coût"
+    },
+    "energy":{
+        "header": "Stockage d'énergie",
+        "stored": "Stockée",
+        "max": "Maximum",
+        "batteriesManagement": "Gestion des batteries",
+        "capacity": "Capacité",
+        "storeEnergy": "Stocker"
     }
 }

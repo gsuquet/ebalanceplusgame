@@ -58,6 +58,7 @@ $theme-color-background:--theme-color-background;
 $theme-color-background-secondary:--theme-color-background-secondary;
 $theme-color-text:--theme-color-text;
 $theme-color-text-secondary:--theme-color-text-secondary;
+$theme-color-btn-close:--theme-color-btn-close;
 
 /*--Themes Definition--*/
 $theme-map-light: (
@@ -69,7 +70,8 @@ $theme-map-light: (
     $theme-color-background: $color-white-200,
     $theme-color-background-secondary: $color-white-100,
     $theme-color-text: $color-black-200,
-    $theme-color-text-secondary: $color-white-200
+    $theme-color-text-secondary: $color-white-200,
+    $theme-color-btn-close: $color-red-7D0A00-50
 );
 
 $theme-map-dark: (
@@ -81,5 +83,6 @@ $theme-map-dark: (
     $theme-color-background: $color-black-200,
     $theme-color-background-secondary: $color-black-50,
     $theme-color-text: $color-white-200,
-    $theme-color-text-secondary: $color-black-200
+    $theme-color-text-secondary: $color-black-200,
+    $theme-color-btn-close: $color-red-7D0A00-50
 )

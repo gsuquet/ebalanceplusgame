@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Alert from '../components/Alert.vue';
 import Board from '../components/Board.vue';
+import GameBoardSnackBar from '../components/GameBoardSnackBar.vue';
 import EquipementList from '../components/EquipementList.vue';
 import { useConsumptionStore } from '../stores/ConsumptionStore';
 import { useBoardStore } from '../stores/BoardStore';
@@ -27,6 +28,7 @@ gameParametersStore.setProductionCurve('0');
                 v-if="equipmentStore.clickedEquipment"
                 :equipment="equipmentStore.clickedEquipment"/>
         </div>
+        <GameBoardSnackBar />
         <div class="board-list-container">
             <EquipementList />
             <Board
