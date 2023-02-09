@@ -109,6 +109,14 @@ import { ProductionCurve } from '../stores/ProductionStore';
                 }
                 return pointsInPixels;
             },
+            drawHoursLines() {
+                const xSize = this.pxSizeFor15m ? this.pxSizeFor15m : 15;
+                let x=0;
+                for(let i =0; i<24; i++) {
+                    this.drawProduction(x,0,x,this.canvasHeight, '#DBEBE7');
+                    x=x+xSize*4;
+                }
+            },
             drawCurve(points: number[], color: string){
                 const xSize = this.pxSizeFor15m ? this.pxSizeFor15m : 15;
                 let x=0;
@@ -131,6 +139,7 @@ import { ProductionCurve } from '../stores/ProductionStore';
             },
             render() {
                 this.clearCanvas(0,0,this.canvasWidth,this.canvasHeight);
+                this.drawHoursLines();
                 this.drawTilesConsumption(this.tiles);
                 this.drawProductionCurve(this.productionCurve);
             }
