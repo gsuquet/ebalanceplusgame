@@ -6,6 +6,7 @@ import { useEquipmentStore } from '../stores/EquipmentStore';
 import { useScenarioStore } from '../stores/ScenarioStore';
 import { useEnergyStore } from '../stores/EnergyStore';
 import { useBoardStore } from '../stores/BoardStore';
+import HomeCreateGame from '../components/HomeCreateGame.vue';
 const gameParametersStore = useGameParametersStore();
 const consumptionStore = useConsumptionStore();
 const productionStore = useProductionStore();
@@ -25,6 +26,6 @@ gameParametersStore.setLanguageFromBrowser();
 
 <template>
     <div id="home-page" class="vue">
-        <h1>Home Page</h1>
+        <HomeCreateGame />
     </div>
 </template>

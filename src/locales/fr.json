@@ -18,7 +18,10 @@
         "play": "Jouer",
         "store": "Stocker",
         "use": "Utiliser",
-        "buy": "Acheter"
+        "buy": "Acheter",
+        "sell": "Vendre",
+        "create": "Créer",
+        "join": "Rejoindre"
     },
     "input":{
         "start": "Début",
@@ -37,5 +40,9 @@
         "batteriesManagement": "Gestion des batteries",
         "capacity": "Capacité",
         "storeEnergy": "Stocker"
+    },
+    "home":{
+        "createGame": "Créer une partie",
+        "joinGame": "Rejoindre une partie"
     }
 }

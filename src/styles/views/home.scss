@@ -1,7 +1,41 @@
 #home-page{
-    text-align: center;
-    h1 {
-        font-size: 5em;
-        line-height: 1.1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .section{
+    padding: 20px;
+    border-radius: 15px;
+  }
+  .section-title{
+    font-size: 2.5em;
+    font-weight: 600;
+    margin-bottom: 1em;
+  }
+  .btn-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .btn{
+      background-color: var(--theme-color-background);
+      padding: 5px 15px;
+      border: none;
+      border-radius: 25px;
+      a{
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--theme-color-text);
       }
+      &:hover{
+        background-color: var(--theme-color-primary);
+        a{
+          color: var(--theme-color-text-secondary);
+        }
+      }
+    }
+  }
+  .home-create-game{
+    background-color: var(--theme-color-tertiary);
+    color: var(--theme-color-text);
+  }
 }
