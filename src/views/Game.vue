@@ -12,8 +12,6 @@ const consumptionStore = useConsumptionStore();
 const boardStore = useBoardStore();
 const gameParametersStore = useGameParametersStore();
 const equipmentStore = useEquipmentStore();
-gameParametersStore.setProductionCurve('0');
-
 </script>
 
 <template>

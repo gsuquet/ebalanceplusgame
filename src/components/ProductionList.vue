@@ -8,6 +8,7 @@
 
         setup() {
             const productionStore = useProductionStore();
+            productionStore.fetchProductionCurves();
             productionStore.setClickedProductionCurveToFirstCurve();
             return {productionStore};
         },

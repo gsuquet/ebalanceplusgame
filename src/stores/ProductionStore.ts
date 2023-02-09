@@ -5,7 +5,7 @@ export const useProductionStore = defineStore({
     state: () => {
         return {
             productionCurves: new Map<string, ProductionCurve>(), 
-            clickedProductionCurve: null as null| ProductionCurve, // Add from Antoine
+            clickedProductionCurve: null as null| ProductionCurve,
         };
     },
     actions: {
@@ -16,6 +16,7 @@ export const useProductionStore = defineStore({
                 const total = this.getProductonCurveTotal(value.solar, value.wind, value.hydro);
                 return [key, {...value, total}];
             }));
+            this.setClickedProductionCurveToFirstCurve();
         },
         getProductonCurveTotal(solar: number[], wind: number[], hydro: number[]) {
             const solarPoints = solar.length>0 ? solar : new Array(96).fill(0);
@@ -30,7 +31,6 @@ export const useProductionStore = defineStore({
         getFromLocalStorage() {
             this.productionCurves = new Map(JSON.parse(localStorage.getItem('productionCurves') || '{}'));
         },
-        //Add from Antoine
         setClickedProductionCurve(productionCurve: ProductionCurve | null) {
             this.clickedProductionCurve = productionCurve;
         }, 
