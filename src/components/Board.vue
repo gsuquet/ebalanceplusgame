@@ -76,10 +76,10 @@ import { ProductionCurve } from '../stores/ProductionStore';
             },
             drawTilesConsumption(tiles:Tile[]) {
                 for(const tile of tiles){
-                    this.drawConsumption(tile.x,tile.y,tile.width,tile.height,tile.color)
+                    this.drawRectangle(tile.x,tile.y,tile.width,tile.height,tile.color)
                 }
             },
-            drawConsumption(x: number, y: number, width: number, height: number, color:string) {
+            drawRectangle(x: number, y: number, width: number, height: number, color:string) {
                 if(this.canvas){
                     this.canvas.fillStyle = color;
                     this.canvas.fillRect(x, y, width, height);
@@ -109,11 +109,19 @@ import { ProductionCurve } from '../stores/ProductionStore';
                 }
                 return pointsInPixels;
             },
+            drawKWLines() {
+                const ySize = (this.pxSizeFor10W ? this.pxSizeFor10W : 5)*100;
+                let y=0;
+                for(let i =0; i<(this.canvasHeight/ySize); i++) {
+                    this.drawLine(0,y,this.canvasWidth,y, '#DBEBE7');
+                    y=y+ySize;
+                }
+            },
             drawHoursLines() {
                 const xSize = this.pxSizeFor15m ? this.pxSizeFor15m : 15;
                 let x=0;
-                for(let i =0; i<24; i++) {
-                    this.drawProduction(x,0,x,this.canvasHeight, '#DBEBE7');
+                for(let i =0; i<=24; i++) {
+                    this.drawLine(x,0,x,this.canvasHeight, '#DBEBE7');
                     x=x+xSize*4;
                 }
             },
@@ -121,11 +129,11 @@ import { ProductionCurve } from '../stores/ProductionStore';
                 const xSize = this.pxSizeFor15m ? this.pxSizeFor15m : 15;
                 let x=0;
                 for(let i =0; i<points.length-1; i++) {
-                    this.drawProduction(x,this.canvasHeight-points[i],x+xSize,this.canvasHeight-points[i+1], color);
+                    this.drawLine(x,this.canvasHeight-points[i],x+xSize,this.canvasHeight-points[i+1], color);
                     x=x+xSize;
                 }
             },
-            drawProduction(startX: number, startY: number, endX: number, endY: number, color: string) {
+            drawLine(startX: number, startY: number, endX: number, endY: number, color: string) {
                 if(this.canvas){
                     this.canvas.strokeStyle = color;
                     this.canvas.beginPath();
@@ -140,6 +148,7 @@ import { ProductionCurve } from '../stores/ProductionStore';
             render() {
                 this.clearCanvas(0,0,this.canvasWidth,this.canvasHeight);
                 this.drawHoursLines();
+                this.drawKWLines();
                 this.drawTilesConsumption(this.tiles);
                 this.drawProductionCurve(this.productionCurve);
             }
