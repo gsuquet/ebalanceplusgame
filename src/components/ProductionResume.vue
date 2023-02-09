@@ -46,13 +46,13 @@
             </div>
 
             <div class="icon-container">
-                <div class="icon-type-prod" v-if="isEmpty(productionStore.clickedProductionCurve.solar)">
+                <div class="icon-type-prod" v-if="!isEmpty(productionStore.clickedProductionCurve.solar)">
                     <Icon icon="mdi:solar-power"/>
                 </div>
-                <div class="icon-type-prod" v-if="isEmpty(productionStore.clickedProductionCurve.hydro)">
+                <div class="icon-type-prod" v-if="!isEmpty(productionStore.clickedProductionCurve.hydro)">
                     <Icon icon="mdi:hydro-power"/>
                 </div>
-                <div class="icon-type-prod" v-if="isEmpty(productionStore.clickedProductionCurve.wind)">
+                <div class="icon-type-prod" v-if="!isEmpty(productionStore.clickedProductionCurve.wind)">
                     <Icon icon="mdi:wind-power"/>
                 </div>
             </div> 
