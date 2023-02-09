@@ -48,9 +48,11 @@ import { useEnergyStore } from '../stores/EnergyStore';
         <div class="energy-menu-history">
             <h3></h3>
             <div>
+                <!--
                 <div v-for="energy in energyStore.storedEnergyList">
                     
                 </div>
+                -->
             </div>
         </div>
     </section>
