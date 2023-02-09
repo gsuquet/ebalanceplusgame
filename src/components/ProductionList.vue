@@ -70,5 +70,5 @@
 </template>
 
 <style scoped lang="scss">
-    @import "../styles/components/productionList.scss";
+    @import "../styles/components/productionAndScenarioList.scss";
 </style>

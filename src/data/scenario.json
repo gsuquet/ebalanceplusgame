@@ -1,0 +1,69 @@
+[
+    {
+        "id": "1",
+        "names": [
+            {
+                "text": "nom_fr", "lang": "fr"
+            },
+            {
+                "text":"name_en", "lang":"en"
+            }
+        ],
+        "days": [
+            {
+                "text":"jour 1", "lang": "fr"
+            },
+            {
+                "text": "day 1", "lang": "en"
+            }
+        ],
+        "season": "summer",
+        "icon": "mdi:white-balance-sunny",
+        "color": "#FFD700",
+        "descriptions": [
+            {
+                "text": "description Française Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", "lang": "fr"
+            }, 
+            {
+                "text": "English description Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur", "lang": "en"
+            }
+        ],
+        "equipment_types": [
+            {
+                "id":"dishwasher",
+                "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
+                "icon_name":"mdi:dishwasher",
+                "color":"#9A7751"
+            },
+            {
+                "id":"washingMachine",
+                "names":[{"name":"Machine à laver","lang":"fr"},{"name":"Washing-machine","lang":"en"}],
+                "icon_name":"mdi:washing-machine",
+                "color":"#00447C"
+            }
+        ],
+        "initial_consumption": [
+            {
+                "id":"0",
+                "startIndex": 0,
+                "endIndex": 0,
+                "amount": 0,
+                "color": "",
+                "equipment": 
+                {
+                    "id":0,
+                    "type":{
+                        "id":"dishwasher",
+                        "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
+                        "icon_name":"mdi:dishwasher",
+                        "color":"#9A7751"
+                    },
+                    "energy_class": "A",
+                    "consumption": 1300,
+                    "points": 500,
+                    "price": 500
+                }
+            }
+        ]
+    }
+]
