@@ -78,7 +78,7 @@ export const useGameParametersStore = defineStore({
         getFromLocalStorage() {
             const gameParameters = JSON.parse(localStorage.getItem('gameParameters') || '{}');
             if(gameParameters){
-                this.id = gameParameters.id;
+                this.gameId = gameParameters.id;
                 this.date = gameParameters.date;
                 this.language = gameParameters.language;
                 this.scenario = gameParameters.scenario;
