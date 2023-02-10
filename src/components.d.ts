@@ -20,6 +20,7 @@ declare module '@vue/runtime-core' {
     Equipments: typeof import('./components/Equipments.vue')['default']
     GameBoardSnackBar: typeof import('./components/GameBoardSnackBar.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
+    HomeCreateGame: typeof import('./components/HomeCreateGame.vue')['default']
     LanguageSelector: typeof import('./components/LanguageSelector.vue')['default']
     ProductionList: typeof import('./components/ProductionList.vue')['default']
     ProductionResume: typeof import('./components/ProductionResume.vue')['default']

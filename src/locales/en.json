@@ -18,7 +18,10 @@
         "play": "Play",
         "store": "Store",
         "use": "Use",
-        "buy": "Buy"
+        "buy": "Buy",
+        "sell": "Sell",
+        "create": "Create",
+        "join": "Join"
     },
     "input":{
         "start": "Start",
@@ -36,5 +39,18 @@
         "max": "Max",
         "batteriesManagement": "Batteries management",
         "capacity": "Capacity"
+    },
+    "home":{
+        "createGame": "Create a game",
+        "joinGame": "Join a game",
+        "createGameDescription": "Create a new game and choose your scenario and production curve. The goal is to manage your energy consumption to keep it under your production curve. You can also buy and sell energy to the market. Multiplayer is also available, just note down the game ID bellow and share it with your friends.",
+        "joinGameDescription": "Join a game by entering the game ID. You can also join a game by clicking on the link sent by your friend.",
+        "publicGames": "Public games",
+        "noPublicGames": "No public games available",
+        "gameCode": "Game ID",
+        "singlePlayer": "Single player",
+        "multiPlayer": "Multiplayer",
+        "public": "Public",
+        "private": "Private"
     }
 }
