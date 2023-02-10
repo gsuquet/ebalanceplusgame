@@ -6,7 +6,7 @@ export const useGameParametersStore = defineStore({
     id: 'GameParametersStore',
     state: () => {
         return {
-            id: '',
+            gameId: '00000',
             date: new Date(),
             language: 'en',
             languageIsUserSet: false,

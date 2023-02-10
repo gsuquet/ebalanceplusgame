@@ -43,6 +43,13 @@
     },
     "home":{
         "createGame": "Créer une partie",
-        "joinGame": "Rejoindre une partie"
+        "joinGame": "Rejoindre une partie",
+        "createGameDescription": "Créez une nouvelle partie et choisissez ensuite votre scénario et l'allure de votre courbe de production. L'objectif est de gérer votre consommation d'énergie afin de ne pas dépasser la production. Vous pouvez également acheter et vendre de l'énergie sur le marché. Il est également possible de jouer en multi-joueurs en créant une partie et en invitant vos amis à la rejoindre via le code affiché en-dessous.",
+        "joinGameDescription": "Rejoignez une partie en saisissant le code de la partie que vous souhaitez rejoindre. Vous pouvez également rejoindre une partie en cliquant sur le bouton \"Rejoindre\" dans la liste des parties publiques.",
+        "publicGames": "Parties publiques",
+        "noPublicGames": "Aucune partie publique n'est actuellement disponible.",
+        "gameCode": "Code de la partie",
+        "singlePlayer": "Joueur unique",
+        "multiPlayer": "Multi-joueurs"
     }
 }

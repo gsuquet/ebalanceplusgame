@@ -1,10 +1,26 @@
 <script	setup lang="ts">
+import { useGameParametersStore } from '../stores/GameParametersStore';
 </script>
 
 <template>
     <section class="home-create-game section">
         <div class="section-title">
             <h1>{{ $t("home.createGame") }}</h1>
+        </div>
+        <p class="description">
+            {{ $t("home.createGameDescription") }}
+        </p>
+        <div class="multiplayer-toggle">
+            <p class="singlePlayer-label">{{ $t("home.singlePlayer") }}</p>
+            <label class="toggle" :class="multiPlayer ? 'checked':''">
+                <input class="toggle-checkbox" type="checkbox" v-model="multiPlayer">
+                <span class="slider"></span>
+            </label>
+            <p class="multiplayer-label">{{ $t("home.multiPlayer") }}</p>
+        </div>
+        <div class="multiplayer-gameId" v-if="multiPlayer">
+            <p class="gameId-label">{{ $t("home.gameCode") }} :</p>
+            <p class="gameId-display">{{ gameParametersStore.gameId }}</p>
         </div>
         <div class="btn-container">
             <button class="btn create-game-btn">
@@ -17,7 +33,13 @@
 </template>
 
 <script lang="ts">
+const gameParametersStore = useGameParametersStore();
     export default {
-        name: "HomeCreateGame"
+        name: "HomeCreateGame",
+        data() {
+            return {
+                multiPlayer: false,
+            };
+        },
     }
 </script>
