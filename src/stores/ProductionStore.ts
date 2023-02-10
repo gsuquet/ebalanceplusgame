@@ -5,7 +5,7 @@ export const useProductionStore = defineStore({
     state: () => {
         return {
             productionCurves: new Map<string, ProductionCurve>(), 
-            clickedProductionCurve: null as null| ProductionCurve,
+            clickedProductionCurve: null as null | ProductionCurve,
         };
     },
     actions: {

@@ -61,7 +61,8 @@ export const useGameParametersStore = defineStore({
         },
         setScenario(scenarioId: string) {
         },
-        setProductionCurveAndScenario(productionCurve: ProductionCurve, scenario: ScenarioLocale) {
+        setProductionCurveAndScenario(productionCurve: ProductionCurve | null, scenario: ScenarioLocale | null) {
+            if(!productionCurve || !scenario) return;
             this.productionCurve = productionCurve;
             this.scenario = scenario;
         },
