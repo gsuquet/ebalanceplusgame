@@ -22,6 +22,7 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
                 }] as EquipmentType[],
                 initial_consumption: [{}] as Consumption[]
             }] as Scenario[],
+            scenariosLocale: [] as ScenarioLocale[],
             clickedScenario: null as null | ScenarioLocale
         };
     },
@@ -29,7 +30,9 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
     actions: {
         async getAllScenario() {
             const data = (await import ('../data/scenario.json')).default;
-            this.scenarios = data as Scenario[]; 
+            this.scenarios = data as Scenario[];
+            this.convertScenarioListToScenarioLocaleList();
+            this.clickedScenario = this.scenariosLocale[0];
         },
         setClickedScenario(scenario: ScenarioLocale | null){
             this.clickedScenario = scenario
@@ -47,7 +50,6 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
             }
             return listEquipmentTypesLocales;
         },
-
         //Not sure if it is really best practice
         convertNameToNameLocale(scenario: Scenario) {
             const locale = useGameParametersStore().language;
@@ -93,17 +95,14 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
                                                 }; 
             return scenarioLocale;
         },
-        //TODO: Add the internationalisation handler 
-        getListScenarioLocale(){
+        convertScenarioListToScenarioLocaleList(){
             const listScenarioLocale: ScenarioLocale[] = [];
             for(const scenario of this.scenarios) {
                 listScenarioLocale.push(this.convertScenarioToScenarioLocale(scenario));
             }
-            return listScenarioLocale;
-        }
-
-
-
+            this.scenariosLocale = listScenarioLocale;
+        },
+        //TODO: Add the internationalisation handler 
     }, 
     getters: {
         getScenarioById:(state)=>(id: string) => {
@@ -119,7 +118,9 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
                 }
             }
             return equipmentByTypes;
-        }
+        },
+        getClickedScenario: state => () => state.clickedScenario,
+        getRandomLocaleScenario: state => () => state.scenariosLocale[Math.floor(Math.random() * state.scenariosLocale.length)],
     },
 });
 

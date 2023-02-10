@@ -28,6 +28,7 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     ScenarioList: typeof import('./components/ScenarioList.vue')['default']
     ScenarioResume: typeof import('./components/ScenarioResume.vue')['default']
+    SetupValidationSection: typeof import('./components/SetupValidationSection.vue')['default']
     ValidationSetup: typeof import('./components/ValidationSetup.vue')['default']
   }
 }

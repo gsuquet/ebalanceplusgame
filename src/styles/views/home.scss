@@ -1,3 +1,5 @@
+@import '../utilities/mixins.scss';
+
 #home-page{
   display: flex;
   align-items: center;
@@ -28,23 +30,9 @@
     align-items: center;
     justify-content: center;
     .btn{
-      background-color: var(--theme-color-background);
-      padding: 5px 15px;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      a{
-        text-decoration: none;
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: var(--theme-color-text);
-      }
-      &:hover{
-        background-color: var(--theme-color-primary);
-        a{
-          color: var(--theme-color-text-secondary);
-        }
-      }
+      @include button-base-style;
+      @include button-background-color-style;
+      @include button-link-style;
     }
   }
   .home-create-game{

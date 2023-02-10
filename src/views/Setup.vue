@@ -3,6 +3,7 @@
     import ProductionRecap from '../components/ProductionResume.vue';
     import ScenarioList from '../components/ScenarioList.vue'
     import ScenarioResume from '../components/ScenarioResume.vue';
+    import SetupValidationSection from '../components/SetupValidationSection.vue';
 
     export default {
         components: {
@@ -15,28 +16,18 @@
 </script>
 
 <template>
-    <div class="setup-page">
-        <div class="list-container">
-            <ProductionList />
+    <div id="setup-page" class="view">
+        <ProductionList />
+        <div class="center-container">
+            <div class="details-container">
+                <ProductionRecap />
+                <ScenarioResume />
+            </div>
+            <SetupValidationSection />
         </div>
-        
-        <div class="description-container">
-            <ProductionRecap />
-        </div>
-
-        <div class="scenario-list-container">
-            <ScenarioList />
-        </div>
-
-        <div class="scenario-description-container">
-            <ScenarioResume />
-        </div>
-
-
+        <ScenarioList />
     </div>
-
 </template>
-
 
 <style lang="scss">
     @import "../styles/views/setup.scss";
