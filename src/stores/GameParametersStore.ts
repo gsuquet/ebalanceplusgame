@@ -22,6 +22,8 @@ export const useGameParametersStore = defineStore({
                 hydro: [],
                 total: []
             } as ProductionCurve,
+            isMultiplayer: false,
+            isPublic: false,
             user: '',
             score: 0,
             moneyWon: 0,
@@ -72,6 +74,13 @@ export const useGameParametersStore = defineStore({
                 this.languageIsUserSet = true;
             }
         },
+        generateGameId() {
+            this.gameId = Math.random().toString(36).substr(2, 5);
+        },
+        createGame(isMultiplayer: boolean, isPublic: boolean) {
+            this.isMultiplayer = isMultiplayer;
+            this.isPublic = isPublic;
+        },
         storeToLocalStorage() {
             localStorage.setItem('gameParameters', JSON.stringify(this));
         },
@@ -91,6 +100,7 @@ export const useGameParametersStore = defineStore({
         }
     },
     getters: {
-        getProductionCurve: (state) => state.productionCurve
+        getProductionCurve: (state) => state.productionCurve,
+        getGameIdUpper: (state) => state.gameId.toUpperCase(),
     }
 });

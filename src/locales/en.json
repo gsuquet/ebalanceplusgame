@@ -49,6 +49,8 @@
         "noPublicGames": "No public games available",
         "gameCode": "Game ID",
         "singlePlayer": "Single player",
-        "multiPlayer": "Multiplayer"
+        "multiPlayer": "Multiplayer",
+        "public": "Public",
+        "private": "Private"
     }
 }

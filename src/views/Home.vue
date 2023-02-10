@@ -22,6 +22,7 @@ scenarioStore.$reset();
 energyStore.$reset();
 boardStore.$reset();
 gameParametersStore.setLanguageFromBrowser();
+gameParametersStore.generateGameId();
 </script>
 
 <template>

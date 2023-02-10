@@ -50,6 +50,8 @@
         "noPublicGames": "Aucune partie publique n'est actuellement disponible.",
         "gameCode": "Code de la partie",
         "singlePlayer": "Joueur unique",
-        "multiPlayer": "Multi-joueurs"
+        "multiPlayer": "Multi-joueurs",
+        "public": "Publique",
+        "private": "Privée"
     }
 }
