@@ -30,7 +30,7 @@
 
 <template>
     <section class="list-container">
-        <div class="boucle" v-for="scenario_locale in scenarioStore.getListScenarioLocale()" @click="isClicked(scenario_locale)">
+        <div class="boucle" v-for="scenario_locale in scenarioStore.scenariosLocale" @click="isClicked(scenario_locale)">
             <div class="box-container">
                 <div class="day-container">
                     <h1>

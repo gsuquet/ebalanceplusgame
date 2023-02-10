@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { useProductionStore, ProductionCurve } from './ProductionStore';
 import i18n from '../modules/i18n';
+import { ScenarioLocale } from './ScenarioStore';
 
 export const useGameParametersStore = defineStore({
     id: 'GameParametersStore',
@@ -11,7 +12,17 @@ export const useGameParametersStore = defineStore({
             language: 'en',
             languageIsUserSet: false,
             theme: 'light',
-            scenario: '',
+            scenario: {
+                id: '0',
+                name: 'No scenario',
+                day: '',
+                season: '',
+                icon: '',
+                color: '',
+                description: '',
+                equipment_type_local: [],
+                initial_consumption: []
+            } as ScenarioLocale,
             productionCurve: {
                 id: '0',
                 name: 'No production curve',
@@ -49,6 +60,15 @@ export const useGameParametersStore = defineStore({
             }
         },
         setScenario(scenarioId: string) {
+        },
+        setProductionCurveAndScenario(productionCurve: ProductionCurve, scenario: ScenarioLocale) {
+            this.productionCurve = productionCurve;
+            this.scenario = scenario;
+        },
+        setRandomProductionCurveAndScenario() {
+            const randomProductionCurve = useProductionStore().getRandomProductionCurve();
+            const randomScenario = useScenarioStore().getRandomLocaleScenario();
+            this.setProductionCurveAndScenario(randomProductionCurve, randomScenario);
         },
         setLanguageFromBrowser() {
             if(!this.languageIsUserSet){

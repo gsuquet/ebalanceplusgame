@@ -26,7 +26,7 @@ gameParametersStore.generateGameId();
 </script>
 
 <template>
-    <div id="home-page" class="vue">
+    <div id="home-page" class="view">
         <HomeCreateGame />
     </div>
 </template>

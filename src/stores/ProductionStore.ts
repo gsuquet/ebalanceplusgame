@@ -47,16 +47,22 @@ export const useProductionStore = defineStore({
                 }
             }
         },
-
-        //Add from Antoine
         getAllProductionCurves: state => () => {
             let allProductionCurves: ProductionCurve[] = []
             for (const curve of state.productionCurves.values()) {
                 allProductionCurves.push(curve);
             }
             return allProductionCurves;
+        },
+        getClickedProductionCurve: state => () => state.clickedProductionCurve,
+        getRandomProductionCurve: state => () => {
+            let allProductionCurves: ProductionCurve[] = []
+            for (const curve of state.productionCurves.values()) {
+                allProductionCurves.push(curve);
+            }
+            const randomIndex = Math.floor(Math.random() * allProductionCurves.length);
+            return allProductionCurves[randomIndex];
         }
-
     }
 });
 

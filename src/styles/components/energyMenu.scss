@@ -1,3 +1,4 @@
+@import '../utilities/mixins.scss';
 #energy-menu{
     min-width: 25rem;
     padding: 0.5rem;
@@ -62,21 +63,9 @@
         justify-content: space-evenly;
         align-items: center;
         .btn{
-            display: flex;
-            align-items: center;
-            margin: 15px;
-            padding: 0.5rem 1rem 0.5rem 1rem;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 10px;
-            border: none;
-            background-color: var(--theme-color-background);
-            color: var(--theme-color-text-primary);
-            cursor: pointer;
-            &:hover{
-                color: var(--theme-color-accent-secondary);
-                background-color: var(--theme-color-background-secondary);
-            }
+            margin: 1.2rem;
+            @include button-base-style;
+            @include button-background-color-style;
         }
     }
     .energy-menu-batteries{

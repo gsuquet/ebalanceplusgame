@@ -16,7 +16,7 @@ const equipmentStore = useEquipmentStore();
 
 <template>
     <div class="overlay" v-if="equipmentStore.clickedEquipment || boardStore.clickedTile"/>
-    <div id="game-page" class="vue">
+    <div id="game-page" class="view">
         <Alert
             :should-display="consumptionStore.isOverConsumption"
             alert-class="danger-alert"

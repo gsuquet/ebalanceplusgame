@@ -15,6 +15,7 @@
         "login": "Connexion",
         "logout": "Déconnexion",
         "register": "Inscription",
+        "random": "Aléatoire",
         "play": "Jouer",
         "store": "Stocker",
         "use": "Utiliser",
@@ -53,5 +54,9 @@
         "multiPlayer": "Multi-joueurs",
         "public": "Publique",
         "private": "Privée"
+    },
+    "setup":{
+        "launchNewGame": "Lancer une nouvelle partie",
+        "setupExplanation": "Choisissez le scénario de votre partie et l'allure de votre courbe de production. Pour faire cela, il vous suffit de cliquer sur la courbe et le scénario qui vous intéresse a gauche et a droite. Une description plus détaillée sera affichée ci-dessus. Vous pouvez également choisir le mode aléatoire."
     }
 }
