@@ -4,7 +4,8 @@ export const useProductionStore = defineStore({
     id: 'ProductionStore',
     state: () => {
         return {
-            productionCurves: new Map<string, ProductionCurve>()
+            productionCurves: new Map<string, ProductionCurve>(), 
+            clickedProductionCurve: null as null | ProductionCurve,
         };
     },
     actions: {
@@ -15,6 +16,7 @@ export const useProductionStore = defineStore({
                 const total = this.getProductonCurveTotal(value.solar, value.wind, value.hydro);
                 return [key, {...value, total}];
             }));
+            this.setClickedProductionCurveToFirstCurve();
         },
         getProductonCurveTotal(solar: number[], wind: number[], hydro: number[]) {
             const solarPoints = solar.length>0 ? solar : new Array(96).fill(0);
@@ -28,6 +30,12 @@ export const useProductionStore = defineStore({
         },
         getFromLocalStorage() {
             this.productionCurves = new Map(JSON.parse(localStorage.getItem('productionCurves') || '{}'));
+        },
+        setClickedProductionCurve(productionCurve: ProductionCurve | null) {
+            this.clickedProductionCurve = productionCurve;
+        }, 
+        setClickedProductionCurveToFirstCurve() {
+            this.clickedProductionCurve = this.productionCurves.values().next().value;
         }
     },
     getters: {
@@ -38,6 +46,22 @@ export const useProductionStore = defineStore({
                     return curve;
                 }
             }
+        },
+        getAllProductionCurves: state => () => {
+            let allProductionCurves: ProductionCurve[] = []
+            for (const curve of state.productionCurves.values()) {
+                allProductionCurves.push(curve);
+            }
+            return allProductionCurves;
+        },
+        getClickedProductionCurve: state => () => state.clickedProductionCurve,
+        getRandomProductionCurve: state => () => {
+            let allProductionCurves: ProductionCurve[] = []
+            for (const curve of state.productionCurves.values()) {
+                allProductionCurves.push(curve);
+            }
+            const randomIndex = Math.floor(Math.random() * allProductionCurves.length);
+            return allProductionCurves[randomIndex];
         }
     }
 });
@@ -45,6 +69,8 @@ export const useProductionStore = defineStore({
 export interface ProductionCurve {
     id : string;
     name: string;
+    svg: string;
+    description: string,
     solar: number[];
     wind: number[];
     hydro: number[];

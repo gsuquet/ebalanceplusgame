@@ -5,7 +5,7 @@ import router from './modules/router'
 import App from './App.vue'
 
 createApp(App)
-.use(i18n)
 .use(pinia)
+.use(i18n)
 .use(router)
 .mount('#app')

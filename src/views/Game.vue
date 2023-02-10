@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Alert from '../components/Alert.vue';
 import Board from '../components/Board.vue';
+import GameBoardSnackBar from '../components/GameBoardSnackBar.vue';
 import EquipementList from '../components/EquipementList.vue';
 import { useConsumptionStore } from '../stores/ConsumptionStore';
 import { useBoardStore } from '../stores/BoardStore';
@@ -11,22 +12,21 @@ const consumptionStore = useConsumptionStore();
 const boardStore = useBoardStore();
 const gameParametersStore = useGameParametersStore();
 const equipmentStore = useEquipmentStore();
-gameParametersStore.setProductionCurve('0');
-
 </script>
 
 <template>
     <div class="overlay" v-if="equipmentStore.clickedEquipment || boardStore.clickedTile"/>
-    <div id="game-page" class="vue">
+    <div id="game-page" class="view">
         <Alert
             :should-display="consumptionStore.isOverConsumption"
             alert-class="danger-alert"
-            alert-text="Votre demande dépasse la production !"/>        
+            alert-text="alert.overConsumption"/>        
         <div class="consuption-window-container">
             <AddConsumptionWindow 
                 v-if="equipmentStore.clickedEquipment"
                 :equipment="equipmentStore.clickedEquipment"/>
         </div>
+        <GameBoardSnackBar />
         <div class="board-list-container">
             <EquipementList />
             <Board

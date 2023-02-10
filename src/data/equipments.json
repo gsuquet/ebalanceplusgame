@@ -1,149 +1,184 @@
 [
     {
         "id":1,
-        "type_fr":"Lave-vaisselle",
-        "type_en": "Dishwasher",
+        "type":{
+            "id":"dishwasher",
+            "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
+            "icon_name":"mdi:dishwasher",
+            "color":"#9A7751"
+        },
         "energy_class": "A",
         "consumption": 1300,
         "points": 500,
-        "price": 500,
-        "color": "#000000",
-        "name_icon":"mdi:dishwasher"    },
+        "price": 500
+    },
     {
         "id":2,
-        "type_fr":"Lave-vaisselle",
-        "type_en": "Dishwasher",
+        "type":{
+            "id":"dishwasher",
+            "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
+            "icon_name":"mdi:dishwasher",
+            "color":"#9A7751"
+        },
         "energy_class": "B",
         "consumption": 1400,
         "points": 400,
-        "price": 400,
-        "color": "#000000",
-        "name_icon":"mdi:dishwasher"    },
+        "price": 400
+    },
     {
         "id":3,
-        "type_fr":"Lave-vaisselle",
-        "type_en": "Dishwasher",
+        "type":{
+            "id":"dishwasher",
+            "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
+            "icon_name":"mdi:dishwasher",
+            "color":"#9A7751"
+        },
         "energy_class": "C",
         "consumption": 1600,
         "points": 300,
-        "price": 300,
-        "color": "#000000",
-        "name_icon":"mdi:dishwasher"    },
+        "price": 300
+    },
     {
         "id":14,
-        "type_fr":"Lave-vaisselle",
-        "type_en": "Dishwasher",
+        "type":{
+            "id":"dishwasher",
+            "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
+            "icon_name":"mdi:dishwasher",
+            "color":"#9A7751"
+        },
         "energy_class": "D",
         "consumption": 1800,
         "points": 250,
-        "price": 250,
-        "color": "#000000",
-        "name_icon":"mdi:dishwasher"    },
+        "price": 250
+    },
     {
         "id":4,
-        "type_fr":"Lave-vaisselle",
-        "type_en": "Dishwasher",
+        "type":{
+            "id":"dishwasher",
+            "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
+            "icon_name":"mdi:dishwasher",
+            "color":"#9A7751"
+        },
         "energy_class": "E",
         "consumption": 2000,
         "points": 200,
-        "price": 200,
-        "color": "#000000",
-        "name_icon":"mdi:dishwasher"    },
+        "price": 200
+    },
     {
         "id":5,
-        "type_fr":"Lave-vaisselle",
-        "type_en": "Dishwasher",
+        "type":{
+            "id":"dishwasher",
+            "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
+            "icon_name":"mdi:dishwasher",
+            "color":"#9A7751"
+        },
         "energy_class": "F",
         "consumption": 2100,
         "points": 100,
-        "price": 100,
-        "color": "#000000",
-        "name_icon":"mdi:dishwasher"    },
+        "price": 100
+    },
     {
         "id":6,
-        "type_fr":"Lave-vaisselle",
-        "type_en": "Dishwasher",
+        "type":{
+            "id":"dishwasher",
+            "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
+            "icon_name":"mdi:dishwasher",
+            "color":"#9A7751"
+        },
         "consumption": 2300,
         "energy_class": "G",
         "points": 50,
-        "price": 50,
-        "color": "#000000",
-        "name_icon":"mdi:dishwasher"    },
+        "price": 50
+    },
     {
         "id":7,
-        "type_fr":"Machine à laver",
-        "type_en": "Washing-machine",
+        "type":{
+            "id":"washingMachine",
+            "names":[{"name":"Machine à laver","lang":"fr"},{"name":"Washing-machine","lang":"en"}],
+            "icon_name":"mdi:washing-machine",
+            "color":"#00447C"
+        },
         "energy_class": "A",
         "consumption": 1200,
         "points": 500,
-        "price": 500,
-        "color": "#000000",
-        "name_icon":"mdi:washing-machine"
+        "price": 500
     },
     {
         "id":8,
-        "type_fr":"Machine à laver",
-        "type_en": "Washing-machine",
+        "type":{
+            "id":"washingMachine",
+            "names":[{"name":"Machine à laver","lang":"fr"},{"name":"Washing-machine","lang":"en"}],
+            "icon_name":"mdi:washing-machine",
+            "color":"#00447C"
+        },
         "energy_class": "B",
         "consumption": 1400,
         "points": 400,
-        "price": 400,
-        "color": "#000000",
-        "name_icon":"mdi:washing-machine"
+        "price": 400
     },
     {
         "id":9,
-        "type_fr":"Machine à laver",
-        "type_en": "Washing-machine",
+        "type":{
+            "id":"washingMachine",
+            "names":[{"name":"Machine à laver","lang":"fr"},{"name":"Washing-machine","lang":"en"}],
+            "icon_name":"mdi:washing-machine",
+            "color":"#00447C"
+        },
         "energy_class": "C",
         "consumption": 1600,
         "points": 300,
-        "price": 300,
-        "color": "#000000",
-        "name_icon":"mdi:washing-machine"
+        "price": 300
     },
     {
         "id":10,
-        "type_fr":"Machine à laver",
-        "type_en": "Washing-machine",
+        "type":{
+            "id":"washingMachine",
+            "names":[{"name":"Machine à laver","lang":"fr"},{"name":"Washing-machine","lang":"en"}],
+            "icon_name":"mdi:washing-machine",
+            "color":"#00447C"
+        },
         "energy_class": "D",
         "consumption": 1800,
         "points": 200,
-        "price": 200,
-        "color": "#000000",
-        "name_icon":"mdi:washing-machine"
+        "price": 200
     },
     {
         "id":11,
-        "type_fr":"Machine à laver",
-        "type_en": "Washing-machine",
+        "type":{
+            "id":"washingMachine",
+            "names":[{"name":"Machine à laver","lang":"fr"},{"name":"Washing-machine","lang":"en"}],
+            "icon_name":"mdi:washing-machine",
+            "color":"#00447C"
+        },
         "energy_class": "E",
         "consumption": 2000,
         "points": 100,
-        "price": 100,
-        "color": "#000000",
-        "name_icon":"mdi:washing-machine"
+        "price": 100
     },
     {
         "id":12,
-        "type_fr":"Machine à laver",
-        "type_en": "Washing-machine",
+        "type":{
+            "id":"washingMachine",
+            "names":[{"name":"Machine à laver","lang":"fr"},{"name":"Washing-machine","lang":"en"}],
+            "icon_name":"mdi:washing-machine",
+            "color":"#00447C"
+        },
         "energy_class": "F",
         "consumption": 2200,
         "points": 50,
-        "price": 50,
-        "color": "#000000",
-        "name_icon":"mdi:washing-machine"
+        "price": 50
     },
     {
         "id":13,
-        "type_fr":"Machine à laver",
-        "type_en": "Washing-machine",
+        "type":{
+            "id":"washingMachine",
+            "names":[{"name":"Machine à laver","lang":"fr"},{"name":"Washing-machine","lang":"en"}],
+            "icon_name":"mdi:washing-machine",
+            "color":"#00447C"
+        },
         "energy_class": "G",
         "consumption": 2400,
         "points": 25,
-        "price": 25,
-        "color": "#000000",
-        "name_icon":"mdi:washing-machine"
+        "price": 25
     }
 ]

@@ -1,0 +1,62 @@
+{
+    "page":{
+        "home": "Accueil",
+        "setup": "Configuration",
+        "game": "Jeu",
+        "account": "Compte",
+        "about": "A propos"
+    },
+    "button":{
+        "cancel": "Annuler",
+        "delete": "Supprimer",
+        "edit": "Modifier",
+        "save": "Sauvegarder",
+        "add": "Ajouter",
+        "login": "Connexion",
+        "logout": "Déconnexion",
+        "register": "Inscription",
+        "random": "Aléatoire",
+        "play": "Jouer",
+        "store": "Stocker",
+        "use": "Utiliser",
+        "buy": "Acheter",
+        "sell": "Vendre",
+        "create": "Créer",
+        "join": "Rejoindre"
+    },
+    "input":{
+        "start": "Début",
+        "end": "Fin"
+    },
+    "alert":{
+        "overConsumption": "Votre demande est supérieure à la production !"
+    },
+    "money":{
+        "cost": "Coût"
+    },
+    "energy":{
+        "header": "Stockage d'énergie",
+        "stored": "Stockée",
+        "max": "Maximum",
+        "batteriesManagement": "Gestion des batteries",
+        "capacity": "Capacité",
+        "storeEnergy": "Stocker"
+    },
+    "home":{
+        "createGame": "Créer une partie",
+        "joinGame": "Rejoindre une partie",
+        "createGameDescription": "Créez une nouvelle partie et choisissez ensuite votre scénario et l'allure de votre courbe de production. L'objectif est de gérer votre consommation d'énergie afin de ne pas dépasser la production. Vous pouvez également acheter et vendre de l'énergie sur le marché. Il est également possible de jouer en multi-joueurs en créant une partie et en invitant vos amis à la rejoindre via le code affiché en-dessous.",
+        "joinGameDescription": "Rejoignez une partie en saisissant le code de la partie que vous souhaitez rejoindre. Vous pouvez également rejoindre une partie en cliquant sur le bouton \"Rejoindre\" dans la liste des parties publiques.",
+        "publicGames": "Parties publiques",
+        "noPublicGames": "Aucune partie publique n'est actuellement disponible.",
+        "gameCode": "Code de la partie",
+        "singlePlayer": "Joueur unique",
+        "multiPlayer": "Multi-joueurs",
+        "public": "Publique",
+        "private": "Privée"
+    },
+    "setup":{
+        "launchNewGame": "Lancer une nouvelle partie",
+        "setupExplanation": "Choisissez le scénario de votre partie et l'allure de votre courbe de production. Pour faire cela, il vous suffit de cliquer sur la courbe et le scénario qui vous intéresse a gauche et a droite. Une description plus détaillée sera affichée ci-dessus. Vous pouvez également choisir le mode aléatoire."
+    }
+}

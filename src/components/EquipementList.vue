@@ -20,19 +20,16 @@
             Icon,
         },
         methods: {
+            handleEquipmentTypeIconClick(equipmentType : string) {
+                this.handleShowEquipments(equipmentType);
+                this.listSizeExtended = true;
+            },
             handleShowEquipments(equipmentType : string) {
                 if(this.showEquipmentType === equipmentType)
                     this.showEquipmentType = "";
                 else
                     this.showEquipmentType = equipmentType;
             },
-            listSize(listSizeExtended: boolean) {
-                if(listSizeExtended == false)
-                    listSizeExtended = true;
-                else
-                    listSizeExtended = false;
-                return listSizeExtended
-            }
         }
     }
 </script>
@@ -41,26 +38,26 @@
     <section class="list-equipment">
         <div class="list-container" >
             <div class="icon-container" :class="listSizeExtended ? 'icon-container-extended':'icon-container-reduced'">
-                <Icon icon="mdi:arrow-left" class="icon-menu" @click="listSizeExtended = listSize(listSizeExtended)" v-if="listSizeExtended"/>
-                <Icon icon="mdi:arrow-right" class="icon-menu" @click="listSizeExtended = listSize(listSizeExtended)" v-else/>
+                <Icon icon="mdi:arrow-left" class="icon-menu" @click="listSizeExtended = false" v-if="listSizeExtended"/>
+                <Icon icon="mdi:arrow-right" class="icon-menu" @click="listSizeExtended = true" v-else/>
             </div>
             
             <div class="type-list-normal type" v-if="listSizeExtended">
-                <div class="boucle" v-for="equipment_type_icon in equipmentStore.getListOfEquipmentTypesAndIcons">
-                    <div class="type-container" @click="handleShowEquipments(equipment_type_icon.type)">
-                        <Icon class="material-icons" :icon="equipment_type_icon.name_icon"/>
+                <div class="boucle" v-for="equipmentTypeLocale in equipmentStore.getListOfEquipmentTypesLocale()">
+                    <div class="type-container" @click="handleShowEquipments(equipmentTypeLocale.id)">
+                        <Icon class="material-icons" :icon="equipmentTypeLocale.icon_name" :style="{'color':equipmentTypeLocale.color}"/>
                         <h1>
-                            {{ equipment_type_icon.type }}
+                            {{ equipmentTypeLocale.name }}
                         </h1>
                     </div>
-                    <div class="equipment-container" v-if="showEquipmentType===equipment_type_icon.type" >
-                            <Equipments v-for="equipment in equipmentStore.getEquipmentByType(equipment_type_icon.type)" :key="equipment_type_icon.type"  :equipment="equipment"/>
+                    <div class="equipment-container" v-if="showEquipmentType===equipmentTypeLocale.id" >
+                            <Equipments v-for="equipment in equipmentStore.getEquipmentByTypeId(equipmentTypeLocale.id)" :key="equipmentTypeLocale.id"  :equipment="equipment"/>
                     </div>
                 </div>
             </div>
             <div class="type-list-reduce type" v-else>
-                <div class="boucle" v-for="icon in equipmentStore.getListOfEquipmentIcons">
-                    <Icon :icon="icon" class="icon-type" />
+                <div class="boucle" v-for="equipmentTypeLocale in equipmentStore.getListOfEquipmentTypesLocale()">
+                    <Icon :icon="equipmentTypeLocale.icon_name" class="icon-type" :style="{'color':equipmentTypeLocale.color}" @click="handleEquipmentTypeIconClick(equipmentTypeLocale.id)"/>
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ import { Icon } from '@iconify/vue';
 
 <template>
     <div class="card-header">
-        <Icon :icon="equipmentIcon" class="icon"/>
+        <Icon :icon="equipmentIcon" class="icon" :style="{'color':equipmentColor}"/>
         <h1 class="consumption-details-title">{{consumptionType}}</h1>
         <span class="closebtn" @click="$emit('close-popup')">&times;</span>
     </div>
@@ -22,6 +22,10 @@ import { Icon } from '@iconify/vue';
         },
         props: {
             equipmentIcon: {
+                type: String,
+                required: true
+            },
+            equipmentColor: {
                 type: String,
                 required: true
             },

@@ -8,11 +8,12 @@
 
 <template>
     <section id="board-consumption-add" class="popup-window">
-        <div class="color-banner" :style="{'background-color':equipment.color}"/>
+        <div class="color-banner" :style="{'background-color':equipment.type.color}"/>
         <div class="card">
             <CardPopupHeader
-                :equipment-icon="equipment.name_icon"
+                :equipment-icon="equipment.type.icon_name"
                 :consumption-type="equipmentType"
+                :equipment-color="equipment.type.color"
                 @close-popup="closeAddPopup"/>
             <CardPopupContent 
                 :consumption-amount="equipment.consumption"
@@ -20,13 +21,13 @@
                 :times="{timeStart:startHour,timeEnd:endHour}"/>
             <div class="card-time-modifier">
                 <div class="start-input field">
-                    <p>Start</p>
+                    <p>{{ $t("input.start") }}</p>
                     <div class="choice-container" :class="{'input-error' : inputError}">
                         <input type="time" class="input-start input" step="900" id="startHour" v-model="startHour">
                     </div>
                 </div>
                 <div class="end-input field">
-                    <p>End</p>
+                    <p>{{ $t("input.end") }}</p>
                     <div class="choice-container" :class="{'input-error' : inputError}">
                         <input type="time" class="input-end input" step="900" id="endHour" v-model="endHour">
                     </div>
@@ -35,11 +36,11 @@
             <div class="card-save-modification">
                 <button class="btn btn-save" @click="saveConsumption">
                     <Icon icon="mdi:content-save" class="btn-icon"/>
-                    Sauvegarder
+                    {{ $t("button.save") }}
                 </button>
                 <button class="btn btn-cancel" @click="closeAddPopup">
                     <Icon icon="mdi:close" class="btn-icon"/>
-                    Annuler
+                    {{ $t("button.cancel") }}
                 </button>
             </div>
         </div>
@@ -108,10 +109,7 @@
         watch: {
             equipment: {
                 handler: function (equipment: any) {
-                    if(useGameParametersStore().language ==='fr')
-                        this.equipmentType = equipment.type_fr;
-                    else
-                        this.equipmentType = equipment.type_en;
+                    this.equipmentType = equipmentStore.convertEquipmentToEquipmentLocale(equipment).type.name;
                 },
                 immediate: true
             }

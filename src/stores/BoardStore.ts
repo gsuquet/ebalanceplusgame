@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { Consumption } from './ConsumptionStore';
 
 export const useBoardStore = defineStore({
     id: 'BoardStore',
@@ -19,27 +20,52 @@ export const useBoardStore = defineStore({
     actions: {
         setTilesFromConsumptionList() {
             const tiles: Tile[] = [];
+            const occupiedSlotHeightsOnBoardByIndex: number[] = new Array(96).fill(0);
             const consumptionList = useConsumptionStore().getConsumptionListSortedByStartIndex;
-            let storedY=this.board.height; let storedStopIndex=0; 
             for (const consumption of consumptionList) {
-                const tile = {
-                    id: consumption.id,
-                    x: consumption.startIndex * this.tileParams.pxSizeFor15min,
-                    y: this.board.height-((consumption.amount/10) * this.tileParams.pxSizeFor10W),
-                    width: ((consumption.endIndex - consumption.startIndex) + 1) * this.tileParams.pxSizeFor15min,
-                    height: (consumption.amount/10) * this.tileParams.pxSizeFor10W,
-                    color: consumption.color
-                } as Tile;
-
-                if(consumption.startIndex <= storedStopIndex) {
-                    tile.y = storedY-tile.height;
-                } else {
-                    storedStopIndex=consumption.endIndex;
+                let consumptionYValuesList: number[] = [];
+                let lastCreatedTileIndex = 0;
+                let storedYValue = 0;
+                let consumptionHeight = (consumption.amount/10) * this.tileParams.pxSizeFor10W;
+                for (let i=consumption.startIndex; i<=consumption.endIndex; i++) {
+                    occupiedSlotHeightsOnBoardByIndex[i] += consumptionHeight;
+                    consumptionYValuesList.push(occupiedSlotHeightsOnBoardByIndex[i]);
                 }
-                storedY=tile.y;
-                tiles.push(tile);
+                storedYValue = consumptionYValuesList[0];
+                for (const yValue of consumptionYValuesList) {
+                    if (yValue !== storedYValue) {
+                        tiles.push(
+                            this.generateTile(
+                                consumption,
+                                consumption.startIndex+lastCreatedTileIndex,
+                                consumption.startIndex+lastCreatedTileIndex+consumptionYValuesList.indexOf(yValue)-1,
+                                (this.board.height+consumptionHeight) - storedYValue
+                            ));
+                        lastCreatedTileIndex = consumptionYValuesList.indexOf(yValue);
+                    }
+                    storedYValue = yValue;
+                }
+                if (lastCreatedTileIndex !== consumptionYValuesList.length-1) {
+                    tiles.push(
+                        this.generateTile(
+                            consumption,
+                            consumption.startIndex+lastCreatedTileIndex,
+                            consumption.endIndex,
+                            (this.board.height+consumptionHeight) - storedYValue
+                        ));
+                }
             };
             this.board.tiles = tiles;
+        },
+        generateTile(consumption: Consumption, startIndex: number, endIndex: number, y: number) {
+            return {
+                id: consumption.id,
+                x: startIndex * this.tileParams.pxSizeFor15min,
+                y: y - ((consumption.amount/10) * this.tileParams.pxSizeFor10W),
+                width: ((endIndex - startIndex)+1) * this.tileParams.pxSizeFor15min,
+                height: (consumption.amount/10) * this.tileParams.pxSizeFor10W,
+                color: consumption.color
+            } as Tile;
         },
         // TODO : define method to sort tiles (according to size on x-axis ?
         removeTileFromBoard(tileId: string) {

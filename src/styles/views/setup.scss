@@ -1,0 +1,23 @@
+#setup-page {
+    display: flex;
+    flex-direction: row;
+    .center-container{
+        display:flex;
+        flex-direction: column;
+        margin: 0 2rem;
+        .details-container{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            .recap-container{
+                max-width: 48%;
+            }
+        }
+        .validation-section{
+            margin-top: 2rem;
+        }
+    }
+    .list-container{
+        width: 50%;
+    }
+}
