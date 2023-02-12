@@ -8,8 +8,8 @@
                     class="input-start input"
                     step="900"
                     id="startHour"
-                    v-bind:value="startHour"
-                    v-on:input="updateStartHour($event.target.value)">
+                    :value="startHour"
+                    @input="updateStartHour">
             </div>
         </div>
         <div class="end-input field">
@@ -20,8 +20,8 @@
                     class="input-end input"
                     step="900"
                     id="endHour"
-                    v-bind:value="endHour"
-                    v-on:input="updateEndHour($event.target.value)">
+                    :value="endHour"
+                    @input="updateEndHour">
             </div>
         </div>
     </div>
@@ -51,7 +51,8 @@
             }
         },
         methods: {
-            updateStartHour(newStartHour: string | null) {
+            updateStartHour(event: Event) {
+                const newStartHour = (event.target as HTMLInputElement).value;
                 if(newStartHour === '' || newStartHour === null) {
                     this.inputErrorStart = true;
                 } else {
@@ -59,7 +60,8 @@
                     this.$emit('start-hour', newStartHour);
                 }
             },
-            updateEndHour(newEndHour: string | null) {
+            updateEndHour(event: Event) {
+                const newEndHour = (event.target as HTMLInputElement).value;
                 if(newEndHour === '' || newEndHour === null) {
                     this.inputErrorEnd = true;
                 } else {
