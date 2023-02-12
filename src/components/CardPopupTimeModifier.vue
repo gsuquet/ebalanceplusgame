@@ -51,16 +51,16 @@
             }
         },
         methods: {
-            updateStartHour(newStartHour: string) {
-                if(newStartHour === '') {
+            updateStartHour(newStartHour: string | null) {
+                if(newStartHour === '' || newStartHour === null) {
                     this.inputErrorStart = true;
                 } else {
                     this.inputErrorStart = false;
                     this.$emit('start-hour', newStartHour);
                 }
             },
-            updateEndHour(newEndHour: string) {
-                if(newEndHour === '') {
+            updateEndHour(newEndHour: string | null) {
+                if(newEndHour === '' || newEndHour === null) {
                     this.inputErrorEnd = true;
                 } else {
                     this.inputErrorEnd = false;
