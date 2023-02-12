@@ -39,7 +39,8 @@
         "stored": "Stored",
         "max": "Max",
         "batteriesManagement": "Batteries management",
-        "capacity": "Capacity"
+        "capacity": "Capacity",
+        "storeEnergy": "Store energy"
     },
     "home":{
         "createGame": "Create a game",

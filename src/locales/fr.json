@@ -40,7 +40,7 @@
         "max": "Maximum",
         "batteriesManagement": "Gestion des batteries",
         "capacity": "Capacité",
-        "storeEnergy": "Stocker"
+        "storeEnergy": "Stocker de l'énergie"
     },
     "home":{
         "createGame": "Créer une partie",
