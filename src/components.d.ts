@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     Board: typeof import('./components/Board.vue')['default']
     BoardConsumptionDetails: typeof import('./components/BoardConsumptionDetails.vue')['default']
     Canvas: typeof import('./components/Canvas.vue')['default']
+    CardPopupAmountModifier: typeof import('./components/CardPopupAmountModifier.vue')['default']
     CardPopupContent: typeof import('./components/CardPopupContent.vue')['default']
     CardPopupHeader: typeof import('./components/CardPopupHeader.vue')['default']
     CardPopupModificationButtons: typeof import('./components/CardPopupModificationButtons.vue')['default']

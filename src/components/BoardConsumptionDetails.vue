@@ -6,6 +6,7 @@ import { useEquipmentStore } from '../stores/EquipmentStore';
 import CardPopupContent from './CardPopupContent.vue';
 import CardPopupHeader from './CardPopupHeader.vue';
 import CardPopupTimeModifier from './CardPopupTimeModifier.vue';
+import CardPopupModificationButtons from './CardPopupModificationButtons.vue';
 import CardPopupSaveButtons from './CardPopupSaveButtons.vue';
 </script>
 
