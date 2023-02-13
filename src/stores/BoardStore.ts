@@ -45,7 +45,7 @@ export const useBoardStore = defineStore({
                     }
                     storedYValue = yValue;
                 }
-                if (lastCreatedTileIndex !== consumptionYValuesList.length-1) {
+                if (lastCreatedTileIndex !== consumptionYValuesList.length-1 || consumptionYValuesList.length === 1) {
                     tiles.push(
                         this.generateTile(
                             consumption,
