@@ -107,6 +107,9 @@ import CardPopupSaveButtons from './CardPopupSaveButtons.vue';
             consumption: {
                 handler() {
                     this.consumptionType = equipmentStore.convertEquipmentToEquipmentLocale(this.consumption.equipment).type.name;
+                    const hours = consumptionStore.convertIndexesToTimes(this.consumption.startIndex, this.consumption.endIndex);
+                    this.startHour = hours.timeStart;
+                    this.endHour = hours.timeEnd;
                 },
                 immediate: true
             }

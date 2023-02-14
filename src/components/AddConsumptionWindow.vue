@@ -55,8 +55,8 @@
         data() {
             return {
                 equipmentType: '' as string,
-                startHour: '' as string,
-                endHour: '' as string,
+                startHour: '00:00' as string,
+                endHour: '23:45' as string,
                 startIndex: 0 as number,
                 endIndex: 0 as number,
                 inputError: false as boolean
