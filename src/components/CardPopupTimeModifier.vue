@@ -185,6 +185,9 @@
                 const endHourNumber = parseInt(endHourSplit[0]);
                 const endMinutesNumber = parseInt(endHourSplit[1]);
                 if(startHourNumber < endHourNumber) {
+                    if( startHourNumber === endHourNumber - 1 && startMinutesNumber === 45 && endMinutesNumber === 0) {
+                        return false;
+                    }
                     return true;
                 } else if(startHourNumber === endHourNumber) {
                     if(startMinutesNumber < endMinutesNumber-15) {
