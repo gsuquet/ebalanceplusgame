@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { useProductionStore, ProductionCurve } from '../stores/ProductionStore';
+    import { useProductionStore } from '../stores/ProductionStore';
+    import { ProductionCurve } from '../types/Production';
     import { Icon } from '@iconify/vue';
 
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import { useEnergyStore } from '../stores/EnergyStore';
-    import { Equipment } from '../stores/EquipmentStore';
+    import { Equipment } from '../types/Equipment';
     import CardPopupHeader from './CardPopupHeader.vue';
     import CardPopupContent from './CardPopupContent.vue';
     import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
@@ -21,6 +21,8 @@
             :is-cost="false"/>
         <CardPopupAmountModifier 
             :amount="equipment.consumption"
+            :max-amount="(energyStore.maxEnergy-energyStore.storedEnergy)/((endIndex-startIndex)+1)"
+            :step-amount="10"
             @amount="(value) => equipment.consumption = value"/>
         <CardPopupTimeModifier 
             :start-hour="startHour"
@@ -46,9 +48,9 @@
                 type: this.$t("energy.storeEnergy"),
                 inputError: false as boolean,
                 startHour: '00:00' as string,
-                endHour: '23:45' as string,
+                endHour: '00:15' as string,
                 startIndex: 0 as number,
-                endIndex: 0 as number,
+                endIndex: 1 as number,
                 equipment: {
                     id: 0,
                     type:{

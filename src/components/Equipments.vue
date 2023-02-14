@@ -1,5 +1,6 @@
 <script setup lang="ts">
-    import { Equipment, useEquipmentStore} from "../stores/EquipmentStore";
+    import { useEquipmentStore } from '../stores/EquipmentStore';
+    import { Equipment } from '../types/Equipment';
 
     const {equipment} = defineProps<{
         equipment: Equipment;
