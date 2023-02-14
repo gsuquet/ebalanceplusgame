@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
-import { Consumption } from "../stores/ConsumptionStore"
-import { EquipmentType, EquipmentTypeLocale, EquipmentTypeName } from "../stores/EquipmentStore";
+import { Scenario, ScenarioLocale, InternatObject } from '../types/Scenario';
+import { EquipmentType, EquipmentTypeLocale, EquipmentTypeName } from "../types/EquipmentType";
+import { Consumption } from "../types/Consumption";
 
 
 export const useScenarioStore = defineStore({ id: "ScenarioStore", 
@@ -123,33 +124,3 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
         getRandomLocaleScenario: state => () => state.scenariosLocale[Math.floor(Math.random() * state.scenariosLocale.length)],
     },
 });
-
-export interface Scenario{
-    id: string,
-    names: InternatObject[],
-    days: InternatObject[],
-    season: string,
-    icon: string,
-    color: string,
-    descriptions: InternatObject[],
-    equipment_types: EquipmentType[],
-    initial_consumption: Consumption[],
-}
-
-
-export interface ScenarioLocale {
-    id: string;
-    name: string,
-    day: string,
-    season: string,
-    icon: string,
-    color: string,
-    description: string,
-    equipment_type_local: EquipmentTypeLocale[], 
-    initial_consumption: Consumption[]
-}
-
-export interface InternatObject{
-    text: string,
-    lang: string,
-}

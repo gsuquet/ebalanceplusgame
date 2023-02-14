@@ -1,0 +1,46 @@
+.card-time-modifier-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .hour-modifier-buttons{
+        font-size: 1.2rem;
+        font-weight: bold;
+        background-color: var(--theme-color-background-secondary);
+        border-radius: 25px;
+        margin: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .btn{
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            border: none;
+            background-color: var(--theme-color-tertiary);
+            color: var(--theme-color-text-primary);
+            cursor: pointer;
+            &:hover{
+                color: var(--theme-color-text-secondary);
+                background-color: var(--theme-color-primary);
+            }
+        }
+        .add{
+            margin-left: 0.5rem;
+        }
+        .remove{
+            margin-right: 0.5rem;
+            //padding: 0.5rem 1.2rem;
+        }
+        .disabled{
+            background-color: var(--theme-color-background-secondary);
+            cursor: not-allowed;
+            &:hover{
+                color: var(--theme-color-text-primary);
+                background-color: var(--theme-color-background-secondary);
+            }
+        }
+    }
+}

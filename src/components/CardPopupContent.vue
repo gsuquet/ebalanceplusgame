@@ -8,7 +8,7 @@ import { Icon } from '@iconify/vue';
                     <h2 class="consumption-amount">
                         <Icon icon="mdi:flash" class="icon-consumption"/>
                         {{ consumptionAmount }} W</h2>
-                    <h2 class="money-amount">
+                    <h2 class="money-amount" v-if="isCost">
                         <Icon icon="mdi:cash" class="icon-price"/>
                         {{ equipmentPrice }} €</h2>
                 </div>
@@ -39,6 +39,10 @@ import { Icon } from '@iconify/vue';
             times : {
                 type: Object as () => Times,
                 required: true   
+            },
+            isCost: {
+                type: Boolean,
+                required: true
             }
         },
         components: {

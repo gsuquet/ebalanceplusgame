@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia';
-import { Equipment } from './EquipmentStore';
 import { useGameParametersStore } from './GameParametersStore';
 import { useBoardStore } from './BoardStore';
+import { Consumption, ConsumptionCurve } from '../types/Consumption';
+import { Equipment } from '../types/Equipment';
 
 export const useConsumptionStore = defineStore({
     id: 'ConsumptionStore',
@@ -47,6 +48,20 @@ export const useConsumptionStore = defineStore({
                 const indexes = this.convertTimesToIndexes(startHour, endHour);
                 consumptionToModify.startIndex = indexes.indexStart;
                 consumptionToModify.endIndex = indexes.indexEnd;
+                for(let i=consumptionToModify.startIndex; i<=consumptionToModify.endIndex; i++){
+                    this.addToConsumptionCurve(i,consumptionToModify.amount)
+                }
+                this.setListOfOverConsumption();
+                useBoardStore().setTilesFromConsumptionList();
+            }
+        },
+        modifyConsumptionAmount(consumptionId:string, amount:number) {
+            const consumptionToModify = this.consumptionList.find(consumption => consumption.id === consumptionId);
+            if(consumptionToModify){
+                for(let i=consumptionToModify.startIndex; i<=consumptionToModify.endIndex; i++){
+                    this.removeFromConsumptionCurve(i,consumptionToModify.amount)
+                }
+                consumptionToModify.amount = amount;
                 for(let i=consumptionToModify.startIndex; i<=consumptionToModify.endIndex; i++){
                     this.addToConsumptionCurve(i,consumptionToModify.amount)
                 }
@@ -130,19 +145,3 @@ export const useConsumptionStore = defineStore({
         }
     }
 });
-
-export interface Consumption {
-    id: string;
-    startIndex: number;
-    endIndex: number;
-    amount: number;
-    color: string;
-    equipment: Equipment;
-}
-
-interface ConsumptionCurve {
-    consumption: Map<number, number>;
-    peak: number;
-    peakIndex: number;
-    peakTime: string;
-}

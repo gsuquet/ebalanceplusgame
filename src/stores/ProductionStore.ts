@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { ProductionCurve } from '../types/Production';
 
 export const useProductionStore = defineStore({
     id: 'ProductionStore',
@@ -65,14 +66,3 @@ export const useProductionStore = defineStore({
         }
     }
 });
-
-export interface ProductionCurve {
-    id : string;
-    name: string;
-    svg: string;
-    description: string,
-    solar: number[];
-    wind: number[];
-    hydro: number[];
-    total: number[];
-}

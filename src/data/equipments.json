@@ -5,7 +5,9 @@
             "id":"dishwasher",
             "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
             "icon_name":"mdi:dishwasher",
-            "color":"#9A7751"
+            "color":"#9A7751",
+            "isConsumptionEditable": false,
+            "hasCost": true
         },
         "energy_class": "A",
         "consumption": 1300,
@@ -18,7 +20,9 @@
             "id":"dishwasher",
             "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
             "icon_name":"mdi:dishwasher",
-            "color":"#9A7751"
+            "color":"#9A7751",
+            "isConsumptionEditable": false,
+            "hasCost": true
         },
         "energy_class": "B",
         "consumption": 1400,
@@ -31,7 +35,9 @@
             "id":"dishwasher",
             "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
             "icon_name":"mdi:dishwasher",
-            "color":"#9A7751"
+            "color":"#9A7751",
+            "isConsumptionEditable": false,
+            "hasCost": true
         },
         "energy_class": "C",
         "consumption": 1600,
@@ -44,7 +50,9 @@
             "id":"dishwasher",
             "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
             "icon_name":"mdi:dishwasher",
-            "color":"#9A7751"
+            "color":"#9A7751",
+            "isConsumptionEditable": false,
+            "hasCost": true
         },
         "energy_class": "D",
         "consumption": 1800,
@@ -57,7 +65,9 @@
             "id":"dishwasher",
             "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
             "icon_name":"mdi:dishwasher",
-            "color":"#9A7751"
+            "color":"#9A7751",
+            "isConsumptionEditable": false,
+            "hasCost": true
         },
         "energy_class": "E",
         "consumption": 2000,
@@ -70,7 +80,9 @@
             "id":"dishwasher",
             "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
             "icon_name":"mdi:dishwasher",
-            "color":"#9A7751"
+            "color":"#9A7751",
+            "isConsumptionEditable": false,
+            "hasCost": true
         },
         "energy_class": "F",
         "consumption": 2100,
@@ -83,7 +95,9 @@
             "id":"dishwasher",
             "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
             "icon_name":"mdi:dishwasher",
-            "color":"#9A7751"
+            "color":"#9A7751",
+            "isConsumptionEditable": false,
+            "hasCost": true
         },
         "consumption": 2300,
         "energy_class": "G",
@@ -96,7 +110,9 @@
             "id":"washingMachine",
             "names":[{"name":"Machine à laver","lang":"fr"},{"name":"Washing-machine","lang":"en"}],
             "icon_name":"mdi:washing-machine",
-            "color":"#00447C"
+            "color":"#00447C",
+            "isConsumptionEditable": false,
+            "hasCost": true
         },
         "energy_class": "A",
         "consumption": 1200,
@@ -109,7 +125,9 @@
             "id":"washingMachine",
             "names":[{"name":"Machine à laver","lang":"fr"},{"name":"Washing-machine","lang":"en"}],
             "icon_name":"mdi:washing-machine",
-            "color":"#00447C"
+            "color":"#00447C",
+            "isConsumptionEditable": false,
+            "hasCost": true
         },
         "energy_class": "B",
         "consumption": 1400,
@@ -122,7 +140,9 @@
             "id":"washingMachine",
             "names":[{"name":"Machine à laver","lang":"fr"},{"name":"Washing-machine","lang":"en"}],
             "icon_name":"mdi:washing-machine",
-            "color":"#00447C"
+            "color":"#00447C",
+            "isConsumptionEditable": false,
+            "hasCost": true
         },
         "energy_class": "C",
         "consumption": 1600,
@@ -135,7 +155,9 @@
             "id":"washingMachine",
             "names":[{"name":"Machine à laver","lang":"fr"},{"name":"Washing-machine","lang":"en"}],
             "icon_name":"mdi:washing-machine",
-            "color":"#00447C"
+            "color":"#00447C",
+            "isConsumptionEditable": false,
+            "hasCost": true
         },
         "energy_class": "D",
         "consumption": 1800,
@@ -148,7 +170,9 @@
             "id":"washingMachine",
             "names":[{"name":"Machine à laver","lang":"fr"},{"name":"Washing-machine","lang":"en"}],
             "icon_name":"mdi:washing-machine",
-            "color":"#00447C"
+            "color":"#00447C",
+            "isConsumptionEditable": false,
+            "hasCost": true
         },
         "energy_class": "E",
         "consumption": 2000,
@@ -161,7 +185,9 @@
             "id":"washingMachine",
             "names":[{"name":"Machine à laver","lang":"fr"},{"name":"Washing-machine","lang":"en"}],
             "icon_name":"mdi:washing-machine",
-            "color":"#00447C"
+            "color":"#00447C",
+            "isConsumptionEditable": false,
+            "hasCost": true
         },
         "energy_class": "F",
         "consumption": 2200,
@@ -174,7 +200,9 @@
             "id":"washingMachine",
             "names":[{"name":"Machine à laver","lang":"fr"},{"name":"Washing-machine","lang":"en"}],
             "icon_name":"mdi:washing-machine",
-            "color":"#00447C"
+            "color":"#00447C",
+            "isConsumptionEditable": false,
+            "hasCost": true
         },
         "energy_class": "G",
         "consumption": 2400,

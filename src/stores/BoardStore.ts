@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
-import { Consumption } from './ConsumptionStore';
+import { Consumption } from '../types/Consumption';
+import { Board, Tile, TileParams } from '../types/Board';
 
 export const useBoardStore = defineStore({
     id: 'BoardStore',
@@ -101,24 +102,4 @@ export const useBoardStore = defineStore({
 
 function convertToPx(value: number, pxSizeFor10W: number) {
     return (value * pxSizeFor10W) / 10;
-}
-
-interface Board {
-    width: number;
-    height: number;
-    tiles: Tile[];
-}
-
-export interface Tile {
-    id: string;
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    color: string;
-}
-
-interface TileParams {
-    pxSizeFor10W: number;
-    pxSizeFor15min: number;
 }

@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia';
-import { useProductionStore, ProductionCurve } from './ProductionStore';
+import { useProductionStore } from './ProductionStore';
 import i18n from '../modules/i18n';
-import { ScenarioLocale } from './ScenarioStore';
+import { ScenarioLocale } from '../types/Scenario';
+import { ProductionCurve } from '../types/Production';
 
 export const useGameParametersStore = defineStore({
     id: 'GameParametersStore',

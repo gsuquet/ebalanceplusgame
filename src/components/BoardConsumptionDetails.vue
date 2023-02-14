@@ -5,6 +5,10 @@ import { useConsumptionStore } from '../stores/ConsumptionStore';
 import { useEquipmentStore } from '../stores/EquipmentStore';
 import CardPopupContent from './CardPopupContent.vue';
 import CardPopupHeader from './CardPopupHeader.vue';
+import CardPopupTimeModifier from './CardPopupTimeModifier.vue';
+import CardPopupModificationButtons from './CardPopupModificationButtons.vue';
+import CardPopupSaveButtons from './CardPopupSaveButtons.vue';
+import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
 </script>
 
 <template>
@@ -19,41 +23,29 @@ import CardPopupHeader from './CardPopupHeader.vue';
             <CardPopupContent
                 :consumption-amount="consumption.amount"
                 :equipment-price="consumption.equipment.price"
-                :times="useConsumptionStore().convertIndexesToTimes(consumption.startIndex, consumption.endIndex)"/>
-            <div class="card-choice-buttons" v-if="!modify">
-                <button class="btn btn-modify" @click="modifyConsumption">
-                    <Icon icon="mdi:pencil" class="btn-icon"/>
-                    {{ $t("button.edit") }}
-                </button>
-                <button class="btn btn-delete" @click="deleteConsumption">
-                    <Icon icon="mdi:delete" class="btn-icon"/>
-                    {{ $t("button.delete") }}
-                </button>
-            </div>
-            <div class="card-time-modifier" v-if="modify">
-                <div class="start-input field">
-                    <p>{{ $t("input.start") }}</p>
-                    <div class="choice-container" :class="{'input-error' : inputError}">
-                        <input type="time" class="input-start input" step="900" id="startHour" v-model="startHour">
-                    </div>
-                </div>
-                <div class="end-input field">
-                    <p>{{ $t("input.end") }}</p>
-                    <div class="choice-container" :class="{'input-error' : inputError}">
-                        <input type="time" class="input-end input" step="900" id="endHour" v-model="endHour">
-                    </div>
-                </div>
-            </div>
-            <div class="card-save-modification">
-                <button class="btn btn-save" v-if="modify" @click="saveModifiedConsumption">
-                    <Icon icon="mdi:content-save" class="btn-icon"/>
-                    {{ $t("button.save") }}
-                </button>
-                <button class="btn btn-cancel" v-if="modify" @click="modify = false">
-                    <Icon icon="mdi:close" class="btn-icon"/>
-                    {{ $t("button.cancel") }}
-                </button>
-            </div>
+                :times="useConsumptionStore().convertIndexesToTimes(consumption.startIndex, consumption.endIndex)"
+                :is-cost="true"/>
+            <CardPopupModificationButtons
+                v-if="!modify"
+                @modify="modifyConsumption"
+                @delete="deleteConsumption"/>
+            <CardPopupAmountModifier
+                v-if="modify && consumption.equipment.type.isConsumptionEditable"
+                :amount="consumption.amount"
+                :max-amount="2500"
+                :step-amount="100"
+                @amount="(value) => consumption.amount = value"/>
+            <CardPopupTimeModifier
+                v-if="modify"
+                :start-hour="startHour"
+                :end-hour="endHour"
+                :input-error="inputError"
+                @start-hour="(value) => startHour = value"
+                @end-hour="(value) => endHour = value"/>
+            <CardPopupSaveButtons
+                v-if="modify"
+                @save="saveModifiedConsumption"
+                @cancel="modify = false"/>
         </div>
     </section>
 </template>
@@ -74,7 +66,9 @@ import CardPopupHeader from './CardPopupHeader.vue';
         components: {
             Icon,
             CardPopupHeader,
-            CardPopupContent
+            CardPopupContent,
+            CardPopupTimeModifier,
+            CardPopupAmountModifier
         },
         data() {
             return {
@@ -121,6 +115,9 @@ import CardPopupHeader from './CardPopupHeader.vue';
             consumption: {
                 handler() {
                     this.consumptionType = equipmentStore.convertEquipmentToEquipmentLocale(this.consumption.equipment).type.name;
+                    const hours = consumptionStore.convertIndexesToTimes(this.consumption.startIndex, this.consumption.endIndex);
+                    this.startHour = hours.timeStart;
+                    this.endHour = hours.timeEnd;
                 },
                 immediate: true
             }

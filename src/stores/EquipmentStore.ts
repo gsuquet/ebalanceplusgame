@@ -1,11 +1,22 @@
 import { defineStore } from 'pinia';
+import { Equipment, EquipmentLocale } from '../types/Equipment';
+import { EquipmentType, EquipmentTypeLocale } from '../types/EquipmentType';
 
 export const useEquipmentStore = defineStore({id :'EquipmentStore',
     state: () => {
         return {
             equipments: [{
                 id: 0,
-                type:{id:'0',names: [{lang: 'fr',name: 'Vide'},{lang: 'en',name: 'Empty'}],icon_name:'vide',color: '#000000'},
+                type:{
+                    id:'0',
+                    names: 
+                    [{lang: 'fr',name: 'Vide'},
+                    {lang: 'en',name: 'Empty'}],
+                    icon_name:'vide',
+                    color: '#000000',
+                    isConsumptionEditable: false,
+                    hasCost: true
+                },
                 energy_class: '',
                 consumption: 0,
                 points: 0,
@@ -27,10 +38,24 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
         getEquipmentTypeLocale(type: EquipmentType, locale:string){
             for(const name of type.names) {
                 if(name.lang === locale){
-                    return {name: name.name, icon_name: type.icon_name, color: type.color, id: type.id} as EquipmentTypeLocale;
+                    return {
+                        id: type.id,
+                        name: name.name,
+                        icon_name: type.icon_name,
+                        color: type.color,
+                        isConsumptionEditable: type.isConsumptionEditable,
+                        hasCost: type.hasCost
+                    } as EquipmentTypeLocale;
                 }
             }
-            return {name: type.names[0].name, icon_name: type.icon_name, color: type.color, id: type.id} as EquipmentTypeLocale;
+            return {
+                id: type.id,
+                name: type.names[0].name,
+                icon_name: type.icon_name,
+                color: type.color,
+                isConsumptionEditable: type.isConsumptionEditable,
+                hasCost: type.hasCost
+            } as EquipmentTypeLocale;
         },
         getListOfEquipmentTypesLocale() {
             const locale = useGameParametersStore().language;
@@ -45,7 +70,16 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
         convertEquipmentToEquipmentLocale(equipment: Equipment) {
             const locale = useGameParametersStore().language;
             const equipmentTypeLocale = this.getEquipmentTypeLocale(equipment.type, locale);
-            return {id: equipment.id, type: equipmentTypeLocale, energy_class: equipment.energy_class, consumption: equipment.consumption, points: equipment.points, price: equipment.price, point_gap: equipment.point_gap, price_gap: equipment.price_gap} as EquipmentLocale;
+            return {
+                id: equipment.id,
+                type: equipmentTypeLocale,
+                energy_class: equipment.energy_class,
+                consumption: equipment.consumption,
+                points: equipment.points,
+                price: equipment.price,
+                point_gap: equipment.point_gap,
+                price_gap: equipment.price_gap
+            } as EquipmentLocale;
         }
     },
     getters: {
@@ -69,44 +103,3 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
         }
     },
 });
-
-export interface Equipment{
-    id: number,
-    type: EquipmentType,
-    energy_class: string, 
-    consumption: number,
-    points: number,
-    price: number,
-    point_gap: number[],
-    price_gap: number[];
-}
-
-export interface EquipmentLocale{
-    id: number,
-    type: EquipmentTypeLocale,
-    energy_class: string,
-    consumption: number,
-    points: number,
-    price: number,
-    point_gap: number[],
-    price_gap: number[]
-}
-
-export interface EquipmentType{
-    id: string,
-    names: EquipmentTypeName[],
-    icon_name: string,
-    color: string
-}
-
-export interface EquipmentTypeLocale{
-    id: string,
-    name: string,
-    icon_name: string,
-    color: string
-}
-
-export interface EquipmentTypeName{
-    lang: string,
-    name: string
-}

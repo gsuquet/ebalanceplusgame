@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import Canvas from '../components/Canvas.vue';
-import { Tile, useBoardStore } from '../stores/BoardStore';
-import { ProductionCurve } from '../stores/ProductionStore';
+import { useBoardStore } from '../stores/BoardStore';
+import { ProductionCurve } from '../types/Production';
+import { Tile } from '../types/Board';
 </script>
 
 <template>
