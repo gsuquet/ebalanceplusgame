@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { Consumption } from './ConsumptionStore';
+import { Consumption } from '../types/Consumption';
 
 export const useEnergyStore = defineStore({
     id: 'EnergyStore',
@@ -92,6 +92,41 @@ export const useEnergyStore = defineStore({
                 return 0;
             }
             return Math.round((state.storedEnergy / state.maxEnergy) * 100);
+        },
+        getEnergyStorageConsumption(state) {
+            return {
+                id:"951283",
+                startIndex:45,
+                endIndex:45,
+                amount:state.maxEnergy-state.storedEnergy,
+                color:"orange",
+                equipment:{
+                    id:99,
+                    type:{
+                        id:"energyStorage",
+                        names:[
+                            {name:"Stocker de l'énergie",lang:"fr"},
+                            {name:"Store energy",lang:"en"}],
+                            icon_name:"mdi:battery-charging-100",
+                            color:"orange",
+                            isConsumptionEditable:true,
+                            hasCost:false
+                    },
+                    energy_class:"X",
+                    consumption:0,
+                    points:0,
+                    price:0
+                }
+            }
         }
     },
 });
+
+export interface EnergyStorage {
+    id: string;
+    amount: number;
+    startIndex: number;
+    endIndex: number;
+    icon: string;
+    color: string;
+}
