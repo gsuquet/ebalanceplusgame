@@ -8,6 +8,7 @@ import CardPopupHeader from './CardPopupHeader.vue';
 import CardPopupTimeModifier from './CardPopupTimeModifier.vue';
 import CardPopupModificationButtons from './CardPopupModificationButtons.vue';
 import CardPopupSaveButtons from './CardPopupSaveButtons.vue';
+import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
 </script>
 
 <template>
@@ -28,6 +29,12 @@ import CardPopupSaveButtons from './CardPopupSaveButtons.vue';
                 v-if="!modify"
                 @modify="modifyConsumption"
                 @delete="deleteConsumption"/>
+            <CardPopupAmountModifier
+                v-if="modify && consumption.equipment.type.isConsumptionEditable"
+                :amount="consumption.amount"
+                :max-amount="2500"
+                :step-amount="100"
+                @amount="(value) => consumption.amount = value"/>
             <CardPopupTimeModifier
                 v-if="modify"
                 :start-hour="startHour"
@@ -60,7 +67,8 @@ import CardPopupSaveButtons from './CardPopupSaveButtons.vue';
             Icon,
             CardPopupHeader,
             CardPopupContent,
-            CardPopupTimeModifier
+            CardPopupTimeModifier,
+            CardPopupAmountModifier
         },
         data() {
             return {
