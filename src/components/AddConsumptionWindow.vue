@@ -19,16 +19,16 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
                 :equipment-color="equipment.type.color"
                 @close-popup="closeAddPopup"/>
             <CardPopupContent 
-                :consumption-amount="equipment.consumption"
-                :equipment-price="equipment.price"
+                :consumption-amount="consumption"
+                :equipment-price="price"
                 :times="{timeStart:startHour,timeEnd:endHour}"
-                :is-cost="equipment.type.hasCost"/>
+                :is-cost="equipment.equipmentCostParams.hasCost"/>
             <CardPopupAmountModifier
-                v-if="equipment.type.isConsumptionEditable"
-                :amount="equipment.consumption"
-                :max-amount="2500"
-                :step-amount="100"
-                @amount="(value) => equipment.consumption = value"/>
+                v-if="equipment.equipmentConsumptionParams.isConsumptionEditable"
+                :amount="consumption"
+                :max-amount="equipment.equipmentConsumptionParams.maxConsumption"
+                :step-amount="equipment.equipmentConsumptionParams.step"
+                @amount="(value) => consumption = value"/>
             <CardPopupTimeModifier
                 :start-hour="startHour"
                 :end-hour="endHour"
@@ -67,6 +67,8 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
                 endHour: '23:45' as string,
                 startIndex: 0 as number,
                 endIndex: 0 as number,
+                consumption: 0 as number,
+                price: 0 as number,
                 inputError: false as boolean
             }
         },
@@ -89,7 +91,7 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
                 this.setStartAndEndIndex();
                 if(consumptionStore.checkTimeInput(this.startHour, this.endHour)) {
                     consumptionStore.addConsumption(
-                        this.startIndex, this.endIndex, this.equipment, this.equipment.consumption
+                        this.startIndex, this.endIndex, this.equipment, this.consumption, this.price
                     );
                     equipmentStore.clickedEquipment = null;
                     this.inputError = false;
@@ -105,6 +107,10 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
                 },
                 immediate: true
             }
+        },
+        mounted() {
+            this.consumption = this.equipment.equipmentConsumptionParams.originalConsumption;
+            this.price = this.equipment.equipmentCostParams.originalPrice;
         }
     }
 </script>

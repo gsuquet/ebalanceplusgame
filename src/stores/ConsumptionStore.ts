@@ -93,14 +93,13 @@ export const useConsumptionStore = defineStore({
                 }
             }
         },
-        addConsumption(indexStart: number, indexEnd: number, equipment: Equipment, amount: number) {
-            let color: string = equipment.type.color;
+        addConsumption(indexStart: number, indexEnd: number, equipment: Equipment, amount: number, price: number) {
             let id: string = Math.floor(Math.random() * (1000000)).toString();
             let newConsumption: Consumption = { id:id,
                 startIndex:indexStart,
                 endIndex: indexEnd,
                 amount:amount,
-                color:color,
+                price:price,
                 equipment:equipment };
             this.addToConsumptionList(newConsumption);
         },

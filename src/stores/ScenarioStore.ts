@@ -44,7 +44,14 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
             for(const equipmentType of listEquipmentTypes ) {
                 for(const name of equipmentType.names) {
                     if(name.lang === locale) {
-                        listEquipmentTypesLocales.push({name: name.name, icon_name: equipmentType.icon_name, color: equipmentType.color, id: equipmentType.id} as EquipmentTypeLocale); 
+                        listEquipmentTypesLocales.push({
+                            id: equipmentType.id,
+                            name: name.name,
+                            icon_name: equipmentType.icon_name,
+                            color: equipmentType.color,
+                            isBattery: equipmentType.isBattery,
+                            equipmentTypeDurationParams: equipmentType.equipmentTypeDurationParams
+                        } as EquipmentTypeLocale); 
                     }
                 }
                 listEquipmentTypesLocales.push({name: equipmentType.names[0].name, icon_name: equipmentType.icon_name, color: equipmentType.color, id: equipmentType.id} as EquipmentTypeLocale); 
