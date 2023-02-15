@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { Scenario, ScenarioLocale, InternatObject } from '../types/Scenario';
-import { EquipmentType, EquipmentTypeLocale, EquipmentTypeName } from "../types/EquipmentType";
+import { EquipmentType, EquipmentTypeLocale } from "../types/EquipmentType";
 import { Consumption } from "../types/Consumption";
 
 
@@ -16,10 +16,20 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
                 color: "#000000", 
                 descriptions: [{text:"vide", lang:"fr"}, {text:"Empty", lang:"en"}] as InternatObject[],
                 equipment_types: [{
-                    id:"vide",
-                    names:[{name:"vide",lang:"fr"},{name:"Dishwasher",lang:"en"}] as EquipmentTypeName[],
-                    icon_name:"Vide",
-                    color:"#000000"
+                    id:'0',
+                    names: 
+                    [{lang: 'fr',name: 'Vide'},
+                    {lang: 'en',name: 'Empty'}],
+                    icon_name:'vide',
+                    color: '#000000',
+                    isBattery: false,
+                    equipmentTypeDurationParams: {
+                        isDurationEditable: true,
+                        originalDuration: '00:15',
+                        step: '00:15',
+                        minDuration: '00:15',
+                        maxDuration: '23:45'
+                    },
                 }] as EquipmentType[],
                 initial_consumption: [{}] as Consumption[]
             }] as Scenario[],
