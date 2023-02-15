@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
 import { useBoardStore } from '../stores/BoardStore';
+import { useEnergyStore } from '../stores/EnergyStore';
 import { useConsumptionStore } from '../stores/ConsumptionStore';
 import { useEquipmentStore } from '../stores/EquipmentStore';
 import CardPopupContent from './CardPopupContent.vue';
@@ -32,7 +33,7 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
             <CardPopupAmountModifier
                 v-if="modify && canModifyConsumption"
                 :amount="consumption.amount"
-                :max-amount="consumption.equipment.equipmentConsumptionParams.maxConsumption"
+                :max-amount="maxConsumptionAmount"
                 :min-amount="consumption.equipment.equipmentConsumptionParams.minConsumption"
                 :step-amount="consumption.equipment.equipmentConsumptionParams.step"
                 @amount="(value) => consumption.amount = value"/>
@@ -44,8 +45,8 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
                 :min-duration="consumption.equipment.type.equipmentTypeDurationParams.minDuration"
                 :step-duration="consumption.equipment.type.equipmentTypeDurationParams.step"
                 :input-error="inputError"
-                @start-hour="(value) => startHour = value"
-                @end-hour="(value) => endHour = value"/>
+                @start-hour="(value) => updateStartHour(value)"
+                @end-hour="(value) => updateEndHour(value)"/>
             <CardPopupSaveButtons
                 v-if="modify"
                 @save="saveModifiedConsumption"
@@ -76,11 +77,13 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
         },
         data() {
             return {
+                energyStore: useEnergyStore(),
                 consumptionType: '' as string,
                 modify: false as boolean,
                 canModify: true as boolean,
                 canModifyConsumption: false as boolean,
                 canModifyDuration: true as boolean,
+                maxConsumptionAmount: 0 as number,
                 startHour: '' as string,
                 endHour: '' as string,
                 startIndex: 0 as number,
@@ -95,10 +98,25 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
             modifyConsumption() {
                 this.modify = true;
             },
+            updateStartHour(newStartHour:string) {
+                this.startHour=newStartHour;
+                this.setStartAndEndIndex();
+                this.updateMaxConsumptionAmount();
+            },
+            updateEndHour(newEndHour:string) {
+                this.endHour=newEndHour;
+                this.setStartAndEndIndex();
+                this.updateMaxConsumptionAmount();
+            },
             setStartAndEndIndex() {
                 const indexes = consumptionStore.convertTimesToIndexes(this.startHour, this.endHour);
                 this.startIndex = indexes.indexStart;
                 this.endIndex = indexes.indexEnd;
+            },
+            initializeStartAndEndHour() {
+                const hours = consumptionStore.convertIndexesToTimes(this.consumption.startIndex, this.consumption.endIndex);
+                this.startHour = hours.timeStart;
+                this.endHour = hours.timeEnd;
             },
             saveModifiedConsumption() {
                 this.setStartAndEndIndex();
@@ -110,13 +128,31 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
                     this.inputError = true;
                     return;
                 }
+                if(!this.checkAmountIsUnderMax()) {
+                    this.inputError = true;
+                    return;
+                }
                 boardStore.modifyClickedTileConsumptionHours(this.startHour, this.endHour);
                 this.modify = false;
                 this.inputError = false;
             },
             deleteConsumption() {
                 boardStore.deleteClickedTileConsumption();
-            }   
+            },
+            updateMaxConsumptionAmount() {
+                if(!this.consumption.equipment.type.isBattery) {
+                    this.maxConsumptionAmount = this.consumption.equipment.equipmentConsumptionParams.maxConsumption;
+                } else {
+                    this.maxConsumptionAmount = (this.energyStore.maxEnergy-this.energyStore.storedEnergy)/((this.endIndex-this.startIndex)+1)
+                }
+            },
+            checkAmountIsUnderMax() {
+                if(this.consumption.amount>this.maxConsumptionAmount) {
+                    return false;
+                } else {
+                    return true;
+                }
+            },
         },
         watch: {
             consumption: {
@@ -133,6 +169,9 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
             this.canModifyConsumption = this.consumption.equipment.equipmentConsumptionParams.isConsumptionEditable;
             this.canModifyDuration = this.consumption.equipment.type.equipmentTypeDurationParams.isDurationEditable;
             this.canModify = this.canModifyConsumption || this.canModifyDuration;
+            this.initializeStartAndEndHour();
+            this.setStartAndEndIndex();
+            this.updateMaxConsumptionAmount();
         }
     };
 </script>
