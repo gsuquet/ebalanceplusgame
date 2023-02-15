@@ -21,7 +21,7 @@
             padding-right: 0.75rem;
             margin-left: auto;
             margin-right: auto;
-            color: var(--theme-color-text-primary);
+            color: var(--theme-color-text);
         }
         .closebtn{
             background-color: var(--theme-color-btn-close);
@@ -54,7 +54,7 @@
             .text{
                 font-size: 1.2rem;
                 font-weight: bold;
-                color: var(--theme-color-text-primary);
+                color: var(--theme-color-text);
             }
         }
     }
@@ -77,7 +77,7 @@
             font-weight: bold;
             margin-left: auto;
             margin-right: auto;
-            color: var(--theme-color-text-primary);
+            color: var(--theme-color-text);
         }
         .figures-container{
             display: flex;
@@ -87,7 +87,7 @@
                 margin: 5px;
                 font-size: 1.2rem;
                 font-weight: bold;
-                color: var(--theme-color-text-primary);
+                color: var(--theme-color-text);
                 h4{
                     margin-right: 0.5rem;
                 }
@@ -103,14 +103,9 @@
             align-items: center;
             justify-content: center;
             .btn{
-                display: flex;
-                align-items: center;
-                padding: 0.5rem 1rem 0.5rem 1rem;
-                border-radius: 50%;
-                border: none;
+                @include button-plus-minus-style;
                 background-color: var(--theme-color-background);
-                color: var(--theme-color-text-primary);
-                cursor: pointer;
+                color: var(--theme-color-text);
                 &:hover{
                     color: var(--theme-color-text-secondary);
                     background-color: var(--theme-color-primary);
@@ -124,12 +119,7 @@
                 padding: 0.5rem 1.2rem;
             }
             .disabled{
-                background-color: var(--theme-color-background-secondary);
-                cursor: not-allowed;
-                &:hover{
-                    color: var(--theme-color-text-primary);
-                    background-color: var(--theme-color-background-secondary);
-                }
+                @include button-disabled-style(--theme-color-text, --theme-color-background-secondary);
             }
         }
     }

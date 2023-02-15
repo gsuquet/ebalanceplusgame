@@ -1,3 +1,4 @@
+@import '../utilities/mixins.scss';
 .card-time-modifier-buttons{
     display: flex;
     justify-content: center;
@@ -12,16 +13,9 @@
         align-items: center;
         justify-content: center;
         .btn{
-            display: flex;
-            align-items: center;
-            padding: 0.5rem 1rem;
-            width: 3rem;
-            height: 3rem;
-            border-radius: 50%;
-            border: none;
+            @include button-plus-minus-style;
             background-color: var(--theme-color-tertiary);
-            color: var(--theme-color-text-primary);
-            cursor: pointer;
+            color: var(--theme-color-text);
             &:hover{
                 color: var(--theme-color-text-secondary);
                 background-color: var(--theme-color-primary);
@@ -35,12 +29,7 @@
             //padding: 0.5rem 1.2rem;
         }
         .disabled{
-            background-color: var(--theme-color-background-secondary);
-            cursor: not-allowed;
-            &:hover{
-                color: var(--theme-color-text-primary);
-                background-color: var(--theme-color-background-secondary);
-            }
+            @include button-disabled-style(--theme-color-text, --theme-color-background-secondary);
         }
     }
 }
