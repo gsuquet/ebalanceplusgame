@@ -87,19 +87,15 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
             },
             saveConsumption() {
                 this.setStartAndEndIndex();
-                if(this.startHour === '' || this.endHour === '') {
+                if(consumptionStore.checkTimeInput(this.startHour, this.endHour)) {
+                    consumptionStore.addConsumption(
+                        this.startIndex, this.endIndex, this.equipment, this.equipment.consumption
+                    );
+                    equipmentStore.clickedEquipment = null;
+                    this.inputError = false;
+                } else {
                     this.inputError = true;
-                    return;
                 }
-                if(this.startIndex > this.endIndex) {
-                    this.inputError = true;
-                    return;
-                }
-                consumptionStore.addConsumption(
-                    this.startIndex, this.endIndex, this.equipment
-                );
-                equipmentStore.clickedEquipment = null;
-                this.inputError = false;
             }
         },
         watch: {
