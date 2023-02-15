@@ -36,7 +36,7 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
             this.clickedScenario = this.scenariosLocale[0];
         },
         setClickedScenario(scenario: ScenarioLocale | null){
-            this.clickedScenario = scenario
+            this.clickedScenario = scenario;
         },
         getListOfEquipmentTypeLocale(listEquipmentTypes: EquipmentType[]) {
             const listEquipmentTypesLocales: EquipmentTypeLocale[] = []
@@ -92,7 +92,7 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
                                                     color: scenario.color,
                                                     description: description,
                                                     equipment_type_local: listEquipmentLocale,
-                                                    initial_consumption: [{}] as Consumption[]  
+                                                    initial_consumption: scenario.initial_consumption   
                                                 }; 
             return scenarioLocale;
         },
@@ -103,6 +103,8 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
             }
             this.scenariosLocale = listScenarioLocale;
         },
+
+        
         //TODO: Add the internationalisation handler 
     }, 
     getters: {
@@ -122,5 +124,6 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
         },
         getClickedScenario: state => () => state.clickedScenario,
         getRandomLocaleScenario: state => () => state.scenariosLocale[Math.floor(Math.random() * state.scenariosLocale.length)],
+
     },
 });

@@ -65,7 +65,7 @@ export const useGameParametersStore = defineStore({
         setProductionCurveAndScenario(productionCurve: ProductionCurve | null, scenario: ScenarioLocale | null) {
             if(!productionCurve || !scenario) return;
             this.productionCurve = productionCurve;
-            this.scenario = scenario;
+            this.scenario = scenario;            
         },
         setRandomProductionCurveAndScenario() {
             const randomProductionCurve = useProductionStore().getRandomProductionCurve();

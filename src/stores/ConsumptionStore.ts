@@ -20,6 +20,14 @@ export const useConsumptionStore = defineStore({
     },
 
     actions: {
+        addInitialConsumptionToConsumptionList() {
+            let clickedScenario = useScenarioStore().clickedScenario;
+            if(clickedScenario){
+                for(let initialConsumption of clickedScenario.initial_consumption){
+                    this.addToConsumptionList(initialConsumption);
+                }
+            }
+        },
         addToConsumptionList(newConsumption:Consumption) {
             this.consumptionList.push(newConsumption)
             for(let i=newConsumption.startIndex; i<=newConsumption.endIndex; i++){

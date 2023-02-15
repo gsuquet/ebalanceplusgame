@@ -58,6 +58,46 @@ export const useBoardStore = defineStore({
             };
             this.board.tiles = tiles;
         },
+        TilesFromConsumption(consumptionList: Consumption[]){
+            const tiles: Tile[] = [];
+            const occupiedSlotHeightsOnBoardByIndex: number[] = new Array(96).fill(0);
+            for (const consumption of consumptionList) {
+                let consumptionYValuesList: number[] = [];
+                let lastCreatedTileIndex = 0;
+                let storedYValue = 0;
+                let consumptionHeight = (consumption.amount/10) * this.tileParams.pxSizeFor10W;
+                for (let i=consumption.startIndex; i<=consumption.endIndex; i++) {
+                    occupiedSlotHeightsOnBoardByIndex[i] += consumptionHeight;
+                    consumptionYValuesList.push(occupiedSlotHeightsOnBoardByIndex[i]);
+                }
+                storedYValue = consumptionYValuesList[0];
+                for (const yValue of consumptionYValuesList) {
+                    if (yValue !== storedYValue) {
+                        tiles.push(
+                            this.generateTile(
+                                consumption,
+                                consumption.startIndex+lastCreatedTileIndex,
+                                consumption.startIndex+lastCreatedTileIndex+consumptionYValuesList.indexOf(yValue)-1,
+                                (this.board.height+consumptionHeight) - storedYValue
+                            ));
+                        lastCreatedTileIndex = consumptionYValuesList.indexOf(yValue);
+                    }
+                    storedYValue = yValue;
+                }
+                if (lastCreatedTileIndex !== consumptionYValuesList.length-1 || consumptionYValuesList.length === 1) {
+                    tiles.push(
+                        this.generateTile(
+                            consumption,
+                            consumption.startIndex+lastCreatedTileIndex,
+                            consumption.endIndex,
+                            (this.board.height+consumptionHeight) - storedYValue
+                        ));
+                }
+            };
+            this.board.tiles = tiles;
+        },
+
+
         generateTile(consumption: Consumption, startIndex: number, endIndex: number, y: number) {
             return {
                 id: consumption.id,
@@ -86,7 +126,7 @@ export const useBoardStore = defineStore({
                 useConsumptionStore().modifyConsumptionHours(this.clickedTile.id, startHour, endHour);
             }
             this.clickedTile = null;
-        }
+        }, 
     },
     getters: {
         getProductionCurveInPixels(state) {
