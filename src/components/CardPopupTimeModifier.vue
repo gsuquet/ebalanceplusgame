@@ -75,6 +75,18 @@
                 type: String,
                 required: true
             },
+            minDuration: {
+                type: String,
+                required: true
+            },
+            maxDuration: {
+                type: String,
+                required: true
+            },
+            stepDuration: {
+                type: String,
+                required: true
+            },
             inputError: {
                 type: Boolean,
                 required: true
@@ -196,43 +208,95 @@
                 } else {
                     return false;
                 }
+            },
+            isDurationOverMaxDuration() {
+                const startHourSplit = this.startHour.split(':');
+                const startHourNumber = parseInt(startHourSplit[0]);
+                const startMinutesNumber = parseInt(startHourSplit[1]);
+                const endHourSplit = this.endHour.split(':');
+                const endHourNumber = parseInt(endHourSplit[0]);
+                const endMinutesNumber = parseInt(endHourSplit[1]);
+                const maxDurationSplit = this.maxDuration.split(':');
+                const maxDurationHourNumber = parseInt(maxDurationSplit[0]);
+                const maxDurationMinutesNumber = parseInt(maxDurationSplit[1]);
+                if(endHourNumber - startHourNumber > maxDurationHourNumber) {
+                    return true;
+                } else if(endHourNumber - startHourNumber === maxDurationHourNumber) {
+                    if(endMinutesNumber - startMinutesNumber > maxDurationMinutesNumber) {
+                        return true;
+                    }
+                } else {
+                    return false;
+                }
+            },
+            isDurationUnderMinDuration() {
+                const startHourSplit = this.startHour.split(':');
+                const startHourNumber = parseInt(startHourSplit[0]);
+                const startMinutesNumber = parseInt(startHourSplit[1]);
+                const endHourSplit = this.endHour.split(':');
+                const endHourNumber = parseInt(endHourSplit[0]);
+                const endMinutesNumber = parseInt(endHourSplit[1]);
+                const minDurationSplit = this.minDuration.split(':');
+                const minDurationHourNumber = parseInt(minDurationSplit[0]);
+                const minDurationMinutesNumber = parseInt(minDurationSplit[1]);
+                if(endHourNumber - startHourNumber < minDurationHourNumber) {
+                    return true;
+                } else if(endHourNumber - startHourNumber === minDurationHourNumber) {
+                    if(endMinutesNumber - startMinutesNumber < minDurationMinutesNumber) {
+                        return true;
+                    }
+                } else {
+                    return false;
+                }
+            },
+            setTimeModificationParams() {
+                if(this.isStartHourBeforeEndHour()){
+                    if(this.startHour === '00:00' || this.startHour === '0:0') {
+                        this.startHourMinus = true;
+                    } else{
+                        this.startHourMinus = false;
+                    }
+                    if(this.endHour === '23:45') {
+                        this.endHourPlus = true;
+                    } else{
+                        this.endHourPlus = false;
+                    }
+                    this.startHourPlus = false;
+                    this.endHourMinus = false;
+                    this.setTimeModificationParamsFromMinMaxDuration();
+                } else {
+                    this.startHourPlus = true;
+                    this.endHourMinus = true;
+                }
+            },
+            setTimeModificationParamsFromMinMaxDuration() {
+                if(this.isDurationOverMaxDuration()) {
+                    this.startHourPlus = true;
+                    this.endHourMinus = true;
+                } else {
+                    this.startHourPlus = false;
+                    this.endHourMinus = false;
+                }
+                if(this.isDurationUnderMinDuration()) {
+                    this.startHourMinus = true;
+                    this.endHourPlus = true;
+                } else {
+                    this.startHourMinus = false;
+                    this.endHourPlus = false;
+                }
             }
         },
         emits: ['start-hour', 'end-hour'],
         watch: {
             startHour: {
                 handler() {
-                    if(this.isStartHourBeforeEndHour()) {
-                        if(this.startHour === '00:00' || this.startHour === '0:0') {
-                            this.startHourMinus = true;
-                        } else{
-                            this.startHourMinus = false;
-                        }
-                        this.startHourPlus = false;
-                        this.endHourMinus = false;
-                    }
-                    else {
-                        this.startHourPlus = true;
-                        this.endHourMinus = true;
-                    }
+                    this.setTimeModificationParams();
                 },
                 immediate: true
             },
             endHour: {
                 handler() {
-                    if(this.isStartHourBeforeEndHour()) {
-                        if(this.endHour === '23:45') {
-                            this.endHourPlus = true;
-                        } else{
-                            this.endHourPlus = false;
-                        }
-                        this.endHourMinus = false;
-                        this.startHourPlus = false;
-                    }
-                    else {
-                        this.endHourMinus = true;
-                        this.startHourPlus = true;
-                    }
+                    this.setTimeModificationParams();
                 },
                 immediate: true
             }

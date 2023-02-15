@@ -26,19 +26,23 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
                 :times="useConsumptionStore().convertIndexesToTimes(consumption.startIndex, consumption.endIndex)"
                 :is-cost="true"/>
             <CardPopupModificationButtons
-                v-if="!modify"
+                v-if="!modify && canModify"
                 @modify="modifyConsumption"
                 @delete="deleteConsumption"/>
             <CardPopupAmountModifier
-                v-if="modify && consumption.equipment.type.isConsumptionEditable"
+                v-if="modify && canModifyConsumption"
                 :amount="consumption.amount"
-                :max-amount="2500"
-                :step-amount="100"
+                :max-amount="consumption.equipment.equipmentConsumptionParams.maxConsumption"
+                :min-amount="consumption.equipment.equipmentConsumptionParams.minConsumption"
+                :step-amount="consumption.equipment.equipmentConsumptionParams.step"
                 @amount="(value) => consumption.amount = value"/>
             <CardPopupTimeModifier
-                v-if="modify"
+                v-if="modify && canModifyDuration"
                 :start-hour="startHour"
                 :end-hour="endHour"
+                :max-duration="consumption.equipment.type.equipmentTypeDurationParams.maxDuration"
+                :min-duration="consumption.equipment.type.equipmentTypeDurationParams.minDuration"
+                :step-duration="consumption.equipment.type.equipmentTypeDurationParams.step"
                 :input-error="inputError"
                 @start-hour="(value) => startHour = value"
                 @end-hour="(value) => endHour = value"/>
@@ -74,6 +78,9 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
             return {
                 consumptionType: '' as string,
                 modify: false as boolean,
+                canModify: true as boolean,
+                canModifyConsumption: false as boolean,
+                canModifyDuration: true as boolean,
                 startHour: '' as string,
                 endHour: '' as string,
                 startIndex: 0 as number,
@@ -121,6 +128,11 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
                 },
                 immediate: true
             }
+        },
+        mounted() {
+            this.canModifyConsumption = this.consumption.equipment.equipmentConsumptionParams.isConsumptionEditable;
+            this.canModifyDuration = this.consumption.equipment.type.equipmentTypeDurationParams.isDurationEditable;
+            this.canModify = this.canModifyConsumption || this.canModifyDuration;
         }
     };
 </script>

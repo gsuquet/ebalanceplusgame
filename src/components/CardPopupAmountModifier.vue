@@ -1,7 +1,3 @@
-<script setup lang="ts">
-    import { useEnergyStore } from '../stores/EnergyStore';
-</script>
-
 <template>
     <div class="card-amount-modifier">
         <div class="amount-container field">
@@ -47,6 +43,10 @@
                 type: Number,
                 required: true
             },
+            minAmount: {
+                type: Number,
+                required: true
+            },
             stepAmount: {
                 type:Number,
                 required: true
@@ -57,8 +57,7 @@
                 inputErrorMin: false as boolean,
                 inputErrorMax: false as boolean,
                 amountPlus: false as boolean,
-                amountMinus: false as boolean,
-                energyStore: useEnergyStore()
+                amountMinus: false as boolean
             }
         },
         methods: {
@@ -68,10 +67,10 @@
                     this.$emit('amount', 0);
                 } else {
                     const newAmountNb = parseInt(newAmount);
-                    if(newAmountNb < 0) {
+                    if(newAmountNb < this.minAmount) {
                         this.inputErrorMin = true;
                         this.inputErrorMax = false;
-                    } else if(newAmountNb > this.energyStore.maxEnergy) {
+                    } else if(newAmountNb > this.maxAmount) {
                         this.inputErrorMax = true;
                         this.inputErrorMin = false;
                     } else {
@@ -87,7 +86,7 @@
                 }
             },
             removeStepAmountFromTotalAmount() {
-                if( this.amount - this.stepAmount >= 0){
+                if( this.amount - this.stepAmount >= this.minAmount){
                     this.$emit('amount', this.amount - this.stepAmount);
                 }
             }
@@ -101,7 +100,7 @@
                     } else {
                         this.amountPlus = false;
                     }
-                    if(newAmount <= 0) {
+                    if(newAmount <= this.minAmount) {
                         this.amountMinus = true;
                     } else {
                         this.amountMinus = false;
@@ -109,7 +108,7 @@
                     if (newAmount > this.maxAmount) {
                         this.inputErrorMax=true;
                         this.inputErrorMin = false;
-                    } else if (newAmount < 0) {
+                    } else if (newAmount < this.minAmount) {
                         this.inputErrorMax = false;
                         this.inputErrorMin = true;
                     } else {
