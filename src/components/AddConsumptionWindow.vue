@@ -24,17 +24,22 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
                 :times="{timeStart:startHour,timeEnd:endHour}"
                 :is-cost="equipment.equipmentCostParams.hasCost"/>
             <CardPopupAmountModifier
-                v-if="equipment.equipmentConsumptionParams.isConsumptionEditable"
+                v-if="canModifyConsumption"
                 :amount="consumption"
                 :max-amount="equipment.equipmentConsumptionParams.maxConsumption"
+                :min-amount="equipment.equipmentConsumptionParams.minConsumption"
                 :step-amount="equipment.equipmentConsumptionParams.step"
                 @amount="(value) => consumption = value"/>
             <CardPopupTimeModifier
+                v-if="canModifyDuration"
                 :start-hour="startHour"
                 :end-hour="endHour"
+                :max-duration="equipment.type.equipmentTypeDurationParams.maxDuration"
+                :min-duration="equipment.type.equipmentTypeDurationParams.minDuration"
+                :step-duration="equipment.type.equipmentTypeDurationParams.step"
                 :input-error="inputError"
-                @start-hour="setStartHour"
-                @end-hour="setEndHour"/>
+                @start-hour="(value) => setStartHour(value)"
+                @end-hour="(value) => setEndHour(value)"/>
             <CardPopupSaveButtons
                 @save="saveConsumption"
                 @cancel="closeAddPopup"/>
@@ -63,6 +68,8 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
         data() {
             return {
                 equipmentType: '' as string,
+                canModifyConsumption: false as boolean,
+                canModifyDuration: true as boolean,
                 startHour: '00:00' as string,
                 endHour: '23:45' as string,
                 startIndex: 0 as number,
@@ -111,6 +118,8 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
         mounted() {
             this.consumption = this.equipment.equipmentConsumptionParams.originalConsumption;
             this.price = this.equipment.equipmentCostParams.originalPrice;
+            this.canModifyConsumption = this.equipment.equipmentConsumptionParams.isConsumptionEditable;
+            this.canModifyDuration = this.equipment.type.equipmentTypeDurationParams.isDurationEditable;
         }
     }
 </script>

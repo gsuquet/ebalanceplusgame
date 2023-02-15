@@ -26,11 +26,15 @@
             <CardPopupAmountModifier 
                 :amount="amount"
                 :max-amount="maxAmount"
-                :step-amount="10"
+                :min-amount="equipment.equipmentConsumptionParams.minConsumption"
+                :step-amount="equipment.equipmentConsumptionParams.step"
                 @amount="(value) => updateConsumptionAmount(value)"/>
             <CardPopupTimeModifier 
                 :start-hour="startHour"
                 :end-hour="endHour"
+                :max-duration="equipment.type.equipmentTypeDurationParams.maxDuration"
+                :min-duration="equipment.type.equipmentTypeDurationParams.minDuration"
+                :step-duration="equipment.type.equipmentTypeDurationParams.step"
                 :input-error="inputError"
                 @start-hour="(value) => updateStartHour(value)"
                 @end-hour="(value) => updateEndHour(value)"/>
@@ -68,7 +72,8 @@
                     type:{
                         id:'batteryStorage',
                         names:[
-                            {lang:'',name:''}
+                            {lang:'fr',name:"Stocker de l'énergie"},
+                            {lang:'en',name:'Store energy'}
                         ],
                         icon_name:'mdi:battery-charging-100',
                         color: 'green',
@@ -141,10 +146,14 @@
                 } else {
                     this.inputError=true;
                 }
+            },
+            getRandomEquipmentIdString() {
+                return Math.random().toString(36).substr(2, 9);
             }
         },
         mounted() {
             this.updateMaxAmount();
+            this.equipment.id=this.getRandomEquipmentIdString();
         }
     }
 </script>
