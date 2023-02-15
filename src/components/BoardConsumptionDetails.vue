@@ -22,7 +22,7 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
                 @close-popup="closeDetails"/>
             <CardPopupContent
                 :consumption-amount="consumption.amount"
-                :equipment-price="consumption.equipment.price"
+                :equipment-price="consumption.price"
                 :times="useConsumptionStore().convertIndexesToTimes(consumption.startIndex, consumption.endIndex)"
                 :is-cost="true"/>
             <CardPopupModificationButtons
