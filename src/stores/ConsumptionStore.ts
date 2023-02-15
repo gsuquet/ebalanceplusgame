@@ -93,8 +93,7 @@ export const useConsumptionStore = defineStore({
                 }
             }
         },
-        addConsumption(indexStart: number, indexEnd: number, equipment: Equipment) {
-            let amount: number = equipment.consumption;
+        addConsumption(indexStart: number, indexEnd: number, equipment: Equipment, amount: number) {
             let color: string = equipment.type.color;
             let id: string = Math.floor(Math.random() * (1000000)).toString();
             let newConsumption: Consumption = { id:id,
@@ -127,6 +126,17 @@ export const useConsumptionStore = defineStore({
             let indexStart:number = this.convertTimeToIndex(timeStart);
             let indexEnd:number = this.convertTimeToIndex(timeEnd)-1;
             return {indexStart:indexStart, indexEnd:indexEnd};
+        },
+        checkTimeInput(timeStart:string, timeEnd:string) {
+            if(timeStart === '' || timeEnd === ''){
+                return false;
+            }
+            let indexStart:number = this.convertTimeToIndex(timeStart);
+            let indexEnd:number = this.convertTimeToIndex(timeEnd)-1;
+            if(indexStart > indexEnd || indexStart < 0 || indexEnd > 95){
+                return false;
+            }
+            return true;
         }
     },
 
