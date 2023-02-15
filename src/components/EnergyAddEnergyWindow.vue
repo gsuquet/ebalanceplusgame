@@ -72,7 +72,8 @@
                     type:{
                         id:'batteryStorage',
                         names:[
-                            {lang:'',name:''}
+                            {lang:'fr',name:"Stocker de l'énergie"},
+                            {lang:'en',name:'Store energy'}
                         ],
                         icon_name:'mdi:battery-charging-100',
                         color: 'green',
