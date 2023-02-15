@@ -1,14 +1,18 @@
 @import '../utilities/mixins.scss';
-#energy-menu{
+
+.market-icon-background {
+    
+}
+#menu{
     min-width: 25rem;
     padding: 0.5rem;
     border-radius: 15px;
     background-color: var(--theme-color-tertiary);
     margin-bottom: 0.5rem;
-    .energy-menu-header{
+    .menu-header{
         display: flex;
         align-items: center;
-        .energy-stored-percentage{
+        .stored-percentage{
             font-size: 1.5rem;
             font-weight: bold;
             margin-left: 5px;
@@ -44,7 +48,7 @@
             }
         }
     }
-    .energy-menu-figures{
+    .menu-figures{
         display: flex;
         justify-content: center;
         .figure{
@@ -58,7 +62,7 @@
             }
         }
     }
-    .energy-menu-buttons{
+    .menu-buttons{
         display: flex;
         justify-content: space-evenly;
         align-items: center;
@@ -68,7 +72,7 @@
             @include button-background-color-style;
         }
     }
-    .energy-menu-batteries{
+    .menu-batteries{
         display: flex;
         flex-direction: column;
         align-items: center;

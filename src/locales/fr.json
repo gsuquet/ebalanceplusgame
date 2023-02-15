@@ -22,7 +22,9 @@
         "buy": "Acheter",
         "sell": "Vendre",
         "create": "Créer",
-        "join": "Rejoindre"
+        "join": "Rejoindre",
+        "purchase":"achat",
+        "sale": "vente"
     },
     "input":{
         "start": "Début",
