@@ -30,17 +30,22 @@ export const useEnergyStore = defineStore({
                 this.maxEnergy -= this.batteryIndividualCapacity;
             }
         },
-        storeEnergy(storedEnergy: Consumption) {
-            this.storedEnergy += storedEnergy.amount;
-            this.totalStoredEnergyOverTheGame += storedEnergy.amount;
-            this.storedEnergyList.push(storedEnergy);
-            useConsumptionStore().addToConsumptionList(storedEnergy);
+        storeEnergy(energyToStore: Consumption) {
+            this.storedEnergyList.push(energyToStore);
+            this.setValuesFromStoredEnergyList();
         },
-        consumeEnergy(consumedEnergy: Consumption) {
-            this.storedEnergy -= consumedEnergy.amount;
-            this.totalUSedEnergyOverTheGame += consumedEnergy.amount;
-            this.storedEnergyList = this.storedEnergyList.filter((energy) => energy.id !== consumedEnergy.id);
-            useConsumptionStore().removeFromConsumptionList(consumedEnergy.id);
+        removeStoredEnergy(energyToRemove: Consumption) {
+            this.storedEnergyList = this.storedEnergyList.filter((energy) => energy.id !== energyToRemove.id);
+            this.setValuesFromStoredEnergyList();
+        },
+        setValuesFromStoredEnergyList() {
+            this.storedEnergy = 0;
+            this.totalStoredEnergyOverTheGame = 0;
+            this.storedEnergyList.forEach((energy) => {
+                const amountToStore = energy.amount*(energy.endIndex-energy.startIndex+1);
+                this.storedEnergy += amountToStore;
+                this.totalStoredEnergyOverTheGame += amountToStore;
+            });
         },
         clickOnEnergyIcon() {
             this.clickedEnergyIcon = this.clickedEnergyIcon ? false : true;
@@ -118,6 +123,13 @@ export const useEnergyStore = defineStore({
                     price:0
                 }
             }
+        },
+        getMaximumEnergyStorageWithoutConsumption:(state) => (consumptionId: string) => {
+            const consumption = state.storedEnergyList.find((consumption) => consumption.id === consumptionId);
+            if( consumption ){
+                return state.maxEnergy - state.storedEnergy + consumption.amount*(consumption.endIndex-consumption.startIndex+1);
+            }
+            return state.maxEnergy;
         }
     },
 });

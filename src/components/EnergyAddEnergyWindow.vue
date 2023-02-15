@@ -145,10 +145,14 @@
                 } else {
                     this.inputError=true;
                 }
+            },
+            getRandomEquipmentIdString() {
+                return Math.random().toString(36).substr(2, 9);
             }
         },
         mounted() {
             this.updateMaxAmount();
+            this.equipment.id=this.getRandomEquipmentIdString();
         }
     }
 </script>

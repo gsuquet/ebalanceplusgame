@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { useGameParametersStore } from './GameParametersStore';
+import { useEnergyStore } from './EnergyStore';
 import { useBoardStore } from './BoardStore';
 import { Consumption, ConsumptionCurve } from '../types/Consumption';
 import { Equipment } from '../types/Equipment';
@@ -35,6 +36,9 @@ export const useConsumptionStore = defineStore({
             }
             this.setListOfOverConsumption();
             useBoardStore().setTilesFromConsumptionList();
+            if(newConsumption.equipment.type.isBattery){
+                useEnergyStore().storeEnergy(newConsumption);
+            }
         },
         removeFromConsumptionList(consumptionId:string) {
             const consumptionToRemove = this.consumptionList.find(consumption => consumption.id === consumptionId);
@@ -45,6 +49,9 @@ export const useConsumptionStore = defineStore({
                 this.consumptionList = this.consumptionList.filter(consumption => consumption.id !== consumptionId);
                 this.setListOfOverConsumption();
                 useBoardStore().setTilesFromConsumptionList();
+                if(consumptionToRemove.equipment.type.isBattery){
+                    useEnergyStore().removeStoredEnergy(consumptionToRemove);
+                }
             }
         },
         modifyConsumptionHours(consumptionId:string, startHour:string, endHour:string) {
@@ -61,6 +68,9 @@ export const useConsumptionStore = defineStore({
                 }
                 this.setListOfOverConsumption();
                 useBoardStore().setTilesFromConsumptionList();
+                if(consumptionToModify.equipment.type.isBattery){
+                    useEnergyStore().setValuesFromStoredEnergyList();
+                }
             }
         },
         modifyConsumptionAmount(consumptionId:string, amount:number) {
@@ -75,6 +85,9 @@ export const useConsumptionStore = defineStore({
                 }
                 this.setListOfOverConsumption();
                 useBoardStore().setTilesFromConsumptionList();
+                if(consumptionToModify.equipment.type.isBattery){
+                    useEnergyStore().setValuesFromStoredEnergyList();
+                }
             }
         },
         addToConsumptionCurve(index:number, value:number) {

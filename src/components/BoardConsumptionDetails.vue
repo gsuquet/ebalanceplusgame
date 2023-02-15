@@ -143,7 +143,8 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
                 if(!this.consumption.equipment.type.isBattery) {
                     this.maxConsumptionAmount = this.consumption.equipment.equipmentConsumptionParams.maxConsumption;
                 } else {
-                    this.maxConsumptionAmount = (this.energyStore.maxEnergy-this.energyStore.storedEnergy)/((this.endIndex-this.startIndex)+1)
+                    this.energyStore.setValuesFromStoredEnergyList();
+                    this.maxConsumptionAmount = this.energyStore.getMaximumEnergyStorageWithoutConsumption(this.consumption.id)/((this.endIndex-this.startIndex)+1)
                 }
             },
             checkAmountIsUnderMax() {
