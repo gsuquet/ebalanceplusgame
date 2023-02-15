@@ -20,7 +20,7 @@
                 @close-popup="closePopup"/>
             <CardPopupContent 
                 :consumption-amount="amount"
-                :equipment-price="equipment.price"
+                :equipment-price="price"
                 :times="{timeStart:startHour,timeEnd:endHour}"
                 :is-cost="false"/>
             <CardPopupAmountModifier 
@@ -61,22 +61,41 @@
                 endIndex: 0 as number,
                 maxAmount: 10 as number,
                 amount: 0 as number,
+                price: 0,
                 equipment: {
-                    id: 0,
+                    id: '0',
+                    energy_class: '',
                     type:{
                         id:'batteryStorage',
                         names:[
                             {lang:'',name:''}
                         ],
                         icon_name:'mdi:battery-charging-100',
-                        color: 'green'
+                        color: 'green',
+                        isBattery: true,
+                        equipmentTypeDurationParams:{
+                            isDurationEditable: true,
+                            originalDuration: "00:15",
+                            step: "00:15",
+                            minDuration: "00:15",
+                            maxDuration: "23:45"
+                        }
                     },
-                    energy_class: '',
-                    consumption: 0,
-                    points: 0,
-                    price: 0,
-                    point_gap: [0,0],
-                    price_gap: [0,0]
+                    equipmentCostParams:{
+                        originalPrice: 0,
+                        hasCost: false,
+                        isCostEditable: false,
+                        step: 0,
+                        minCost: 0,
+                        maxCost: 0
+                    },
+                    equipmentConsumptionParams:{
+                        originalConsumption: 0,
+                        isConsumptionEditable: true,
+                        step: 10,
+                        minConsumption: 0,
+                        maxConsumption: 200
+                    },
                 } as Equipment,
             }
         },
@@ -116,7 +135,7 @@
                 if(this.consumptionStore.checkTimeInput(this.startHour, this.endHour)) {
                     this.inputError=false;
                     if (this.checkAmountIsUnderMax()) {
-                        this.consumptionStore.addConsumption(this.startIndex, this.endIndex, this.equipment, this.amount);
+                        this.consumptionStore.addConsumption(this.startIndex, this.endIndex, this.equipment, this.amount, this.price);
                         this.energyStore.clickOnStoreEnergy();
                     }
                 } else {

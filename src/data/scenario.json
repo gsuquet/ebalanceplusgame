@@ -33,35 +33,63 @@
                 "id":"dishwasher",
                 "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
                 "icon_name":"mdi:dishwasher",
-                "color":"#9A7751"
+                "color":"#9A7751",
+                "isBattery": false,
+                "equipmentTypeDurationParams": {
+                    "isDurationEditable": true,
+                    "originalDuration": "00:15",
+                    "step": "00:15",
+                    "minDuration": "00:15",
+                    "maxDuration": "23:45"
+                }
             },
             {
                 "id":"washingMachine",
                 "names":[{"name":"Machine à laver","lang":"fr"},{"name":"Washing-machine","lang":"en"}],
                 "icon_name":"mdi:washing-machine",
-                "color":"#00447C"
+                "color":"#00447C",
+                "isBattery": false,
+                "equipmentTypeDurationParams": {
+                    "isDurationEditable": true,
+                    "originalDuration": "00:15",
+                    "step": "00:15",
+                    "minDuration": "00:15",
+                    "maxDuration": "23:45"
+                }
             }
         ],
         "initial_consumption": [
             {
                 "id":"0",
-                "startIndex": 0,
-                "endIndex": 0,
-                "amount": 0,
-                "color": "",
-                "equipment": 
-                {
-                    "id":0,
-                    "type":{
-                        "id":"dishwasher",
-                        "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
-                        "icon_name":"mdi:dishwasher",
-                        "color":"#9A7751"
-                    },
-                    "energy_class": "A",
-                    "consumption": 1300,
-                    "points": 500,
-                    "price": 500
+                "energy_class": "A",
+                "type":{
+                    "id":"dishwasher",
+                    "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
+                    "icon_name":"mdi:dishwasher",
+                    "color":"#9A7751",
+                    "isBattery": false,
+                    "equipmentTypeDurationParams": {
+                        "isDurationEditable": true,
+                        "originalDuration": "00:15",
+                        "step": "00:15",
+                        "minDuration": "00:15",
+                        "maxDuration": "23:45"
+                    }
+                },
+                "equipmentCostParams": {
+                    "originalPrice": 500,
+                    "hasCost": true,
+                    "isCostEditable": false,
+                    "step": 10,
+                    "minCost": 50,
+                    "maxCost": 500
+                },
+                "equipmentConsumptionParams": {
+                    "originalConsumption": 1300,
+                    "isConsumptionEditable": false,
+                    "step": 100,
+                    "minConsumption": 1300,
+                    "maxConsumption": 2300
                 }
             }
         ]
