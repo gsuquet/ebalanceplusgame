@@ -6,7 +6,7 @@
                 <button
                     class="btn remove"
                     :class="{'disabled' : startHourMinus}"
-                    @click="remove15MinutesFromStartHour">
+                    @click="removeStepAmountFromStartHour">
                     -
                 </button>
                 <div class="input-container" :class="{'input-error' : inputError || inputErrorStart}">
@@ -21,18 +21,18 @@
                 <button
                     class="btn add"
                     :class="{'disabled' : startHourPlus}"
-                    @click="add15MinutesToStartHour">
+                    @click="addStepAmountToStartHour">
                     +
                 </button>
             </div>
         </div>
-        <div class="hour-container end-hour-container">
+        <div class="hour-container end-hour-container" v-if="isDurationLengthEditable">
             <p>{{ $t("input.end") }}</p>
             <div class="hour-modifier-container">
                 <button
                     class="btn remove"
                     :class="{'disabled' : endHourMinus}"
-                    @click="remove15MinutesFromEndHour">
+                    @click="removeStepAmountFromEndHour">
                     -
                 </button>
                 <div class="input-container" :class="{'input-error' : inputError || inputErrorEnd}">
@@ -47,7 +47,7 @@
                 <button
                     class="btn add"
                     :class="{'disabled' : endHourPlus}"
-                    @click="add15MinutesToEndHour">
+                    @click="addStepAmountToEndHour">
                     +
                 </button>
             </div>
@@ -83,6 +83,14 @@
                 type: String,
                 required: true
             },
+            originalDuration: {
+                type: String,
+                required: true
+            },
+            isDurationLengthEditable: {
+                type: Boolean,
+                required: true
+            },
             inputError: {
                 type: Boolean,
                 required: true
@@ -106,6 +114,7 @@
                 } else {
                     this.inputErrorStart = false;
                     this.$emit('start-hour', newStartHour);
+                    this.updateEndHourIfStartHourChangedAndDurationLengthIsNotEditable(newStartHour);
                 }
             },
             updateEndHour(event: Event) {
@@ -117,88 +126,123 @@
                     this.$emit('end-hour', newEndHour);
                 }
             },
-            add15MinutesToStartHour() {
+            addStepAmountToStartHour() {
                 if(!this.startHourPlus) {
-                    const newStartHour = this.add15MinutesToHour(this.startHour);
+                    const newStartHour = this.addTimeAmountToHour(this.startHour, this.stepDuration);
                     this.$emit('start-hour', newStartHour);
+                    this.updateEndHourIfStartHourChangedAndDurationLengthIsNotEditable(newStartHour);
                 }
             },
-            add15MinutesToEndHour() {
+            addStepAmountToEndHour() {
                 if(!this.endHourPlus) {
-                    const newEndHour = this.add15MinutesToHour(this.endHour);
+                    const newEndHour = this.addTimeAmountToHour(this.endHour, this.stepDuration);
                     this.$emit('end-hour', newEndHour);
                 }
             },
-            remove15MinutesFromStartHour() {
+            removeStepAmountFromStartHour() {
                 if(!this.startHourMinus) {
-                    const newStartHour = this.remove15MinutesFromHour(this.startHour);
+                    const newStartHour = this.removeTimeAmountFromHour(this.startHour, this.stepDuration);
                     this.$emit('start-hour', newStartHour);
+                    this.updateEndHourIfStartHourChangedAndDurationLengthIsNotEditable(newStartHour);
                 }
             },
-            remove15MinutesFromEndHour() {
+            removeStepAmountFromEndHour() {
                 if(!this.endHourMinus) {
-                    const newEndHour = this.remove15MinutesFromHour(this.endHour);
+                    const newEndHour = this.removeTimeAmountFromHour(this.endHour, this.stepDuration);
                     this.$emit('end-hour', newEndHour);
                 }
             },
-            add15MinutesToHour(hour: string) {
-                const hourSplit = hour.split(':');
-                const hourNumber = parseInt(hourSplit[0]);
-                const minutesNumber = parseInt(hourSplit[1]);
-                if(hourNumber === 23 && minutesNumber === 45) {
-                    return '23:45';
+            updateEndHourIfStartHourChangedAndDurationLengthIsNotEditable(newStartHour: string) {
+                if(!this.isDurationLengthEditable) {
+                    const newEndHour = this.addTimeAmountToHour(newStartHour, this.originalDuration);
+                    this.$emit('end-hour', newEndHour);
                 }
-                if(minutesNumber === 45) {
-                    if(hourNumber + 1 < 10)
-                        return `0${hourNumber + 1}:00`;
-                    else
-                        return `${hourNumber + 1}:00`;
+            },
+            addTimeAmountToHour(hour: string, timeAmount: string) {
+                const hourNumbers = this.getHourAndMinutesNumbersFromHourString(hour);
+                const timeAmountNumbers = this.getHourAndMinutesNumbersFromHourString(timeAmount);
+                let newHourNumber = hourNumbers.hourNumber + timeAmountNumbers.hourNumber;
+                let newMinutesNumber = hourNumbers.minutesNumber + timeAmountNumbers.minutesNumber;
+                if(newMinutesNumber >= 60) {
+                    newHourNumber += 1;
+                    newMinutesNumber -= 60;
+                }
+                if(newHourNumber >= 24) {
+                    newHourNumber = 23;
+                    newMinutesNumber = 45;
+                }
+                return this.getHourStringFromHourAndMinutesNumbers(newHourNumber, newMinutesNumber);
+            },
+            removeTimeAmountFromHour(hour: string, timeAmount: string) {
+                const hourNumbers = this.getHourAndMinutesNumbersFromHourString(hour);
+                const timeAmountNumbers = this.getHourAndMinutesNumbersFromHourString(timeAmount);
+                let newHourNumber = hourNumbers.hourNumber - timeAmountNumbers.hourNumber;
+                let newMinutesNumber = hourNumbers.minutesNumber - timeAmountNumbers.minutesNumber;
+                if(newMinutesNumber < 0) {
+                    newHourNumber -= 1;
+                    newMinutesNumber += 60;
+                }
+                if(newHourNumber < 0) {
+                    newHourNumber = 0;
+                }
+                return this.getHourStringFromHourAndMinutesNumbers(newHourNumber, newMinutesNumber);
+            },
+            getHourStringFromHourAndMinutesNumbers(hourNumber: number, minutesNumber: number) {
+                let hourString = '';
+                let minutesString = '';
+                if(hourNumber < 10) {
+                    hourString = `0${hourNumber}`;
                 } else {
-                    if(hourNumber < 10)
-                        return `0${hourNumber}:${minutesNumber + 15}`;
-                    else
-                    return `${hourNumber}:${minutesNumber + 15}`;
+                    hourString = `${hourNumber}`;
                 }
+                if(minutesNumber < 10) {
+                    minutesString = `0${minutesNumber}`;
+                } else {
+                    minutesString = `${minutesNumber}`;
+                }
+                return `${hourString}:${minutesString}`;
             },
-            remove15MinutesFromHour(hour: string) {
-                const hourSplit = hour.split(':');
+            getHourAndMinutesNumbersFromHourString(hourString: string) {
+                const hourSplit = hourString.split(':');
                 const hourNumber = parseInt(hourSplit[0]);
                 const minutesNumber = parseInt(hourSplit[1]);
-                if(hourNumber === 0 && minutesNumber === 0) {
-                    return '00:00';
-                }
-                if(minutesNumber === 0) {
-                    if(hourNumber -1 < 10)
-                        return `0${hourNumber - 1}:45`;
-                    else
-                        return `${hourNumber - 1}:45`;
-                } else if (minutesNumber === 15) {
-                    if(hourNumber < 10)
-                        return `0${hourNumber}:00`;
-                    else
-                        return `${hourNumber}:00`;
-                }
-                else {
-                    if(hourNumber < 10)
-                        return `0${hourNumber}:${minutesNumber - 15}`;
-                    else
-                        return `${hourNumber}:${minutesNumber - 15}`;
+                return {hourNumber, minutesNumber};
+            },
+            compareTwoHours(hour1: string, hour2: string) {
+                const hour1Numbers = this.getHourAndMinutesNumbersFromHourString(hour1);
+                const hour2Numbers = this.getHourAndMinutesNumbersFromHourString(hour2);
+                if(hour1Numbers.hourNumber < hour2Numbers.hourNumber) {
+                    return -1;
+                } else if(hour1Numbers.hourNumber > hour2Numbers.hourNumber) {
+                    return 1;
+                } else {
+                    if(hour1Numbers.minutesNumber < hour2Numbers.minutesNumber) {
+                        return -1;
+                    } else if(hour1Numbers.minutesNumber > hour2Numbers.minutesNumber) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
                 }
             },
-            isStartHourBeforeEndHour() {
+            getStartAndEndHourNumbers() {
                 const startHourSplit = this.startHour.split(':');
                 const startHourNumber = parseInt(startHourSplit[0]);
                 const startMinutesNumber = parseInt(startHourSplit[1]);
                 const endHourSplit = this.endHour.split(':');
                 const endHourNumber = parseInt(endHourSplit[0]);
                 const endMinutesNumber = parseInt(endHourSplit[1]);
-                if(startHourNumber < endHourNumber) {
-                    if( startHourNumber === endHourNumber - 1 && startMinutesNumber === 45 && endMinutesNumber === 0) {
+                return {startHourNumber, startMinutesNumber, endHourNumber, endMinutesNumber};
+            },
+            isStartHourBeforeEndHour() {
+                const numbers = this.getStartAndEndHourNumbers();
+                if(numbers.startHourNumber < numbers.endHourNumber) {
+                    if( numbers.startHourNumber === numbers.endHourNumber - 1 && numbers.startMinutesNumber === 45 && numbers.endMinutesNumber === 0) {
                         return false;
                     }
                     return true;
-                } else if(startHourNumber === endHourNumber) {
-                    if(startMinutesNumber < endMinutesNumber-15) {
+                } else if(numbers.startHourNumber === numbers.endHourNumber) {
+                    if(numbers.startMinutesNumber < numbers.endMinutesNumber-15) {
                         return true;
                     }
                 } else {
@@ -206,19 +250,14 @@
                 }
             },
             isDurationOverMaxDuration() {
-                const startHourSplit = this.startHour.split(':');
-                const startHourNumber = parseInt(startHourSplit[0]);
-                const startMinutesNumber = parseInt(startHourSplit[1]);
-                const endHourSplit = this.endHour.split(':');
-                const endHourNumber = parseInt(endHourSplit[0]);
-                const endMinutesNumber = parseInt(endHourSplit[1]);
+                const durationNumbers = this.getStartAndEndHourNumbers();
                 const maxDurationSplit = this.maxDuration.split(':');
                 const maxDurationHourNumber = parseInt(maxDurationSplit[0]);
                 const maxDurationMinutesNumber = parseInt(maxDurationSplit[1]);
-                if(endHourNumber - startHourNumber > maxDurationHourNumber) {
+                if(durationNumbers.endHourNumber - durationNumbers.startHourNumber > maxDurationHourNumber) {
                     return true;
-                } else if(endHourNumber - startHourNumber === maxDurationHourNumber) {
-                    if(endMinutesNumber - startMinutesNumber > maxDurationMinutesNumber) {
+                } else if(durationNumbers.endHourNumber - durationNumbers.startHourNumber === maxDurationHourNumber) {
+                    if(durationNumbers.endMinutesNumber - durationNumbers.startMinutesNumber > maxDurationMinutesNumber) {
                         return true;
                     }
                 } else {
@@ -226,19 +265,14 @@
                 }
             },
             isDurationUnderMinDuration() {
-                const startHourSplit = this.startHour.split(':');
-                const startHourNumber = parseInt(startHourSplit[0]);
-                const startMinutesNumber = parseInt(startHourSplit[1]);
-                const endHourSplit = this.endHour.split(':');
-                const endHourNumber = parseInt(endHourSplit[0]);
-                const endMinutesNumber = parseInt(endHourSplit[1]);
+                const durationNumbers = this.getStartAndEndHourNumbers();
                 const minDurationSplit = this.minDuration.split(':');
                 const minDurationHourNumber = parseInt(minDurationSplit[0]);
                 const minDurationMinutesNumber = parseInt(minDurationSplit[1]);
-                if(endHourNumber - startHourNumber < minDurationHourNumber) {
+                if(durationNumbers.endHourNumber - durationNumbers.startHourNumber < minDurationHourNumber) {
                     return true;
-                } else if(endHourNumber - startHourNumber === minDurationHourNumber) {
-                    if(endMinutesNumber - startMinutesNumber < minDurationMinutesNumber) {
+                } else if(durationNumbers.endHourNumber - durationNumbers.startHourNumber === minDurationHourNumber) {
+                    if(durationNumbers.endMinutesNumber - durationNumbers.startMinutesNumber < minDurationMinutesNumber) {
                         return true;
                     }
                 } else {
@@ -261,6 +295,21 @@
                 } else {
                     this.startHourPlus = true;
                     this.endHourMinus = true;
+                }
+                this.setTimeModificationParamsIfDurationLengthIsNotEditable();
+            },
+            setTimeModificationParamsIfDurationLengthIsNotEditable() {
+                if(!this.isDurationLengthEditable){
+                    if(this.addTimeAmountToHour(this.startHour, this.stepDuration)==="23:45") {
+                        this.startHourPlus = true;
+                    } else {
+                        this.startHourPlus = false;
+                    }
+                    if(this.startHour === '00:00') {
+                        this.startHourMinus = true;
+                    } else{
+                        this.startHourMinus = false;
+                    }
                 }
             },
             setTimeModificationParamsFromMinMaxDuration() {

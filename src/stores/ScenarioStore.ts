@@ -25,6 +25,7 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
                     isBattery: false,
                     equipmentTypeDurationParams: {
                         isDurationEditable: true,
+                        isDurationLengthEditable: true,
                         originalDuration: '00:15',
                         step: '00:15',
                         minDuration: '00:15',

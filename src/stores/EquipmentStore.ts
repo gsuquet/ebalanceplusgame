@@ -18,6 +18,7 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
                     isBattery: false,
                     equipmentTypeDurationParams: {
                         isDurationEditable: true,
+                        isDurationLengthEditable: true,
                         originalDuration: '00:15',
                         step: '00:15',
                         minDuration: '00:15',

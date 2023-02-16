@@ -44,6 +44,8 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
                 :max-duration="consumption.equipment.type.equipmentTypeDurationParams.maxDuration"
                 :min-duration="consumption.equipment.type.equipmentTypeDurationParams.minDuration"
                 :step-duration="consumption.equipment.type.equipmentTypeDurationParams.step"
+                :original-duration="consumption.equipment.type.equipmentTypeDurationParams.originalDuration"
+                :is-duration-length-editable="consumption.equipment.type.equipmentTypeDurationParams.isDurationLengthEditable"
                 :input-error="inputError"
                 @start-hour="(value) => updateStartHour(value)"
                 @end-hour="(value) => updateEndHour(value)"/>
