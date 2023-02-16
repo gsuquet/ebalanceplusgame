@@ -19,22 +19,27 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
                 :equipment-color="equipment.type.color"
                 @close-popup="closeAddPopup"/>
             <CardPopupContent 
-                :consumption-amount="equipment.consumption"
-                :equipment-price="equipment.price"
+                :consumption-amount="consumption"
+                :equipment-price="price"
                 :times="{timeStart:startHour,timeEnd:endHour}"
-                :is-cost="equipment.type.hasCost"/>
+                :is-cost="equipment.equipmentCostParams.hasCost"/>
             <CardPopupAmountModifier
-                v-if="equipment.type.isConsumptionEditable"
-                :amount="equipment.consumption"
-                :max-amount="2500"
-                :step-amount="100"
-                @amount="(value) => equipment.consumption = value"/>
+                v-if="canModifyConsumption"
+                :amount="consumption"
+                :max-amount="equipment.equipmentConsumptionParams.maxConsumption"
+                :min-amount="equipment.equipmentConsumptionParams.minConsumption"
+                :step-amount="equipment.equipmentConsumptionParams.step"
+                @amount="(value) => consumption = value"/>
             <CardPopupTimeModifier
+                v-if="canModifyDuration"
                 :start-hour="startHour"
                 :end-hour="endHour"
+                :max-duration="equipment.type.equipmentTypeDurationParams.maxDuration"
+                :min-duration="equipment.type.equipmentTypeDurationParams.minDuration"
+                :step-duration="equipment.type.equipmentTypeDurationParams.step"
                 :input-error="inputError"
-                @start-hour="setStartHour"
-                @end-hour="setEndHour"/>
+                @start-hour="(value) => setStartHour(value)"
+                @end-hour="(value) => setEndHour(value)"/>
             <CardPopupSaveButtons
                 @save="saveConsumption"
                 @cancel="closeAddPopup"/>
@@ -63,10 +68,14 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
         data() {
             return {
                 equipmentType: '' as string,
+                canModifyConsumption: false as boolean,
+                canModifyDuration: true as boolean,
                 startHour: '00:00' as string,
                 endHour: '23:45' as string,
                 startIndex: 0 as number,
                 endIndex: 0 as number,
+                consumption: 0 as number,
+                price: 0 as number,
                 inputError: false as boolean
             }
         },
@@ -87,19 +96,15 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
             },
             saveConsumption() {
                 this.setStartAndEndIndex();
-                if(this.startHour === '' || this.endHour === '') {
+                if(consumptionStore.checkTimeInput(this.startHour, this.endHour)) {
+                    consumptionStore.addConsumption(
+                        this.startIndex, this.endIndex, this.equipment, this.consumption, this.price
+                    );
+                    equipmentStore.clickedEquipment = null;
+                    this.inputError = false;
+                } else {
                     this.inputError = true;
-                    return;
                 }
-                if(this.startIndex > this.endIndex) {
-                    this.inputError = true;
-                    return;
-                }
-                consumptionStore.addConsumption(
-                    this.startIndex, this.endIndex, this.equipment
-                );
-                equipmentStore.clickedEquipment = null;
-                this.inputError = false;
             }
         },
         watch: {
@@ -109,6 +114,12 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
                 },
                 immediate: true
             }
+        },
+        mounted() {
+            this.consumption = this.equipment.equipmentConsumptionParams.originalConsumption;
+            this.price = this.equipment.equipmentCostParams.originalPrice;
+            this.canModifyConsumption = this.equipment.equipmentConsumptionParams.isConsumptionEditable;
+            this.canModifyDuration = this.equipment.type.equipmentTypeDurationParams.isDurationEditable;
         }
     }
 </script>
