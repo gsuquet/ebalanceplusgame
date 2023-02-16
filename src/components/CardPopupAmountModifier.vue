@@ -2,7 +2,9 @@
     <div class="card-amount-modifier">
         <div class="amount-container">
             <p>{{ $t("input.consumption") }}</p>
-            <div class="amount-modifier-container">
+            <div
+                class="amount-modifier-container"
+                :class="{'input-error' : inputErrorMin || inputErrorMax}">
                 <button
                     class="btn remove"
                     :class="{'disabled' : amountMinus}"
