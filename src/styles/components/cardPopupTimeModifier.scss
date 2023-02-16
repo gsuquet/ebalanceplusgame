@@ -50,5 +50,13 @@
                 }
             }
         }
+        .input-error{
+            border: 1px solid var(--theme-color-error);
+            .input-container{
+                .input{
+                    color: var(--theme-color-error);
+                }
+            }
+        }
     }
 }

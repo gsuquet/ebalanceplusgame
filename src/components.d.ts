@@ -30,7 +30,6 @@ declare module '@vue/runtime-core' {
     MarketMenu: typeof import('./components/MarketMenu.vue')['default']
     ProductionList: typeof import('./components/ProductionList.vue')['default']
     ProductionResume: typeof import('./components/ProductionResume.vue')['default']
-    PurchaseSaleMenu: typeof import('./components/PurchaseSaleMenu.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ScenarioList: typeof import('./components/ScenarioList.vue')['default']

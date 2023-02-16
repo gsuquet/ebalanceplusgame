@@ -66,6 +66,7 @@ $theme-color-background-secondary:--theme-color-background-secondary;
 $theme-color-text:--theme-color-text;
 $theme-color-text-secondary:--theme-color-text-secondary;
 $theme-color-btn-close:--theme-color-btn-close;
+$theme-color-error:--theme-color-error;
 
 $theme-font-family: --theme-font-family;
 $theme-font-size: --theme-font-size;
@@ -85,6 +86,7 @@ $theme-map-light: (
     $theme-color-text: $color-black-200,
     $theme-color-text-secondary: $color-white-200,
     $theme-color-btn-close: $color-red-7D0A00-50,
+    $theme-color-error: $color-red-7D0A00-50,
     $theme-font-family: $font-family-roboto,
     $theme-font-size: $font-size-1,
     $theme-font-weight: $font-weight-bold,
@@ -103,6 +105,7 @@ $theme-map-dark: (
     $theme-color-text: $color-white-200,
     $theme-color-text-secondary: $color-black-200,
     $theme-color-btn-close: $color-red-7D0A00-50,
+    $theme-color-error: $color-red-7D0A00-50,
     $theme-font-family: $font-family-roboto,
     $theme-font-size: $font-size-1,
     $theme-font-weight: $font-weight-bold,

@@ -2,14 +2,14 @@
     <div class="card-time-modifier">
         <div class="hour-container start-hour-container">
             <p>{{ $t("input.start") }}</p>
-            <div class="hour-modifier-container">
+            <div class="hour-modifier-container" :class="{'input-error' : inputError || inputErrorStart}">
                 <button
                     class="btn remove"
                     :class="{'disabled' : startHourMinus}"
                     @click="removeStepAmountFromStartHour">
                     -
                 </button>
-                <div class="input-container" :class="{'input-error' : inputError || inputErrorStart}">
+                <div class="input-container">
                     <input
                         type="time"
                         class="input-start input"
@@ -28,14 +28,14 @@
         </div>
         <div class="hour-container end-hour-container" v-if="isDurationLengthEditable">
             <p>{{ $t("input.end") }}</p>
-            <div class="hour-modifier-container">
+            <div class="hour-modifier-container" :class="{'input-error' : inputError || inputErrorEnd}">
                 <button
                     class="btn remove"
                     :class="{'disabled' : endHourMinus}"
                     @click="removeStepAmountFromEndHour">
                     -
                 </button>
-                <div class="input-container" :class="{'input-error' : inputError || inputErrorEnd}">
+                <div class="input-container">
                     <input
                         type="time"
                         class="input-end input"
@@ -111,8 +111,11 @@
                 const newStartHour = (event.target as HTMLInputElement).value;
                 if(newStartHour === '' || newStartHour === null) {
                     this.inputErrorStart = true;
+                } else if(!this.isStartHourBeforeEndHour(newStartHour, this.endHour)) {
+                    this.inputErrorStart = true;
                 } else {
                     this.inputErrorStart = false;
+                    this.inputErrorEnd = false;
                     this.$emit('start-hour', newStartHour);
                     this.updateEndHourIfStartHourChangedAndDurationLengthIsNotEditable(newStartHour);
                 }
@@ -121,8 +124,12 @@
                 const newEndHour = (event.target as HTMLInputElement).value;
                 if(newEndHour === '' || newEndHour === null) {
                     this.inputErrorEnd = true;
+                } else if(!this.isStartHourBeforeEndHour(this.startHour, newEndHour)) {
+                    this.inputErrorEnd = true;
+                    console.log('end hour is not before start hour');
                 } else {
                     this.inputErrorEnd = false;
+                    this.inputErrorStart = false;
                     this.$emit('end-hour', newEndHour);
                 }
             },
@@ -234,17 +241,9 @@
                 const endMinutesNumber = parseInt(endHourSplit[1]);
                 return {startHourNumber, startMinutesNumber, endHourNumber, endMinutesNumber};
             },
-            isStartHourBeforeEndHour() {
-                const numbers = this.getStartAndEndHourNumbers();
-                if(numbers.startHourNumber < numbers.endHourNumber) {
-                    if( numbers.startHourNumber === numbers.endHourNumber - 1 && numbers.startMinutesNumber === 45 && numbers.endMinutesNumber === 0) {
-                        return false;
-                    }
+            isStartHourBeforeEndHour(startHour: string, endHour: string) {
+                if(this.compareTwoHours(this.addTimeAmountToHour(startHour, this.stepDuration), endHour) === -1) {
                     return true;
-                } else if(numbers.startHourNumber === numbers.endHourNumber) {
-                    if(numbers.startMinutesNumber < numbers.endMinutesNumber-15) {
-                        return true;
-                    }
                 } else {
                     return false;
                 }
@@ -280,7 +279,9 @@
                 }
             },
             setTimeModificationParams() {
-                if(this.isStartHourBeforeEndHour()){
+                if(this.isStartHourBeforeEndHour(this.startHour, this.endHour)){
+                    this.inputErrorStart = false;
+                    this.inputErrorEnd = false;
                     this.setTimeModificationParamsFromMinMaxDuration();
                     if(this.startHour === '00:00' || this.startHour === '0:0') {
                         this.startHourMinus = true;
@@ -300,7 +301,7 @@
             },
             setTimeModificationParamsIfDurationLengthIsNotEditable() {
                 if(!this.isDurationLengthEditable){
-                    if(this.addTimeAmountToHour(this.startHour, this.stepDuration)==="23:45") {
+                    if(this.addTimeAmountToHour(this.startHour, this.addTimeAmountToHour(this.originalDuration,this.stepDuration))==="23:45") {
                         this.startHourPlus = true;
                     } else {
                         this.startHourPlus = false;
