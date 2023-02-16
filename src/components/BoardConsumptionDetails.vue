@@ -14,7 +14,7 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
 
 <template>
     <section id="board-consumption-details" class="popup-window">
-        <div class="color-banner" :style="{'background-color':consumption.color}"/>
+        <div class="color-banner" :style="{'background-color':consumption.equipment.type.color}"/>
         <div class="card">
             <CardPopupHeader
                 :equipment-icon="consumption.equipment.type.icon_name"
@@ -25,7 +25,7 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
                 :consumption-amount="consumption.amount"
                 :equipment-price="consumption.price"
                 :times="useConsumptionStore().convertIndexesToTimes(consumption.startIndex, consumption.endIndex)"
-                :is-cost="true"/>
+                :is-cost="consumption.equipment.equipmentCostParams.hasCost"/>
             <CardPopupModificationButtons
                 v-if="!modify && canModify"
                 @modify="modifyConsumption"

@@ -24,7 +24,8 @@
         "create": "Créer",
         "join": "Rejoindre",
         "purchase":"achat",
-        "sale": "vente"
+        "sale": "vente",
+        "total": "Total"
     },
     "input":{
         "start": "Début",
