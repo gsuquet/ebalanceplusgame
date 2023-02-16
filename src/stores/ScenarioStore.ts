@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
-import { Consumption } from "../stores/ConsumptionStore"
-import { EquipmentType, EquipmentTypeLocale, EquipmentTypeName } from "../stores/EquipmentStore";
+import { Scenario, ScenarioLocale, InternatObject } from '../types/Scenario';
+import { EquipmentType, EquipmentTypeLocale } from "../types/EquipmentType";
+import { Consumption } from "../types/Consumption";
 
 
 export const useScenarioStore = defineStore({ id: "ScenarioStore", 
@@ -15,10 +16,21 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
                 color: "#000000", 
                 descriptions: [{text:"vide", lang:"fr"}, {text:"Empty", lang:"en"}] as InternatObject[],
                 equipment_types: [{
-                    id:"vide",
-                    names:[{name:"vide",lang:"fr"},{name:"Dishwasher",lang:"en"}] as EquipmentTypeName[],
-                    icon_name:"Vide",
-                    color:"#000000"
+                    id:'0',
+                    names: 
+                    [{lang: 'fr',name: 'Vide'},
+                    {lang: 'en',name: 'Empty'}],
+                    icon_name:'vide',
+                    color: '#000000',
+                    isBattery: false,
+                    equipmentTypeDurationParams: {
+                        isDurationEditable: true,
+                        isDurationLengthEditable: true,
+                        originalDuration: '00:15',
+                        step: '00:15',
+                        minDuration: '00:15',
+                        maxDuration: '23:45'
+                    },
                 }] as EquipmentType[],
                 initial_consumption: [{}] as Consumption[]
             }] as Scenario[],
@@ -35,7 +47,7 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
             this.clickedScenario = this.scenariosLocale[0];
         },
         setClickedScenario(scenario: ScenarioLocale | null){
-            this.clickedScenario = scenario
+            this.clickedScenario = scenario;
         },
         getListOfEquipmentTypeLocale(listEquipmentTypes: EquipmentType[]) {
             const listEquipmentTypesLocales: EquipmentTypeLocale[] = []
@@ -43,7 +55,14 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
             for(const equipmentType of listEquipmentTypes ) {
                 for(const name of equipmentType.names) {
                     if(name.lang === locale) {
-                        listEquipmentTypesLocales.push({name: name.name, icon_name: equipmentType.icon_name, color: equipmentType.color, id: equipmentType.id} as EquipmentTypeLocale); 
+                        listEquipmentTypesLocales.push({
+                            id: equipmentType.id,
+                            name: name.name,
+                            icon_name: equipmentType.icon_name,
+                            color: equipmentType.color,
+                            isBattery: equipmentType.isBattery,
+                            equipmentTypeDurationParams: equipmentType.equipmentTypeDurationParams
+                        } as EquipmentTypeLocale); 
                     }
                 }
                 listEquipmentTypesLocales.push({name: equipmentType.names[0].name, icon_name: equipmentType.icon_name, color: equipmentType.color, id: equipmentType.id} as EquipmentTypeLocale); 
@@ -91,7 +110,7 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
                                                     color: scenario.color,
                                                     description: description,
                                                     equipment_type_local: listEquipmentLocale,
-                                                    initial_consumption: [{}] as Consumption[]  
+                                                    initial_consumption: scenario.initial_consumption   
                                                 }; 
             return scenarioLocale;
         },
@@ -102,6 +121,8 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
             }
             this.scenariosLocale = listScenarioLocale;
         },
+
+        
         //TODO: Add the internationalisation handler 
     }, 
     getters: {
@@ -121,35 +142,6 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
         },
         getClickedScenario: state => () => state.clickedScenario,
         getRandomLocaleScenario: state => () => state.scenariosLocale[Math.floor(Math.random() * state.scenariosLocale.length)],
+
     },
 });
-
-export interface Scenario{
-    id: string,
-    names: InternatObject[],
-    days: InternatObject[],
-    season: string,
-    icon: string,
-    color: string,
-    descriptions: InternatObject[],
-    equipment_types: EquipmentType[],
-    initial_consumption: Consumption[],
-}
-
-
-export interface ScenarioLocale {
-    id: string;
-    name: string,
-    day: string,
-    season: string,
-    icon: string,
-    color: string,
-    description: string,
-    equipment_type_local: EquipmentTypeLocale[], 
-    initial_consumption: Consumption[]
-}
-
-export interface InternatObject{
-    text: string,
-    lang: string,
-}

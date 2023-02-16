@@ -1,0 +1,58 @@
+@import '../utilities/mixins.scss';
+.card-amount-modifier {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include base-typography;
+    .amount-container {
+        margin: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .amount-modifier-container{
+            background-color: var(--theme-color-background-secondary);
+            border-radius: 25px;
+            margin: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .btn{
+                @include button-plus-minus-style;
+                background-color: var(--theme-color-tertiary);
+                color: var(--theme-color-text);
+                &:hover{
+                    color: var(--theme-color-text-secondary);
+                    background-color: var(--theme-color-primary);
+                }
+            }
+            .add{
+                margin-left: 0.5rem;
+            }
+            .remove{
+                margin-right: 0.5rem;
+                //padding: 0.5rem 1.2rem;
+            }
+            .disabled{
+                @include button-disabled-style(--theme-color-text, --theme-color-background-secondary)
+            }
+            .amount-input {
+                height: 2rem;
+                width: 6rem;
+                margin-left: 1.2rem;
+                border: none;
+                border-radius: 25px;
+                background-color: var(--theme-color-background-secondary);
+                text-align: center;
+                &:focus{
+                    outline: none;
+                }
+            }
+        }
+        .input-error{
+            border: 1px solid var(--theme-color-error);
+            .amount-input{
+                color: var(--theme-color-error);
+            }
+        }
+    }
+}

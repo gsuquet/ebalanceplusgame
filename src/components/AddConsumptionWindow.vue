@@ -4,6 +4,9 @@
     import { Icon } from '@iconify/vue';
     import CardPopupHeader from './CardPopupHeader.vue';
     import CardPopupContent from './CardPopupContent.vue';
+    import CardPopupTimeModifier from './CardPopupTimeModifier.vue';
+    import CardPopupSaveButtons from './CardPopupSaveButtons.vue';
+import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
 </script>
 
 <template>
@@ -16,33 +19,41 @@
                 :equipment-color="equipment.type.color"
                 @close-popup="closeAddPopup"/>
             <CardPopupContent 
-                :consumption-amount="equipment.consumption"
-                :equipment-price="equipment.price"
-                :times="{timeStart:startHour,timeEnd:endHour}"/>
-            <div class="card-time-modifier">
-                <div class="start-input field">
-                    <p>{{ $t("input.start") }}</p>
-                    <div class="choice-container" :class="{'input-error' : inputError}">
-                        <input type="time" class="input-start input" step="900" id="startHour" v-model="startHour">
-                    </div>
-                </div>
-                <div class="end-input field">
-                    <p>{{ $t("input.end") }}</p>
-                    <div class="choice-container" :class="{'input-error' : inputError}">
-                        <input type="time" class="input-end input" step="900" id="endHour" v-model="endHour">
-                    </div>
-                </div>
-            </div>
-            <div class="card-save-modification">
-                <button class="btn btn-save" @click="saveConsumption">
-                    <Icon icon="mdi:content-save" class="btn-icon"/>
-                    {{ $t("button.save") }}
-                </button>
-                <button class="btn btn-cancel" @click="closeAddPopup">
-                    <Icon icon="mdi:close" class="btn-icon"/>
-                    {{ $t("button.cancel") }}
-                </button>
-            </div>
+                :consumption-amount="consumption"
+                :equipment-price="price"
+                :times="{timeStart:startHour,timeEnd:endHour}"
+                :is-cost="equipment.equipmentCostParams.hasCost"/>
+            <CardPopupAmountModifier
+                v-if="canModifyConsumption"
+                :amount="consumption"
+                :max-amount="equipment.equipmentConsumptionParams.maxConsumption"
+                :min-amount="equipment.equipmentConsumptionParams.minConsumption"
+                :step-amount="equipment.equipmentConsumptionParams.step"
+                i18n-key="input.consumption"
+                @amount="(value) => consumption = value"/>
+            <CardPopupAmountModifier
+                v-if="canModifyCost"
+                :amount="price"
+                :max-amount="equipment.equipmentCostParams.maxCost"
+                :min-amount="equipment.equipmentCostParams.minCost"
+                :step-amount="equipment.equipmentCostParams.step"
+                i18n-key="input.cost"
+                @amount="(value) => price = value"/>
+            <CardPopupTimeModifier
+                v-if="canModifyDuration"
+                :start-hour="startHour"
+                :end-hour="endHour"
+                :max-duration="equipment.type.equipmentTypeDurationParams.maxDuration"
+                :min-duration="equipment.type.equipmentTypeDurationParams.minDuration"
+                :step-duration="equipment.type.equipmentTypeDurationParams.step"
+                :original-duration="equipment.type.equipmentTypeDurationParams.originalDuration"
+                :is-duration-length-editable="equipment.type.equipmentTypeDurationParams.isDurationLengthEditable"
+                :input-error="inputError"
+                @start-hour="(value) => setStartHour(value)"
+                @end-hour="(value) => setEndHour(value)"/>
+            <CardPopupSaveButtons
+                @save="saveConsumption"
+                @cancel="closeAddPopup"/>
         </div>
     </section>
 </template>
@@ -59,7 +70,8 @@
         components: {
             Icon,
             CardPopupHeader,
-            CardPopupContent
+            CardPopupContent,
+            CardPopupAmountModifier
         },
         props: {
             equipment: {} as any
@@ -67,10 +79,15 @@
         data() {
             return {
                 equipmentType: '' as string,
-                startHour: '' as string,
-                endHour: '' as string,
+                canModifyConsumption: false as boolean,
+                canModifyDuration: true as boolean,
+                canModifyCost: false as boolean,
+                startHour: '00:00' as string,
+                endHour: '23:45' as string,
                 startIndex: 0 as number,
                 endIndex: 0 as number,
+                consumption: 0 as number,
+                price: 0 as number,
                 inputError: false as boolean
             }
         },
@@ -91,19 +108,15 @@
             },
             saveConsumption() {
                 this.setStartAndEndIndex();
-                if(this.startHour === '' || this.endHour === '') {
+                if(consumptionStore.checkTimeInput(this.startHour, this.endHour)) {
+                    consumptionStore.addConsumption(
+                        this.startIndex, this.endIndex, this.equipment, this.consumption, this.price
+                    );
+                    equipmentStore.clickedEquipment = null;
+                    this.inputError = false;
+                } else {
                     this.inputError = true;
-                    return;
                 }
-                if(this.startIndex > this.endIndex) {
-                    this.inputError = true;
-                    return;
-                }
-                consumptionStore.addConsumption(
-                    this.startIndex, this.endIndex, this.equipment
-                );
-                equipmentStore.clickedEquipment = null;
-                this.inputError = false;
             }
         },
         watch: {
@@ -113,6 +126,13 @@
                 },
                 immediate: true
             }
+        },
+        mounted() {
+            this.consumption = this.equipment.equipmentConsumptionParams.originalConsumption;
+            this.price = this.equipment.equipmentCostParams.originalPrice;
+            this.canModifyConsumption = this.equipment.equipmentConsumptionParams.isConsumptionEditable;
+            this.canModifyDuration = this.equipment.type.equipmentTypeDurationParams.isDurationEditable;
+            this.canModifyCost = this.equipment.equipmentCostParams.isCostEditable;
         }
     }
 </script>

@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
-import { Consumption } from './ConsumptionStore';
+import { Consumption } from '../types/Consumption';
+import { Board, Tile, TileParams } from '../types/Board';
 
 export const useBoardStore = defineStore({
     id: 'BoardStore',
@@ -45,7 +46,7 @@ export const useBoardStore = defineStore({
                     }
                     storedYValue = yValue;
                 }
-                if (lastCreatedTileIndex !== consumptionYValuesList.length-1) {
+                if (lastCreatedTileIndex !== consumptionYValuesList.length-1 || consumptionYValuesList.length === 1) {
                     tiles.push(
                         this.generateTile(
                             consumption,
@@ -57,6 +58,46 @@ export const useBoardStore = defineStore({
             };
             this.board.tiles = tiles;
         },
+        TilesFromConsumption(consumptionList: Consumption[]){
+            const tiles: Tile[] = [];
+            const occupiedSlotHeightsOnBoardByIndex: number[] = new Array(96).fill(0);
+            for (const consumption of consumptionList) {
+                let consumptionYValuesList: number[] = [];
+                let lastCreatedTileIndex = 0;
+                let storedYValue = 0;
+                let consumptionHeight = (consumption.amount/10) * this.tileParams.pxSizeFor10W;
+                for (let i=consumption.startIndex; i<=consumption.endIndex; i++) {
+                    occupiedSlotHeightsOnBoardByIndex[i] += consumptionHeight;
+                    consumptionYValuesList.push(occupiedSlotHeightsOnBoardByIndex[i]);
+                }
+                storedYValue = consumptionYValuesList[0];
+                for (const yValue of consumptionYValuesList) {
+                    if (yValue !== storedYValue) {
+                        tiles.push(
+                            this.generateTile(
+                                consumption,
+                                consumption.startIndex+lastCreatedTileIndex,
+                                consumption.startIndex+lastCreatedTileIndex+consumptionYValuesList.indexOf(yValue)-1,
+                                (this.board.height+consumptionHeight) - storedYValue
+                            ));
+                        lastCreatedTileIndex = consumptionYValuesList.indexOf(yValue);
+                    }
+                    storedYValue = yValue;
+                }
+                if (lastCreatedTileIndex !== consumptionYValuesList.length-1 || consumptionYValuesList.length === 1) {
+                    tiles.push(
+                        this.generateTile(
+                            consumption,
+                            consumption.startIndex+lastCreatedTileIndex,
+                            consumption.endIndex,
+                            (this.board.height+consumptionHeight) - storedYValue
+                        ));
+                }
+            };
+            this.board.tiles = tiles;
+        },
+
+
         generateTile(consumption: Consumption, startIndex: number, endIndex: number, y: number) {
             return {
                 id: consumption.id,
@@ -64,7 +105,7 @@ export const useBoardStore = defineStore({
                 y: y - ((consumption.amount/10) * this.tileParams.pxSizeFor10W),
                 width: ((endIndex - startIndex)+1) * this.tileParams.pxSizeFor15min,
                 height: (consumption.amount/10) * this.tileParams.pxSizeFor10W,
-                color: consumption.color
+                color: consumption.equipment.type.color,
             } as Tile;
         },
         // TODO : define method to sort tiles (according to size on x-axis ?
@@ -85,7 +126,7 @@ export const useBoardStore = defineStore({
                 useConsumptionStore().modifyConsumptionHours(this.clickedTile.id, startHour, endHour);
             }
             this.clickedTile = null;
-        }
+        }, 
     },
     getters: {
         getProductionCurveInPixels(state) {
@@ -101,24 +142,4 @@ export const useBoardStore = defineStore({
 
 function convertToPx(value: number, pxSizeFor10W: number) {
     return (value * pxSizeFor10W) / 10;
-}
-
-interface Board {
-    width: number;
-    height: number;
-    tiles: Tile[];
-}
-
-export interface Tile {
-    id: string;
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    color: string;
-}
-
-interface TileParams {
-    pxSizeFor10W: number;
-    pxSizeFor15min: number;
 }

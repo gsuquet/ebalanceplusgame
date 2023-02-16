@@ -1,0 +1,127 @@
+@import '../utilities/mixins.scss';
+
+#menu{
+    min-width: 25rem;
+    padding: 0.5rem;
+    border-radius: 15px;
+    background-color: var(--theme-color-tertiary);
+    margin-bottom: 0.5rem;
+    .menu-header{
+        display: flex;
+        align-items: center;
+        .stored-percentage{
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-left: 5px;
+            margin-right: auto;
+        }
+        .title{
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--theme-color-text);
+        }
+        .closebtn{
+            background-color: var(--theme-color-btn-close);
+            color: var(--theme-color-text-secondary);
+            height:22px;
+            width: 22px;
+            border-radius: 50%;
+            margin-left: auto;
+            margin-right: 5px;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:hover{
+                background-color: var(--theme-color-accent-secondary);
+            }
+        }
+    }
+    .menu-figures{
+        display: flex;
+        justify-content: center;
+        .figure{
+            display: flex;
+            align-items: center;
+            margin: 5px;
+            .text{
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: var(--theme-color-text);
+            }
+        }
+    }
+    .menu-buttons{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        .btn{
+            margin: 1.2rem;
+            @include button-base-style;
+            @include button-background-color-style;
+        }
+    }
+    .menu-batteries{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .title{
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--theme-color-text);
+        }
+        .figures-container{
+            display: flex;
+            .figure{
+                display: flex;
+                align-items: center;
+                margin: 5px;
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: var(--theme-color-text);
+                h4{
+                    margin-right: 0.5rem;
+                }
+            }
+        }
+        .batteries{
+            font-size: 1.2rem;
+            font-weight: bold;
+            background-color: var(--theme-color-background-secondary);
+            border-radius: 25px;
+            margin: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .btn{
+                @include button-plus-minus-style;
+                background-color: var(--theme-color-background);
+                color: var(--theme-color-text);
+                &:hover{
+                    color: var(--theme-color-text-secondary);
+                    background-color: var(--theme-color-primary);
+                }
+            }
+            .add{
+                margin-left: 0.5rem;
+            }
+            .delete{
+                margin-right: 0.5rem;
+                padding: 0.5rem 1.2rem;
+            }
+            .disabled{
+                @include button-disabled-style(--theme-color-text, --theme-color-background-secondary);
+            }
+        }
+    }
+}

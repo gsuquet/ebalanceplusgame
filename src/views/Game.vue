@@ -6,16 +6,20 @@ import EquipementList from '../components/EquipementList.vue';
 import { useConsumptionStore } from '../stores/ConsumptionStore';
 import { useBoardStore } from '../stores/BoardStore';
 import { useEquipmentStore } from '../stores/EquipmentStore';
+import { useEnergyStore } from '../stores/EnergyStore';
 import AddConsumptionWindow from '../components/AddConsumptionWindow.vue';
 import BoardConsumptionDetails from '../components/BoardConsumptionDetails.vue';
+import EnergyAddEnergyWindow from '../components/EnergyAddEnergyWindow.vue';
 const consumptionStore = useConsumptionStore();
 const boardStore = useBoardStore();
 const gameParametersStore = useGameParametersStore();
 const equipmentStore = useEquipmentStore();
+const energyStore = useEnergyStore();
+consumptionStore.addInitialConsumptionToConsumptionList();
 </script>
 
 <template>
-    <div class="overlay" v-if="equipmentStore.clickedEquipment || boardStore.clickedTile"/>
+    <div class="overlay" v-if="equipmentStore.clickedEquipment || boardStore.clickedTile || energyStore.clickedStoreEnergy"/>
     <div id="game-page" class="view">
         <Alert
             :should-display="consumptionStore.isOverConsumption"
@@ -27,6 +31,7 @@ const equipmentStore = useEquipmentStore();
                 :equipment="equipmentStore.clickedEquipment"/>
         </div>
         <GameBoardSnackBar />
+        <EnergyAddEnergyWindow v-if="energyStore.clickedStoreEnergy"/>
         <div class="board-list-container">
             <EquipementList />
             <Board

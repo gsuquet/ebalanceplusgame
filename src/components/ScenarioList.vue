@@ -1,5 +1,6 @@
 <script lang="ts">
-    import {  useScenarioStore, ScenarioLocale } from '../stores/ScenarioStore';
+    import {  useScenarioStore } from '../stores/ScenarioStore';
+    import { ScenarioLocale } from '../types/Scenario';
     import { Icon } from '@iconify/vue';
     
     const scenarioStore = useScenarioStore();

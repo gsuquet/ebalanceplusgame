@@ -1,17 +1,45 @@
 import { defineStore } from 'pinia';
+import { Equipment, EquipmentLocale } from '../types/Equipment';
+import { EquipmentType, EquipmentTypeLocale } from '../types/EquipmentType';
 
 export const useEquipmentStore = defineStore({id :'EquipmentStore',
     state: () => {
         return {
             equipments: [{
-                id: 0,
-                type:{id:'0',names: [{lang: 'fr',name: 'Vide'},{lang: 'en',name: 'Empty'}],icon_name:'vide',color: '#000000'},
+                id: '0',
                 energy_class: '',
-                consumption: 0,
-                points: 0,
-                price: 0,
-                point_gap: [0,0],
-                price_gap: [0,0]
+                type:{
+                    id:'0',
+                    names: 
+                    [{lang: 'fr',name: 'Vide'},
+                    {lang: 'en',name: 'Empty'}],
+                    icon_name:'vide',
+                    color: '#000000',
+                    isBattery: false,
+                    equipmentTypeDurationParams: {
+                        isDurationEditable: true,
+                        isDurationLengthEditable: true,
+                        originalDuration: '00:15',
+                        step: '00:15',
+                        minDuration: '00:15',
+                        maxDuration: '23:45'
+                    },
+                },
+                equipmentCostParams: {
+                    originalPrice: 0,
+                    hasCost: false,
+                    isCostEditable: false,
+                    step: 0,
+                    minCost: 0,
+                    maxCost: 0
+                },
+                equipmentConsumptionParams: {
+                    originalConsumption: 0,
+                    isConsumptionEditable: false,
+                    step: 0,
+                    minConsumption: 0,
+                    maxConsumption: 0
+                },
             }] as Equipment [],
             clickedEquipment: null as null | Equipment
         };
@@ -27,10 +55,24 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
         getEquipmentTypeLocale(type: EquipmentType, locale:string){
             for(const name of type.names) {
                 if(name.lang === locale){
-                    return {name: name.name, icon_name: type.icon_name, color: type.color, id: type.id} as EquipmentTypeLocale;
+                    return {
+                        id: type.id,
+                        name: name.name,
+                        icon_name: type.icon_name,
+                        color: type.color,
+                        isBattery: type.isBattery,
+                        equipmentTypeDurationParams: type.equipmentTypeDurationParams
+                    } as EquipmentTypeLocale;
                 }
             }
-            return {name: type.names[0].name, icon_name: type.icon_name, color: type.color, id: type.id} as EquipmentTypeLocale;
+            return {
+                id: type.id,
+                name: type.names[0].name,
+                icon_name: type.icon_name,
+                color: type.color,
+                isBattery: type.isBattery,
+                equipmentTypeDurationParams: type.equipmentTypeDurationParams
+            } as EquipmentTypeLocale;
         },
         getListOfEquipmentTypesLocale() {
             const locale = useGameParametersStore().language;
@@ -45,11 +87,17 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
         convertEquipmentToEquipmentLocale(equipment: Equipment) {
             const locale = useGameParametersStore().language;
             const equipmentTypeLocale = this.getEquipmentTypeLocale(equipment.type, locale);
-            return {id: equipment.id, type: equipmentTypeLocale, energy_class: equipment.energy_class, consumption: equipment.consumption, points: equipment.points, price: equipment.price, point_gap: equipment.point_gap, price_gap: equipment.price_gap} as EquipmentLocale;
+            return {
+                id: equipment.id,
+                energy_class: equipment.energy_class,
+                type: equipmentTypeLocale,
+                equipmentCostParams: equipment.equipmentCostParams,
+                equipmentConsumptionParams: equipment.equipmentConsumptionParams
+            } as EquipmentLocale;
         }
     },
     getters: {
-        getEquipmentById:(state) => (id: number) => {
+        getEquipmentById:(state) => (id: string) => {
             return state.equipments.find(equipment => equipment.id === id);
         },
         getEquipmentByTypeId:(state) => (id:string) => {
@@ -69,44 +117,3 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
         }
     },
 });
-
-export interface Equipment{
-    id: number,
-    type: EquipmentType,
-    energy_class: string, 
-    consumption: number,
-    points: number,
-    price: number,
-    point_gap: number[],
-    price_gap: number[];
-}
-
-export interface EquipmentLocale{
-    id: number,
-    type: EquipmentTypeLocale,
-    energy_class: string,
-    consumption: number,
-    points: number,
-    price: number,
-    point_gap: number[],
-    price_gap: number[]
-}
-
-export interface EquipmentType{
-    id: string,
-    names: EquipmentTypeName[],
-    icon_name: string,
-    color: string
-}
-
-export interface EquipmentTypeLocale{
-    id: string,
-    name: string,
-    icon_name: string,
-    color: string
-}
-
-export interface EquipmentTypeName{
-    lang: string,
-    name: string
-}
