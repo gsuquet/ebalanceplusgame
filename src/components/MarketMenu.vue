@@ -1,25 +1,20 @@
 <script setup lang="ts">
 import { useEnergyStore } from '../stores/EnergyStore';
-import { Icon } from '@iconify/vue';
 </script>
 
 <template>
         
-        
-        <div class="market-icon-background" @click="energyStore.clickOnMarketIcon()" v-if="!energyStore.clickedMarketIcon">
-            <Icon icon="mdi:home-currency-usd" class="energy-icon-image" :style="{'color' : energyStore.getEnergyIconColor}"/>
-        </div>
-    <section id="menu" v-else>
+    <section id="menu" v-if="energyStore.clickedMarketIcon">
         <div class="menu-header" >
             <span class="stored-percentage" :style="{'color' : energyStore.getEnergyIconColor}">
                 {{ energyStore.getEnergyStoragePercentage }} %
             </span>
-            <h2 class="tittle">
+            <h2 class="title">
                 {{ $t("market.header") }}
             </h2>
             <span class="closebtn" @click="energyStore.clickOnMarketIcon()">&times;</span>
         </div>
-        <div class="menu-figure">
+        <div class="menu-figures">
             <div class="figure">
                 <p class="text">{{ $t("energy.stored") }} :</p>
                 <h3 class="text">{{energyStore.storedEnergy}} W</h3>
@@ -30,7 +25,7 @@ import { Icon } from '@iconify/vue';
                 <h3 class="text">{{energyStore.maxEnergy}} W</h3>
             </div>
         </div>
-        <div class="menu-button">
+        <div class="menu-buttons">
             <button class="btn">{{ $t("button.purchase") }}</button>
             <button class="btn"> {{ $t("button.sale") }}</button>
         </div>
