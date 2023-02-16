@@ -23,6 +23,7 @@ export interface EquipmentTypeName{
 
 export interface EquipmentTypeDurationParams{
     isDurationEditable: boolean,
+    isDurationLengthEditable: boolean,
     originalDuration: string,
     step: string,
     minDuration: string,

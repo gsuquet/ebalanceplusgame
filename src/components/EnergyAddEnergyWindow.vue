@@ -35,6 +35,8 @@
                 :max-duration="equipment.type.equipmentTypeDurationParams.maxDuration"
                 :min-duration="equipment.type.equipmentTypeDurationParams.minDuration"
                 :step-duration="equipment.type.equipmentTypeDurationParams.step"
+                :original-duration="equipment.type.equipmentTypeDurationParams.originalDuration"
+                :is-duration-length-editable="equipment.type.equipmentTypeDurationParams.isDurationLengthEditable"
                 :input-error="inputError"
                 @start-hour="(value) => updateStartHour(value)"
                 @end-hour="(value) => updateEndHour(value)"/>
@@ -59,8 +61,8 @@
                 consumptionStore: useConsumptionStore(),
                 type: this.$t("energy.storeEnergy"),
                 inputError: false as boolean,
-                startHour: '00:00' as string,
-                endHour: '00:15' as string,
+                startHour: '00:15' as string,
+                endHour: '00:30' as string,
                 startIndex: 0 as number,
                 endIndex: 0 as number,
                 maxAmount: 10 as number,
@@ -80,6 +82,7 @@
                         isBattery: true,
                         equipmentTypeDurationParams:{
                             isDurationEditable: true,
+                            isDurationLengthEditable: true,
                             originalDuration: "00:15",
                             step: "00:15",
                             minDuration: "00:15",

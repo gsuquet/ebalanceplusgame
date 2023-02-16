@@ -102,32 +102,6 @@ export const useEnergyStore = defineStore({
             }
             return Math.round((state.storedEnergy / state.maxEnergy) * 100);
         },
-        getEnergyStorageConsumption(state) {
-            return {
-                id:"951283",
-                startIndex:45,
-                endIndex:45,
-                amount:state.maxEnergy-state.storedEnergy,
-                color:"orange",
-                equipment:{
-                    id:99,
-                    type:{
-                        id:"energyStorage",
-                        names:[
-                            {name:"Stocker de l'énergie",lang:"fr"},
-                            {name:"Store energy",lang:"en"}],
-                            icon_name:"mdi:battery-charging-100",
-                            color:"orange",
-                            isConsumptionEditable:true,
-                            hasCost:false
-                    },
-                    energy_class:"X",
-                    consumption:0,
-                    points:0,
-                    price:0
-                }
-            }
-        },
         getMaximumEnergyStorageWithoutConsumption:(state) => (consumptionId: string) => {
             const consumption = state.storedEnergyList.find((consumption) => consumption.id === consumptionId);
             if( consumption ){

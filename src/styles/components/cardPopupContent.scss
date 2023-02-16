@@ -1,10 +1,10 @@
+@import '../utilities/mixins.scss';
 .card-content{
     margin: 15px 0 15px 0;
     h2{
         display: flex;
         align-items: center;
-        font-size: larger;
-        color: var(--theme-color-text);
+        @include base-typography;
         svg{
             height: 30px;
             width: 30px;
