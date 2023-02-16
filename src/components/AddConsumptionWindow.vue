@@ -29,7 +29,16 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
                 :max-amount="equipment.equipmentConsumptionParams.maxConsumption"
                 :min-amount="equipment.equipmentConsumptionParams.minConsumption"
                 :step-amount="equipment.equipmentConsumptionParams.step"
+                i18n-key="input.consumption"
                 @amount="(value) => consumption = value"/>
+            <CardPopupAmountModifier
+                v-if="canModifyCost"
+                :amount="price"
+                :max-amount="equipment.equipmentCostParams.maxCost"
+                :min-amount="equipment.equipmentCostParams.minCost"
+                :step-amount="equipment.equipmentCostParams.step"
+                i18n-key="input.cost"
+                @amount="(value) => price = value"/>
             <CardPopupTimeModifier
                 v-if="canModifyDuration"
                 :start-hour="startHour"
@@ -72,6 +81,7 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
                 equipmentType: '' as string,
                 canModifyConsumption: false as boolean,
                 canModifyDuration: true as boolean,
+                canModifyCost: false as boolean,
                 startHour: '00:00' as string,
                 endHour: '23:45' as string,
                 startIndex: 0 as number,
@@ -122,6 +132,7 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
             this.price = this.equipment.equipmentCostParams.originalPrice;
             this.canModifyConsumption = this.equipment.equipmentConsumptionParams.isConsumptionEditable;
             this.canModifyDuration = this.equipment.type.equipmentTypeDurationParams.isDurationEditable;
+            this.canModifyCost = this.equipment.equipmentCostParams.isCostEditable;
         }
     }
 </script>

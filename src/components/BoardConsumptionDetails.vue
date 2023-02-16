@@ -36,7 +36,16 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
                 :max-amount="maxConsumptionAmount"
                 :min-amount="consumption.equipment.equipmentConsumptionParams.minConsumption"
                 :step-amount="consumption.equipment.equipmentConsumptionParams.step"
+                i18nKey="input.consumption"
                 @amount="(value) => consumption.amount = value"/>
+            <CardPopupAmountModifier
+                v-if="modify && canModifyCost"
+                :amount="consumption.price"
+                :max-amount="consumption.equipment.equipmentCostParams.maxCost"
+                :min-amount="consumption.equipment.equipmentCostParams.minCost"
+                :step-amount="consumption.equipment.equipmentCostParams.step"
+                i18n-key="input.cost"
+                @amount="(value) => consumption.price = value"/>
             <CardPopupTimeModifier
                 v-if="modify && canModifyDuration"
                 :start-hour="startHour"
@@ -85,6 +94,7 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
                 canModify: true as boolean,
                 canModifyConsumption: false as boolean,
                 canModifyDuration: true as boolean,
+                canModifyCost: false as boolean,
                 maxConsumptionAmount: 0 as number,
                 startHour: '' as string,
                 endHour: '' as string,
@@ -171,7 +181,8 @@ import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
         mounted() {
             this.canModifyConsumption = this.consumption.equipment.equipmentConsumptionParams.isConsumptionEditable;
             this.canModifyDuration = this.consumption.equipment.type.equipmentTypeDurationParams.isDurationEditable;
-            this.canModify = this.canModifyConsumption || this.canModifyDuration;
+            this.canModifyCost = this.consumption.equipment.equipmentCostParams.isCostEditable;
+            this.canModify = this.canModifyConsumption || this.canModifyDuration || this.canModifyCost;
             this.initializeStartAndEndHour();
             this.setStartAndEndIndex();
             this.updateMaxConsumptionAmount();

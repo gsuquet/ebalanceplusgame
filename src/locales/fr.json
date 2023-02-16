@@ -31,7 +31,8 @@
         "start": "Début",
         "end": "Fin",
         "amount": "Montant",
-        "consumption": "Consommation"
+        "consumption": "Consommation",
+        "cost": "Coût"
     },
     "alert":{
         "overConsumption": "Votre demande est supérieure à la production !"
