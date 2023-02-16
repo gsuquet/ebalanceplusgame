@@ -59,7 +59,7 @@ import { useEnergyStore } from '../stores/EnergyStore';
 </template>
 
 <style lang="scss">
-    @import "../styles/components/energyMenu.scss";
+    @import "../styles/components/energyAndMarketMenu.scss";
 </style>
 
 <script lang="ts">

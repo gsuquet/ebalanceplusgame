@@ -42,5 +42,5 @@ import { useEnergyStore } from '../stores/EnergyStore';
 </script>
 
 <style scoped lang="scss">
-    @import "../styles/components/energyMenu.scss";
+    @import "../styles/components/energyAndMarketMenu.scss";
 </style>
