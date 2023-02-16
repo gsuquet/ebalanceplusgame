@@ -31,6 +31,7 @@
                 i18n-key="input.consumption"
                 @amount="(value) => updateConsumptionAmount(value)"/>
             <CardPopupAmountModifier
+                v-if="equipment.equipmentCostParams.isCostEditable"
                 :amount="price"
                 :max-amount="equipment.equipmentCostParams.maxCost"
                 :min-amount="equipment.equipmentCostParams.minCost"
