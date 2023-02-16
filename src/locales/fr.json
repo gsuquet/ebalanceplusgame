@@ -22,7 +22,8 @@
         "buy": "Acheter",
         "sell": "Vendre",
         "create": "Créer",
-        "join": "Rejoindre"
+        "join": "Rejoindre",
+        "total": "Total"
     },
     "input":{
         "start": "Début",
