@@ -32,7 +32,8 @@
         "start": "Start",
         "end": "End",
         "amount": "Amount",
-        "consumption": "Consumption"
+        "consumption": "Consumption",
+        "cost": "Cost"
     },
     "alert":{
         "overConsumption": "Your demand is higher than your production. You will have to buy energy !"

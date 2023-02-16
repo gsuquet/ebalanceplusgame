@@ -28,7 +28,15 @@
                 :max-amount="maxAmount"
                 :min-amount="equipment.equipmentConsumptionParams.minConsumption"
                 :step-amount="equipment.equipmentConsumptionParams.step"
+                i18n-key="input.consumption"
                 @amount="(value) => updateConsumptionAmount(value)"/>
+            <CardPopupAmountModifier
+                :amount="price"
+                :max-amount="equipment.equipmentCostParams.maxCost"
+                :min-amount="equipment.equipmentCostParams.minCost"
+                :step-amount="equipment.equipmentCostParams.step"
+                i18n-key="input.cost"
+                @amount="(value) => updatePrice(value)"/>
             <CardPopupTimeModifier 
                 :start-hour="startHour"
                 :end-hour="endHour"
@@ -113,6 +121,9 @@
             },
             updateConsumptionAmount(newConsumption:number) {
                 this.amount=newConsumption;
+            },
+            updatePrice(newPrice:number) {
+                this.price=newPrice;
             },
             updateStartHour(newStartHour:string) {
                 this.startHour=newStartHour;
