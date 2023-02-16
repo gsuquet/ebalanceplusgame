@@ -76,3 +76,15 @@
         color: var($textColor);
     }
 }
+
+@mixin base-typography() {
+    font-size: var(--theme-font-size);
+    font-weight: var(--theme-font-weight);
+    color: var(--theme-color-text);
+}
+
+@mixin base-typography-title() {
+    font-size: var(--theme-font-size-title);
+    font-weight: var(--theme-font-weight-title);
+    color: var(--theme-color-text);
+}

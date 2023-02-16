@@ -5,25 +5,25 @@
 
 <template>
     <div class="card-content">
-                <div class="card-content-consumption card-content-item">
-                    <h2 class="consumption-amount">
-                        <Icon :icon="flashIcon" class="icon-consumption"/>
-                        {{ consumptionAmount }} W/15min</h2>
-                    <h2 class="consumption-amount-Wh">
-                        {{ $t("button.total") }} : 
-                        {{ consumptionAmountWh }} W</h2>
-                </div>
-                <div class="card-content-price card-content-item" v-if="isCost">
-                    <h2 class="consumption-price">
-                        <Icon :icon="cashIcon" class="icon-price"/>
-                        {{ equipmentPrice }} €</h2>
-                </div>
-                <div class="card-content-time card-content-item">
-                    <h2 class="consumption-time">
-                        <Icon :icon="clockIcon" class="icon-time"/>
-                        {{ times.timeStart }} - {{ times.timeEnd}}</h2>
-                </div>
-            </div>
+        <div class="card-content-consumption card-content-item">
+            <h2 class="consumption-amount">
+                <Icon :icon="flashIcon" class="icon-consumption"/>
+                {{ consumptionAmount }} W/15min</h2>
+            <h2 class="consumption-amount-Wh">
+                {{ $t("button.total") }} : 
+                {{ consumptionAmountWh }} W</h2>
+        </div>
+        <div class="card-content-price card-content-item" v-if="isCost">
+            <h2 class="consumption-price">
+                <Icon :icon="cashIcon" class="icon-price"/>
+                {{ equipmentPrice }} €</h2>
+        </div>
+        <div class="card-content-time card-content-item">
+            <h2 class="consumption-time">
+                <Icon :icon="clockIcon" class="icon-time"/>
+                {{ times.timeStart }} - {{ times.timeEnd}}</h2>
+        </div>
+    </div>
 </template>
 
 <style lang="scss">

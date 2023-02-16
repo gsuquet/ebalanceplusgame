@@ -1,60 +1,56 @@
 <template>
     <div class="card-time-modifier">
-        <div class="start-input field">
+        <div class="hour-container start-hour-container">
             <p>{{ $t("input.start") }}</p>
-            <div class="choice-container" :class="{'input-error' : inputError || inputErrorStart}">
-                <input
-                    type="time"
-                    class="input-start input"
-                    step="900"
-                    id="startHour"
-                    :value="startHour"
-                    @input="updateStartHour">
+            <div class="hour-modifier-container">
+                <button
+                    class="btn remove"
+                    :class="{'disabled' : startHourMinus}"
+                    @click="remove15MinutesFromStartHour">
+                    -
+                </button>
+                <div class="input-container" :class="{'input-error' : inputError || inputErrorStart}">
+                    <input
+                        type="time"
+                        class="input-start input"
+                        step="900"
+                        id="startHour"
+                        :value="startHour"
+                        @input="updateStartHour">
+                </div>
+                <button
+                    class="btn add"
+                    :class="{'disabled' : startHourPlus}"
+                    @click="add15MinutesToStartHour">
+                    +
+                </button>
             </div>
         </div>
-        <div class="end-input field">
+        <div class="hour-container end-hour-container">
             <p>{{ $t("input.end") }}</p>
-            <div class="choice-container" :class="{'input-error' : inputError || inputErrorEnd}">
-                <input
-                    type="time"
-                    class="input-end input"
-                    step="900"
-                    id="endHour"
-                    :value="endHour"
-                    @input="updateEndHour">
+            <div class="hour-modifier-container">
+                <button
+                    class="btn remove"
+                    :class="{'disabled' : endHourMinus}"
+                    @click="remove15MinutesFromEndHour">
+                    -
+                </button>
+                <div class="input-container" :class="{'input-error' : inputError || inputErrorEnd}">
+                    <input
+                        type="time"
+                        class="input-end input"
+                        step="900"
+                        id="endHour"
+                        :value="endHour"
+                        @input="updateEndHour">
+                </div>
+                <button
+                    class="btn add"
+                    :class="{'disabled' : endHourPlus}"
+                    @click="add15MinutesToEndHour">
+                    +
+                </button>
             </div>
-        </div>
-    </div>
-    <div class="card-time-modifier-buttons">
-        <div class="hour-modifier-buttons">
-            <button
-                class="btn remove"
-                :class="startHourMinus ? 'disabled' : ''"
-                @click="remove15MinutesFromStartHour">
-                -
-            </button>
-            <p>{{ startHour }}</p>
-            <button
-                class="btn add"
-                :class="startHourPlus ? 'disabled' : ''"
-                @click="add15MinutesToStartHour">
-                +
-            </button>
-        </div>
-        <div class="hour-modifier-buttons">
-            <button
-                class="btn remove"
-                :class="endHourMinus ? 'disabled' : ''"
-                @click="remove15MinutesFromEndHour">
-                -
-            </button>
-            <p>{{ endHour }}</p>
-            <button
-                class="btn add"
-                :class="endHourPlus ? 'disabled' : ''"
-                @click="add15MinutesToEndHour">
-                +
-            </button>
         </div>
     </div>
 </template>
@@ -251,6 +247,7 @@
             },
             setTimeModificationParams() {
                 if(this.isStartHourBeforeEndHour()){
+                    this.setTimeModificationParamsFromMinMaxDuration();
                     if(this.startHour === '00:00' || this.startHour === '0:0') {
                         this.startHourMinus = true;
                     } else{
@@ -261,9 +258,6 @@
                     } else{
                         this.endHourPlus = false;
                     }
-                    this.startHourPlus = false;
-                    this.endHourMinus = false;
-                    this.setTimeModificationParamsFromMinMaxDuration();
                 } else {
                     this.startHourPlus = true;
                     this.endHourMinus = true;

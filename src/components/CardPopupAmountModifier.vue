@@ -1,28 +1,30 @@
 <template>
     <div class="card-amount-modifier">
-        <div class="amount-container field">
+        <div class="amount-container">
             <p>{{ $t("input.consumption") }}</p>
-            <button
-                class="btn remove"
-                :class="{'disabled' : amountMinus}"
-                @click="removeStepAmountFromTotalAmount">
-                -
-            </button>
-            <div class="choice-container" :class="{'input-error-min' : inputErrorMin, 'input-error-max' : inputErrorMax}">
-                <input
-                    type="number"
-                    class="amount-input input"
-                    :step="stepAmount"
-                    id="amount"
-                    :value="amount"
-                    @input="updateAmount">
+            <div class="amount-modifier-container">
+                <button
+                    class="btn remove"
+                    :class="{'disabled' : amountMinus}"
+                    @click="removeStepAmountFromTotalAmount">
+                    -
+                </button>
+                <div class="input-container" :class="{'input-error-min' : inputErrorMin, 'input-error-max' : inputErrorMax}">
+                    <input
+                        type="number"
+                        class="amount-input"
+                        :step="stepAmount"
+                        id="amount"
+                        :value="amount"
+                        @input="updateAmount">
+                </div>
+                <button
+                    class="btn add"
+                    :class="{'disabled' : amountPlus}"
+                    @click="addStepAmountToTotalAmount">
+                    +
+                </button>
             </div>
-            <button
-                class="btn add"
-                :class="{'disabled' : amountPlus}"
-                @click="addStepAmountToTotalAmount">
-                +
-            </button>
         </div>
     </div>
 </template>
