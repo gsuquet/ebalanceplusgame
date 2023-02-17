@@ -13,7 +13,7 @@
         :props-max-energy-amount="maxConsumptionAmount"
         :props-price="consumption.price"
         :equipment="consumption.equipment"
-        :indexes="{start:startIndex,end:endIndex}"
+        :indexes="{start:consumption.startIndex,end:consumption.endIndex}"
         :props-is-initial-add-popup="false"
         @close-popup="closeDetails"
         @save="saveModifiedConsumption"
@@ -40,9 +40,7 @@
             return {
                 energyStore: useEnergyStore(),
                 consumptionType: '' as string,
-                maxConsumptionAmount: 0 as number,
-                startIndex: 0 as number,
-                endIndex: 0 as number,
+                maxConsumptionAmount: 0 as number
             };
         },
         methods: {
