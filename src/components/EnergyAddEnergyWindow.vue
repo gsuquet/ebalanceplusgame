@@ -81,7 +81,7 @@
             closePopup() {
                 this.energyStore.clickOnStoreEnergy();
             },
-            saveConsumption(save:{startIndex:number, endIndex:number,amount:number,price:number}) {
+            saveConsumption(save:{startIndex:number, endIndex:number,amount:number,price:number,startHour:string,endHour:string}) {
                 this.consumptionStore.addConsumption(save.startIndex, save.endIndex, this.equipment, save.amount, save.price);
                 this.energyStore.clickOnStoreEnergy();
             },

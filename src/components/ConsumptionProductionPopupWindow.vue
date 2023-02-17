@@ -206,7 +206,9 @@
                                 amount:this.amount,
                                 price:this.price,
                                 startIndex:this.startIndex,
-                                endIndex:this.endIndex
+                                endIndex:this.endIndex,
+                                startHour:this.startHour,
+                                endHour:this.endHour
                             });
                     }
                 } else {
