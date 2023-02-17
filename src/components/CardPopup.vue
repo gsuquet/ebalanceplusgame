@@ -68,7 +68,7 @@
 
 <script lang="ts">
     export default {
-        name: "ConsumptionProductionPopupWindow",
+        name: "CardPopup",
         components: {
             CardPopupHeader,
             CardPopupContent,

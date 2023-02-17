@@ -1,6 +1,6 @@
 <script lang="ts">
     import { useEquipmentStore } from '../stores/EquipmentStore';
-    import Equipments from '../components/Equipments.vue';
+    import EquipmentListEquipment from './EquipmentListEquipment.vue';
     import { Icon } from '@iconify/vue';
     export default {
         setup() {
@@ -16,7 +16,7 @@
             }
         },
         components: {
-            Equipments,
+            EquipmentListEquipment,
             Icon,
         },
         methods: {
@@ -51,7 +51,7 @@
                         </h1>
                     </div>
                     <div class="equipment-container" v-if="showEquipmentType===equipmentTypeLocale.id" >
-                            <Equipments v-for="equipment in equipmentStore.getEquipmentByTypeId(equipmentTypeLocale.id)" :key="equipmentTypeLocale.id"  :equipment="equipment"/>
+                            <EquipmentListEquipment v-for="equipment in equipmentStore.getEquipmentByTypeId(equipmentTypeLocale.id)" :key="equipmentTypeLocale.id"  :equipment="equipment"/>
                     </div>
                 </div>
             </div>

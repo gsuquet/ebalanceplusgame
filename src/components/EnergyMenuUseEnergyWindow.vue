@@ -1,9 +1,9 @@
 <script lang="ts">
-    import ConsumptionProductionPopupWindow from './ConsumptionProductionPopupWindow.vue';
+    import CardPopup from './CardPopup.vue';
 </script>
 
 <template>
-    <ConsumptionProductionPopupWindow
+    <CardPopup
         :id="''"
         :equipment="null"
         :type="''"

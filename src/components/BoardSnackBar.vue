@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import EnergyIcon from '../components/EnergyIcon.vue';
-import EnergyMenu from '../components/EnergyMenu.vue';
+import EnergyMenuIcon from './EnergyMenuIcon.vue';
+import EnergyMenu from './EnergyMenu.vue';
 import MarketMenu from './MarketMenu.vue';
 import { useEnergyStore } from '../stores/EnergyStore';
 import { Icon } from '@iconify/vue';
@@ -9,7 +9,7 @@ import { Icon } from '@iconify/vue';
 <template>
     <section id="game-board-snackbar">
         <EnergyMenu v-if="useEnergyStore().displayEnergyMenu"/>
-        <EnergyIcon v-if="useEnergyStore().displayEnergyIcon"/>
+        <EnergyMenuIcon v-if="useEnergyStore().displayEnergyIcon"/>
         <div class="market-icon-container">
             <div class="market-icon-background" @click="useEnergyStore().clickOnMarketIcon()" v-if="!useEnergyStore().clickedMarketIcon">
                 <Icon icon="mdi:home-currency-usd" class="market-icon-image" />    
