@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { Consumption } from '../types/Consumption';
 import { EnergyStorageParameters } from '../types/Energy';
+import { convertWattsPer15minToKilowattsPerHour }  from '../helpers/power';
 
 export const useEnergyStore = defineStore({
     id: 'EnergyStore',
@@ -125,6 +126,12 @@ export const useEnergyStore = defineStore({
                 return state.maxEnergy - state.storedEnergy + consumption.amount*(consumption.endIndex-consumption.startIndex+1);
             }
             return state.maxEnergy;
+        },
+        getStoredEnergyInKWh:(state) => {
+            return convertWattsPer15minToKilowattsPerHour(state.storedEnergy);
+        },
+        getMaximumEnergyStorageInKWh:(state) => {
+            return convertWattsPer15minToKilowattsPerHour(state.maxEnergy);
         },
         canUserAddABattery:(state) => {
             return useGameParametersStore().canWithdrawMoney(state.energyStorageParameters.batteryPrice)
