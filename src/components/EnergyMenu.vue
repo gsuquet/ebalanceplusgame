@@ -16,11 +16,11 @@ import { useEnergyStore } from '../stores/EnergyStore';
         <div class="menu-figures">
             <div class="figure">
                 <p class="text">{{ $t("energy.stored") }} :</p>
-                <h3 class="text">{{energyStore.storedEnergy}} W</h3>
+                <h3 class="text">{{energyStore.getStoredEnergyInKWh}} kW/h</h3>
             </div>
             <div class="figure">
                 <p class="text">{{ $t("energy.max") }} :</p>
-                <h3 class="text">{{energyStore.maxEnergy}} W</h3>
+                <h3 class="text">{{energyStore.getMaximumEnergyStorageInKWh}} kW/h</h3>
             </div>
         </div>
         <div class="menu-buttons">
