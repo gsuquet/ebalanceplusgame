@@ -39,7 +39,7 @@ consumptionStore.addInitialConsumptionToConsumptionList();
               :board-height="boardStore.board.height"
               :px-size-for15m="boardStore.tileParams.pxSizeFor15min"
               :px-size-for10-w="boardStore.tileParams.pxSizeFor10W"
-              :tiles-list="boardStore.board.tiles"
+              :consumption-tiles-list="boardStore.board.consumptionTiles"
               :production-curve-props="gameParametersStore.getProductionCurve"/>
             <BoardConsumptionDetails 
                 v-if="boardStore.clickedTile"

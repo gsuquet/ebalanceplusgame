@@ -30,7 +30,7 @@ import { Tile } from '../types/Board';
             pxSizeFor15m: Number,
             pxSizeFor10W: Number,
             productionCurveProps: null,
-            tilesList: null
+            consumptionTilesList: null
         },
         components: {
             Canvas
@@ -176,7 +176,7 @@ import { Tile } from '../types/Board';
                 },
                 immediate: true
             },
-            tilesList : {
+            consumptionTilesList : {
                 handler(newTiles) {
                     this.tiles=newTiles;
                     this.render();
