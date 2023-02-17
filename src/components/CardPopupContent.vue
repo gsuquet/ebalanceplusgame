@@ -11,7 +11,7 @@
                 {{ consumptionAmount }} W/15min</h2>
             <h2 class="consumption-amount-Wh">
                 {{ $t("button.total") }} : 
-                {{ consumptionAmountWh }} W</h2>
+                {{ consumptionAmountWh }} kW/h</h2>
         </div>
         <div class="card-content-price card-content-item" v-if="isCost">
             <h2 class="consumption-price">

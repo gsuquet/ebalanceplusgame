@@ -2,11 +2,11 @@
     import { useBoardStore } from '../stores/BoardStore';
     import { useEnergyStore } from '../stores/EnergyStore';
     import { useEquipmentStore } from '../stores/EquipmentStore';
-    import ConsumptionProductionPopupWindow from './ConsumptionProductionPopupWindow.vue';
+    import CardPopup from './CardPopup.vue';
 </script>
 
 <template>
-    <ConsumptionProductionPopupWindow
+    <CardPopup
         :id="consumption.id"
         :type="consumptionType"
         :props-amount="consumption.amount"
@@ -29,12 +29,12 @@
     const boardStore = useBoardStore();
     const equipmentStore = useEquipmentStore();
     export default {
-        name: 'BoardConsumptionDetails',
+        name: 'BoardConsumptionDetailsWindow',
         props: {
             consumption: {} as any
         },
         components: {
-            ConsumptionProductionPopupWindow
+            CardPopup
         },
         data() {
             return {

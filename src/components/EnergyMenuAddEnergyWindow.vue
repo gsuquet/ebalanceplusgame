@@ -2,11 +2,11 @@
     import { useEnergyStore } from '../stores/EnergyStore';
     import { useConsumptionStore } from '../stores/ConsumptionStore';
     import { Equipment } from '../types/Equipment';
-    import ConsumptionProductionPopupWindow from './ConsumptionProductionPopupWindow.vue';
+    import CardPopup from './CardPopup.vue';
 </script>
 
 <template>
-    <ConsumptionProductionPopupWindow
+    <CardPopup
         :id="consumptionId"
         :type="type"
         :props-amount="amount"
@@ -23,9 +23,9 @@
 
 <script lang="ts">
     export default {
-        name: 'EnergyAddEnergyWindow',
+        name: 'EnergyMenuAddEnergyWindow',
         components: {
-            ConsumptionProductionPopupWindow
+            CardPopup
         },
         data() {
             return {

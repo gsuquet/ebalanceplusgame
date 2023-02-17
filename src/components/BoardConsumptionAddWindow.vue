@@ -1,11 +1,11 @@
 <script setup lang="ts">
     import { useEquipmentStore } from '../stores/EquipmentStore';
     import { useConsumptionStore } from '../stores/ConsumptionStore';
-    import ConsumptionProductionPopupWindow from './ConsumptionProductionPopupWindow.vue';
+    import CardPopup from './CardPopup.vue';
 </script>
 
 <template>
-    <ConsumptionProductionPopupWindow
+    <CardPopup
         :id="consumptionId"
         :type="equipmentType"
         :props-amount="consumption"
@@ -28,9 +28,9 @@
     const equipmentStore = useEquipmentStore();
     const consumptionStore = useConsumptionStore();
     export default {
-        name: "AddConsumptionWindow",
+        name: "BoardConsumptionAddWindow",
         components: {
-            ConsumptionProductionPopupWindow
+            CardPopup
         },
         props: {
             equipment: {} as any

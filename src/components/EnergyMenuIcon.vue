@@ -22,7 +22,7 @@ import { Icon } from '@iconify/vue';
 <script lang="ts">
     const energyStore = useEnergyStore();
     export default {
-        name: "EnergyIcon",
+        name: "EnergyMenuIcon",
         components: {
             Icon
         }
