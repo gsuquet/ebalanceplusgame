@@ -8,17 +8,6 @@
     import CardPopupTimeModifier from './CardPopupTimeModifier.vue';
     import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
     import CardPopupModificationButtons from './CardPopupModificationButtons.vue';
-    
-    const emit = defineEmits<{
-        (e: 'close-popup'): void;
-        (e: 'save', save:{
-            amount: number,
-            price: number,
-            startIndex: number,
-            endIndex: number}): void;
-        (e: 'cancel'): void;
-        (e: 'delete'): void;
-    }>();
 </script>
 
 <template>
@@ -231,7 +220,7 @@
                     this.modificationParams.canModifyConsumption = newEquipment.equipmentConsumptionParams.isConsumptionEditable;
                     this.modificationParams.canModifyDuration = newEquipment.type.equipmentTypeDurationParams.isDurationEditable;
                     this.modificationParams.canModifyCost = newEquipment.equipmentCostParams.isCostEditable;
-                    this.modificationParams.canModify = this.canModifyConsumption || this.canModifyDuration || this.canModifyCost;
+                    this.modificationParams.canModify = this.modificationParams.canModifyConsumption || this.modificationParams.canModifyDuration || this.modificationParams.canModifyCost;
                 },
                 immediate: true
             },
@@ -243,7 +232,7 @@
             },
             propsMaxEnergyAmount: {
                 handler: function (newMaxEnergyAmount) {
-                    this.updateMaxEnergyAmount(newMaxEnergyAmount);
+                    this.updateMaxEnergyAmount();
                 },
                 immediate: true
             },
@@ -269,6 +258,7 @@
                 },
                 immediate: true
             }
-        }
+        },
+        emits : ['close-popup', 'save', 'cancel', 'delete']
     }
 </script>
