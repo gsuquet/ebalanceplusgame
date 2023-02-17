@@ -1,31 +1,31 @@
 <script lang="ts">
-    import ProductionList from '../components/ProductionList.vue';
-    import ProductionRecap from '../components/ProductionResume.vue';
-    import ScenarioList from '../components/ScenarioList.vue'
-    import ScenarioResume from '../components/ScenarioResume.vue';
+    import SetupProductionList from '../components/SetupProductionList.vue';
+    import SetupProductionRecap from '../components/SetupProductionResume.vue';
+    import SetupScenarioList from '../components/SetupScenarioList.vue'
+    import SetupScenarioResume from '../components/SetupScenarioResume.vue';
     import SetupValidationSection from '../components/SetupValidationSection.vue';
 
     export default {
         components: {
-            ProductionList,
-            ProductionRecap,
-            ScenarioList,
-            ScenarioResume
+            SetupProductionList,
+            SetupProductionRecap,
+            SetupScenarioList,
+            SetupScenarioResume
         }
     }
 </script>
 
 <template>
     <div id="setup-page" class="view">
-        <ProductionList />
+        <SetupProductionList />
         <div class="center-container">
             <div class="details-container">
-                <ProductionRecap />
-                <ScenarioResume />
+                <SetupProductionRecap />
+                <SetupScenarioResume />
             </div>
             <SetupValidationSection />
         </div>
-        <ScenarioList />
+        <SetupScenarioList />
     </div>
 </template>
 

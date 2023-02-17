@@ -1,9 +1,7 @@
 <script setup lang="ts">
     import {  useScenarioStore } from '../stores/ScenarioStore';
     import { Icon } from '@iconify/vue';
-    // import { EquipmentTypeLocale } from '../stores/EquipmentStore';
     const scenarioStore = useScenarioStore();
-
 </script>
 
 <template>
@@ -35,5 +33,5 @@
 </template>
 
 <style lang="scss">
-    @import "../styles/components/productionAndScenarioResume.scss";
+    @import "../styles/components/setupProductionAndScenarioResume.scss";
 </style>

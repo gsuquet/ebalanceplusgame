@@ -4,24 +4,6 @@
 
     const productionStore = useProductionStore();
 
-    // export default {
-    //     setup() {
-    //     },     
-    //     methods: {
-    //         isEmpty(listProd: number[]){
-    //             let empty: boolean;
-    //             if(listProd.length == 0)
-    //                 empty = true;
-    //             else
-    //                 empty = false 
-    //             return empty
-    //         },
-    //     },
-    //     components: {
-    //         Icon
-    //     }
-    // }
-
     function isEmpty(listProd: number[]){
         let empty: boolean;
         if(listProd.length == 0 )
@@ -30,9 +12,7 @@
             empty = false 
         return empty
     }
-
 </script>
-
 
 <template>
     <div class="recap-container">
@@ -65,5 +45,5 @@
 </template>
 
 <style scoped lang="scss">
-    @import "../styles/components/productionAndScenarioResume.scss";
+    @import "../styles/components/setupProductionAndScenarioResume.scss";
 </style>
