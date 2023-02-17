@@ -1,17 +1,23 @@
 import { defineStore } from 'pinia';
 import { Consumption } from '../types/Consumption';
+import { EnergyStorageParameters } from '../types/Energy';
 
 export const useEnergyStore = defineStore({
     id: 'EnergyStore',
     state: () => {
         return {
+            energyStorageParameters: {
+                isEnergyStorage: true as boolean,
+                initialStoredEnergy: 0 as number,
+                numberOfBatteries: 1 as number,
+                batteryIndividualCapacity: 200 as number,
+                batteryPrice: 50 as number
+            } as EnergyStorageParameters,
             storedEnergy: 0 as number,
             maxEnergy: 200 as number,
             totalStoredEnergyOverTheGame: 0 as number,
             totalUSedEnergyOverTheGame: 0 as number,
             numberOfBatteries: 1 as number,
-            batteryIndividualCapacity: 200 as number,
-            batteryPrice: 0 as number,
             energyPrice: 0 as number,
             clickedEnergyIcon: false as boolean,
             clickedStoreEnergy: false as boolean,
@@ -21,14 +27,25 @@ export const useEnergyStore = defineStore({
         };
     },
     actions: {
+        initializeEnergyStore() {
+            this.energyStorageParameters = useGameParametersStore().getScenarioEnergyStorageParameters;
+            this.storedEnergy = 0 + this.energyStorageParameters.initialStoredEnergy;
+            this.maxEnergy = 0 + this.energyStorageParameters.numberOfBatteries * this.energyStorageParameters.batteryIndividualCapacity;
+            this.totalStoredEnergyOverTheGame = 0;
+            this.totalUSedEnergyOverTheGame = 0;
+        },
         addBattery() {
-            this.numberOfBatteries++;
-            this.maxEnergy += this.batteryIndividualCapacity;
+            if(useGameParametersStore().canWithdrawMoney(this.energyStorageParameters.batteryPrice)){
+                this.numberOfBatteries++;
+                this.maxEnergy += this.energyStorageParameters.batteryIndividualCapacity;
+                useGameParametersStore().withdrawMoney(this.energyStorageParameters.batteryPrice);
+            }
         },
         removeBattery() {
-            if (this.numberOfBatteries > 1) {
+            if (this.numberOfBatteries > this.energyStorageParameters.numberOfBatteries) {
                 this.numberOfBatteries--;
-                this.maxEnergy -= this.batteryIndividualCapacity;
+                this.maxEnergy -= this.energyStorageParameters.batteryIndividualCapacity;
+                useGameParametersStore().addMoney(this.energyStorageParameters.batteryPrice);
             }
         },
         storeEnergy(energyToStore: Consumption) {
@@ -40,7 +57,7 @@ export const useEnergyStore = defineStore({
             this.setValuesFromStoredEnergyList();
         },
         setValuesFromStoredEnergyList() {
-            this.storedEnergy = 0;
+            this.storedEnergy = 0 + this.energyStorageParameters.initialStoredEnergy;
             this.totalStoredEnergyOverTheGame = 0;
             this.storedEnergyList.forEach((energy) => {
                 const amountToStore = energy.amount*(energy.endIndex-energy.startIndex+1);
@@ -108,6 +125,18 @@ export const useEnergyStore = defineStore({
                 return state.maxEnergy - state.storedEnergy + consumption.amount*(consumption.endIndex-consumption.startIndex+1);
             }
             return state.maxEnergy;
+        },
+        canUserAddABattery:(state) => {
+            return useGameParametersStore().canWithdrawMoney(state.energyStorageParameters.batteryPrice)
+        },
+        canUserRemoveABattery:(state) => {
+            return state.numberOfBatteries > state.energyStorageParameters.numberOfBatteries
+        },
+        displayEnergyIcon:(state) => {
+            return state.energyStorageParameters.isEnergyStorage;
+        },
+        displayEnergyMenu:(state) => {
+            return state.energyStorageParameters.isEnergyStorage && state.clickedEnergyIcon;
         }
     },
 });

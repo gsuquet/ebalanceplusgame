@@ -1,4 +1,5 @@
 import { EquipmentType, EquipmentTypeLocale } from './EquipmentType';
+import { EnergyStorageParameters } from './Energy';
 import { Consumption } from './Consumption';
 
 export interface Scenario{
@@ -11,6 +12,7 @@ export interface Scenario{
     descriptions: InternatObject[],
     equipment_types: EquipmentType[],
     initial_consumption: Consumption[],
+    energyStorageParameters: EnergyStorageParameters
 }
 
 
@@ -23,7 +25,8 @@ export interface ScenarioLocale {
     color: string,
     description: string,
     equipment_type_local: EquipmentTypeLocale[], 
-    initial_consumption: Consumption[]
+    initial_consumption: Consumption[],
+    energyStorageParameters: EnergyStorageParameters
 }
 
 export interface InternatObject{
