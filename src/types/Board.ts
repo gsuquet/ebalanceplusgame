@@ -1,7 +1,7 @@
 export interface Board {
     width: number;
     height: number;
-    tiles: Tile[];
+    consumptionTiles: Tile[];
 }
 
 export interface Tile {

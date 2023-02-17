@@ -9,7 +9,7 @@ export const useBoardStore = defineStore({
             board: {
                 width: 1440,
                 height: 1500,
-                tiles: []
+                consumptionTiles: []
             } as Board,
             tileParams: {
                 pxSizeFor10W: 5,
@@ -56,7 +56,7 @@ export const useBoardStore = defineStore({
                         ));
                 }
             };
-            this.board.tiles = tiles;
+            this.board.consumptionTiles = tiles;
         },
         TilesFromConsumption(consumptionList: Consumption[]){
             const tiles: Tile[] = [];
@@ -94,7 +94,7 @@ export const useBoardStore = defineStore({
                         ));
                 }
             };
-            this.board.tiles = tiles;
+            this.board.consumptionTiles = tiles;
         },
 
 
@@ -108,9 +108,8 @@ export const useBoardStore = defineStore({
                 color: consumption.equipment.type.color,
             } as Tile;
         },
-        // TODO : define method to sort tiles (according to size on x-axis ?
         removeTileFromBoard(tileId: string) {
-            this.board.tiles = this.board.tiles.filter(tile => tile.id !== tileId);
+            this.board.consumptionTiles = this.board.consumptionTiles.filter(tile => tile.id !== tileId);
         },
         setClickedTile(tile: Tile | null) {
             this.clickedTile = tile;
