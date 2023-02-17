@@ -62,6 +62,13 @@
         ],
         "initial_consumption": [
             
-        ]
+        ],
+        "energyStorageParameters": {
+            "isEnergyStorage": true,
+            "initialStoredEnergy": 0,
+            "numberOfBatteries": 1,
+            "batteryIndividualCapacity": 200,
+            "batteryPrice": 10
+        }
     }
 ]

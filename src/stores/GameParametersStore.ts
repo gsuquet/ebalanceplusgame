@@ -22,7 +22,14 @@ export const useGameParametersStore = defineStore({
                 color: '',
                 description: '',
                 equipment_type_local: [],
-                initial_consumption: []
+                initial_consumption: [],
+                energyStorageParameters: {
+                    isEnergyStorage: false,
+                    initialStoredEnergy: 0,
+                    numberOfBatteries: 0,
+                    batteryIndividualCapacity: 0,
+                    batteryPrice: 0
+                }
             } as ScenarioLocale,
             productionCurve: {
                 id: '0',
@@ -61,11 +68,35 @@ export const useGameParametersStore = defineStore({
             }
         },
         setScenario(scenarioId: string) {
+            const scenarioImport = useScenarioStore().getScenarioById(scenarioId);
+            if(scenarioImport){
+                this.scenario = useScenarioStore().convertScenarioToScenarioLocale(scenarioImport);
+            } else{
+                this.scenario = {
+                    id: '0',
+                    name: 'No scenario',
+                    day: '',
+                    season: '',
+                    icon: '',
+                    color: '',
+                    description: '',
+                    equipment_type_local: [],
+                    initial_consumption: [],
+                    energyStorageParameters: {
+                        isEnergyStorage: false,
+                        initialStoredEnergy: 0,
+                        numberOfBatteries: 0,
+                        batteryIndividualCapacity: 0,
+                        batteryPrice: 0
+                    }
+                };
+            }
         },
         setProductionCurveAndScenario(productionCurve: ProductionCurve | null, scenario: ScenarioLocale | null) {
             if(!productionCurve || !scenario) return;
             this.productionCurve = productionCurve;
-            this.scenario = scenario;            
+            this.scenario = scenario;
+            useEnergyStore().initializeEnergyStore();
         },
         setRandomProductionCurveAndScenario() {
             const randomProductionCurve = useProductionStore().getRandomProductionCurve();
@@ -103,26 +134,17 @@ export const useGameParametersStore = defineStore({
             this.isMultiplayer = isMultiplayer;
             this.isPublic = isPublic;
         },
-        storeToLocalStorage() {
-            localStorage.setItem('gameParameters', JSON.stringify(this));
+        withdrawMoney(amount: number) {
+            this.availableMoney -= amount;
         },
-        getFromLocalStorage() {
-            const gameParameters = JSON.parse(localStorage.getItem('gameParameters') || '{}');
-            if(gameParameters){
-                this.gameId = gameParameters.id;
-                this.date = gameParameters.date;
-                this.language = gameParameters.language;
-                this.scenario = gameParameters.scenario;
-                this.productionCurve = gameParameters.productionCurve;
-                this.user = gameParameters.user;
-                this.score = gameParameters.score;
-                this.moneyWon = gameParameters.moneyWon;
-                this.availableMoney = gameParameters.availableMoney;
-            }
-        }
+        addMoney(amount: number) {
+            this.availableMoney += amount;
+        },
     },
     getters: {
         getProductionCurve: (state) => state.productionCurve,
         getGameIdUpper: (state) => state.gameId.toUpperCase(),
+        canWithdrawMoney: (state) => (amount: number) => state.availableMoney >= amount,
+        getScenarioEnergyStorageParameters: (state) => state.scenario.energyStorageParameters
     }
 });

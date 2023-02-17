@@ -1,7 +1,7 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 import { Scenario, ScenarioLocale, InternatObject } from '../types/Scenario';
-import { EquipmentType, EquipmentTypeLocale } from "../types/EquipmentType";
-import { Consumption } from "../types/Consumption";
+import { EquipmentType, EquipmentTypeLocale } from '../types/EquipmentType';
+import { Consumption } from '../types/Consumption';
 
 
 export const useScenarioStore = defineStore({ id: "ScenarioStore", 
@@ -32,7 +32,14 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
                         maxDuration: '23:45'
                     },
                 }] as EquipmentType[],
-                initial_consumption: [{}] as Consumption[]
+                initial_consumption: [{}] as Consumption[],
+                energyStorageParameters: {
+                    isEnergyStorage: false,
+                    initialStoredEnergy: 0,
+                    numberOfBatteries: 0,
+                    batteryIndividualCapacity: 0,
+                    batteryPrice: 0
+                }
             }] as Scenario[],
             scenariosLocale: [] as ScenarioLocale[],
             clickedScenario: null as null | ScenarioLocale
@@ -110,7 +117,8 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
                                                     color: scenario.color,
                                                     description: description,
                                                     equipment_type_local: listEquipmentLocale,
-                                                    initial_consumption: scenario.initial_consumption   
+                                                    initial_consumption: scenario.initial_consumption,
+                                                    energyStorageParameters: scenario.energyStorageParameters
                                                 }; 
             return scenarioLocale;
         },

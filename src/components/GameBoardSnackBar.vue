@@ -8,8 +8,8 @@ import { Icon } from '@iconify/vue';
 
 <template>
     <section id="game-board-snackbar">
-        <EnergyMenu v-if="useEnergyStore().clickedEnergyIcon"/>
-        <EnergyIcon />
+        <EnergyMenu v-if="useEnergyStore().displayEnergyMenu"/>
+        <EnergyIcon v-if="useEnergyStore().displayEnergyIcon"/>
         <div class="market-icon-container">
             <div class="market-icon-background" @click="useEnergyStore().clickOnMarketIcon()" v-if="!useEnergyStore().clickedMarketIcon">
                 <Icon icon="mdi:home-currency-usd" class="market-icon-image" />    

@@ -32,17 +32,27 @@ import { useEnergyStore } from '../stores/EnergyStore';
             <div class="figures-container">
                 <div class="figure">
                     <h4>{{ $t("money.cost") }} :</h4>
-                    <p>{{ energyStore.batteryPrice }} €</p>
+                    <p>{{ energyStore.energyStorageParameters.batteryPrice }} €</p>
                 </div>
                 <div class="figure">
                     <h4>{{ $t("energy.capacity") }} :</h4>
-                    <p>{{ energyStore.batteryIndividualCapacity }} W</p>
+                    <p>{{ energyStore.energyStorageParameters.batteryIndividualCapacity }} W</p>
                 </div>
             </div>
             <div class="batteries">
-                <button @click="energyStore.removeBattery" class="btn delete" :class="energyStore.numberOfBatteries > 1 ? '':'disabled'">-</button>
+                <button
+                    @click="energyStore.removeBattery"
+                    class="btn delete"
+                    :class="{'disabled': !energyStore.canUserRemoveABattery}">
+                    -
+                </button>
                 <span>{{ energyStore.numberOfBatteries }}</span>
-                <button @click="energyStore.addBattery" class="btn add">+</button>
+                <button
+                    @click="energyStore.addBattery"
+                    class="btn add"
+                    :class="{'disabled': !energyStore.canUserAddABattery}">
+                    +
+                </button>
             </div>
         </div>
         <div class="energy-menu-history">
