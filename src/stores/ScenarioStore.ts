@@ -23,6 +23,7 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
                     icon_name:'vide',
                     color: '#000000',
                     isBattery: false,
+                    isCharging: false,
                     equipmentTypeDurationParams: {
                         isDurationEditable: true,
                         isDurationLengthEditable: true,
@@ -68,6 +69,7 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
                             icon_name: equipmentType.icon_name,
                             color: equipmentType.color,
                             isBattery: equipmentType.isBattery,
+                            isCharging: equipmentType.isCharging,
                             equipmentTypeDurationParams: equipmentType.equipmentTypeDurationParams
                         } as EquipmentTypeLocale); 
                     }

@@ -16,6 +16,7 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
                     icon_name:'vide',
                     color: '#000000',
                     isBattery: false,
+                    isCharging: false,
                     equipmentTypeDurationParams: {
                         isDurationEditable: true,
                         isDurationLengthEditable: true,

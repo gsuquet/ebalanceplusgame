@@ -35,6 +35,7 @@
                 "icon_name":"mdi:dishwasher",
                 "color":"#9A7751",
                 "isBattery": false,
+                "isCharging": false,
                 "equipmentTypeDurationParams": {
                     "isDurationEditable": true,
                     "isDurationLengthEditable": true,
@@ -50,6 +51,7 @@
                 "icon_name":"mdi:washing-machine",
                 "color":"#00447C",
                 "isBattery": false,
+                "isCharging": false,
                 "equipmentTypeDurationParams": {
                     "isDurationEditable": true,
                     "isDurationLengthEditable": true,

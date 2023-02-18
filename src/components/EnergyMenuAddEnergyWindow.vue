@@ -50,6 +50,7 @@
                         icon_name:'mdi:battery-charging-100',
                         color: 'green',
                         isBattery: true,
+                        isCharging: false,
                         equipmentTypeDurationParams:{
                             isDurationEditable: true,
                             isDurationLengthEditable: true,
