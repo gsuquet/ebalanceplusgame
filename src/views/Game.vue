@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import Alert from '../components/Alert.vue';
+import BaseAlert from '../components/BaseAlert.vue';
 import Board from '../components/Board.vue';
 import BoardSnackBar from '../components/BoardSnackBar.vue';
 import EquipmentList from '../components/EquipmentList.vue';
+import BoardConsumptionAddWindow from '../components/BoardConsumptionAddWindow.vue';
+import BoardConsumptionDetailsWindow from '../components/BoardConsumptionDetailsWindow.vue';
+import EnergyMenuAddEnergyWindow from '../components/EnergyMenuAddEnergyWindow.vue';
 import { useConsumptionStore } from '../stores/ConsumptionStore';
 import { useBoardStore } from '../stores/BoardStore';
 import { useEquipmentStore } from '../stores/EquipmentStore';
 import { useEnergyStore } from '../stores/EnergyStore';
-import BoardConsumptionAddWindow from '../components/BoardConsumptionAddWindow.vue';
-import BoardConsumptionDetailsWindow from '../components/BoardConsumptionDetailsWindow.vue';
-import EnergyMenuAddEnergyWindow from '../components/EnergyMenuAddEnergyWindow.vue';
 const consumptionStore = useConsumptionStore();
 const boardStore = useBoardStore();
 const gameParametersStore = useGameParametersStore();
@@ -21,7 +21,7 @@ consumptionStore.addInitialConsumptionToConsumptionList();
 <template>
     <div class="overlay" v-if="equipmentStore.clickedEquipment || boardStore.clickedTile || energyStore.clickedStoreEnergy"/>
     <div id="game-page" class="view">
-        <Alert
+        <BaseAlert
             :should-display="consumptionStore.isOverConsumption"
             alert-class="danger-alert"
             alert-text="alert.overConsumption"/>        

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Canvas from '../components/Canvas.vue';
+import BaseCanvas from './BaseCanvas.vue';
 import { useBoardStore } from '../stores/BoardStore';
 import { ProductionCurve } from '../types/Production';
 import { Tile } from '../types/Board';
@@ -7,7 +7,7 @@ import { Tile } from '../types/Board';
 
 <template>
     <section id="game-board" class="board">
-        <Canvas
+        <BaseCanvas
             :canvas-id="canvasId"
             :width="canvasWidth"
             :height="canvasHeight"
@@ -33,7 +33,7 @@ import { Tile } from '../types/Board';
             consumptionTilesList: null
         },
         components: {
-            Canvas
+            BaseCanvas
         },
         data() {
             return {
