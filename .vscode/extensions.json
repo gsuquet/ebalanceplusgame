@@ -1,11 +1,12 @@
 {
   "recommendations": [
-    "vue.volar",
     "vue.vscode-typescript-vue-plugin",
+    "vue.volar",
     "lokalise.i18n-ally",
     "antfu.iconify",
     "antfu.vite",
-    "redhat.vscode-yaml",
+    "dbaeumer.vscode-eslint",
+    "streetsidesoftware.code-spell-checker",
     "pkief.material-icon-theme"
   ]
 }
