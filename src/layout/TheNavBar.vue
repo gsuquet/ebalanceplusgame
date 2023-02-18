@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import LanguageSelector from '../components/LanguageSelector.vue'
+    import TheLanguageSelector from '../components/TheLanguageSelector.vue'
 </script>
 
 <template>
@@ -14,7 +14,7 @@
                 <Router-Link to="/game">{{ $t("page.game") }}</Router-Link>
             </div>
         </div>
-        <LanguageSelector />
+        <TheLanguageSelector />
         <div class="nav-bar-user">
         </div>
     </div>

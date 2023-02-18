@@ -2,7 +2,7 @@
     <div :class="alertClass+' alert'" v-if="display">
         <div class="alert-background">
             <span class="closebtn" @click="closeAlert">&times;</span>
-            <p>{{ text }}</p>
+            <p>{{ i18nTextProcessed }}</p>
         </div>
     </div>
 </template>
@@ -11,40 +11,42 @@
     export default {
       name: 'Alert',
       props: {
-          alertClass: String,
-          alertText: String,
-          shouldDisplay: Boolean
+        alertClass: {
+            type: String,
+            required: true
+        },
+        alertText: {
+            type: String,
+            required: true
+        },
+        shouldDisplay: {
+            type: Boolean,
+            required: true
+        }
       },
       data() {
           return {
-              display: false as boolean,
-              text : '' as string
+              display: false as boolean
           };
       },
       watch: {
           shouldDisplay: function (newVal: boolean) {
                 this.display = newVal;
-          },
-          alertText: {
-            handler: function (newVal: string) {
-                if(newVal){
-                    this.setTextFromI18n(newVal);
-                }
-            },
-            immediate: true
           }
       },
       methods: {
           closeAlert() {
               this.display = false;
-          },
-          setTextFromI18n(key: string) {
-              this.text = this.$t(key);
           }
+      },
+      computed: {
+        i18nTextProcessed(): string {
+            return this.$t(this.alertText);
+        }
       }
     };
 </script>
 
 <style lang="scss">
-@import '../styles/components/alert.scss';
+    @import '../styles/components/alert.scss';
 </style>

@@ -27,7 +27,6 @@ export default {
     },
     methods: {
         changeLanguage() {
-            console.log(i18n.global.locale);
             useGameParametersStore().setLanguage(this.localeChoice);
         },
         getIconForLocale(locale: string) {
