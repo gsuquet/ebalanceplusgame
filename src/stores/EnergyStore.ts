@@ -125,7 +125,7 @@ export const useEnergyStore = defineStore({
             if( consumption ){
                 return state.maxEnergy - state.storedEnergy + consumption.amount*(consumption.endIndex-consumption.startIndex+1);
             }
-            return state.maxEnergy;
+            return state.maxEnergy - state.storedEnergy;
         },
         getStoredEnergyInKWh:(state) => {
             return convertWattsPer15minToKilowattsPerHour(state.storedEnergy);
