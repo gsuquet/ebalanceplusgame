@@ -53,6 +53,8 @@ The desired format is a Single Page Application (SPA)
 - **App.vue**: Main VueJS component and entry point of the application
 - **main.ts**: Main TypeScript file and starting script of the application
 - **index.html** : Index of the SPA containing the root element and the headers
+- **.eslintrc**: ESLint configuration file, it contains the configuration of the ESLint linter
+- **.gitignore**: Git configuration file, it contains the files and folders that should not be pushed to the repository
 - **package.json**: Project configuration file, it contains the dependencies and scripts used in the project
 - **tsconfig.json**: TypeScript configuration file, it contains the configuration of the TypeScript compiler
 - **vite.config.ts**: Vite configuration file, it contains the configuration of the Vite server and the plugins used in the project
@@ -64,7 +66,14 @@ The desired format is a Single Page Application (SPA)
 
 ## Recommended IDE Setup
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- [VS Code](https://code.visualstudio.com/)
+  - [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur)
+  - [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+  - [i18n Ally](https://marketplace.visualstudio.com/items?itemName=antfu.i18n-ally)
+  - [Iconify](https://marketplace.visualstudio.com/items?itemName=antfu.iconify)
+  - [Vite](https://marketplace.visualstudio.com/items?itemName=antfu.vite)
+  - [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+  - [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
 
 ## Project Setup
 1. Clone the repo
