@@ -127,7 +127,6 @@
                     this.inputErrorEnd = true;
                 } else if(!this.isStartHourBeforeEndHour(this.startHour, newEndHour)) {
                     this.inputErrorEnd = true;
-                    console.log('end hour is not before start hour');
                 } else {
                     this.inputErrorEnd = false;
                     this.inputErrorStart = false;
@@ -217,19 +216,19 @@
                     this.inputErrorStart = false;
                     this.inputErrorEnd = false;
                     this.setTimeModificationParamsFromMinMaxDuration();
-                    if(this.startHour === '00:00' || this.startHour === '0:0') {
-                        this.startHourMinus = true;
-                    } else{
-                        this.startHourMinus = false;
-                    }
-                    if(this.endHour === '23:45') {
-                        this.endHourPlus = true;
-                    } else{
-                        this.endHourPlus = false;
-                    }
                 } else {
                     this.startHourPlus = true;
                     this.endHourMinus = true;
+                }
+                if(this.startHour === '00:00' || this.startHour === '0:0') {
+                    this.startHourMinus = true;
+                } else{
+                    this.startHourMinus = false;
+                }
+                if(this.endHour === '23:45') {
+                    this.endHourPlus = true;
+                } else{
+                    this.endHourPlus = false;
                 }
                 this.setTimeModificationParamsIfDurationLengthIsNotEditable();
             },
