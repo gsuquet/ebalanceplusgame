@@ -22,6 +22,8 @@ The desired format is a Single Page Application (SPA)
     - [Files and folders structure](#files-and-folders-structure)
     - [Application pages](#application-pages)
   - [Recommended IDE Setup](#recommended-ide-setup)
+    - [VS Code Extensions (defined in .vscode/extensions.json)](#vs-code-extensions-defined-in-vscodeextensionsjson)
+    - [VS Code Settings (defined in .vscode/settings.json)](#vs-code-settings-defined-in-vscodesettingsjson)
   - [Project Setup](#project-setup)
     - [Compiles and hot-reloads for development](#compiles-and-hot-reloads-for-development)
     - [Compiles and minifies for production](#compiles-and-minifies-for-production)
@@ -67,6 +69,7 @@ The desired format is a Single Page Application (SPA)
 ## Recommended IDE Setup
 
 - [VS Code](https://code.visualstudio.com/)
+### VS Code Extensions (defined in .vscode/extensions.json)
   - [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur)
   - [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
   - [i18n Ally](https://marketplace.visualstudio.com/items?itemName=antfu.i18n-ally)
@@ -75,6 +78,66 @@ The desired format is a Single Page Application (SPA)
   - [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
   - [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
 
+### VS Code Settings (defined in .vscode/settings.json)
+Inspired by : https://github.com/antfu/vscode-settings
+```json
+{
+  // ESLint config: https://github.com/antfu/eslint-config
+  "eslint.codeAction.showDocumentation": {
+    "enable": true
+  },
+  "eslint.quiet": true,
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "vue",
+    "html",
+    "markdown",
+    "json",
+    "jsonc",
+    "json5"
+  ],
+
+  // Pretier
+  "prettier.enable": false,
+  "prettier.printWidth": 200,
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+
+  // i18n Ally
+  "i18n-ally.localesPaths": [
+    "src/locales"
+  ],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.autoDetection": false,
+  "i18n-ally.displayLanguage": "en",
+  "i18n-ally.ignoredLocales": [],
+
+  // Editor
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": false,
+    "source.fixAll.eslint": true,
+    "source.organizeImports": false
+  },
+  "search.exclude": {
+    "**/.git": true,
+    "**/.github": true,
+    "**/.output": true,
+    "**/.pnpm": true,
+    "**/.vscode": true,
+    "**/bower_components": true,
+    "**/dist/**": true,
+    "**/logs": true,
+    "**/node_modules": true,
+    "**/out/**": true,
+    "**/package-lock.json": true,
+    "**/pnpm-lock.yaml": true,
+    "**/tmp": true,
+    "**/yarn.lock": true
+  },
+}
+```
 ## Project Setup
 1. Clone the repo
 ```sh
