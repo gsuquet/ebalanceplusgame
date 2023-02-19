@@ -50,6 +50,7 @@ export function removeTimeAmountFromHour(hour: string, timeAmount: string) {
     }
     if(newHourNumber < 0) {
         newHourNumber = 0;
+        newMinutesNumber = 0;
     }
     return getHourStringFromHourAndMinutesNumbers(newHourNumber, newMinutesNumber);
 }

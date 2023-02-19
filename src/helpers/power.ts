@@ -6,10 +6,18 @@ function convertWattsToKilowatts(watts: number): number {
     return watts / 1000;
 }
 
+export function calculateMaxPowerPer15min(maxPower: number, indexes:{indexStart:number,indexEnd:number}): number {
+    return maxPower / ((indexes.indexEnd - indexes.indexStart)+1);
+}
+
+export function calculateTotalWattsPer15min(wattsPer15min: number, indexes:{indexStart:number,indexEnd:number}): number {
+    return wattsPer15min * ((indexes.indexEnd - indexes.indexStart)+1);
+}
+
 export function convertWattsPer15minToKilowattsPerHour(watts: number): number {
     return roundNumberToTwoDecimals(convertWattsToKilowatts(watts) / 4);
 }
 
 export function getTotalKilowattsPerHour(wattsPer15min: number, indexes:{indexStart:number,indexEnd:number}): number {
-    return roundNumberToTwoDecimals((convertWattsToKilowatts(wattsPer15min) / 4) * ((indexes.indexEnd - indexes.indexStart)+1));
+    return convertWattsPer15minToKilowattsPerHour(calculateTotalWattsPer15min(wattsPer15min, indexes));
 }
