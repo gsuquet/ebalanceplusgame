@@ -39,6 +39,5 @@ declare module '@vue/runtime-core' {
     SetupScenarioResume: typeof import('./components/SetupScenarioResume.vue')['default']
     SetupValidationSection: typeof import('./components/SetupValidationSection.vue')['default']
     TheLanguageSelector: typeof import('./components/TheLanguageSelector.vue')['default']
-    ValidationSetup: typeof import('./components/ValidationSetup.vue')['default']
   }
 }
