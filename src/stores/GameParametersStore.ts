@@ -3,6 +3,7 @@ import { useProductionStore } from './ProductionStore';
 import i18n from '../modules/i18n';
 import { ScenarioLocale } from '../types/Scenario';
 import { ProductionCurve } from '../types/Production';
+import { errorScenarioLocale } from '../assets/entityErrorScenario';
 
 export const useGameParametersStore = defineStore({
     id: 'GameParametersStore',
@@ -13,26 +14,7 @@ export const useGameParametersStore = defineStore({
             language: 'en',
             languageIsUserSet: false,
             theme: 'light',
-            scenario: {
-                id: '0',
-                name: 'No scenario',
-                day: '',
-                season: '',
-                icon: '',
-                color: '',
-                description: '',
-                equipment_type_local: [],
-                initial_consumption: [],
-                energyStorageParameters: {
-                    isEnergyStorage: false,
-                    initialStoredEnergy: 0,
-                    numberOfBatteries: 0,
-                    batteryIndividualCapacity: 0,
-                    batteryPrice: 0,
-                    batteryChargeEquipmentTypeId: 'battery_charge' as string,
-                    batteryDischargeEquipmentTypeId: 'battery_discharge' as string
-                }
-            } as ScenarioLocale,
+            scenario: errorScenarioLocale as ScenarioLocale,
             productionCurve: {
                 id: '0',
                 name: 'No production curve',
@@ -74,26 +56,7 @@ export const useGameParametersStore = defineStore({
             if(scenarioImport){
                 this.scenario = useScenarioStore().convertScenarioToScenarioLocale(scenarioImport);
             } else{
-                this.scenario = {
-                    id: '0',
-                    name: 'No scenario',
-                    day: '',
-                    season: '',
-                    icon: '',
-                    color: '',
-                    description: '',
-                    equipment_type_local: [],
-                    initial_consumption: [],
-                    energyStorageParameters: {
-                        isEnergyStorage: false,
-                        initialStoredEnergy: 0,
-                        numberOfBatteries: 0,
-                        batteryIndividualCapacity: 0,
-                        batteryPrice: 0,
-                        batteryChargeEquipmentTypeId: 'battery_charge' as string,
-                        batteryDischargeEquipmentTypeId: 'battery_discharge' as string
-                    }
-                };
+                this.scenario = errorScenarioLocale;
             }
         },
         setProductionCurveAndScenario(productionCurve: ProductionCurve | null, scenario: ScenarioLocale | null) {

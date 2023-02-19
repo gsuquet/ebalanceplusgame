@@ -36,7 +36,8 @@ The desired format is a Single Page Application (SPA)
 ## Project Structure
 ### Files and folders structure
 - **public**: Static assets
-- **src** : 
+- **src** :
+  - **assets**: Static assets
   - **components**: VueJS single file components (SFC), they are reusable and can be imported in other components or pages (see [Vue SFC](https://v3.vuejs.org/guide/single-file-component.html))
   - **data**: JSON files containing the data used in the game (see [Data](#data)), it will later be replaced by a database connection
   - **helpers**: TypeScript files containing shared utilities functions used in different parts of the project (see [Helpers](#helpers))

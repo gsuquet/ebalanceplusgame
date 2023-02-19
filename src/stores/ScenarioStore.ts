@@ -1,50 +1,14 @@
 import { defineStore } from 'pinia';
-import { Scenario, ScenarioLocale, InternatObject } from '../types/Scenario';
+import { Scenario, ScenarioLocale} from '../types/Scenario';
 import { EquipmentType, EquipmentTypeLocale } from '../types/EquipmentType';
-import { Consumption } from '../types/Consumption';
+import { errorScenario, errorScenarioLocale } from '../assets/entityErrorScenario';
 
 
 export const useScenarioStore = defineStore({ id: "ScenarioStore", 
     state: () => {
         return {
-            scenarios: [{
-                id: "0",
-                names: [{text: "vide", lang: "fr"},{text: "empty", lang: "en"}] as InternatObject[],
-                days: [{text: "vide", lang: "fr"},{text: "empty", lang: "en"}] as InternatObject[],
-                season: "Empty",
-                icon: "mdi:null",
-                color: "#000000", 
-                descriptions: [{text:"vide", lang:"fr"}, {text:"Empty", lang:"en"}] as InternatObject[],
-                equipment_types: [{
-                    id:'0',
-                    names: 
-                    [{lang: 'fr',name: 'Vide'},
-                    {lang: 'en',name: 'Empty'}],
-                    icon_name:'vide',
-                    color: '#000000',
-                    isBattery: false,
-                    isCharging: false,
-                    equipmentTypeDurationParams: {
-                        isDurationEditable: true,
-                        isDurationLengthEditable: true,
-                        originalDuration: '00:15',
-                        step: '00:15',
-                        minDuration: '00:15',
-                        maxDuration: '23:45'
-                    },
-                }] as EquipmentType[],
-                initial_consumption: [{}] as Consumption[],
-                energyStorageParameters: {
-                    isEnergyStorage: false,
-                    initialStoredEnergy: 0,
-                    numberOfBatteries: 0,
-                    batteryIndividualCapacity: 0,
-                    batteryPrice: 0,
-                    batteryChargeEquipmentTypeId: 'battery_charge' as string,
-                    batteryDischargeEquipmentTypeId: 'battery_discharge' as string 
-                }
-            }] as Scenario[],
-            scenariosLocale: [] as ScenarioLocale[],
+            scenarios: [errorScenario] as Scenario[],
+            scenariosLocale: [errorScenarioLocale] as ScenarioLocale[],
             clickedScenario: null as null | ScenarioLocale
         };
     },

@@ -3,20 +3,13 @@ import { Consumption } from '../types/Consumption';
 import { EnergyStorageParameters } from '../types/Energy';
 import { convertWattsPer15minToKilowattsPerHour }  from '../helpers/power';
 import { EquipmentType } from '../types/EquipmentType';
+import { errorEnergyStorageParameters } from '../assets/entityErrorEnergyStorageParameters';
 
 export const useEnergyStore = defineStore({
     id: 'EnergyStore',
     state: () => {
         return {
-            energyStorageParameters: {
-                isEnergyStorage: true as boolean,
-                initialStoredEnergy: 0 as number,
-                numberOfBatteries: 1 as number,
-                batteryIndividualCapacity: 200 as number,
-                batteryPrice: 50 as number,
-                batteryChargeEquipmentTypeId: 'battery_charge' as string,
-                batteryDischargeEquipmentTypeId: 'battery_discharge' as string 
-            } as EnergyStorageParameters,
+            energyStorageParameters: errorEnergyStorageParameters as EnergyStorageParameters,
             batteryChargeEquipmentType: {} as EquipmentType,
             batteryDischargeEquipmentType: {} as EquipmentType,
             storedEnergy: 0 as number,
