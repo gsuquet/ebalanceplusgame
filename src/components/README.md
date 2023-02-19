@@ -4,4 +4,4 @@ This directory contains most of your Vue.js Components.
 - All components are named in PascalCase.
 - Basic components are named Base*
 - Unique components used only once are named The*
-- All sub-components are named the component name they belong to followed by the sub-component name.
+- All sub-components are named starting with the component name they belong to followed by the sub-component name.
