@@ -7,14 +7,12 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    Alert: typeof import('./components/Alert.vue')['default']
     BaseAlert: typeof import('./components/BaseAlert.vue')['default']
     BaseCanvas: typeof import('./components/BaseCanvas.vue')['default']
     Board: typeof import('./components/Board.vue')['default']
     BoardConsumptionAddWindow: typeof import('./components/BoardConsumptionAddWindow.vue')['default']
     BoardConsumptionDetailsWindow: typeof import('./components/BoardConsumptionDetailsWindow.vue')['default']
     BoardSnackBar: typeof import('./components/BoardSnackBar.vue')['default']
-    Canvas: typeof import('./components/Canvas.vue')['default']
     CardPopup: typeof import('./components/CardPopup.vue')['default']
     CardPopupAmountModifier: typeof import('./components/CardPopupAmountModifier.vue')['default']
     CardPopupContent: typeof import('./components/CardPopupContent.vue')['default']
@@ -29,7 +27,6 @@ declare module '@vue/runtime-core' {
     EquipmentList: typeof import('./components/EquipmentList.vue')['default']
     EquipmentListEquipment: typeof import('./components/EquipmentListEquipment.vue')['default']
     HomeCreateGame: typeof import('./components/HomeCreateGame.vue')['default']
-    LanguageSelector: typeof import('./components/LanguageSelector.vue')['default']
     MarketMenu: typeof import('./components/MarketMenu.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
