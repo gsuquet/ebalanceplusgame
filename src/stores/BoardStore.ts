@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { Consumption } from '../types/Consumption';
 import { Board, Tile, TileParams } from '../types/Board';
+import { convertValueToPixels, convertValuesListToPixelsList } from '../helpers/drawInPixels';
 
 export const useBoardStore = defineStore({
     id: 'BoardStore',
@@ -27,7 +28,7 @@ export const useBoardStore = defineStore({
                 let consumptionYValuesList: number[] = [];
                 let lastCreatedTileIndex = 0;
                 let storedYValue = 0;
-                let consumptionHeight = (consumption.amount/10) * this.tileParams.pxSizeFor10W;
+                let consumptionHeight = convertValueToPixels(consumption.amount, this.tileParams.pxSizeFor10W, 10);
                 for (let i=consumption.startIndex; i<=consumption.endIndex; i++) {
                     occupiedSlotHeightsOnBoardByIndex[i] += consumptionHeight;
                     consumptionYValuesList.push(occupiedSlotHeightsOnBoardByIndex[i]);
@@ -65,7 +66,7 @@ export const useBoardStore = defineStore({
                 let consumptionYValuesList: number[] = [];
                 let lastCreatedTileIndex = 0;
                 let storedYValue = 0;
-                let consumptionHeight = (consumption.amount/10) * this.tileParams.pxSizeFor10W;
+                let consumptionHeight = convertValueToPixels(consumption.amount, this.tileParams.pxSizeFor10W, 10);
                 for (let i=consumption.startIndex; i<=consumption.endIndex; i++) {
                     occupiedSlotHeightsOnBoardByIndex[i] += consumptionHeight;
                     consumptionYValuesList.push(occupiedSlotHeightsOnBoardByIndex[i]);
@@ -99,12 +100,13 @@ export const useBoardStore = defineStore({
 
 
         generateTile(consumption: Consumption, startIndex: number, endIndex: number, y: number) {
+            const height = convertValueToPixels(consumption.amount, this.tileParams.pxSizeFor10W, 10);
             return {
                 id: consumption.id,
-                x: startIndex * this.tileParams.pxSizeFor15min,
-                y: y - ((consumption.amount/10) * this.tileParams.pxSizeFor10W),
-                width: ((endIndex - startIndex)+1) * this.tileParams.pxSizeFor15min,
-                height: (consumption.amount/10) * this.tileParams.pxSizeFor10W,
+                x: convertValueToPixels(startIndex, this.tileParams.pxSizeFor15min, 1),
+                y: y - height,
+                width: convertValueToPixels(endIndex - startIndex + 1, this.tileParams.pxSizeFor15min, 1),
+                height: height,
                 color: consumption.equipment.type.color,
             } as Tile;
         },
@@ -130,15 +132,11 @@ export const useBoardStore = defineStore({
     getters: {
         getProductionCurveInPixels(state) {
             const productionCurve = useGameParametersStore().productionCurve;
-            productionCurve.solar = productionCurve.solar.map((element: number) => convertToPx(element, state.tileParams.pxSizeFor10W));
-            productionCurve.wind = productionCurve.wind.map((element: number) => convertToPx(element, state.tileParams.pxSizeFor10W));
-            productionCurve.hydro = productionCurve.hydro.map((element: number) => convertToPx(element, state.tileParams.pxSizeFor10W));
-            productionCurve.total = productionCurve.total.map((element: number) => convertToPx(element, state.tileParams.pxSizeFor10W));
+            productionCurve.solar = convertValuesListToPixelsList(productionCurve.solar, state.tileParams.pxSizeFor10W, 10);
+            productionCurve.wind = convertValuesListToPixelsList(productionCurve.wind, state.tileParams.pxSizeFor10W, 10);
+            productionCurve.hydro = convertValuesListToPixelsList(productionCurve.hydro, state.tileParams.pxSizeFor10W, 10);
+            productionCurve.total = convertValuesListToPixelsList(productionCurve.total, state.tileParams.pxSizeFor10W, 10);
             return productionCurve;
         }
     }
 });
-
-function convertToPx(value: number, pxSizeFor10W: number) {
-    return (value * pxSizeFor10W) / 10;
-}
