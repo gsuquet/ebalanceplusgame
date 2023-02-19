@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { Consumption } from '../types/Consumption';
 import { EnergyStorageParameters } from '../types/Energy';
 import { convertWattsPer15minToKilowattsPerHour }  from '../helpers/power';
+import { EquipmentType } from '../types/EquipmentType';
 
 export const useEnergyStore = defineStore({
     id: 'EnergyStore',
@@ -12,8 +13,12 @@ export const useEnergyStore = defineStore({
                 initialStoredEnergy: 0 as number,
                 numberOfBatteries: 1 as number,
                 batteryIndividualCapacity: 200 as number,
-                batteryPrice: 50 as number
+                batteryPrice: 50 as number,
+                batteryChargeEquipmentTypeId: 'battery_charge' as string,
+                batteryDischargeEquipmentTypeId: 'battery_discharge' as string 
             } as EnergyStorageParameters,
+            batteryChargeEquipmentType: {} as EquipmentType,
+            batteryDischargeEquipmentType: {} as EquipmentType,
             storedEnergy: 0 as number,
             maxEnergy: 200 as number,
             totalStoredEnergyOverTheGame: 0 as number,
@@ -34,6 +39,17 @@ export const useEnergyStore = defineStore({
             this.maxEnergy = 0 + this.energyStorageParameters.numberOfBatteries * this.energyStorageParameters.batteryIndividualCapacity;
             this.totalStoredEnergyOverTheGame = 0;
             this.totalUSedEnergyOverTheGame = 0;
+        },
+        async getBatteryEquipmentTypes() {
+            const data = (await import ('../data/batteries.json')).default;
+            const batteryChargeEquipmentType = data.find((equipmentType: EquipmentType) => equipmentType.id === this.energyStorageParameters.batteryChargeEquipmentTypeId);
+            const batteryDischargeEquipmentType = data.find((equipmentType: EquipmentType) => equipmentType.id === this.energyStorageParameters.batteryDischargeEquipmentTypeId);
+            if(batteryChargeEquipmentType && batteryDischargeEquipmentType){
+                this.batteryChargeEquipmentType = batteryChargeEquipmentType;
+                this.batteryDischargeEquipmentType = batteryDischargeEquipmentType;
+            } else {
+                alert('Battery equipment types not found');
+            }
         },
         addBattery() {
             if(useGameParametersStore().canWithdrawMoney(this.energyStorageParameters.batteryPrice)){
