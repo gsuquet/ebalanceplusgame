@@ -86,20 +86,20 @@ import { Tile } from '../types/Board';
                     this.canvas.fillRect(x, y, width, height);
                 }
             },
-            drawProductionCurve(productionCurve: ProductionCurve | null) {
+            drawProductionCurve(productionCurve: ProductionCurve | null, isCurveSmoothed: boolean) {
                 if(productionCurve){
                     const pxSize = this.pxSizeFor10W ? this.pxSizeFor10W : 5;
                     if(productionCurve.solar.length>0){
-                        this.drawCurve(this.getPointsInPixels(productionCurve.solar,pxSize), 'yellow');
+                        this.drawCurve(this.getPointsInPixels(productionCurve.solar,pxSize), 'yellow', isCurveSmoothed);
                     }
                     if(productionCurve.wind.length>0){
-                        this.drawCurve(this.getPointsInPixels(productionCurve.wind,pxSize), 'green');
+                        this.drawCurve(this.getPointsInPixels(productionCurve.wind,pxSize), 'green', isCurveSmoothed);
                     }
                     if(productionCurve.hydro.length>0){
-                        this.drawCurve(this.getPointsInPixels(productionCurve.hydro,pxSize), 'blue');
+                        this.drawCurve(this.getPointsInPixels(productionCurve.hydro,pxSize), 'blue', isCurveSmoothed);
                     }
                     if(productionCurve.total.length>0){
-                        this.drawCurve(this.getPointsInPixels(productionCurve.total,pxSize), 'black');
+                        this.drawCurve(this.getPointsInPixels(productionCurve.total,pxSize), 'black', isCurveSmoothed);
                     }
                 }
             },
@@ -126,13 +126,23 @@ import { Tile } from '../types/Board';
                     x=x+xSize*4;
                 }
             },
-            drawCurve(points: number[], color: string){
+            drawCurve(points: number[], color: string, isCurveSmoothed: boolean){
                 const xSize = this.pxSizeFor15m ? this.pxSizeFor15m : 15;
                 let x=0;
-                for(let i =0; i<points.length-1; i++) {
-                    this.drawLine(x,this.canvasHeight-points[i],x+xSize,this.canvasHeight-points[i+1], color);
-                    x=x+xSize;
+                if(isCurveSmoothed){
+                    for(let i =0; i<points.length-1; i++) {
+                        this.drawLine(x,this.canvasHeight-points[i],x+xSize,this.canvasHeight-points[i+1], color);
+                        x=x+xSize;
+                    }
+                } else {
+                    for(let i =0; i<points.length-1; i++) {
+                        const y = this.canvasHeight-points[i];
+                        this.drawLine(x,y,x+xSize,y, color);
+                        this.drawLine(x+xSize,y,x+xSize,this.canvasHeight-points[i+1], color);
+                        x=x+xSize;
+                    }
                 }
+                this.drawLine(x,this.canvasHeight-points[points.length-1],x+xSize,this.canvasHeight-points[points.length-1], color);
             },
             drawLine(startX: number, startY: number, endX: number, endY: number, color: string) {
                 if(this.canvas){
@@ -151,7 +161,7 @@ import { Tile } from '../types/Board';
                 this.drawHoursLines();
                 this.drawKWLines();
                 this.drawTilesConsumption(this.tiles);
-                this.drawProductionCurve(this.productionCurve);
+                this.drawProductionCurve(this.productionCurve,boardStore.board.isProductionCurveSmoothed);
             }
         },
         watch: {

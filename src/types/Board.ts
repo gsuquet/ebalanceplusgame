@@ -1,7 +1,9 @@
 export interface Board {
     width: number;
     height: number;
+    isProductionCurveSmoothed: boolean;
     consumptionTiles: Tile[];
+    productionTiles: Tile[];
 }
 
 export interface Tile {

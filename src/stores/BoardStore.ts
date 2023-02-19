@@ -10,7 +10,9 @@ export const useBoardStore = defineStore({
             board: {
                 width: 1440,
                 height: 1500,
-                consumptionTiles: []
+                isProductionCurveSmoothed: true,
+                consumptionTiles: [],
+                productionTiles: []
             } as Board,
             tileParams: {
                 pxSizeFor10W: 5,
