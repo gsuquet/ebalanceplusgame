@@ -28,7 +28,9 @@ export const useGameParametersStore = defineStore({
                     initialStoredEnergy: 0,
                     numberOfBatteries: 0,
                     batteryIndividualCapacity: 0,
-                    batteryPrice: 0
+                    batteryPrice: 0,
+                    batteryChargeEquipmentTypeId: 'battery_charge' as string,
+                    batteryDischargeEquipmentTypeId: 'battery_discharge' as string
                 }
             } as ScenarioLocale,
             productionCurve: {
@@ -87,7 +89,9 @@ export const useGameParametersStore = defineStore({
                         initialStoredEnergy: 0,
                         numberOfBatteries: 0,
                         batteryIndividualCapacity: 0,
-                        batteryPrice: 0
+                        batteryPrice: 0,
+                        batteryChargeEquipmentTypeId: 'battery_charge' as string,
+                        batteryDischargeEquipmentTypeId: 'battery_discharge' as string
                     }
                 };
             }

@@ -39,7 +39,9 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
                     initialStoredEnergy: 0,
                     numberOfBatteries: 0,
                     batteryIndividualCapacity: 0,
-                    batteryPrice: 0
+                    batteryPrice: 0,
+                    batteryChargeEquipmentTypeId: 'battery_charge' as string,
+                    batteryDischargeEquipmentTypeId: 'battery_discharge' as string 
                 }
             }] as Scenario[],
             scenariosLocale: [] as ScenarioLocale[],
