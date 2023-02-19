@@ -41,25 +41,7 @@
                 equipment: {
                     id: '0',
                     energy_class: '',
-                    type:{
-                        id:'batteryStorage',
-                        names:[
-                            {lang:'fr',name:"Stocker de l'énergie"},
-                            {lang:'en',name:'Store energy'}
-                        ],
-                        icon_name:'mdi:battery-charging-100',
-                        color: 'green',
-                        isBattery: true,
-                        isCharging: false,
-                        equipmentTypeDurationParams:{
-                            isDurationEditable: true,
-                            isDurationLengthEditable: true,
-                            originalDuration: "00:15",
-                            step: "00:15",
-                            minDuration: "00:15",
-                            maxDuration: "23:45"
-                        }
-                    },
+                    type: useEnergyStore().batteryChargeEquipmentType,
                     equipmentCostParams:{
                         originalPrice: 0,
                         hasCost: false,

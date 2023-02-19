@@ -1,7 +1,7 @@
 [
     
     {
-        "id":"battery_storage",
+        "id":"battery_charge",
         "names":[
             {"lang":"fr","name":"Stocker de l'énergie"},
             {"lang":"en","name":"Store energy"}

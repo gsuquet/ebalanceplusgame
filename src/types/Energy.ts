@@ -4,4 +4,6 @@ export interface EnergyStorageParameters {
     numberOfBatteries: number;
     batteryIndividualCapacity: number;
     batteryPrice: number;
+    batteryChargeEquipmentTypeId: string;
+    batteryDischargeEquipmentTypeId: string;
 }
