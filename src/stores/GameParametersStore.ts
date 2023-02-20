@@ -30,7 +30,8 @@ export const useGameParametersStore = defineStore({
             user: '',
             score: 0,
             moneyWon: 0,
-            availableMoney: 0
+            availableMoney: 0,
+            showOverlay: true
         };
     },
     actions: {
@@ -107,6 +108,9 @@ export const useGameParametersStore = defineStore({
         addMoney(amount: number) {
             this.availableMoney += amount;
         },
+        showInfoOverlay() {
+            this.showOverlay = this.showOverlay ? false : true;
+        }
     },
     getters: {
         getProductionCurve: (state) => state.productionCurve,

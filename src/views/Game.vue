@@ -10,6 +10,8 @@ import { useConsumptionStore } from '../stores/ConsumptionStore';
 import { useBoardStore } from '../stores/BoardStore';
 import { useEquipmentStore } from '../stores/EquipmentStore';
 import { useEnergyStore } from '../stores/EnergyStore';
+import TheGameInfoWindow from '../components/TheGameInfoWindow.vue';
+
 const consumptionStore = useConsumptionStore();
 const boardStore = useBoardStore();
 const gameParametersStore = useGameParametersStore();
@@ -20,7 +22,9 @@ energyStore.getBatteryEquipmentTypes()
 </script>
 
 <template>
-    <div class="overlay" v-if="equipmentStore.clickedEquipment || boardStore.clickedTile || energyStore.clickedStoreEnergy"/>
+    
+    <div class="overlay" v-if="equipmentStore.clickedEquipment || boardStore.clickedTile || energyStore.clickedStoreEnergy || gameParametersStore.showOverlay"/>
+    <TheGameInfoWindow v-if="gameParametersStore.showOverlay" />
     <div id="game-page" class="view">
         <BaseAlert
             :should-display="consumptionStore.isOverConsumption"
@@ -50,5 +54,5 @@ energyStore.getBatteryEquipmentTypes()
 </template>
 
 <style scoped lang="scss">
-    @import "../styles/views/game.scss";
+    // @import "../styles/views/game.scss";
 </style>

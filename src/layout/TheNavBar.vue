@@ -1,5 +1,7 @@
 <script setup lang="ts">
+    import { Icon } from '@iconify/vue';
     import TheLanguageSelector from '../components/TheLanguageSelector.vue'
+    import { useGameParametersStore } from '../stores/GameParametersStore';
 </script>
 
 <template>
@@ -13,6 +15,9 @@
                 <Router-link to="/setup">{{ $t("page.setup") }}</Router-link>
                 <Router-Link to="/game">{{ $t("page.game") }}</Router-Link>
             </div>
+        </div>
+        <div class="info" @click="useGameParametersStore().showInfoOverlay()">
+            <Icon icon="mdi:information" />
         </div>
         <TheLanguageSelector />
         <div class="nav-bar-user">

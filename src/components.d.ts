@@ -27,6 +27,7 @@ declare module '@vue/runtime-core' {
     EquipmentList: typeof import('./components/EquipmentList.vue')['default']
     EquipmentListEquipment: typeof import('./components/EquipmentListEquipment.vue')['default']
     HomeCreateGame: typeof import('./components/HomeCreateGame.vue')['default']
+    InfoOverlay: typeof import('./components/TheGameInfoWindow.vue')['default']
     MarketMenu: typeof import('./components/MarketMenu.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -35,6 +36,7 @@ declare module '@vue/runtime-core' {
     SetupScenarioList: typeof import('./components/SetupScenarioList.vue')['default']
     SetupScenarioResume: typeof import('./components/SetupScenarioResume.vue')['default']
     SetupValidationSection: typeof import('./components/SetupValidationSection.vue')['default']
+    TheGameInfoWindow: typeof import('./components/TheGameInfoWindow.vue')['default']
     TheLanguageSelector: typeof import('./components/TheLanguageSelector.vue')['default']
   }
 }

@@ -41,6 +41,18 @@
                 border: solid 2px var(--theme-color-secondary);
             }
         }
+        
+    }
+    .info {
+        position: absolute;
+        right: 8rem;
+        top: 18px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        cursor: pointer;
     }
     .locale-changer{
         position: absolute;
