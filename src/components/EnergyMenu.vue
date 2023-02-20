@@ -25,7 +25,12 @@ import { useEnergyStore } from '../stores/EnergyStore';
         </div>
         <div class="menu-buttons">
             <button @click="energyStore.clickOnStoreEnergy" class="btn">{{ $t("button.store") }}</button>
-            <button @click="energyStore.clickOnConsumeEnergy" class="btn">{{ $t("button.use") }}</button>
+            <button
+                @click="energyStore.clickOnConsumeEnergy"
+                class="btn"
+                :class="{'disabled': energyStore.isStorageEmpty}">
+                {{ $t("button.use") }}
+            </button>
         </div>
         <div class="menu-batteries">
             <h3 class="title">{{ $t("energy.batteriesManagement") }}</h3>
