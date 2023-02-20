@@ -4,6 +4,7 @@ export interface EquipmentType{
     icon_name: string,
     color: string,
     isBattery: boolean,
+    isCharging: boolean,
     equipmentTypeDurationParams: EquipmentTypeDurationParams,
 }
 
@@ -13,6 +14,7 @@ export interface EquipmentTypeLocale{
     icon_name: string,
     color: string,
     isBattery: boolean,
+    isCharging: boolean,
     equipmentTypeDurationParams: EquipmentTypeDurationParams
 }
 

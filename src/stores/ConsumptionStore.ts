@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia';
-import { useGameParametersStore } from './GameParametersStore';
 import { useEnergyStore } from './EnergyStore';
 import { useBoardStore } from './BoardStore';
 import { Consumption, ConsumptionCurve } from '../types/Consumption';
@@ -69,7 +68,7 @@ export const useConsumptionStore = defineStore({
                 this.setListOfOverConsumption();
                 useBoardStore().setTilesFromConsumptionList();
                 if(consumptionToModify.equipment.type.isBattery){
-                    useEnergyStore().setValuesFromStoredEnergyList();
+                    useEnergyStore().updateValues();
                 }
             }
         },
@@ -86,7 +85,7 @@ export const useConsumptionStore = defineStore({
                 this.setListOfOverConsumption();
                 useBoardStore().setTilesFromConsumptionList();
                 if(consumptionToModify.equipment.type.isBattery){
-                    useEnergyStore().setValuesFromStoredEnergyList();
+                    useEnergyStore().updateValues();
                 }
             }
         },
@@ -105,11 +104,11 @@ export const useConsumptionStore = defineStore({
         },
         setListOfOverConsumption() {
             this.overConsumptionMap.clear();
-            const productionCurve = useGameParametersStore().getProductionCurve;
-            if (productionCurve) {
+            const totalProduction = useProductionStore().totalProduction;
+            if (totalProduction) {
                 for (const [time, consumption] of this.consumptionCurve.consumption) {
-                    if (consumption > productionCurve.total[time]) {
-                        this.overConsumptionMap.set(time, consumption - productionCurve.total[time]);
+                    if (consumption > totalProduction[time]) {
+                        this.overConsumptionMap.set(time, consumption - totalProduction[time]);
                     }
                 }
             }

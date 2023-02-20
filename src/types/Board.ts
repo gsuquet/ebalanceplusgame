@@ -1,7 +1,18 @@
 export interface Board {
     width: number;
     height: number;
-    tiles: Tile[];
+    boardVisualParams: BoardVisualParams;
+    consumptionTiles: Tile[];
+    productionTiles: Tile[];
+}
+
+export interface BoardVisualParams {
+    isProductionCurveSmoothed: boolean;
+    shouldDisplayProductionCurve: boolean;
+    shouldDisplayConsumptionCurve: boolean;
+    shouldDisplayKWLines: boolean;
+    shouldDisplayHoursLines: boolean;
+    is3kWLineRed: boolean;
 }
 
 export interface Tile {

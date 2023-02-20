@@ -1,47 +1,52 @@
 <script setup lang="ts">
-import Alert from '../components/Alert.vue';
+import BaseAlert from '../components/BaseAlert.vue';
 import Board from '../components/Board.vue';
-import GameBoardSnackBar from '../components/GameBoardSnackBar.vue';
-import EquipementList from '../components/EquipementList.vue';
+import BoardSnackBar from '../components/BoardSnackBar.vue';
+import EquipmentList from '../components/EquipmentList.vue';
+import BoardConsumptionAddWindow from '../components/BoardConsumptionAddWindow.vue';
+import BoardConsumptionDetailsWindow from '../components/BoardConsumptionDetailsWindow.vue';
+import EnergyMenuAddEnergyWindow from '../components/EnergyMenuAddEnergyWindow.vue';
 import { useConsumptionStore } from '../stores/ConsumptionStore';
 import { useBoardStore } from '../stores/BoardStore';
 import { useEquipmentStore } from '../stores/EquipmentStore';
 import { useEnergyStore } from '../stores/EnergyStore';
-import AddConsumptionWindow from '../components/AddConsumptionWindow.vue';
-import BoardConsumptionDetails from '../components/BoardConsumptionDetails.vue';
-import EnergyAddEnergyWindow from '../components/EnergyAddEnergyWindow.vue';
+import EnergyMenuUseEnergyWindow from '../components/EnergyMenuUseEnergyWindow.vue';
 const consumptionStore = useConsumptionStore();
 const boardStore = useBoardStore();
 const gameParametersStore = useGameParametersStore();
 const equipmentStore = useEquipmentStore();
 const energyStore = useEnergyStore();
 consumptionStore.addInitialConsumptionToConsumptionList();
+energyStore.getBatteryEquipmentTypes()
 </script>
 
 <template>
     <div class="overlay" v-if="equipmentStore.clickedEquipment || boardStore.clickedTile || energyStore.clickedStoreEnergy"/>
     <div id="game-page" class="view">
-        <Alert
+        <BaseAlert
             :should-display="consumptionStore.isOverConsumption"
             alert-class="danger-alert"
             alert-text="alert.overConsumption"/>        
         <div class="consuption-window-container">
-            <AddConsumptionWindow 
+            <BoardConsumptionAddWindow 
                 v-if="equipmentStore.clickedEquipment"
                 :equipment="equipmentStore.clickedEquipment"/>
         </div>
-        <GameBoardSnackBar />
-        <EnergyAddEnergyWindow v-if="energyStore.clickedStoreEnergy"/>
+        <BoardSnackBar />
+        <EnergyMenuAddEnergyWindow v-if="energyStore.clickedStoreEnergy"/>
+        <EnergyMenuUseEnergyWindow v-if="energyStore.clickedConsumeEnergy"/>
         <div class="board-list-container">
-            <EquipementList />
+            <EquipmentList />
             <Board
-              :board-width="boardStore.board.width"
-              :board-height="boardStore.board.height"
-              :px-size-for15m="boardStore.tileParams.pxSizeFor15min"
-              :px-size-for10-w="boardStore.tileParams.pxSizeFor10W"
-              :tiles-list="boardStore.board.tiles"
-              :production-curve-props="gameParametersStore.getProductionCurve"/>
-            <BoardConsumptionDetails 
+                :board-visual-params="boardStore.board.boardVisualParams"
+                :board-width="boardStore.board.width"
+                :board-height="boardStore.board.height"
+                :px-size-for15m="boardStore.tileParams.pxSizeFor15min"
+                :px-size-for10-w="boardStore.tileParams.pxSizeFor10W"
+                :consumption-tiles-list="boardStore.board.consumptionTiles"
+                :production-tiles-list="boardStore.board.productionTiles"
+                :production-curve-props="gameParametersStore.getProductionCurve"/>
+            <BoardConsumptionDetailsWindow 
                 v-if="boardStore.clickedTile"
                 :consumption="consumptionStore.getConsumptionById(boardStore.clickedTile.id)"/>
         </div>

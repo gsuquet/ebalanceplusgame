@@ -15,6 +15,10 @@ import { Icon } from '@iconify/vue';
     </div>
 </template>
 
+<style lang="scss">
+    @import '../styles/components/cardPopupModificationButtons.scss';
+</style>
+
 <script lang="ts">
     export default {
         name: 'CardPopupModificationButtons',

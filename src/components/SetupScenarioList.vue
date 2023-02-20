@@ -58,5 +58,5 @@
 </template>
 
 <style scoped lang="scss">
-    @import "../styles/components/productionAndScenarioList.scss";
+    @import "../styles/components/setupProductionAndScenarioList.scss";
 </style>

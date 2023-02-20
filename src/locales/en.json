@@ -47,7 +47,9 @@
         "max": "Max",
         "batteriesManagement": "Batteries management",
         "capacity": "Capacity",
-        "storeEnergy": "Store energy"
+        "storeEnergy": "Store energy",
+        "useEnergy": "Use energy",
+        "cannotRemoveStoredEnergyUsed": "You cannot remove stored energy that you have already used"
     },
     "home":{
         "createGame": "Create a game",

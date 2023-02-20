@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import { Icon } from '@iconify/vue';
     import { useConsumptionStore } from '../stores/ConsumptionStore';
+    import { getTotalKilowattsPerHour }  from '../helpers/power';
 </script>
 
 <template>
@@ -11,7 +12,7 @@
                 {{ consumptionAmount }} W/15min</h2>
             <h2 class="consumption-amount-Wh">
                 {{ $t("button.total") }} : 
-                {{ consumptionAmountWh }} W</h2>
+                {{ consumptionAmountWh }} kW/h</h2>
         </div>
         <div class="card-content-price card-content-item" v-if="isCost">
             <h2 class="consumption-price">
@@ -66,7 +67,7 @@
         methods: {
             calculateConsumptionAmountWh() {
                 const indexes = this.consumptionStore.convertTimesToIndexes(this.times.timeStart, this.times.timeEnd);
-                this.consumptionAmountWh = this.consumptionAmount * (indexes.indexEnd - indexes.indexStart+1);
+                this.consumptionAmountWh = getTotalKilowattsPerHour(this.consumptionAmount, indexes);
             }
         },
         watch : {

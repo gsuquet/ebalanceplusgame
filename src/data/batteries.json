@@ -1,0 +1,41 @@
+[
+    
+    {
+        "id":"battery_charge",
+        "names":[
+            {"lang":"fr","name":"Stocker de l'énergie"},
+            {"lang":"en","name":"Store energy"}
+        ],
+        "icon_name":"mdi:battery-charging-100",
+        "color":"#29CC65",
+        "isBattery":true,
+        "isCharging":true,
+        "equipmentTypeDurationParams":{
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"battery_discharge",
+        "names":[
+            {"lang":"fr","name":"Décharger de l'énergie"},
+            {"lang":"en","name":"Discharge energy"}
+        ],
+        "icon_name":"mdi:battery-90",
+        "color":"#FFBB00",
+        "isBattery":true,
+        "isCharging":false,
+        "equipmentTypeDurationParams":{
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    }
+]
