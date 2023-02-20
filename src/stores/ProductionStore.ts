@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { Consumption } from '../types/Consumption';
 import { ProductionCurve } from '../types/Production';
 
 export const useProductionStore = defineStore({
@@ -7,6 +8,8 @@ export const useProductionStore = defineStore({
         return {
             productionCurves: new Map<string, ProductionCurve>(), 
             clickedProductionCurve: null as null | ProductionCurve,
+            addedProductionList: [] as Consumption[],
+            totalProduction: new Array(96).fill(0) as number[],
         };
     },
     actions: {
@@ -26,18 +29,43 @@ export const useProductionStore = defineStore({
             const total = solarPoints.map((solarPoint: number, index: number) => solarPoint + windPoints[index] + hydroPoints[index]);
             return total;
         },
-        storeToLocalStorage() {
-            localStorage.setItem('productionCurves', JSON.stringify(this.productionCurves));
-        },
-        getFromLocalStorage() {
-            this.productionCurves = new Map(JSON.parse(localStorage.getItem('productionCurves') || '{}'));
+        initTotalProductionFromProductionCurve(productionCurve: ProductionCurve | null) {
+            if(productionCurve){
+                this.totalProduction = new Array(96).fill(0);
+                this.totalProduction = this.totalProduction.map((production: number, index: number) => production + productionCurve.total[index]);
+            }
         },
         setClickedProductionCurve(productionCurve: ProductionCurve | null) {
             this.clickedProductionCurve = productionCurve;
+            this.initTotalProductionFromProductionCurve(productionCurve);
         }, 
         setClickedProductionCurveToFirstCurve() {
             this.clickedProductionCurve = this.productionCurves.values().next().value;
-        }
+            this.initTotalProductionFromProductionCurve(this.clickedProductionCurve);
+        },
+        addToAddedProductionList(addedProduction: Consumption) {
+            this.addedProductionList.push(addedProduction);
+            this.addAddedProductionToTotalProduction(addedProduction);
+            useBoardStore().setTilesFromProductionList();
+        },
+        removeFromAddedProductionList(addedProductionId: string) {
+            const addedProductionToRemove = this.addedProductionList.find(addedProduction => addedProduction.id === addedProductionId);
+            if (addedProductionToRemove) {
+                this.removeAddedProductionFromTotalProduction(addedProductionToRemove);
+                this.addedProductionList = this.addedProductionList.filter(addedProduction => addedProduction.id !== addedProductionId);
+                useBoardStore().setTilesFromProductionList();
+            }
+        },
+        addAddedProductionToTotalProduction(addedProduction: Consumption) {
+            for (let i=addedProduction.startIndex; i<=addedProduction.endIndex; i++) {
+                this.totalProduction[i] += addedProduction.amount;
+            }
+        },
+        removeAddedProductionFromTotalProduction(addedProduction: Consumption) {
+            for (let i=addedProduction.startIndex; i<addedProduction.endIndex; i++) {
+                this.totalProduction[i] -= addedProduction.amount;
+            }
+        },
     },
     getters: {
         getProductionCurveById: state => (id: string) => state.productionCurves.get(id),
@@ -63,6 +91,9 @@ export const useProductionStore = defineStore({
             }
             const randomIndex = Math.floor(Math.random() * allProductionCurves.length);
             return allProductionCurves[randomIndex];
+        },
+        getAddedProductionListSortedByStartIndex(state) {
+            return state.addedProductionList.sort((a,b) => (a.startIndex > b.startIndex) ? 1 : -1);
         }
     }
 });

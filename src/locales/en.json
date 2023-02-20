@@ -47,7 +47,8 @@
         "max": "Max",
         "batteriesManagement": "Batteries management",
         "capacity": "Capacity",
-        "storeEnergy": "Store energy"
+        "storeEnergy": "Store energy",
+        "useEnergy": "Use energy"
     },
     "home":{
         "createGame": "Create a game",

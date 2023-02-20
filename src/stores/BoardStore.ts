@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { Consumption } from '../types/Consumption';
-import { Board, Tile, TileParams } from '../types/Board';
+import { Board, BoardVisualParams, Tile, TileParams } from '../types/Board';
 import { convertValueToPixels, convertValuesListToPixelsList } from '../helpers/drawInPixels';
 
 export const useBoardStore = defineStore({
@@ -10,7 +10,14 @@ export const useBoardStore = defineStore({
             board: {
                 width: 1440,
                 height: 1500,
-                isProductionCurveSmoothed: true,
+                boardVisualParams: {
+                    isProductionCurveSmoothed: true,
+                    shouldDisplayProductionCurve: true,
+                    shouldDisplayConsumptionCurve: false,
+                    shouldDisplayKWLines: true,
+                    shouldDisplayHoursLines: true,
+                    is3kWLineRed: true,
+                } as BoardVisualParams,
                 consumptionTiles: [],
                 productionTiles: []
             } as Board,
@@ -22,49 +29,22 @@ export const useBoardStore = defineStore({
         };
     },
     actions: {
+        setTilesFromProductionList() {
+            const productionCurve: number[] = useGameParametersStore().getProductionCurveTotal;
+            const addedProductionList = useProductionStore().getAddedProductionListSortedByStartIndex;
+            this.board.productionTiles = this.generateTilesFromList(addedProductionList, productionCurve);
+        },
         setTilesFromConsumptionList() {
-            const tiles: Tile[] = [];
-            const occupiedSlotHeightsOnBoardByIndex: number[] = new Array(96).fill(0);
             const consumptionList = useConsumptionStore().getConsumptionListSortedByStartIndex;
-            for (const consumption of consumptionList) {
-                let consumptionYValuesList: number[] = [];
-                let lastCreatedTileIndex = 0;
-                let storedYValue = 0;
-                let consumptionHeight = convertValueToPixels(consumption.amount, this.tileParams.pxSizeFor10W, 10);
-                for (let i=consumption.startIndex; i<=consumption.endIndex; i++) {
-                    occupiedSlotHeightsOnBoardByIndex[i] += consumptionHeight;
-                    consumptionYValuesList.push(occupiedSlotHeightsOnBoardByIndex[i]);
-                }
-                storedYValue = consumptionYValuesList[0];
-                for (const yValue of consumptionYValuesList) {
-                    if (yValue !== storedYValue) {
-                        tiles.push(
-                            this.generateTile(
-                                consumption,
-                                consumption.startIndex+lastCreatedTileIndex,
-                                consumption.startIndex+lastCreatedTileIndex+consumptionYValuesList.indexOf(yValue)-1,
-                                (this.board.height+consumptionHeight) - storedYValue
-                            ));
-                        lastCreatedTileIndex = consumptionYValuesList.indexOf(yValue);
-                    }
-                    storedYValue = yValue;
-                }
-                if (lastCreatedTileIndex !== consumptionYValuesList.length-1 || consumptionYValuesList.length === 1) {
-                    tiles.push(
-                        this.generateTile(
-                            consumption,
-                            consumption.startIndex+lastCreatedTileIndex,
-                            consumption.endIndex,
-                            (this.board.height+consumptionHeight) - storedYValue
-                        ));
-                }
-            };
-            this.board.consumptionTiles = tiles;
+            this.board.consumptionTiles = this.generateTilesFromList(consumptionList, null);
         },
         TilesFromConsumption(consumptionList: Consumption[]){
+            this.board.consumptionTiles = this.generateTilesFromList(consumptionList, null);
+        },
+        generateTilesFromList(listOfConsumptions: Consumption[], productionCurve: number[] | null) {
+            const occupiedSlotHeightsOnBoardByIndex: number[] = this.getOccupiedSlotHeightsOnBoardByIndex(productionCurve);
             const tiles: Tile[] = [];
-            const occupiedSlotHeightsOnBoardByIndex: number[] = new Array(96).fill(0);
-            for (const consumption of consumptionList) {
+            for (const consumption of listOfConsumptions) {
                 let consumptionYValuesList: number[] = [];
                 let lastCreatedTileIndex = 0;
                 let storedYValue = 0;
@@ -97,10 +77,19 @@ export const useBoardStore = defineStore({
                         ));
                 }
             };
-            this.board.consumptionTiles = tiles;
+            return tiles;
         },
-
-
+        getOccupiedSlotHeightsOnBoardByIndex(productionCurve: number[] | null) {
+            if(productionCurve) {
+                const occupiedSlotHeightsOnBoardByIndex: number[] = new Array(96).fill(0);
+                for (let i=0; i<96; i++) {
+                    occupiedSlotHeightsOnBoardByIndex[i] += convertValueToPixels(productionCurve[i], this.tileParams.pxSizeFor10W, 10);
+                }
+                return occupiedSlotHeightsOnBoardByIndex;
+            } else {
+                return new Array(96).fill(0);
+            }
+        },
         generateTile(consumption: Consumption, startIndex: number, endIndex: number, y: number) {
             const height = convertValueToPixels(consumption.amount, this.tileParams.pxSizeFor10W, 10);
             return {

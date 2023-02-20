@@ -3,6 +3,7 @@
     import { useConsumptionStore } from '../stores/ConsumptionStore';
     import { Equipment } from '../types/Equipment';
     import CardPopup from './CardPopup.vue';
+    import { generateStringId } from '../helpers/idGenerator';
 </script>
 
 <template>
@@ -55,7 +56,7 @@
                         isConsumptionEditable: true,
                         step: 10,
                         minConsumption: 0,
-                        maxConsumption: 200
+                        maxConsumption: 200 // TODO : change to dynamic max consumption : number of batteries * battery capacity
                     },
                 } as Equipment,
             }
@@ -67,14 +68,11 @@
             saveConsumption(save:{startIndex:number, endIndex:number,amount:number,price:number,startHour:string,endHour:string}) {
                 this.consumptionStore.addConsumption(save.startIndex, save.endIndex, this.equipment, save.amount, save.price);
                 this.energyStore.clickOnStoreEnergy();
-            },
-            getRandomEquipmentIdString() {
-                return Math.random().toString(36).substr(2, 9);
             }
         },
         mounted() {
-            this.equipment.id=this.getRandomEquipmentIdString();
-            this.consumptionId=this.getRandomEquipmentIdString();
+            this.equipment.id = generateStringId();
+            this.consumptionId = generateStringId();
         }
     }
 </script>

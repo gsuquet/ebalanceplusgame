@@ -4,6 +4,7 @@ import i18n from '../modules/i18n';
 import { ScenarioLocale } from '../types/Scenario';
 import { ProductionCurve } from '../types/Production';
 import { errorScenarioLocale } from '../assets/entityErrorScenario';
+import { generateStringId } from '../helpers/idGenerator';
 
 export const useGameParametersStore = defineStore({
     id: 'GameParametersStore',
@@ -95,7 +96,7 @@ export const useGameParametersStore = defineStore({
             }
         },
         generateGameId() {
-            this.gameId = Math.random().toString(36).substr(2, 5);
+            this.gameId = generateStringId(5);
         },
         createGame(isMultiplayer: boolean, isPublic: boolean) {
             this.isMultiplayer = isMultiplayer;
@@ -110,6 +111,7 @@ export const useGameParametersStore = defineStore({
     },
     getters: {
         getProductionCurve: (state) => state.productionCurve,
+        getProductionCurveTotal: (state) => state.productionCurve.total,
         getGameIdUpper: (state) => state.gameId.toUpperCase(),
         canWithdrawMoney: (state) => (amount: number) => state.availableMoney >= amount,
         getScenarioEnergyStorageParameters: (state) => state.scenario.energyStorageParameters

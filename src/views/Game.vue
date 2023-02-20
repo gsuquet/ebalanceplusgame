@@ -10,6 +10,7 @@ import { useConsumptionStore } from '../stores/ConsumptionStore';
 import { useBoardStore } from '../stores/BoardStore';
 import { useEquipmentStore } from '../stores/EquipmentStore';
 import { useEnergyStore } from '../stores/EnergyStore';
+import EnergyMenuUseEnergyWindow from '../components/EnergyMenuUseEnergyWindow.vue';
 const consumptionStore = useConsumptionStore();
 const boardStore = useBoardStore();
 const gameParametersStore = useGameParametersStore();
@@ -33,15 +34,18 @@ energyStore.getBatteryEquipmentTypes()
         </div>
         <BoardSnackBar />
         <EnergyMenuAddEnergyWindow v-if="energyStore.clickedStoreEnergy"/>
+        <EnergyMenuUseEnergyWindow v-if="energyStore.clickedConsumeEnergy"/>
         <div class="board-list-container">
             <EquipmentList />
             <Board
-              :board-width="boardStore.board.width"
-              :board-height="boardStore.board.height"
-              :px-size-for15m="boardStore.tileParams.pxSizeFor15min"
-              :px-size-for10-w="boardStore.tileParams.pxSizeFor10W"
-              :consumption-tiles-list="boardStore.board.consumptionTiles"
-              :production-curve-props="gameParametersStore.getProductionCurve"/>
+                :board-visual-params="boardStore.board.boardVisualParams"
+                :board-width="boardStore.board.width"
+                :board-height="boardStore.board.height"
+                :px-size-for15m="boardStore.tileParams.pxSizeFor15min"
+                :px-size-for10-w="boardStore.tileParams.pxSizeFor10W"
+                :consumption-tiles-list="boardStore.board.consumptionTiles"
+                :production-tiles-list="boardStore.board.productionTiles"
+                :production-curve-props="gameParametersStore.getProductionCurve"/>
             <BoardConsumptionDetailsWindow 
                 v-if="boardStore.clickedTile"
                 :consumption="consumptionStore.getConsumptionById(boardStore.clickedTile.id)"/>

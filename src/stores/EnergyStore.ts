@@ -22,6 +22,8 @@ export const useEnergyStore = defineStore({
             clickedStoreEnergy: false as boolean,
             clickedConsumeEnergy: false as boolean,
             storedEnergyList: [] as Consumption[],
+            availableStoredEnergyList: new Array(96).fill(0) as number[],
+            usedEnergyList: [] as Consumption[],
             clickedMarketIcon: false as boolean, 
         };
     },
@@ -61,10 +63,12 @@ export const useEnergyStore = defineStore({
         storeEnergy(energyToStore: Consumption) {
             this.storedEnergyList.push(energyToStore);
             this.setValuesFromStoredEnergyList();
+            this.addEnergyToAvailableStoredEnergyList(energyToStore);
         },
         removeStoredEnergy(energyToRemove: Consumption) {
             this.storedEnergyList = this.storedEnergyList.filter((energy) => energy.id !== energyToRemove.id);
             this.setValuesFromStoredEnergyList();
+            this.removeEnergyFromAvailableStoredEnergyList(energyToRemove);
         },
         setValuesFromStoredEnergyList() {
             this.storedEnergy = 0 + this.energyStorageParameters.initialStoredEnergy;
@@ -75,6 +79,31 @@ export const useEnergyStore = defineStore({
                 this.totalStoredEnergyOverTheGame += amountToStore;
             });
         },
+        addEnergyToAvailableStoredEnergyList(energy: Consumption) {
+            for(let i = energy.startIndex; i <= energy.endIndex; i++){
+                this.addAmountToAvailableStoredEnergyListFromIndexToEnd(energy.amount, i);
+            }
+        },
+        removeEnergyFromAvailableStoredEnergyList(energy: Consumption) {
+            for(let i = energy.startIndex; i <= energy.endIndex; i++){
+                this.removeAmountFromAvailableStoredEnergyListFromIndexToEnd(energy.amount, i);
+            }
+        },
+        addAmountToAvailableStoredEnergyListFromIndexToEnd(amount: number, index: number) {
+            for(let i = index; i < this.availableStoredEnergyList.length; i++){
+                this.availableStoredEnergyList[i] += amount;
+            }
+        },
+        removeAmountFromAvailableStoredEnergyListFromIndexToEnd(amount: number, index: number) {
+            for(let i = index; i < this.availableStoredEnergyList.length; i++){
+                this.availableStoredEnergyList[i] -= amount;
+            }
+        },
+        consumeEnergy(energyToConsume: Consumption) {
+            this.usedEnergyList.push(energyToConsume);
+            this.removeEnergyFromAvailableStoredEnergyList(energyToConsume);
+            useProductionStore().addToAddedProductionList(energyToConsume);
+        },
         clickOnEnergyIcon() {
             this.clickedEnergyIcon = this.clickedEnergyIcon ? false : true;
         },
@@ -82,7 +111,9 @@ export const useEnergyStore = defineStore({
             this.clickedStoreEnergy = this.clickedStoreEnergy ? false : true;
         },
         clickOnConsumeEnergy() {
-            this.clickedConsumeEnergy = this.clickedConsumeEnergy ? false : true;
+            if(this.storedEnergy > 0){
+                this.clickedConsumeEnergy = this.clickedConsumeEnergy ? false : true;
+            }
         },
         clickOnMarketIcon() {
             this.clickedMarketIcon = this.clickedMarketIcon ? false : true;
@@ -153,15 +184,39 @@ export const useEnergyStore = defineStore({
         },
         displayEnergyMenu:(state) => {
             return state.energyStorageParameters.isEnergyStorage && state.clickedEnergyIcon;
+        },
+        isEnergyAmountAvailableInAvailableStoredEnergyList:(state) => (index: number, amount:number) => {
+            if(state.availableStoredEnergyList.length > index){
+                return state.availableStoredEnergyList[index] >= amount;
+            }
+            return false;
+        },
+        canUserUseEnergyAmountOverPeriod:(state) => (startIndex: number, endIndex: number, amount:number) => {
+            const availableStoredEnergyListLength = state.availableStoredEnergyList.length;
+            for(let i = startIndex; i <= endIndex; i++){
+                if(!(availableStoredEnergyListLength > i) || state.availableStoredEnergyList[i] < amount){
+                    return false;
+                }
+            }
+            return true;
+        },
+        getMaxAmountOfEnergyUserCanUseOverPeriod:(state) => (startIndex: number, endIndex: number) => {
+            let maxAmount = state.availableStoredEnergyList[startIndex] || 0;
+            const availableStoredEnergyListLength = state.availableStoredEnergyList.length;
+            for(let i = startIndex; i <= endIndex; i++){
+                if(availableStoredEnergyListLength > i){
+                    const amount = state.availableStoredEnergyList[i];
+                    if(amount < maxAmount){
+                        maxAmount = amount;
+                    }
+                } else {
+                    return 0;
+                }
+            }
+            return maxAmount;
+        },
+        isStorageEmpty:(state) => {
+            return state.storedEnergy <= 0;
         }
     },
 });
-
-export interface EnergyStorage {
-    id: string;
-    amount: number;
-    startIndex: number;
-    endIndex: number;
-    icon: string;
-    color: string;
-}
