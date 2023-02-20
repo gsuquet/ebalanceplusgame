@@ -1,5 +1,6 @@
 export function convertValueToPixels(value: number, pixelsPerUnit: number, unit: number): number {
-    return (value * pixelsPerUnit) / unit;
+    let pixels = (value * pixelsPerUnit) / unit;
+    return pixels;
 }
 
 export function convertPixelsToValue(pixels: number, pixelsPerUnit: number, unit: number): number {
@@ -7,5 +8,9 @@ export function convertPixelsToValue(pixels: number, pixelsPerUnit: number, unit
 }
 
 export function convertValuesListToPixelsList(values: number[], pixelsPerUnit: number, unit: number): number[] {
-    return values.map((value) => convertValueToPixels(value, pixelsPerUnit, unit));
+    let valuesInPixels: number[] = [];
+    for (let i=0; i<values.length; i++) {
+        valuesInPixels.push(convertValueToPixels(values[i], pixelsPerUnit, unit));
+    }
+    return valuesInPixels;
 }
