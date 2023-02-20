@@ -47,7 +47,8 @@
         "batteriesManagement": "Gestion des batteries",
         "capacity": "Capacité",
         "storeEnergy": "Stocker de l'énergie",
-        "useEnergy": "Utiliser de l'énergie"
+        "useEnergy": "Utiliser de l'énergie",
+        "cannotRemoveStoredEnergyUsed": "Vous ne pouvez pas supprimer de l'énergie stockée qui a été utilisée."
     },
     "home":{
         "createGame": "Créer une partie",

@@ -55,7 +55,11 @@
                 boardStore.modifyClickedTileConsumptionHours(save.startHour, save.endHour);
             },
             deleteConsumption() {
-                boardStore.deleteClickedTileConsumption();
+                if(this.energyStore.canUserRemoveEnergyFromAvailableStoredEnergyList(this.consumption)) {
+                    boardStore.deleteClickedTileConsumption();
+                } else {
+                    alert(this.$t('energy.cannotRemoveStoredEnergyUsed'));
+                }
             },
         },
         watch: {

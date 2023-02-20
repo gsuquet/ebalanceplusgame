@@ -165,7 +165,7 @@
             },
             updateMaxEnergyAmount() {
                 if(this.equipment.type.isBattery && this.equipment.type.isCharging) {
-                    this.energyStore.setValuesFromStoredEnergyList();
+                    this.energyStore.updateValues();
                     this.maxEnergyAmount = this.energyStore.getMaximumEnergyStorageWithoutConsumption(this.id)/((this.endIndex-this.startIndex)+1);
                 } else if(this.equipment.type.isBattery && !this.equipment.type.isCharging) {
                     this.maxEnergyAmount = this.energyStore.getMaxAmountOfEnergyUserCanUseOverPeriod(this.startIndex, this.endIndex)/((this.endIndex-this.startIndex)+1);

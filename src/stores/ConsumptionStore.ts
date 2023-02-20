@@ -68,7 +68,7 @@ export const useConsumptionStore = defineStore({
                 this.setListOfOverConsumption();
                 useBoardStore().setTilesFromConsumptionList();
                 if(consumptionToModify.equipment.type.isBattery){
-                    useEnergyStore().setValuesFromStoredEnergyList();
+                    useEnergyStore().updateValues();
                 }
             }
         },
@@ -85,7 +85,7 @@ export const useConsumptionStore = defineStore({
                 this.setListOfOverConsumption();
                 useBoardStore().setTilesFromConsumptionList();
                 if(consumptionToModify.equipment.type.isBattery){
-                    useEnergyStore().setValuesFromStoredEnergyList();
+                    useEnergyStore().updateValues();
                 }
             }
         },
