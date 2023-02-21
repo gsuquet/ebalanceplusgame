@@ -94,6 +94,7 @@ export const useProductionStore = defineStore({
         },
         getAddedProductionListSortedByStartIndex(state) {
             return state.addedProductionList.sort((a,b) => (a.startIndex > b.startIndex) ? 1 : -1);
-        }
+        },
+        getAddedProductionById: state => (id: string) => state.addedProductionList.find(addedProduction => addedProduction.id === id),
     }
 });

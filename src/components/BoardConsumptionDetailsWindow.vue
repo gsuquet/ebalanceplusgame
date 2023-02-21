@@ -23,10 +23,6 @@
         @time-error="timeError"/>
 </template>
 
-<style lang="scss">
-    @import '../styles/components/boardConsumptionDetails.scss';
-</style>
-
 <script lang="ts">
     const boardStore = useBoardStore();
     const equipmentStore = useEquipmentStore();
@@ -47,7 +43,8 @@
         },
         methods: {
             closeDetails() {
-                boardStore.setClickedTile(null);
+                boardStore.setClickedTileToEmpty();
+                boardStore.setClickedProductionTileToEmpty();
             },
             saveModifiedConsumption(save:{startIndex:number, endIndex:number,amount:number,price:number,startHour:string,endHour:string}) {
                 this.consumption.amount = save.amount;
