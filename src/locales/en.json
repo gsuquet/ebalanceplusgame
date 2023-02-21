@@ -38,6 +38,13 @@
     "alert":{
         "overConsumption": "Your demand is higher than your production. You will have to buy energy !"
     },
+    "error": {
+        "consumptionAmountHigherThanMax": "Your consumption amount is higher than the max consumption",
+        "consumptionAmountLowerThanMin": "Your consumption amount is lower than the min consumption",
+        "timeError": "The time must be comprised between 0 and 23. The start time must be before the end time.",
+        "amountErrorHigherThanEnergyStorageCapacity": "The total amount must be lower than the energy storage capacity",
+        "amountErrorHigherThanEnergyStored": "The total amount must be lower than the energy stored"
+    },
     "money":{
         "cost": "Cost"
     },

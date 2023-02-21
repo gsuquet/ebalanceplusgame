@@ -19,7 +19,9 @@
         @close-popup="closePopup"
         @save="saveConsumption"
         @cancel="closePopup"
-        @delete="closePopup"/>
+        @delete="closePopup"
+        @amount-error="amountError"
+        @time-error="timeError"/>
 </template>
 
 <script lang="ts">
@@ -68,6 +70,12 @@
             saveConsumption(save:{startIndex:number, endIndex:number,amount:number,price:number,startHour:string,endHour:string}) {
                 this.consumptionStore.addConsumption(save.startIndex, save.endIndex, this.equipment, save.amount, save.price);
                 this.energyStore.clickOnStoreEnergy();
+            },
+            amountError() {
+                alert(this.$t('error.amountErrorHigherThanEnergyStorageCapacity'));
+            },
+            timeError() {
+                alert(this.$t('error.timeError'));
             }
         },
         mounted() {
