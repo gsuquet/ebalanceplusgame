@@ -35,6 +35,7 @@ declare module '@vue/runtime-core' {
     SetupScenarioList: typeof import('./components/SetupScenarioList.vue')['default']
     SetupScenarioResume: typeof import('./components/SetupScenarioResume.vue')['default']
     SetupValidationSection: typeof import('./components/SetupValidationSection.vue')['default']
+    TheGameInfoWindow: typeof import('./components/TheGameInfoWindow.vue')['default']
     TheLanguageSelector: typeof import('./components/TheLanguageSelector.vue')['default']
   }
 }

@@ -1,0 +1,59 @@
+
+.popup-window { 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: var(--theme-color-background);
+    width:800px;
+    text-align: center;
+    margin-top: 1.5rem;
+
+    .card{
+
+        overflow-y: auto;
+        .color-banner{
+            width: 100%;
+            height: 10px;
+            border-radius: 5px 5px 0 0;
+        }
+        .text {
+            padding: 0rem 0.5rem 0.5rem 0.5rem;
+            h1{
+                font: bold;
+                margin-top: 1.2rem; 
+                margin-bottom: 0.8rem;
+                text-align: center;
+            }
+            p {
+                text-align: justify;
+            }
+        }
+        .btn-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .btn-close{
+                width: 10rem;
+                height: 3rem;
+                border-radius: 15px;
+                background-color: var(--theme-color-background-secondary);
+                margin: 15px 0 0 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                .btn-icon{
+                    margin-right: 10px;
+                }
+                p{
+                    font-weight: bold;
+                }
+            }
+        }
+        
+    }
+}
