@@ -3,8 +3,8 @@ import BaseAlert from '../components/BaseAlert.vue';
 import Board from '../components/Board.vue';
 import BoardSnackBar from '../components/BoardSnackBar.vue';
 import EquipmentList from '../components/EquipmentList.vue';
+import BoardConsumptionDetails from '../components/BoardConsumptionDetails.vue';
 import BoardConsumptionAddWindow from '../components/BoardConsumptionAddWindow.vue';
-import BoardConsumptionDetailsWindow from '../components/BoardConsumptionDetailsWindow.vue';
 import EnergyMenuAddEnergyWindow from '../components/EnergyMenuAddEnergyWindow.vue';
 import { useConsumptionStore } from '../stores/ConsumptionStore';
 import { useBoardStore } from '../stores/BoardStore';
@@ -24,7 +24,7 @@ energyStore.getBatteryEquipmentTypes();
 
 <template>
 
-    <div class="overlay" v-if="equipmentStore.clickedEquipment || boardStore.clickedTile || energyStore.clickedStoreEnergy || gameParametersStore.showedInfoOverlay"/>
+    <div class="overlay" v-if="equipmentStore.clickedEquipment || boardStore.isTileClicked || energyStore.clickedStoreEnergy || gameParametersStore.showedInfoOverlay"/>
     <TheGameInfoWindow v-if="gameParametersStore.showedInfoOverlay" />
     
     <div id="game-page" class="view">
@@ -52,10 +52,10 @@ energyStore.getBatteryEquipmentTypes();
                 :consumption-tiles-list="boardStore.board.consumptionTiles"
                 :production-tiles-list="boardStore.board.productionTiles"
                 :production-curve-props="gameParametersStore.getProductionCurve"/>
-            <BoardConsumptionDetailsWindow 
-                v-if="boardStore.clickedTile"
-                :consumption="consumptionStore.getConsumptionById(boardStore.clickedTile.id)"/>
         </div>
+        <BoardConsumptionDetails
+            :consumption-tile="boardStore.clickedTile"
+            :production-tile="boardStore.clickedProductionTile"/>
     </div>
 </template>
 
