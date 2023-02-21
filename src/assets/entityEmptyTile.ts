@@ -1,3 +1,5 @@
+import { Tile } from "../types/Board";
+
 export const emptyTile = {
     id: 'empty',
     x: 0,
@@ -5,4 +7,4 @@ export const emptyTile = {
     width: 0,
     height: 0,
     color: 'transparent',
-}
+} as Tile;
