@@ -32,7 +32,7 @@ export const useBoardStore = defineStore({
         setTilesFromProductionList() {
             const productionCurve: number[] = useGameParametersStore().getProductionCurveTotal;
             const addedProductionList = useProductionStore().getAddedProductionListSortedByStartIndex;
-            this.board.productionTiles = this.generateTilesFromList(addedProductionList, productionCurve);
+            this.board.productionTiles = this.generate15MinTilesFromList(addedProductionList, productionCurve);
         },
         setTilesFromConsumptionList() {
             const consumptionList = useConsumptionStore().getConsumptionListSortedByStartIndex;
@@ -40,6 +40,18 @@ export const useBoardStore = defineStore({
         },
         TilesFromConsumption(consumptionList: Consumption[]){
             this.board.consumptionTiles = this.generateTilesFromList(consumptionList, null);
+        },
+        generate15MinTilesFromList(listOfConsumptions: Consumption[], productionCurve: number[] | null) {
+            const occupiedSlotHeightsOnBoardByIndex: number[] = this.getOccupiedSlotHeightsOnBoardByIndex(productionCurve);
+            const tiles: Tile[] = [];
+            for(const consumption of listOfConsumptions){
+                for(let i=consumption.startIndex; i<=consumption.endIndex; i++){
+                    let consumptionHeight = convertValueToPixels(consumption.amount, this.tileParams.pxSizeFor10W, 10);
+                    occupiedSlotHeightsOnBoardByIndex[i] += consumptionHeight;
+                    tiles.push(this.generateTile(consumption, i, i, (this.board.height+consumptionHeight)-occupiedSlotHeightsOnBoardByIndex[i]));
+                }
+            }
+            return tiles;
         },
         generateTilesFromList(listOfConsumptions: Consumption[], productionCurve: number[] | null) {
             const occupiedSlotHeightsOnBoardByIndex: number[] = this.getOccupiedSlotHeightsOnBoardByIndex(productionCurve);
