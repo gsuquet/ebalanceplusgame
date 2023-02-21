@@ -18,7 +18,9 @@
         @close-popup="closeDetails"
         @save="saveModifiedConsumption"
         @cancel="closeDetails"
-        @delete="deleteConsumption"/>
+        @delete="deleteConsumption"
+        @amount-error="amountError"
+        @time-error="timeError"/>
 </template>
 
 <style lang="scss">
@@ -55,12 +57,22 @@
                 boardStore.modifyClickedTileConsumptionHours(save.startHour, save.endHour);
             },
             deleteConsumption() {
-                if(this.energyStore.canUserRemoveEnergyFromAvailableStoredEnergyList(this.consumption)) {
-                    boardStore.deleteClickedTileConsumption();
+                if(this.consumption.equipment.type.isBattery && this.consumption.equipment.battery.isCharging) {
+                    if(this.energyStore.canUserRemoveEnergyFromAvailableStoredEnergyList(this.consumption)) {
+                        boardStore.deleteClickedTileConsumption();
+                    } else {
+                        alert(this.$t('energy.cannotRemoveStoredEnergyUsed'));
+                    }
                 } else {
-                    alert(this.$t('energy.cannotRemoveStoredEnergyUsed'));
+                    boardStore.deleteClickedTileConsumption();
                 }
             },
+            amountError() {
+                alert(this.$t('error.consumptionAmountHigherThanMax'));
+            },
+            timeError() {
+                alert(this.$t('error.timeError'));
+            }
         },
         watch: {
             consumption: {

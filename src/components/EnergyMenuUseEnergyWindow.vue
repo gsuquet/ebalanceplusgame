@@ -18,7 +18,9 @@
         @close-popup="closePopup"
         @save="saveEnergyUse"
         @cancel="closePopup"
-        @delete="closePopup"/>
+        @delete="closePopup"
+        @amount-error="amountError"
+        @time-error="timeError"/>
 </template>
 
 <script lang="ts">
@@ -79,6 +81,12 @@
                     this.energyStore.consumeEnergy(this.energyConsumption);
                 }
             },
+            amountError() {
+                alert(this.$t('error.amountErrorHigherThanEnergyStored'));
+            },
+            timeError() {
+                alert(this.$t('error.timeError'));
+            }
         },
         mounted() {
             this.energyConsumption.equipment.id = generateStringId();
