@@ -21,7 +21,9 @@ energyStore.getBatteryEquipmentTypes()
 </script>
 
 <template>
-    <div class="overlay" v-if="equipmentStore.clickedEquipment || boardStore.clickedTile || energyStore.clickedStoreEnergy"/>
+
+    <div class="overlay" v-if="equipmentStore.clickedEquipment || boardStore.clickedTile || energyStore.clickedStoreEnergy || gameParametersStore.showedInfoOverlay"/>
+    <TheGameInfoWindow v-if="gameParametersStore.showedInfoOverlay" />
     <div id="game-page" class="view">
         <BaseAlert
             :should-display="consumptionStore.isOverConsumption"
@@ -54,5 +56,5 @@ energyStore.getBatteryEquipmentTypes()
 </template>
 
 <style scoped lang="scss">
-    @import "../styles/views/game.scss";
+    //@import "../styles/views/game.scss";
 </style>
