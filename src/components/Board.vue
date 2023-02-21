@@ -74,11 +74,17 @@ import { convertValuesListToPixelsList } from '../helpers/drawInPixels';
             canvasClick(event: MouseEvent) {
                 const x = event.offsetX;
                 const y = event.offsetY;
-                const clickedTile = this.tiles.filter((tile: Tile) => this.isInsideTile(x, y, tile));
-                if(clickedTile.length){
-                    boardStore.setClickedTile(clickedTile[0]);
+                const clickedTiles = this.tiles.filter((tile: Tile) => this.isInsideTile(x, y, tile));
+                const clickedProductionTiles = this.productionTiles.filter((tile: Tile) => this.isInsideTile(x, y, tile));
+                if(clickedTiles.length){
+                    boardStore.setClickedTile(clickedTiles[0]);
                 } else{
                     boardStore.setClickedTile(null);
+                }
+                if(clickedProductionTiles.length){
+                    boardStore.setClickedProductionTile(clickedProductionTiles[0]);
+                } else{
+                    boardStore.setClickedProductionTile(null);
                 }
             },
             canvasMouseMove(event: MouseEvent) {
