@@ -1,0 +1,18 @@
+[
+    {
+        "id":"dishwasher",
+        "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
+        "icon_name":"mdi:dishwasher",
+        "color":"#9A7751",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    }
+]
