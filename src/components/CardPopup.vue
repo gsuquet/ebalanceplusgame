@@ -212,8 +212,11 @@
                                 startHour:this.startHour,
                                 endHour:this.endHour
                             });
+                    } else {
+                        this.$emit('amount-error');
                     }
                 } else {
+                    this.$emit('time-error');
                     this.inputError = true;
                 }
             }
@@ -263,6 +266,6 @@
                 immediate: true
             }
         },
-        emits : ['close-popup', 'save', 'cancel', 'delete']
+        emits : ['close-popup', 'save', 'cancel', 'delete', 'amount-error', 'time-error'],
     }
 </script>

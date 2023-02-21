@@ -2,6 +2,7 @@
     import { useEquipmentStore } from '../stores/EquipmentStore';
     import { useConsumptionStore } from '../stores/ConsumptionStore';
     import CardPopup from './CardPopup.vue';
+import { generateStringId } from '../helpers/idGenerator';
 </script>
 
 <template>
@@ -17,7 +18,9 @@
         @close-popup="closeAddPopup"
         @save="saveConsumption"
         @cancel="closeAddPopup"
-        @delete="closeAddPopup"/>
+        @delete="closeAddPopup"
+        @amount-error="amountError"
+        @time-error="timeError"/>
 </template>
 
 <style scoped lang="scss">
@@ -56,8 +59,11 @@
                 );
                 equipmentStore.clickedEquipment = null;
             },
-            getRandomIdString() {
-                return Math.random().toString(36).substr(2, 9);
+            amountError() {
+                alert(this.$t('error.consumptionAmountHigherThanMax'));
+            },
+            timeError() {
+                alert(this.$t('error.timeError'));
             }
         },
         watch: {
@@ -71,7 +77,7 @@
         mounted() {
             this.consumption = this.equipment.equipmentConsumptionParams.originalConsumption;
             this.price = this.equipment.equipmentCostParams.originalPrice;
-            this.consumptionId = this.getRandomIdString();
+            this.consumptionId = generateStringId();
         }
     }
 </script>
