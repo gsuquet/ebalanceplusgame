@@ -13,14 +13,14 @@
         <div class="btn-container">
             <button
                 class="btn random-btn"
-                @click="gameParametersStore.setRandomProductionCurveAndScenario()">
+                @click="validateRandomGame">
                 <Router-Link to="/game">
                     {{ $t("button.random") }}
                 </Router-Link>
             </button>
             <button
                 class="btn play-btn"
-                @click="gameParametersStore.setProductionCurveAndScenario(productionStore.clickedProductionCurve, scenarioStore.clickedScenario)">
+                @click="validateChosenScenarioAndProductionCurve">
                 <Router-Link to="/game">
                     {{ $t("button.play") }}
                 </Router-Link>
@@ -34,13 +34,31 @@
 </style>
 
 <script lang="ts">
-    const productionStore = useProductionStore();
-    const scenarioStore = useScenarioStore();
-    const gameParametersStore = useGameParametersStore();
     export default {
         name: 'SetupValidationSection',
+        data(){
+            return {
+                productionStore: useProductionStore(),
+                scenarioStore: useScenarioStore(),
+                gameParametersStore: useGameParametersStore(),
+                energyStore: useEnergyStore(),
+                consumptionStore: useConsumptionStore()
+            }
+        },
         methods:{
-
+            validateRandomGame(){
+                this.gameParametersStore.setRandomProductionCurveAndScenario();
+                this.initiateGamePage();
+            },
+            validateChosenScenarioAndProductionCurve(){
+                this.gameParametersStore.setProductionCurveAndScenario(this.productionStore.clickedProductionCurve, this.scenarioStore.clickedScenario);
+                this.initiateGamePage();
+            },
+            initiateGamePage(){
+                this.consumptionStore.addInitialConsumptionToConsumptionList();
+                this.energyStore.getBatteryEquipmentTypes()
+                this.gameParametersStore.isGameStarted = true;
+            }
         }
     }
 </script>
