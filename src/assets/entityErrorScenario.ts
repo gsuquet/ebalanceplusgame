@@ -1,16 +1,16 @@
 import { Scenario, ScenarioLocale, InternatObject } from '../types/Scenario';
 import { errorEnergyStorageParameters } from './entityErrorEnergyStorageParameters';
 import { errorEquipmentType, errorEquipmentTypeLocale } from './entityErrorEquipmentType';
-import { errorInternatObject } from './entityErrorInternatObject';
+import { errorI18nObject } from './entityErrorInternatObject';
 
 export const errorScenario = {
     id: '0',
-    names: [errorInternatObject] as InternatObject[],
-    days: [errorInternatObject] as InternatObject[],
+    names: [errorI18nObject] as InternatObject[],
+    days: [errorI18nObject] as InternatObject[],
     season: "Empty",
     icon: "mdi:null",
     color: "#000000", 
-    descriptions: [errorInternatObject] as InternatObject[],
+    descriptions: [errorI18nObject] as InternatObject[],
     equipment_types: [errorEquipmentType]
 } as Scenario;
 
