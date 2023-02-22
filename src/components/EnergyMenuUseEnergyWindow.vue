@@ -69,7 +69,6 @@
                 this.energyStore.clickedConsumeEnergy=false;
             },
             saveEnergyUse(save:{startIndex:number, endIndex:number,amount:number,price:number,startHour:string,endHour:string}) {
-                console.log(this.energyStore.canUserUseEnergyAmountOverPeriod(save.startIndex, save.endIndex, save.amount))
                 if(this.energyStore.canUserUseEnergyAmountOverPeriod(save.startIndex, save.endIndex, save.amount) == false) {
                     alert("You can't use more energy than you have stored");
                 } else {
