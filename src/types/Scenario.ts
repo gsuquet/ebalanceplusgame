@@ -1,16 +1,17 @@
 import { EquipmentType, EquipmentTypeLocale } from './EquipmentType';
 import { EnergyStorageParameters, EnergyMarketParameters } from './Energy';
 import { Consumption } from './Consumption';
+import { I18nObject } from './I18nObject';
 import { MoneyParameters } from './Money';
 
 export interface Scenario{
     id: string,
-    names: InternatObject[],
-    days: InternatObject[],
+    names: I18nObject[],
+    days: I18nObject[],
     season: string,
     icon: string,
     color: string,
-    descriptions: InternatObject[],
+    descriptions: I18nObject[],
     equipment_types: EquipmentType[],
     initial_consumption: Consumption[],
     energyStorageParameters: EnergyStorageParameters,
@@ -32,9 +33,4 @@ export interface ScenarioLocale {
     energyStorageParameters: EnergyStorageParameters,
     energyMarketParameters: EnergyMarketParameters,
     moneyParameters: MoneyParameters
-}
-
-export interface InternatObject{
-    text: string,
-    lang: string,
 }
