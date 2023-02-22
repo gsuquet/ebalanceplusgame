@@ -141,11 +141,23 @@ export const useBoardStore = defineStore({
             }
             this.setClickedTileToEmpty();
         },
+        deleteClickedProductionTileConsumption() {
+            if(this.clickedProductionTile) {
+                useProductionStore().removeFromAddedProductionList(this.clickedProductionTile.id);
+            }
+            this.setClickedProductionTileToEmpty();
+        },
         modifyClickedTileConsumptionHours(startHour: string, endHour: string) {
             if(this.clickedTile) {
                 useConsumptionStore().modifyConsumptionHours(this.clickedTile.id, startHour, endHour);
             }
             this.setClickedTileToEmpty();
+        },
+        modifyClickedProductionTile(startHour: string, endHour:string, amount: number) {
+            if(this.clickedProductionTile) {
+                useProductionStore().modifyAddedProduction(this.clickedProductionTile.id, startHour, endHour, amount);
+            }
+            this.setClickedProductionTileToEmpty();
         },
         setClickedTileToEmpty() {
             this.clickedTile = emptyTile;
