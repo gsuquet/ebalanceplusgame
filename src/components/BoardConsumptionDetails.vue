@@ -74,10 +74,8 @@
             },
             consumption() {
                 if(this.isConsumptionTile){
-                    this.isConsumptionDisplayed = true;
                     return this.consumptionStore.getConsumptionById(this.consumptionTile.id);
                 } else {
-                    this.isConsumptionDisplayed = false;
                     return null;
                 }
             },
@@ -101,6 +99,14 @@
                 } else {
                     return '';
                 }
+            }
+        },
+        watch: {
+            consumptionTile() {
+                this.isConsumptionDisplayed = this.consumptionTile?.id !== 'empty';
+            },
+            productionTile() {
+                this.isConsumptionDisplayed = this.productionTile?.id === 'empty';
             }
         }
     }
