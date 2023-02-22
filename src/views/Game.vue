@@ -16,8 +16,6 @@ const boardStore = useBoardStore();
 const gameParametersStore = useGameParametersStore();
 const equipmentStore = useEquipmentStore();
 const energyStore = useEnergyStore();
-consumptionStore.addInitialConsumptionToConsumptionList();
-energyStore.getBatteryEquipmentTypes()
 </script>
 
 <template>
