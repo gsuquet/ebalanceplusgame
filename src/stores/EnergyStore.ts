@@ -70,6 +70,10 @@ export const useEnergyStore = defineStore({
             this.removeEnergyFromAvailableStoredEnergyList(energyToRemove);
             this.updateValues();
         },
+        modifyStoredEnergy(energyToModify: Consumption) {
+            this.removeStoredEnergy(energyToModify);
+            this.storeEnergy(energyToModify);
+        },
         updateValues() {
             this.updateStoredEnergyValuesFromStoredEnergyList();
             this.updateUsedEnergyValuesFromUsedEnergyList();
@@ -116,6 +120,15 @@ export const useEnergyStore = defineStore({
             this.removeEnergyFromAvailableStoredEnergyList(energyToConsume);
             useProductionStore().addToAddedProductionList(energyToConsume);
             this.updateValues();
+        },
+        removeUsedEnergy(energyToRemove: Consumption) {
+            this.usedEnergyList = this.usedEnergyList.filter((energy) => energy.id !== energyToRemove.id);
+            this.addEnergyToAvailableStoredEnergyList(energyToRemove);
+            this.updateValues();
+        },
+        modifyUsedEnergy(energyToModify: Consumption) {
+            this.removeUsedEnergy(energyToModify);
+            this.consumeEnergy(energyToModify);
         },
         clickOnEnergyIcon() {
             this.clickedEnergyIcon = this.clickedEnergyIcon ? false : true;
