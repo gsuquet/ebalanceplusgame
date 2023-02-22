@@ -8,6 +8,7 @@
     import CardPopupTimeModifier from './CardPopupTimeModifier.vue';
     import CardPopupAmountModifier from './CardPopupAmountModifier.vue';
     import CardPopupModificationButtons from './CardPopupModificationButtons.vue';
+    import { convertTimesToIndexes, convertIndexesToTimes, checkTimeInput } from '../helpers/time';
 </script>
 
 <template>
@@ -184,12 +185,12 @@
                 this.updateMaxEnergyAmount();
             },
             setStartAndEndIndex() {
-                const indexes = this.consumptionStore.convertTimesToIndexes(this.startHour, this.endHour);
+                const indexes = convertTimesToIndexes(this.startHour, this.endHour);
                 this.startIndex = indexes.indexStart;
                 this.endIndex = indexes.indexEnd;
             },
             initializeStartAndEndHour() {
-                const hours = this.consumptionStore.convertIndexesToTimes(this.indexes.start, this.indexes.end);
+                const hours = convertIndexesToTimes(this.indexes.start, this.indexes.end);
                 this.startHour = hours.timeStart;
                 this.endHour = hours.timeEnd;
             },
@@ -201,7 +202,7 @@
                 }
             },
             saveConsumption() {
-                if(this.consumptionStore.checkTimeInput(this.startHour, this.endHour)){
+                if(checkTimeInput(this.startHour, this.endHour)){
                     this.inputError = false;
                     if (this.checkAmountIsUnderMax()) {
                         this.$emit('save', {   
