@@ -31,7 +31,7 @@
         "equipment_types": [
             {
                 "id":"dishwasher",
-                "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
+                "names":[{"text":"Lave-vaisselle","lang":"fr"},{"text":"Dishwasher","lang":"en"}],
                 "icon_name":"mdi:dishwasher",
                 "color":"#9A7751",
                 "isBattery": false,
@@ -47,7 +47,7 @@
             },
             {
                 "id":"washingMachine",
-                "names":[{"name":"Machine à laver","lang":"fr"},{"name":"Washing-machine","lang":"en"}],
+                "names":[{"text":"Machine à laver","lang":"fr"},{"text":"Washing-machine","lang":"en"}],
                 "icon_name":"mdi:washing-machine",
                 "color":"#00447C",
                 "isBattery": false,
