@@ -256,6 +256,7 @@
                     this.endIndex = newIndexes.end;
                     this.initializeStartAndEndHour();
                     this.setStartAndEndIndex();
+                    this.updateMaxEnergyAmount();
                 },
                 immediate: true
             },
