@@ -32,6 +32,7 @@
         data() {
             return {
                 energyStore: useEnergyStore(),
+                productionStore: useProductionStore(),
                 maxAmount: 0 as number,
                 type: this.$t("energy.useEnergy"),
                 energyConsumption: {
@@ -78,6 +79,7 @@
                     this.energyConsumption.amount = save.amount;
                     this.energyConsumption.price = save.price;
                     this.energyStore.consumeEnergy(this.energyConsumption);
+                    this.productionStore.addToAddedProductionList(this.energyConsumption);
                 }
             },
             amountError() {

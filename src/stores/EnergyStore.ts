@@ -118,7 +118,6 @@ export const useEnergyStore = defineStore({
         consumeEnergy(energyToConsume: Consumption) {
             this.usedEnergyList.push(energyToConsume);
             this.removeEnergyFromAvailableStoredEnergyList(energyToConsume);
-            useProductionStore().addToAddedProductionList(energyToConsume);
             this.updateValues();
         },
         removeUsedEnergy(energyToRemove: Consumption) {
