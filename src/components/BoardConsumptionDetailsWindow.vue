@@ -51,15 +51,28 @@
                 this.consumption.price = save.price;
                 this.consumption.startIndex = save.startIndex;
                 this.consumption.endIndex = save.endIndex;
-                boardStore.modifyClickedTileConsumptionHours(save.startHour, save.endHour);
+                if(this.consumption.equipment.type.isBattery){
+                    if(this.consumption.equipment.type.isCharging) {
+                        boardStore.modifyClickedTileConsumptionHours(save.startHour, save.endHour);
+                        this.energyStore.modifyStoredEnergy(this.consumption);
+                    } else {
+                        boardStore.modifyClickedProductionTile(save.startHour, save.endHour, save.amount);
+                        this.energyStore.modifyUsedEnergy(this.consumption);
+                    }
+                } else {
+                    boardStore.modifyClickedTileConsumptionHours(save.startHour, save.endHour);
+                }
             },
             deleteConsumption() {
-                if(this.consumption.equipment.type.isBattery && this.consumption.equipment.battery.isCharging) {
+                if(this.consumption.equipment.type.isBattery && this.consumption.equipment.type.isCharging) {
                     if(this.energyStore.canUserRemoveEnergyFromAvailableStoredEnergyList(this.consumption)) {
                         boardStore.deleteClickedTileConsumption();
                     } else {
                         alert(this.$t('energy.cannotRemoveStoredEnergyUsed'));
                     }
+                } else if(this.consumption.equipment.type.isBattery && !this.consumption.equipment.type.isCharging){
+                    boardStore.deleteClickedProductionTileConsumption();
+                    this.energyStore.removeUsedEnergy(this.consumption);
                 } else {
                     boardStore.deleteClickedTileConsumption();
                 }
