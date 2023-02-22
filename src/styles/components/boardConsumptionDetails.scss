@@ -5,18 +5,31 @@
     transform: translate(-50%, -50%);
     z-index: 20;
     .tab-container{
+        margin-left: 0.5rem;
         display: flex;
         .tab{
-            padding: 0.2rem;
+            padding: 0.2rem 0.5rem;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
             background-color: var(--theme-color-background-secondary);
             .tab-icon{
                 width: 20px;
                 height: 20px;
-                margin-right: 5px;
+                margin-right: 0.3rem;
+            }
+            .tac-text{
+                font-size: 0.8rem;
             }
         }
         .active-tab{
             background-color: var(--theme-color-background);
+        }
+        .tab-left{
+            border-top-left-radius: 0.5rem;
+        }
+        .tab-right{
+            border-top-right-radius: 0.5rem;
         }
     }
     .popup-window{
