@@ -2,29 +2,31 @@
     import { Tile } from '../types/Board';
     import { Icon } from '@iconify/vue';
     import BoardConsumptionDetailsWindow from './BoardConsumptionDetailsWindow.vue';
+    import { convertI18nObjectToLocale } from '../helpers/translation';
 </script>
 
 <template>
     <section id="board-consumption-details">
         <div class="tab-container" v-if="production && consumption">
             <div
-                class="tab"
+                class="tab tab-left"
                 :class="{ 'active-tab': isConsumptionDisplayed }"
                 @click="isConsumptionDisplayed = true">
                 <Icon
                     class="tab-icon"
                     :icon="consumption.equipment.type.icon_name"
                     :style="{'color':consumption.equipment.type.color}"/>
-                
+                <span class="tab-text">{{ consumptionEquipmentTypeName }}</span>
             </div>
             <div
-                class="tab"
+                class="tab tab-right"
                 :class="{ 'active-tab': !isConsumptionDisplayed }"
                 @click="isConsumptionDisplayed = false">
                 <Icon
                     class="tab-icon"
                     :icon="production.equipment.type.icon_name"
                     :style="{'color':production.equipment.type.color}"/>
+                <span class="tab-text">{{ productionEquipmentTypeName }}</span>
             </div>
         </div>
         <BoardConsumptionDetailsWindow
@@ -50,7 +52,7 @@
             return {
                 consumptionStore: useConsumptionStore(),
                 productionStore: useProductionStore(),
-                isConsumptionDisplayed: true,
+                isConsumptionDisplayed: this.consumptionTile?.id !== 'empty',
             }
         },
         props: {
@@ -72,8 +74,10 @@
             },
             consumption() {
                 if(this.isConsumptionTile){
+                    this.isConsumptionDisplayed = true;
                     return this.consumptionStore.getConsumptionById(this.consumptionTile.id);
                 } else {
+                    this.isConsumptionDisplayed = false;
                     return null;
                 }
             },
@@ -82,6 +86,20 @@
                     return this.productionStore.getAddedProductionById(this.productionTile.id);
                 } else {
                     return null;
+                }
+            },
+            consumptionEquipmentTypeName() {
+                if(this.consumption){
+                    return convertI18nObjectToLocale(this.consumption.equipment.type.names, this.$i18n.locale);
+                } else {
+                    return '';
+                }
+            },
+            productionEquipmentTypeName() {
+                if(this.production){
+                    return convertI18nObjectToLocale(this.production.equipment.type.names, this.$i18n.locale);
+                } else {
+                    return '';
                 }
             }
         }
