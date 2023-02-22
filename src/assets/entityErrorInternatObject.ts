@@ -1,6 +1,6 @@
-import { InternatObject } from "../types/Scenario";
+import { I18nObject } from "../types/I18nObject";
 
-export const errorInternatObject = {
+export const errorI18nObject = {
     text: 'error',
     lang: 'en'
-} as InternatObject;
+} as I18nObject;
