@@ -69,10 +69,16 @@
             "isEnergyStorage": true,
             "initialStoredEnergy": 0,
             "numberOfBatteries": 1,
-            "batteryIndividualCapacity": 200,
             "batteryPrice": 10,
+            "batteryIndividualCapacity": 200,
             "batteryChargeEquipmentTypeId": "battery_charge",
-            "batteryDischargeEquipmentTypeId": "battery_discharge"
+            "batteryDischargeEquipmentTypeId": "battery_discharge",
+            "batteryChargeLimitRate": 100,
+            "batteryDischargeLimitRate": 100,
+            "batteryChargeEfficiency": 100,
+            "batteryDischargeEfficiency": 100,
+            "batteryChargeLossRate": 0,
+            "batteryDischargeLossRate": 0
         },
         "energyMarketParameters": {
             "salePricesList": [8, 8, 5, 8, 9, 5, 6, 5, 6, 8, 8, 8,9,6,6,6,7,9,8,9,7,7,5,7,6,6,8,5,8,9,6,9,8,7,6,7,5,6,9,9,6,9,9,9,5,7,8,7,6,5,5,7,5,8,5,6,5,9,5,6,6,6,6,8,5,5,8,6,8,6,8,6,8,6,5,5,8,6,9,9,5,9,9,6,8,7,6,9,8,6,7,7,7,5,8,9],

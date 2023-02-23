@@ -240,6 +240,12 @@ export const useEnergyStore = defineStore({
             }
             return maxAmount;
         },
+        getMaxChargeRate:(state) => {
+            return state.energyStorageParameters.batteryChargeLimitRate * state.numberOfBatteries;
+        },
+        getMaxDischargeRate:(state) => {
+            return state.energyStorageParameters.batteryDischargeLimitRate * state.numberOfBatteries;
+        },
         canUserRemoveEnergyFromAvailableStoredEnergyList:(state) => (energyToRemove: Consumption) => {
             for(let i = energyToRemove.startIndex; i <= energyToRemove.endIndex; i++){
                 for(let j = i; j < state.availableStoredEnergyList.length; j++){
