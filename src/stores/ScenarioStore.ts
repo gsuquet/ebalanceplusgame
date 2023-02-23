@@ -86,7 +86,9 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
                                                     description: description,
                                                     equipment_type_local: listEquipmentLocale,
                                                     initial_consumption: scenario.initial_consumption,
-                                                    energyStorageParameters: scenario.energyStorageParameters
+                                                    energyStorageParameters: scenario.energyStorageParameters,
+                                                    energyMarketParameters: scenario.energyMarketParameters,
+                                                    moneyParameters: scenario.moneyParameters
                                                 }; 
             return scenarioLocale;
         },

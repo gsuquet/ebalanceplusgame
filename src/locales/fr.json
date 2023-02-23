@@ -46,7 +46,8 @@
         "amountErrorHigherThanEnergyStored": "Le montant total doit être inférieur ou égal à l'énergie stockée."
     },
     "money":{
-        "cost": "Coût"
+        "cost": "Coût",
+        "personnalMoney": "Solde"
     },
     "energy":{
         "header": "Stockage d'énergie",

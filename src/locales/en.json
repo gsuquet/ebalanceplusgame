@@ -46,7 +46,8 @@
         "amountErrorHigherThanEnergyStored": "The total amount must be lower than the energy stored"
     },
     "money":{
-        "cost": "Cost"
+        "cost": "Cost",
+        "personnalMoney": "Balance"
     },
     "energy":{
         "header": "Energy storage",
@@ -90,4 +91,5 @@
         "howToWin": "How to win?",
         "winRule":"The goal is to have the best final score, which corresponds to the best possible flexibility. For this, your consumption must exceed production as little as possible. As well as selling the extra energy."
     }
+
 }
