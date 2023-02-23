@@ -1,9 +1,223 @@
 [
     {
         "id":"dishwasher",
-        "names":[{"name":"Lave-vaisselle","lang":"fr"},{"name":"Dishwasher","lang":"en"}],
+        "names":[{"text":"Lave-vaisselle","lang":"fr"},{"text":"Dishwasher","lang":"en"}],
         "icon_name":"mdi:dishwasher",
         "color":"#9A7751",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": false,
+            "originalDuration": "02:00",
+            "step": "00:15",
+            "minDuration": "02:00",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"Washing-machine",
+        "names":[{"text":"Machine à laver","lang":"fr"},{"text":"Washing-machine","lang":"en"}],
+        "icon_name":"mdi:washing-machine",
+        "color":"#00447C",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": false,
+            "originalDuration": "00:45",
+            "step": "00:15",
+            "minDuration": "00:45",
+            "maxDuration": "23:45"
+        }
+
+    },
+    {
+        "id":"Tumble dryer",
+        "names":[{"text":"Sèche-linge","lang":"fr"},{"text":"Tumble dryer","lang":"en"}],
+        "icon_name":"mdi:tumble-dryer",
+        "color":"#C8BBA4",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": false,
+            "originalDuration": "01:30",
+            "step": "00:15",
+            "minDuration": "01:30",
+            "maxDuration": "23:45"
+        }
+
+    },
+    {
+        "id":"Television",
+        "names":[{"text":"Télévision","lang":"fr"},{"text":"Television","lang":"en"}],
+        "icon_name":"mdi:television",
+        "color":"#CCB46B",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+
+    },
+    {
+        "id":"Electric-bike",
+        "names":[{"text":"Vélo électrique","lang":"fr"},{"text":"Electric-bike","lang":"en"}],
+        "icon_name":"mdi:bike",
+        "color":"#8FCE00",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "04:00",
+            "step": "00:15",
+            "minDuration": "04:00",
+            "maxDuration": "23:45"
+        }
+
+    },
+    {
+        "id":"Electric car",
+        "names":[{"text":"Voiture électrique","lang":"fr"},{"text":"Electric car","lang":"en"}],
+        "icon_name":"mdi:car",
+        "color":"#134F5C",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "08:00",
+            "step": "00:15",
+            "minDuration": "08:00",
+            "maxDuration": "23:45"
+        }
+
+    },
+    {
+        "id":"Micro-wave",
+        "names":[{"text":"Micro-ondes","lang":"fr"},{"text":"Micro-wave","lang":"en"}],
+        "icon_name":"mdi:microwave",
+        "color":"#BCBCBC",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"Kettle",
+        "names":[{"text":"Bouilloire","lang":"fr"},{"text":"Kettle","lang":"en"}],
+        "icon_name":"mdi:kettle",
+        "color":"#93C47D",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+
+    },
+    {
+        "id":"Internet Box",
+        "names":[{"text":"Box Internet","lang":"fr"},{"text":"Internet Box","lang":"en"}],
+        "icon_name":"mdi:wifi",
+        "color":"#247384",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"Water-boiler",
+        "names":[{"text":"Chaudière","lang":"fr"},{"text":"Water-boiler","lang":"en"}],
+        "icon_name":"mdi:water-boiler",
+        "color":"#247384",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"Toaster-oven",
+        "names":[{"text":"Four","lang":"fr"},{"text":"Toaster-oven","lang":"en"}],
+        "icon_name":"mdi:toaster-oven",
+        "color":"#E69138",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"Toaster",
+        "names":[{"text":"Grille-pain","lang":"fr"},{"text":"Toaster","lang":"en"}],
+        "icon_name":"mdi:toaster",
+        "color":"#FFD966",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"Game console",
+        "names":[{"text":"Console de jeu","lang":"fr"},{"text":"Game console","lang":"en"}],
+        "icon_name":"mdi:gamepad-variant",
+        "color":"#5B5B5B",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"Coffee maker",
+        "names":[{"text":"Cafetière","lang":"fr"},{"text":"Coffee maker","lang":"en"}],
+        "icon_name":"mdi:coffee-maker",
+        "color":"#783F04",
         "isBattery": false,
         "isCharging": false,
         "equipmentTypeDurationParams": {
