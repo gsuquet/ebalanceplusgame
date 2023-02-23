@@ -282,6 +282,25 @@ export const useEnergyStore = defineStore({
             }
             return true;
         },
+        getMinAmountOfEnergyStoredNeededWithoutStoredEnergy:(state) => (storedEnergyId:string) => {
+            const storedEnergy = state.storedEnergyList.find((consumption) => consumption.id === storedEnergyId);
+            let minAmount = 0;
+            let minAmountIndex = 0;
+            if( storedEnergy ){
+                let indexMultiplier = 1;
+                for (let i = storedEnergy.startIndex; i < state.availableStoredEnergyList.length; i++) {
+                    const amount = state.availableStoredEnergyList[i] - storedEnergy.amount*indexMultiplier;
+                    if(i <= storedEnergy.endIndex){
+                        indexMultiplier++;
+                    }
+                    if(amount < 0 && amount < minAmount){
+                        minAmount = -1*amount;
+                        minAmountIndex = i;
+                    }
+                }
+            }
+            return {minAmount, minAmountIndex};
+        },
         isStorageEmpty:(state) => {
             return state.storedEnergy <= 0;
         }
