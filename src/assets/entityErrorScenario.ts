@@ -1,7 +1,9 @@
 import { Scenario, ScenarioLocale, InternatObject } from '../types/Scenario';
+import { errorEnergyMarketParameters } from './entityErrorEnergyMarketParameters';
 import { errorEnergyStorageParameters } from './entityErrorEnergyStorageParameters';
 import { errorEquipmentType, errorEquipmentTypeLocale } from './entityErrorEquipmentType';
 import { errorInternatObject } from './entityErrorInternatObject';
+import { errorMoneyParameters } from './entityErrorMoneyParameters';
 
 export const errorScenario = {
     id: '0',
@@ -11,7 +13,7 @@ export const errorScenario = {
     icon: "mdi:null",
     color: "#000000", 
     descriptions: [errorInternatObject] as InternatObject[],
-    equipment_types: [errorEquipmentType]
+    equipment_types: [errorEquipmentType],
 } as Scenario;
 
 export const errorScenarioLocale = {
@@ -24,5 +26,7 @@ export const errorScenarioLocale = {
     description: '',
     equipment_type_local: [errorEquipmentTypeLocale],
     initial_consumption: [],
-    energyStorageParameters: errorEnergyStorageParameters
+    energyStorageParameters: errorEnergyStorageParameters,
+    energyMarketParameters: errorEnergyMarketParameters,
+    moneyParameters: errorMoneyParameters
 } as ScenarioLocale;

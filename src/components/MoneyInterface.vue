@@ -13,21 +13,6 @@
     </div>
 </template>
 
-<script lang="ts">
-    export default {
-        name: 'MoneyInterface', 
-        data() {
-            return {
-                
-            }
-        },
-        methods:{
-            
-        }
-    }
-
-</script>
-
 <style scoped lang="scss">
     @import "../styles/components/moneyInterface.scss";
 </style>
