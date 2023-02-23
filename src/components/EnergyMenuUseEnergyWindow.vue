@@ -58,8 +58,7 @@
                             isConsumptionEditable: true,
                             step: 10,
                             minConsumption: 0,
-                            maxConsumption: 2000
-                            // TODO : change to dynamic max consumption : number of batteries * battery capacity
+                            maxConsumption: useEnergyStore().getMaxDischargeRate
                         },
                     } as Equipment,
                 } as Consumption

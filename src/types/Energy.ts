@@ -2,8 +2,14 @@ export interface EnergyStorageParameters {
     isEnergyStorage: boolean;
     initialStoredEnergy: number;
     numberOfBatteries: number;
-    batteryIndividualCapacity: number;
     batteryPrice: number;
+    batteryIndividualCapacity: number;
     batteryChargeEquipmentTypeId: string;
     batteryDischargeEquipmentTypeId: string;
+    batteryChargeLimitRate: number;
+    batteryDischargeLimitRate: number;
+    batteryChargeEfficiency: number;
+    batteryDischargeEfficiency: number;
+    batteryChargeLossRate: number;
+    batteryDischargeLossRate: number;
 }
