@@ -49,7 +49,10 @@
                 if(this.consumption.equipment.type.isBattery){
                     if(this.consumption.equipment.type.isCharging) {
                         this.boardStore.modifyClickedTileConsumptionHours(save.startHour, save.endHour);
-                        this.energyStore.modifyStoredEnergy(this.consumption);
+                        this.consumption.amount = this.originalConsumptionAmount;
+                        this.consumption.startIndex = this.originalIndexes.start;
+                        this.consumption.endIndex = this.originalIndexes.end;
+                        this.energyStore.modifyStoredEnergy(this.consumption, save.startIndex, save.endIndex, save.amount);
                     } else {
                         this.boardStore.modifyClickedProductionTile(save.startHour, save.endHour, save.amount);
                         this.consumption.amount = this.originalConsumptionAmount;

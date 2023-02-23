@@ -176,11 +176,7 @@
             updateMaxEnergyAmountBatteryCharge() {
                 this.energyStore.updateValues();
                 let maxEnergyStorage = 0;
-                if(this.propsIsInitialAddPopup){
-                    maxEnergyStorage = this.energyStore.getMaximumEnergyStorageWithoutConsumption(this.id)/((this.endIndex-this.startIndex)+1);
-                } else {
-                    maxEnergyStorage = 0;
-                }
+                maxEnergyStorage = this.energyStore.getMaximumEnergyStorageWithoutConsumption(this.id)/((this.endIndex-this.startIndex)+1);
                 const maxChargeRate = this.equipment.equipmentConsumptionParams.maxConsumption;
                 this.maxEnergyAmount = maxEnergyStorage < maxChargeRate ? maxEnergyStorage : maxChargeRate;
             },
@@ -188,9 +184,9 @@
                 this.energyStore.updateValues();
                 let maxUsableEnergy = 0;
                 if(this.propsIsInitialAddPopup){
-                    maxUsableEnergy = this.energyStore.getMaxAmountOfEnergyUserCanUseOverPeriod(this.startIndex, this.endIndex)/((this.endIndex-this.startIndex)+1);
+                    maxUsableEnergy = this.energyStore.getMaxAmountOfEnergyUserCanUseOverPeriod(this.startIndex, this.endIndex);
                 } else {
-                    maxUsableEnergy = this.energyStore.getMaxAmountOfEnergyUserCanUseOverPeriodWithoutConsumption(this.id, this.startIndex, this.endIndex)/((this.endIndex-this.startIndex)+1);
+                    maxUsableEnergy = this.energyStore.getMaxAmountOfEnergyUserCanUseOverPeriodWithoutConsumption(this.id, this.startIndex, this.endIndex);
                 }
                 const maxDischargeRate = this.equipment.equipmentConsumptionParams.maxConsumption;
                 this.maxEnergyAmount = maxUsableEnergy < maxDischargeRate ? maxUsableEnergy : maxDischargeRate;
