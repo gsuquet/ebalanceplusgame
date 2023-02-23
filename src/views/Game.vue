@@ -11,19 +11,22 @@ import { useBoardStore } from '../stores/BoardStore';
 import { useEquipmentStore } from '../stores/EquipmentStore';
 import { useEnergyStore } from '../stores/EnergyStore';
 import EnergyMenuUseEnergyWindow from '../components/EnergyMenuUseEnergyWindow.vue';
+import MoneyInterface from '../components/MoneyInterface.vue';
 const consumptionStore = useConsumptionStore();
 const boardStore = useBoardStore();
 const gameParametersStore = useGameParametersStore();
 const equipmentStore = useEquipmentStore();
 const energyStore = useEnergyStore();
 consumptionStore.addInitialConsumptionToConsumptionList();
-energyStore.getBatteryEquipmentTypes()
+energyStore.getBatteryEquipmentTypes();
+
 </script>
 
 <template>
 
     <div class="overlay" v-if="equipmentStore.clickedEquipment || boardStore.clickedTile || energyStore.clickedStoreEnergy || gameParametersStore.showedInfoOverlay"/>
     <TheGameInfoWindow v-if="gameParametersStore.showedInfoOverlay" />
+    
     <div id="game-page" class="view">
         <BaseAlert
             :should-display="consumptionStore.isOverConsumption"
@@ -37,6 +40,7 @@ energyStore.getBatteryEquipmentTypes()
         <BoardSnackBar />
         <EnergyMenuAddEnergyWindow v-if="energyStore.clickedStoreEnergy"/>
         <EnergyMenuUseEnergyWindow v-if="energyStore.clickedConsumeEnergy"/>
+        <MoneyInterface/>
         <div class="board-list-container">
             <EquipmentList />
             <Board
