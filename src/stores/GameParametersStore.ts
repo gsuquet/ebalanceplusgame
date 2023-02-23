@@ -10,6 +10,7 @@ export const useGameParametersStore = defineStore({
     id: 'GameParametersStore',
     state: () => {
         return {
+            isGameStarted: false,
             gameId: '00000',
             date: new Date(),
             language: 'en',

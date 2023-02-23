@@ -11,7 +11,6 @@ export const useMoneyStore = defineStore({
         };
     },
     actions: {
-
         setInitialMoney(){
             const scenario: ScenarioLocale | null = useScenarioStore().clickedScenario;
             if(scenario) {
