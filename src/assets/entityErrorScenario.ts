@@ -4,6 +4,7 @@ import { errorEnergyStorageParameters } from './entityErrorEnergyStorageParamete
 import { errorEquipmentType, errorEquipmentTypeLocale } from './entityErrorEquipmentType';
 import { errorI18nObject } from './entityErrorI18nObject';
 import { errorMoneyParameters } from './entityErrorMoneyParameters';
+import { errorEnergyMarketParameters } from './entityErrorEnergyMarketParameters';
 
 export const errorScenario = {
     id: '0',

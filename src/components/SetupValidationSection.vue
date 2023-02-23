@@ -1,9 +1,3 @@
-<script setup lang="ts">
-    import { useProductionStore } from '../stores/ProductionStore';
-    import { useScenarioStore } from '../stores/ScenarioStore';
-    import { useGameParametersStore } from '../stores/GameParametersStore';
-</script>
-
 <template>
     <section class="validation-section">
         <h2 class="section-title">{{ $t("setup.launchNewGame") }}</h2>
@@ -42,7 +36,8 @@
                 scenarioStore: useScenarioStore(),
                 gameParametersStore: useGameParametersStore(),
                 energyStore: useEnergyStore(),
-                consumptionStore: useConsumptionStore()
+                consumptionStore: useConsumptionStore(),
+                moneyStore: useMoneyStore(),
             }
         },
         methods:{
@@ -57,6 +52,7 @@
             initiateGamePage(){
                 this.consumptionStore.addInitialConsumptionToConsumptionList();
                 this.energyStore.getBatteryEquipmentTypes()
+                this.moneyStore.setInitialMoney();
                 this.gameParametersStore.isGameStarted = true;
             }
         }
