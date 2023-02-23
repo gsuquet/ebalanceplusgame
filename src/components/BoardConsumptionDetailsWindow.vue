@@ -38,7 +38,9 @@
             return {
                 energyStore: useEnergyStore(),
                 consumptionType: '' as string,
-                maxConsumptionAmount: 0 as number
+                maxConsumptionAmount: 0 as number,
+                originalConsumptionAmount: ref(this.consumption.amount),
+                originalIndexes: ref({start: this.consumption.startIndex, end: this.consumption.endIndex})
             };
         },
         methods: {
@@ -47,17 +49,16 @@
                 boardStore.setClickedProductionTileToEmpty();
             },
             saveModifiedConsumption(save:{startIndex:number, endIndex:number,amount:number,price:number,startHour:string,endHour:string}) {
-                this.consumption.amount = save.amount;
-                this.consumption.price = save.price;
-                this.consumption.startIndex = save.startIndex;
-                this.consumption.endIndex = save.endIndex;
                 if(this.consumption.equipment.type.isBattery){
                     if(this.consumption.equipment.type.isCharging) {
                         boardStore.modifyClickedTileConsumptionHours(save.startHour, save.endHour);
                         this.energyStore.modifyStoredEnergy(this.consumption);
                     } else {
                         boardStore.modifyClickedProductionTile(save.startHour, save.endHour, save.amount);
-                        this.energyStore.modifyUsedEnergy(this.consumption);
+                        this.consumption.amount = this.originalConsumptionAmount;
+                        this.consumption.startIndex = this.originalIndexes.start;
+                        this.consumption.endIndex = this.originalIndexes.end;
+                        this.energyStore.modifyUsedEnergy(this.consumption, save.startIndex, save.endIndex, save.amount);
                     }
                 } else {
                     boardStore.modifyClickedTileConsumptionHours(save.startHour, save.endHour);

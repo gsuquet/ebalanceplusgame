@@ -62,7 +62,7 @@ export const useEnergyStore = defineStore({
         },
         storeEnergy(energyToStore: Consumption) {
             this.storedEnergyList.push(energyToStore);
-            this.addEnergyToAvailableStoredEnergyList(energyToStore);
+            this.addEnergyToAvailableStoredEnergyList(energyToStore.startIndex, energyToStore.endIndex, energyToStore.amount);
             this.updateValues();
         },
         removeStoredEnergy(energyToRemove: Consumption) {
@@ -95,9 +95,9 @@ export const useEnergyStore = defineStore({
             });
             this.storedEnergy -= this.totalUsedEnergyOverTheGame;
         },
-        addEnergyToAvailableStoredEnergyList(energy: Consumption) {
-            for(let i = energy.startIndex; i <= energy.endIndex; i++){
-                this.addAmountToAvailableStoredEnergyListFromIndexToEnd(energy.amount, i);
+        addEnergyToAvailableStoredEnergyList(startIndex: number, endIndex: number, amount: number) {
+            for(let i = startIndex; i <= endIndex; i++){
+                this.addAmountToAvailableStoredEnergyListFromIndexToEnd(amount, i);
             }
         },
         removeEnergyFromAvailableStoredEnergyList(energy: Consumption) {
@@ -122,11 +122,14 @@ export const useEnergyStore = defineStore({
         },
         removeUsedEnergy(energyToRemove: Consumption) {
             this.usedEnergyList = this.usedEnergyList.filter((energy) => energy.id !== energyToRemove.id);
-            this.addEnergyToAvailableStoredEnergyList(energyToRemove);
+            this.addEnergyToAvailableStoredEnergyList(energyToRemove.startIndex, energyToRemove.endIndex, energyToRemove.amount);
             this.updateValues();
         },
-        modifyUsedEnergy(energyToModify: Consumption) {
+        modifyUsedEnergy(energyToModify: Consumption, startIndex: number, endIndex: number, newEnergyAmount: number) {
             this.removeUsedEnergy(energyToModify);
+            energyToModify.startIndex = startIndex;
+            energyToModify.endIndex = endIndex;
+            energyToModify.amount = newEnergyAmount;
             this.consumeEnergy(energyToModify);
         },
         clickOnEnergyIcon() {
@@ -236,6 +239,29 @@ export const useEnergyStore = defineStore({
                     }
                 } else {
                     return 0;
+                }
+            }
+            return maxAmount;
+        },
+        getMaxAmountOfEnergyUserCanUseOverPeriodWithoutConsumption:(state) => (consumptionId: string, startIndex: number, endIndex: number) => { 
+            const usedEnergy = state.usedEnergyList.find((consumption) => consumption.id === consumptionId);
+            let maxAmount = state.availableStoredEnergyList[startIndex] || 0;
+            let mapOfUsedEnergyTotalAmount = new Map<number, number>();
+            if( usedEnergy ){
+                let indexMultiplier = 1;
+                for (let i = usedEnergy.startIndex; i <= usedEnergy.endIndex; i++) {
+                    mapOfUsedEnergyTotalAmount.set(i, usedEnergy.amount*indexMultiplier);
+                    indexMultiplier++;
+                }
+                maxAmount += mapOfUsedEnergyTotalAmount.get(startIndex) || 0;
+                for(let i = startIndex; i <= endIndex; i++){
+                    let amount = state.availableStoredEnergyList[i];
+                    if(mapOfUsedEnergyTotalAmount.has(i)){
+                        amount += mapOfUsedEnergyTotalAmount.get(i) || 0;
+                    }
+                    if(amount < maxAmount){
+                        maxAmount = amount;
+                    }
                 }
             }
             return maxAmount;

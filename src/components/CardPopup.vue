@@ -166,17 +166,34 @@
             },
             updateMaxEnergyAmount() {
                 if(this.equipment.type.isBattery && this.equipment.type.isCharging) {
-                    this.energyStore.updateValues();
-                    const maxEnergyStorage = this.energyStore.getMaximumEnergyStorageWithoutConsumption(this.id)/((this.endIndex-this.startIndex)+1);
-                    const maxChargeRate = this.equipment.equipmentConsumptionParams.maxConsumption;
-                    this.maxEnergyAmount = maxEnergyStorage < maxChargeRate ? maxEnergyStorage : maxChargeRate;
+                    this.updateMaxEnergyAmountBatteryCharge();
                 } else if(this.equipment.type.isBattery && !this.equipment.type.isCharging) {
-                    const maxUsableEnergy = this.energyStore.getMaxAmountOfEnergyUserCanUseOverPeriod(this.startIndex, this.endIndex)/((this.endIndex-this.startIndex)+1);
-                    const maxDischargeRate = this.equipment.equipmentConsumptionParams.maxConsumption;
-                    this.maxEnergyAmount = maxUsableEnergy < maxDischargeRate ? maxUsableEnergy : maxDischargeRate;
+                    this.updateMaxEnergyAmountBatteryDischarge();
                 } else {
                     this.maxEnergyAmount = this.equipment.equipmentConsumptionParams.maxConsumption;
                 }
+            },
+            updateMaxEnergyAmountBatteryCharge() {
+                this.energyStore.updateValues();
+                let maxEnergyStorage = 0;
+                if(this.propsIsInitialAddPopup){
+                    maxEnergyStorage = this.energyStore.getMaximumEnergyStorageWithoutConsumption(this.id)/((this.endIndex-this.startIndex)+1);
+                } else {
+                    maxEnergyStorage = 0;
+                }
+                const maxChargeRate = this.equipment.equipmentConsumptionParams.maxConsumption;
+                this.maxEnergyAmount = maxEnergyStorage < maxChargeRate ? maxEnergyStorage : maxChargeRate;
+            },
+            updateMaxEnergyAmountBatteryDischarge() {
+                this.energyStore.updateValues();
+                let maxUsableEnergy = 0;
+                if(this.propsIsInitialAddPopup){
+                    maxUsableEnergy = this.energyStore.getMaxAmountOfEnergyUserCanUseOverPeriod(this.startIndex, this.endIndex)/((this.endIndex-this.startIndex)+1);
+                } else {
+                    maxUsableEnergy = this.energyStore.getMaxAmountOfEnergyUserCanUseOverPeriodWithoutConsumption(this.id, this.startIndex, this.endIndex)/((this.endIndex-this.startIndex)+1);
+                }
+                const maxDischargeRate = this.equipment.equipmentConsumptionParams.maxConsumption;
+                this.maxEnergyAmount = maxUsableEnergy < maxDischargeRate ? maxUsableEnergy : maxDischargeRate;
             },
             updateStartHour(newStartHour: string) {
                 this.startHour=newStartHour;
@@ -256,8 +273,8 @@
             },
             indexes: {
                 handler: function (newIndexes) {
-                    this.startIndex = newIndexes.start;
-                    this.endIndex = newIndexes.end;
+                    this.startIndex = ref(newIndexes.start);
+                    this.endIndex = ref(newIndexes.end);
                     this.initializeStartAndEndHour();
                     this.setStartAndEndIndex();
                     this.updateMaxEnergyAmount();
