@@ -246,24 +246,24 @@ export const useEnergyStore = defineStore({
         getMaxAmountOfEnergyUserCanUseOverPeriodWithoutConsumption:(state) => (consumptionId: string, startIndex: number, endIndex: number) => { 
             const usedEnergy = state.usedEnergyList.find((consumption) => consumption.id === consumptionId);
             let maxAmount = state.availableStoredEnergyList[startIndex] || 0;
-            let mapOfUsedEnergyTotalAmount = new Map<number, number>();
+            let listOfUsedEnergyTotalAmount = new Array(96).fill(0);
             if( usedEnergy ){
                 let indexMultiplier = 1;
-                for (let i = usedEnergy.startIndex; i <= usedEnergy.endIndex; i++) {
-                    mapOfUsedEnergyTotalAmount.set(i, usedEnergy.amount*indexMultiplier);
-                    indexMultiplier++;
-                }
-                maxAmount += mapOfUsedEnergyTotalAmount.get(startIndex) || 0;
-                for(let i = startIndex; i <= endIndex; i++){
-                    let amount = state.availableStoredEnergyList[i];
-                    if(mapOfUsedEnergyTotalAmount.has(i)){
-                        amount += mapOfUsedEnergyTotalAmount.get(i) || 0;
+                for (let i = usedEnergy.startIndex; i < listOfUsedEnergyTotalAmount.length; i++) {
+                    listOfUsedEnergyTotalAmount[i] = usedEnergy.amount*indexMultiplier;
+                    if(i <= usedEnergy.endIndex){
+                        indexMultiplier++;
                     }
+                }
+                maxAmount += listOfUsedEnergyTotalAmount[startIndex] || 0;
+                for(let i = startIndex; i <= endIndex; i++){
+                    let amount = state.availableStoredEnergyList[i] + listOfUsedEnergyTotalAmount[i];
                     if(amount < maxAmount){
                         maxAmount = amount;
                     }
                 }
             }
+            console.log(maxAmount)
             return maxAmount;
         },
         getMaxChargeRate:(state) => {
