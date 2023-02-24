@@ -121,5 +121,6 @@ export const useGameParametersStore = defineStore({
         canWithdrawMoney: (state) => (amount: number) => state.availableMoney >= amount,
         getScenarioEnergyStorageParameters: (state) => state.scenario.energyStorageParameters,
         getScenarioEnergyMarketParameters: (state) => state.scenario.energyMarketParameters,
+        getScenarioMoneyParameters: (state) => state.scenario.moneyParameters,
     }
 });

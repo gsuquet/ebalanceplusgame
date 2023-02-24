@@ -86,7 +86,11 @@
             "constantPrice": 0
         },
         "moneyParameters": {
-            "initialMoney": 200
+            "initialMoney": 200,
+            "isMoneyMenu": true,
+            "isMoneyUnlimited": false,
+            "moneyCurrency": "€",
+            "moneyCurrencyIcon": "mdi:currency-eur"
         }
     }
 ]
