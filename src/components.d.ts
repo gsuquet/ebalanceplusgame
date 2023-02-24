@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     BaseAlert: typeof import('./components/BaseAlert.vue')['default']
     BaseCanvas: typeof import('./components/BaseCanvas.vue')['default']
+    BaseMenuIcon: typeof import('./components/BaseMenuIcon.vue')['default']
     Board: typeof import('./components/Board.vue')['default']
     BoardConsumptionAddWindow: typeof import('./components/BoardConsumptionAddWindow.vue')['default']
     BoardConsumptionDetails: typeof import('./components/BoardConsumptionDetails.vue')['default']
