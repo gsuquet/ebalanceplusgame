@@ -119,6 +119,7 @@ export const useGameParametersStore = defineStore({
         getProductionCurveTotal: (state) => state.productionCurve.total,
         getGameIdUpper: (state) => state.gameId.toUpperCase(),
         canWithdrawMoney: (state) => (amount: number) => state.availableMoney >= amount,
-        getScenarioEnergyStorageParameters: (state) => state.scenario.energyStorageParameters
+        getScenarioEnergyStorageParameters: (state) => state.scenario.energyStorageParameters,
+        getScenarioEnergyMarketParameters: (state) => state.scenario.energyMarketParameters,
     }
 });
