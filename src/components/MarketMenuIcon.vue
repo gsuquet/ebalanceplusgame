@@ -3,10 +3,10 @@
 </script>
 
 <template>
-    <section id="market-menu-icon"  v-if="energyStore.displayMarketIcon">
-        <div class="market-icon-container">
-            <div class="market-icon-background" @click="energyStore.clickOnMarketIcon()">
-                <Icon icon="mdi:home-currency-usd" class="market-icon-image" />    
+    <section id="market-menu-icon" class="icon-section"  v-if="energyStore.displayMarketIcon">
+        <div class="market-icon-container icon-container">
+            <div class="market-icon-background icon-background" @click="energyStore.clickOnMarketIcon()">
+                <Icon icon="mdi:home-currency-usd" class="market-icon-image icon-image" />    
             </div>   
         </div>
     </section>

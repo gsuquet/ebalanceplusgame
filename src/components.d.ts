@@ -31,6 +31,7 @@ declare module '@vue/runtime-core' {
     MarketMenu: typeof import('./components/MarketMenu.vue')['default']
     MarketMenuIcon: typeof import('./components/MarketMenuIcon.vue')['default']
     MoneyInterface: typeof import('./components/MoneyInterface.vue')['default']
+    MoneyMenuIcon: typeof import('./components/MoneyMenuIcon.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SetupProductionList: typeof import('./components/SetupProductionList.vue')['default']

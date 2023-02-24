@@ -6,16 +6,16 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    #energy-menu-icon{
+    .icon-section{
         display: flex;
         align-items: center;
         margin: 0.25rem 0;
-        .energy-amount{
+        .amount{
             display: none;
         }
-        .energy-icon{
+        .icon-container{
             position : relative;
-            .energy-icon-background{
+            .icon-background{
                 width: 60px;
                 height: 60px;
                 border-radius: 50%;
@@ -24,26 +24,18 @@
                 align-items: center;
                 justify-content: center;
                 margin-right: 10px;
-                .energy-icon-image{
-                    width: 40px;
-                    height: 40px;
-                }
                 &:hover{
                     background-color: var(--theme-color-secondary);
                     cursor: pointer;
                 }
-            }
-            .energy-icon-batteries{
-                position: absolute;
-                top: -10px;
-                right: -10px;
-                border-radius: 50%;
-                background-color: var(--theme-color-primary);
-                color: var(--theme-color-text-secondary);
+                .icon-image{
+                    width: 40px;
+                    height: 40px;
+                }
             }
         }
         &:hover{
-            .energy-amount{
+            .amount{
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -58,25 +50,23 @@
             }
         }
     }
-    .market-icon-container {
-        margin: 0.25rem 0;
-        position : relative;
-        .market-icon-background{
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: var(--theme-color-tertiary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-            .market-icon-image{
-                width: 40px;
-                height: 40px;
+    #energy-menu-icon{
+        .energy-icon{
+            .energy-icon-batteries{
+                position: absolute;
+                top: -10px;
+                right: -10px;
+                border-radius: 50%;
+                background-color: var(--theme-color-primary);
+                color: var(--theme-color-text-secondary);
             }
-            &:hover{
-                background-color: var(--theme-color-secondary);
-                cursor: pointer;
+        }
+        
+    }
+    #money-menu-icon{
+        .money-icon-container{
+            .money-icon-background:hover{
+                cursor: default;
             }
         }
     }
