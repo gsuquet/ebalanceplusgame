@@ -108,3 +108,12 @@
     font-weight: var(--theme-font-weight-title);
     color: var(--theme-color-text);
 }
+
+@mixin overlay-popup-window-centered() {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    background-color: var(--theme-color-background);
+}
