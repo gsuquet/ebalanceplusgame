@@ -1,22 +1,16 @@
 <script setup lang="ts">
-import EnergyMenuIcon from './EnergyMenuIcon.vue';
-import EnergyMenu from './EnergyMenu.vue';
-import MarketMenu from './MarketMenu.vue';
-import { useEnergyStore } from '../stores/EnergyStore';
-import { Icon } from '@iconify/vue';
+    import EnergyMenu from './EnergyMenu.vue';
+    import MarketMenu from './MarketMenu.vue';
+    import EnergyMenuIcon from './EnergyMenuIcon.vue';
+    import MarketMenuIcon from './MarketMenuIcon.vue';
 </script>
 
 <template>
     <section id="game-board-snackbar">
-        <EnergyMenu v-if="useEnergyStore().displayEnergyMenu"/>
-        <EnergyMenuIcon v-if="useEnergyStore().displayEnergyIcon"/>
-        <div class="market-icon-container">
-            <div class="market-icon-background" @click="useEnergyStore().clickOnMarketIcon()" v-if="!useEnergyStore().clickedMarketIcon">
-                <Icon icon="mdi:home-currency-usd" class="market-icon-image" />    
-            </div>   
-        </div>
-         
-        <MarketMenu />
+        <MarketMenu/>
+        <MarketMenuIcon/>
+        <EnergyMenu/>
+        <EnergyMenuIcon/>
     </section>
 </template>
 

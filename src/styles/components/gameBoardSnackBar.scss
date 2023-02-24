@@ -9,17 +9,9 @@
     #energy-menu-icon{
         display: flex;
         align-items: center;
+        margin: 0.25rem 0;
         .energy-amount{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 50px;
-            border-radius: 10px;
-            background-color: var(--theme-color-tertiary);
-            color: var(--theme-color-text);
-            font-size: 1.5rem;
-            font-weight: 700;
-            padding: 0 5px;
+            display: none;
         }
         .energy-icon{
             position : relative;
@@ -50,9 +42,24 @@
                 color: var(--theme-color-text-secondary);
             }
         }
+        &:hover{
+            .energy-amount{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 50px;
+                border-radius: 10px;
+                background-color: var(--theme-color-tertiary);
+                color: var(--theme-color-text);
+                font-size: 1.5rem;
+                font-weight: 700;
+                padding: 0 0.6rem;
+                margin-right: 0.5rem;
+            }
+        }
     }
     .market-icon-container {
-        margin-top: 1rem;
+        margin: 0.25rem 0;
         position : relative;
         .market-icon-background{
             width: 60px;

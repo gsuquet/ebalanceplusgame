@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { useEnergyStore } from '../stores/EnergyStore';
-import { Icon } from '@iconify/vue';
+    import { Icon } from '@iconify/vue';
 </script>
 
 <template>
-    <section id="energy-menu-icon">
-        <div class="energy-amount" v-if="energyStore.storedEnergy > 0">
+    <section id="energy-menu-icon"  v-if="energyStore.displayEnergyIcon">
+        <div class="energy-amount">
             <p>{{ energyStore.storedEnergy }} W</p>
         </div>
         <div class="energy-icon">
@@ -20,11 +19,15 @@ import { Icon } from '@iconify/vue';
 </template>
 
 <script lang="ts">
-    const energyStore = useEnergyStore();
     export default {
         name: "EnergyMenuIcon",
         components: {
             Icon
+        },
+        data() {
+            return {
+                energyStore: useEnergyStore()
+            }
         }
     }
 </script>
