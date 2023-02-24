@@ -156,9 +156,8 @@ import { convertValuesListToPixelsList } from '../helpers/drawInPixels';
                     }
                 } else {
                     for(let i =0; i<points.length-1; i++) {
-                        const y = this.canvasHeight-points[i];
-                        this.drawLine(x,y,x+xSize,y, color);
-                        this.drawLine(x+xSize,y,x+xSize,this.canvasHeight-points[i+1], color);
+                        this.drawLine(x,this.canvasHeight-points[i],x+xSize,this.canvasHeight-points[i], color);
+                        this.drawLine(x+xSize,this.canvasHeight-points[i],x+xSize,this.canvasHeight-points[i+1], color);
                         x=x+xSize;
                     }
                 }
@@ -202,7 +201,7 @@ import { convertValuesListToPixelsList } from '../helpers/drawInPixels';
             },
             productionCurveProps : {
                 handler(newProductionCurve) {
-                    this.productionCurve=newProductionCurve;
+                    this.productionCurve=ref(newProductionCurve);
                     this.render();
                 },
                 immediate: true
