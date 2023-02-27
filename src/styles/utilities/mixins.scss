@@ -4,6 +4,10 @@
     }
 }
 
+@mixin for-desktop-up {
+    @media (min-width: 1300px) { @content; }
+}
+
 @mixin button-base-style() {
     padding: 0.25rem 0.75rem;
     border-radius: 1rem;

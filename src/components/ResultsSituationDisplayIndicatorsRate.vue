@@ -4,10 +4,14 @@
             <h4>{{ ratioName }}</h4>
         </div>
         <div class="ratio-value">
-            <p>{{ ratioValue }}</p>
+            <p>{{ percentage }} %</p>
         </div>
     </div>
 </template>
+
+<style lang="scss" scoped>
+    @import "../styles/components/resultsSituationDisplayIndicatorsRate.scss";
+</style>
 
 <script lang="ts">
     export default {
@@ -25,6 +29,9 @@
         computed: {
             ratioName(): string {
                 return this.$t(this.ratioNameI18nKey);
+            },
+            percentage(): number {
+                return this.ratioValue ? Math.round(this.ratioValue * 100) : 0;
             },
         },
     }

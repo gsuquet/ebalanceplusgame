@@ -13,13 +13,13 @@
         <div class="indicator-unit-switch">
             <div class="indicator-unit-switch-container">
                 <button
-                    class="indicator-unit-switch-button"
+                    class="indicator-unit-switch-button start"
                     :class="{ 'indicator-unit-switch-button-active': isUnitWh }"
                     @click="switchUnitToWh">
                     <p>{{ unitWh }}</p>
                 </button>
                 <button
-                    class="indicator-unit-switch-button"
+                    class="indicator-unit-switch-button end"
                     :class="{ 'indicator-unit-switch-button-active': !isUnitWh }"
                     @click="switchUnitToKwh">
                     <p>{{ unitKWh }}</p>
@@ -28,6 +28,10 @@
         </div>
     </div>
 </template>
+
+<style lang="scss">
+    @import "../styles/components/resultsSituationDisplayIndicatorsIndicator.scss";
+</style>
 
 <script lang="ts">
     export default {
@@ -65,5 +69,12 @@
                 this.isUnitWh = false;
             },
         },
+        mounted() {
+            if(convertWattsPer15minToWattsPerHour(this.indicatorValue) < 10000) {
+                this.switchUnitToWh();
+            } else {
+                this.switchUnitToKwh();
+            }
+        }
     }
 </script>

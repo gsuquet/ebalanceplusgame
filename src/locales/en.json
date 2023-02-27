@@ -95,6 +95,34 @@
         "winRule":"The goal is to have the best final score, which corresponds to the best possible flexibility. For this, your consumption must exceed production as little as possible. As well as selling the extra energy."
     },
     "results": {
-        "confirmSeeResults": "Do you want to see the results ?"
+        "confirmSeeResults": "Do you want to see the results ?",
+        "situations": {
+            "initialSituation": {
+                "name": "Initial situation",
+                "description": "This is the initial situation of the game. The numbers form a baseline you were tasked to improve."
+            },
+            "finalSituation": {
+                "name": "Final situation",
+                "description": "This is the final situation of the game. It represents in a few numbers the result of your actions, allowing you to compare your performance to the baseline."
+            }
+        },
+        "performanceIndicators":{
+            "totalConsumption": "Total consumption",
+            "totalProduction": "Total production",
+            "totalOverConsumption": "Total over-consumption",
+            "totalSoldEnergy": "Total sold energy",
+            "totalBoughtEnergy": "Total bought energy",
+            "totalStoredEnergy": "Total stored energy",
+            "totalUsedStoredEnergy": "Total used stored energy",
+            "ratios":{
+                "selfConsumptionRatio": "Self-consumption ratio",
+                "selfProductionRatio": "Self-production ratio"
+            }
+        },
+        "sections":{
+            "consumption": "Consumption",
+            "production": "Production",
+            "ratios": "Ratios"
+        }
     }
 }

@@ -6,16 +6,22 @@ import ResultsSituationDisplay from '../components/ResultsSituationDisplay.vue';
 
 <template>
     <div id="results-page" class="view">
-        <ResultsSituationDisplay
-            situationNameI18nKey="results.situations.initialSituation.name"
-            situationDescriptionI18nKey="results.situations.initialSituation.description"
-            :performanceIndicators="resultsStore.getInitialSituationPerformanceIndicators"/>
-        <ResultsSituationDisplay
-            situationNameI18nKey="results.situations.finalSituation.name"
-            situationDescriptionI18nKey="results.situations.finalSituation.description"
-            :performanceIndicators="resultsStore.getFinalSituationPerformanceIndicators"/>
+        <div class="results-situations-container">
+            <ResultsSituationDisplay
+                situationNameI18nKey="results.situations.initialSituation.name"
+                situationDescriptionI18nKey="results.situations.initialSituation.description"
+                :performanceIndicators="resultsStore.getInitialSituationPerformanceIndicators"/>
+            <ResultsSituationDisplay
+                situationNameI18nKey="results.situations.finalSituation.name"
+                situationDescriptionI18nKey="results.situations.finalSituation.description"
+                :performanceIndicators="resultsStore.getFinalSituationPerformanceIndicators"/>
+        </div>
     </div>
 </template>
+
+<style lang="scss">
+    @import "../styles/views/results.scss";
+</style>
 
 <script lang="ts">
     export default {

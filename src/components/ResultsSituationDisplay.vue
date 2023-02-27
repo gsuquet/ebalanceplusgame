@@ -4,17 +4,21 @@
 </script>
 
 <template>
-    <section class="">
-        <div class="">
+    <section class="results-situation-display">
+        <div class="situation-title">
             <h2>{{ situationName }}</h2>
         </div>
-        <div>
+        <div class="situation-description">
             <p>{{ situationDescription }}</p>
         </div>
         <ResultsSituationDisplayIndicators
             :performanceIndicators="performanceIndicators"/>
     </section>
 </template>
+
+<style lang="scss">
+    @import "../styles/components/resultsSituationDisplay.scss";
+</style>
 
 <script lang="ts">
     export default {
