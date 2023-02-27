@@ -77,6 +77,26 @@
     }
 }
 
+@mixin button-close-style() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 800;
+    transition: 0.2s;
+    background-color: red;
+    color: black;
+    &:hover {
+        background-color: darkred;
+        color: white;
+    }
+}
+
 @mixin base-typography() {
     font-size: var(--theme-font-size);
     font-weight: var(--theme-font-weight);
