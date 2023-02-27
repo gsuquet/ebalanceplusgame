@@ -38,6 +38,7 @@
                 energyStore: useEnergyStore(),
                 consumptionStore: useConsumptionStore(),
                 moneyStore: useMoneyStore(),
+                resultsStore: useResultsStore()
             }
         },
         methods:{
@@ -54,6 +55,7 @@
                 this.energyStore.getBatteryEquipmentTypes()
                 this.moneyStore.setInitialMoney();
                 this.gameParametersStore.isGameStarted = true;
+                this.resultsStore.setInitialSituationPerformanceIndicators();
             }
         }
     }
