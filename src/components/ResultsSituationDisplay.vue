@@ -1,5 +1,6 @@
 <script setup lang="ts">
-    import { ResultsPerformanceIndicators } from '../types/Results';
+    import { emptyResultsPerformanceIndicators } from '../assets/entityEmptyResults';
+import { ResultsPerformanceIndicators } from '../types/Results';
     import ResultsSituationDisplayIndicators from './ResultsSituationDisplayIndicators.vue';
 </script>
 
@@ -12,7 +13,9 @@
             <p>{{ situationDescription }}</p>
         </div>
         <ResultsSituationDisplayIndicators
-            :performanceIndicators="performanceIndicators"/>
+            :performanceIndicators="performanceIndicators"
+            :is-initial-situation="isInitialSituation"
+            :initialPerformanceIndicators="initialPerformanceIndicators"/>
     </section>
 </template>
 
@@ -37,7 +40,17 @@
             },
             performanceIndicators: {
                 type: Object as () => ResultsPerformanceIndicators,
-                required: true,}
+                required: true,
+            },
+            initialPerformanceIndicators: {
+                type: Object as () => ResultsPerformanceIndicators,
+                required: false,
+                default: emptyResultsPerformanceIndicators
+            },
+            isInitialSituation: {
+                type: Boolean,
+                required: true,
+            },
         },
         computed: {
             situationName(): string {

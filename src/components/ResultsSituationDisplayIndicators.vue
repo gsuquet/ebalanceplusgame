@@ -1,5 +1,6 @@
 <script setup lang="ts">
-    import { ResultsPerformanceIndicators } from '../types/Results';
+    import { emptyResultsPerformanceIndicators } from '../assets/entityEmptyResults';
+import { ResultsPerformanceIndicators } from '../types/Results';
     import ResultsSituationDisplayIndicatorsIndicator from './ResultsSituationDisplayIndicatorsIndicator.vue';
 import ResultsSituationDisplayIndicatorsRate from './ResultsSituationDisplayIndicatorsRate.vue';
 </script>
@@ -11,39 +12,55 @@ import ResultsSituationDisplayIndicatorsRate from './ResultsSituationDisplayIndi
             <h3 class="indicators-section-title">{{ $t("results.sections.consumption") }}</h3>
             <ResultsSituationDisplayIndicatorsIndicator
                 indicatorNameI18nKey="results.performanceIndicators.totalConsumption"
-                :indicatorValue="performanceIndicators.totalConsumption"/>
+                :indicatorValue="performanceIndicators.totalConsumption"
+                :is-initial-value="isInitialSituation"
+                :initial-value="initialPerformanceIndicators.totalConsumption"/>
             <ResultsSituationDisplayIndicatorsIndicator
                 indicatorNameI18nKey="results.performanceIndicators.totalOverConsumption"
-                :indicatorValue="performanceIndicators.totalOverConsumption"/>
+                :indicatorValue="performanceIndicators.totalOverConsumption"
+                :is-initial-value="isInitialSituation"
+                :initial-value="initialPerformanceIndicators.totalOverConsumption"/>
             <ResultsSituationDisplayIndicatorsIndicator
                 indicatorNameI18nKey="results.performanceIndicators.totalSoldEnergy"
-                :indicatorValue="performanceIndicators.totalSoldEnergy"/>
+                :indicatorValue="performanceIndicators.totalSoldEnergy"
+                :is-initial-value="isInitialSituation"
+                :initial-value="initialPerformanceIndicators.totalSoldEnergy"/>
             <ResultsSituationDisplayIndicatorsIndicator
                 indicatorNameI18nKey="results.performanceIndicators.totalStoredEnergy"
-                :indicatorValue="performanceIndicators.totalStoredEnergy"/>
+                :indicatorValue="performanceIndicators.totalStoredEnergy"
+                :is-initial-value="isInitialSituation"
+                :initial-value="initialPerformanceIndicators.totalStoredEnergy"/>
         </div>
         <div class="line"/>
         <div class="indicators-section">
             <h3 class="indicators-section-title">{{ $t("results.sections.production") }}</h3>
             <ResultsSituationDisplayIndicatorsIndicator
                 indicatorNameI18nKey="results.performanceIndicators.totalProduction"
-                :indicatorValue="performanceIndicators.totalProduction"/>
+                :indicatorValue="performanceIndicators.totalProduction"
+                :is-initial-value="isInitialSituation"
+                :initial-value="initialPerformanceIndicators.totalProduction"/>
             <ResultsSituationDisplayIndicatorsIndicator
                 indicatorNameI18nKey="results.performanceIndicators.totalBoughtEnergy"
-                :indicatorValue="performanceIndicators.totalBoughtEnergy"/>
+                :indicatorValue="performanceIndicators.totalBoughtEnergy"
+                :is-initial-value="isInitialSituation"
+                :initial-value="initialPerformanceIndicators.totalBoughtEnergy"/>
             <ResultsSituationDisplayIndicatorsIndicator
                 indicatorNameI18nKey="results.performanceIndicators.totalUsedStoredEnergy"
-                :indicatorValue="performanceIndicators.totalUsedStoredEnergy"/>
+                :indicatorValue="performanceIndicators.totalUsedStoredEnergy"
+                :is-initial-value="isInitialSituation"
+                :initial-value="initialPerformanceIndicators.totalUsedStoredEnergy"/>
         </div>
         <div class="line"/>
         <div class="indicators-section">
             <h3 class="indicators-section-title">{{ $t("results.sections.ratios") }}</h3>
             <ResultsSituationDisplayIndicatorsRate
                 ratioNameI18nKey="results.performanceIndicators.ratios.selfConsumptionRatio"
-                :ratioValue="performanceIndicators.selfConsumptionRatio"/>
+                :ratioValue="performanceIndicators.selfConsumptionRatio"
+                />
             <ResultsSituationDisplayIndicatorsRate
                 ratioNameI18nKey="results.performanceIndicators.ratios.selfProductionRatio"
-                :ratioValue="performanceIndicators.selfProductionRatio"/>
+                :ratioValue="performanceIndicators.selfProductionRatio"
+                />
         </div>
     </div>
 </template>
@@ -63,7 +80,16 @@ import ResultsSituationDisplayIndicatorsRate from './ResultsSituationDisplayIndi
             performanceIndicators: {
                 type: Object as () => ResultsPerformanceIndicators,
                 required: true,
-            }
+            },
+            initialPerformanceIndicators: {
+                type: Object as () => ResultsPerformanceIndicators,
+                required: false,
+                default: emptyResultsPerformanceIndicators
+            },
+            isInitialSituation: {
+                type: Boolean,
+                required: true,
+            },
         }
     }
 </script>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-    import { convertWattsPer15minToWattsPerHour, convertWattsPer15minToKilowattsPerHour } from '../helpers/power'  
+    import { convertWattsPer15minToWattsPerHour, convertWattsPer15minToKilowattsPerHour } from '../helpers/power';
+    import { Icon } from '@iconify/vue';
 </script>
 
 <template>
@@ -7,23 +8,31 @@
         <div class="indicator-name">
             <h4>{{ indicatorName }}</h4>
         </div>
-        <div class="indicator-value">
-            <p>{{ indicatorValueWithUnit }}</p>
-        </div>
-        <div class="indicator-unit-switch">
-            <div class="indicator-unit-switch-container">
-                <button
-                    class="indicator-unit-switch-button start"
-                    :class="{ 'indicator-unit-switch-button-active': isUnitWh }"
-                    @click="switchUnitToWh">
-                    <p>{{ unitWh }}</p>
-                </button>
-                <button
-                    class="indicator-unit-switch-button end"
-                    :class="{ 'indicator-unit-switch-button-active': !isUnitWh }"
-                    @click="switchUnitToKwh">
-                    <p>{{ unitKWh }}</p>
-                </button>
+        <div class="indicator-value-container">
+            <div class="indicator-value">
+                <p>{{ indicatorValueWithUnit }}</p>
+            </div>
+            <div class="indicator-value-comparison" v-if="!isInitialValue && !isInitialValueEqual">
+                <Icon :icon="getIcon" class="icon"/>
+                <p :class="{ 'indicator-value-comparison-higher': isInitialValueHigher, 'indicator-value-comparison-lower': !isInitialValueHigher }">
+                    {{ differenceBetweenInitialAndCurrent }}
+                </p>
+            </div>
+            <div class="indicator-unit-switch">
+                <div class="indicator-unit-switch-container">
+                    <button
+                        class="indicator-unit-switch-button start"
+                        :class="{ 'indicator-unit-switch-button-active': isUnitWh }"
+                        @click="switchUnitToWh">
+                        <p>{{ unitWh }}</p>
+                    </button>
+                    <button
+                        class="indicator-unit-switch-button end"
+                        :class="{ 'indicator-unit-switch-button-active': !isUnitWh }"
+                        @click="switchUnitToKwh">
+                        <p>{{ unitKWh }}</p>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -45,12 +54,24 @@
                 type: Number,
                 required: true,
             },
+            isInitialValue: {
+                type: Boolean,
+                required: false,
+                default: false,
+            },
+            initialValue: {
+                type: Number,
+                required: false,
+                default: 0,
+            },
         },
         data() {
             return {
                 unitWh: "W/h",
                 unitKWh: "kW/h",
                 isUnitWh: true,
+                isInitialValueHigher: false,
+                isInitialValueEqual: true,
             };
         },
         computed: {
@@ -60,6 +81,15 @@
             indicatorValueWithUnit(): number {
                 return this.isUnitWh ? convertWattsPer15minToWattsPerHour(this.indicatorValue) : convertWattsPer15minToKilowattsPerHour(this.indicatorValue);
             },
+            initialValueWithUnit(): number {
+                return this.isUnitWh ? convertWattsPer15minToWattsPerHour(this.initialValue) : convertWattsPer15minToKilowattsPerHour(this.initialValue);
+            },
+            differenceBetweenInitialAndCurrent(): number {
+                return this.isInitialValueHigher ? this.initialValueWithUnit - this.indicatorValueWithUnit : this.indicatorValueWithUnit - this.initialValueWithUnit;
+            },
+            getIcon(): string {
+                return this.isInitialValueHigher ? "mdi:arrow-down" : "mdi:arrow-up";
+            },
         },
         methods: {
             switchUnitToWh(): void {
@@ -68,6 +98,10 @@
             switchUnitToKwh(): void {
                 this.isUnitWh = false;
             },
+            setIsInitialValueHigherOrEqual(): void {
+                this.isInitialValueHigher = this.initialValueWithUnit > this.indicatorValueWithUnit;
+                this.isInitialValueEqual = this.initialValueWithUnit === this.indicatorValueWithUnit;
+            },
         },
         mounted() {
             if(convertWattsPer15minToWattsPerHour(this.indicatorValue) < 10000) {
@@ -75,6 +109,16 @@
             } else {
                 this.switchUnitToKwh();
             }
-        }
+        },
+        watch: {
+            indicatorValue: {
+                handler: function (newValue: boolean) {
+                    if (newValue) {
+                        this.setIsInitialValueHigherOrEqual();
+                    }
+                },
+                immediate: true,
+            },
+        },
     }
 </script>

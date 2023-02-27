@@ -10,11 +10,14 @@ import ResultsSituationDisplay from '../components/ResultsSituationDisplay.vue';
             <ResultsSituationDisplay
                 situationNameI18nKey="results.situations.initialSituation.name"
                 situationDescriptionI18nKey="results.situations.initialSituation.description"
+                :is-initial-situation="true"
                 :performanceIndicators="resultsStore.getInitialSituationPerformanceIndicators"/>
             <ResultsSituationDisplay
                 situationNameI18nKey="results.situations.finalSituation.name"
                 situationDescriptionI18nKey="results.situations.finalSituation.description"
-                :performanceIndicators="resultsStore.getFinalSituationPerformanceIndicators"/>
+                :is-initial-situation="false"
+                :performanceIndicators="resultsStore.getFinalSituationPerformanceIndicators"
+                :initialPerformanceIndicators="resultsStore.getInitialSituationPerformanceIndicators"/>
         </div>
     </div>
 </template>
