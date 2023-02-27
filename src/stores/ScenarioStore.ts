@@ -47,21 +47,11 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
         },
         convertDayToDayLocale(scenario: Scenario) {
             const locale = useGameParametersStore().language;
-            for(const day of scenario.days) {
-                if(day.lang === locale) {
-                    return day.text;
-                }
-            }
-            return scenario.days[0].text;
+            return convertI18nObjectToLocale(scenario.days, locale);
         },
         convertDescriptionToDescriptionLocale(scenario: Scenario){
             const locale = useGameParametersStore().language;
-            for(const description of scenario.descriptions) {
-                if(description.lang === locale) {
-                    return description.text;
-                }
-            }
-            return scenario.descriptions[0].text;
+            return convertI18nObjectToLocale(scenario.descriptions, locale);
         },
         convertScenarioToScenarioLocale(scenario: Scenario) {
             const listEquipmentLocale: EquipmentTypeLocale[] = this.getListOfEquipmentTypeLocale(scenario.equipment_types); 
@@ -111,6 +101,11 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
         },
         getClickedScenario: state => () => state.clickedScenario,
         getRandomLocaleScenario: state => () => state.scenariosLocale[Math.floor(Math.random() * state.scenariosLocale.length)],
-
+        getInitialConsumptionCopy: state => () => {
+            if(state.clickedScenario){
+                return JSON.parse(JSON.stringify(state.clickedScenario.initial_consumption));
+            }
+            return [];
+        }
     },
 });

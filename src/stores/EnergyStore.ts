@@ -285,6 +285,12 @@ export const useEnergyStore = defineStore({
         },
         isStorageEmpty:(state) => {
             return state.storedEnergy <= 0;
+        },
+        getTotalStoredEnergyOverTheGameCopy:(state) => {
+            return JSON.parse(JSON.stringify(state.totalStoredEnergyOverTheGame));
+        },
+        getTotalUsedEnergyOverTheGameCopy:(state) => {
+            return JSON.parse(JSON.stringify(state.totalUsedEnergyOverTheGame));
         }
     },
 });
