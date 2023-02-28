@@ -8,6 +8,7 @@
     },
     "button":{
         "cancel": "Cancel",
+        "confirm": "Confirm",
         "delete": "Delete",
         "edit": "Edit",
         "save": "Save",
@@ -26,7 +27,9 @@
         "purchase": "Purchase",
         "sale": "Sale",
         "total": "Total",
-        "close": "Close"
+        "close": "Close",
+        "yes": "Yes",
+        "no": "No"
     },
     "input":{
         "start": "Start",
@@ -90,6 +93,36 @@
         "marketUsage":"You can also buy or sell energy according to your needs. By clicking on the 'market' icon. Here you will find the money you have as well as the possibility of buying or selling energy. When you click on the 'sell'  button you will have access to the sale window. The sale of energy works like a classic consumption. You must place this consumption on the board at the desired time. The sale will earn you money to buy new equipment or batteries. By clicking on the buy button you can buy energy at a certain price depending on the time of purchase. [ENERGY PURCHASE LOGIC]",
         "howToWin": "How to win?",
         "winRule":"The goal is to have the best final score, which corresponds to the best possible flexibility. For this, your consumption must exceed production as little as possible. As well as selling the extra energy."
+    },
+    "results": {
+        "confirmSeeResults": "Do you want to see the results ?",
+        "situations": {
+            "initialSituation": {
+                "name": "Initial situation",
+                "description": "This is the initial situation of the game. The numbers form a baseline you were tasked to improve."
+            },
+            "finalSituation": {
+                "name": "Final situation",
+                "description": "This is the final situation of the game. It represents in a few numbers the result of your actions, allowing you to compare your performance to the baseline."
+            }
+        },
+        "performanceIndicators":{
+            "totalConsumption": "Total consumption",
+            "totalProduction": "Total production",
+            "totalOverConsumption": "Total over-consumption",
+            "totalSoldEnergy": "Total sold energy",
+            "totalBoughtEnergy": "Total bought energy",
+            "totalStoredEnergy": "Total stored energy",
+            "totalUsedStoredEnergy": "Total used stored energy",
+            "ratios":{
+                "selfConsumptionRatio": "Self-consumption ratio",
+                "selfProductionRatio": "Self-production ratio"
+            }
+        },
+        "sections":{
+            "consumption": "Consumption",
+            "production": "Production",
+            "ratios": "Ratios"
+        }
     }
-
 }

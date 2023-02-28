@@ -22,11 +22,12 @@ export const useConsumptionStore = defineStore({
 
     actions: {
         addInitialConsumptionToConsumptionList() {
-            let clickedScenario = useScenarioStore().clickedScenario;
-            if(clickedScenario){
-                for(let initialConsumption of clickedScenario.initial_consumption){
-                    this.addToConsumptionList(initialConsumption);
-                }
+            const initialConsumption = useScenarioStore().getInitialConsumptionCopy();
+            if(initialConsumption){
+                this.consumptionList = [];
+                for(const consumption of initialConsumption){
+                    this.addToConsumptionList(consumption);
+                }   
             }
         },
         addToConsumptionList(newConsumption:Consumption) {
@@ -138,6 +139,12 @@ export const useConsumptionStore = defineStore({
             return (id:string) => {
                 return state.consumptionList.find(consumption => consumption.id === id)
             }
-        }
+        },
+        getOverConsumptionMapCopy(state) {
+            return new Map(state.overConsumptionMap);
+        },
+        getConsumptionList(state) {
+            return state.consumptionList;
+        },
     }
 });

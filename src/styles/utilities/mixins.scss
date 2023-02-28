@@ -4,6 +4,10 @@
     }
 }
 
+@mixin for-desktop-up {
+    @media (min-width: 1300px) { @content; }
+}
+
 @mixin button-base-style() {
     padding: 0.25rem 0.75rem;
     border-radius: 1rem;
@@ -107,4 +111,13 @@
     font-size: var(--theme-font-size-title);
     font-weight: var(--theme-font-weight-title);
     color: var(--theme-color-text);
+}
+
+@mixin overlay-popup-window-centered() {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    background-color: var(--theme-color-background);
 }

@@ -8,6 +8,7 @@
     },
     "button":{
         "cancel": "Annuler",
+        "confirm": "Confirmer",
         "delete": "Supprimer",
         "edit": "Modifier",
         "save": "Sauvegarder",
@@ -26,7 +27,9 @@
         "purchase":"achat",
         "sale": "vente",
         "total": "Total",
-        "close": "Fermer"
+        "close": "Fermer",
+        "yes": "Oui",
+        "no": "Non"
     },
     "input":{
         "start": "Début",
@@ -89,5 +92,36 @@
         "marketUsage":"Vous pourrez également acheter ou vendre de l'énergie selon vos besoin. En cliquant sur l'icones « marché ». Vous trouverez ici l'argent que vous possédez ainsi que la possibilité d'acheter ou vendre de l'énergie. Lorsque vous cliquez sur le bouton « vendre » vous aurez accès à la fenêtre de vente. La vente d'énergie fonctionne comme une consommation classique. Vous devez placer cette consommation sur le plateau à l'horaire voulu. La vente vous rapportera de l'argent pour acheter de nouveaux équipements ou batteries. En cliquant sur le bouton achat vous pourrez acheter de l'énergie à un certain prix dépendant de l'heure d'achat. [LOGIQUE ACHAT D'ENERGIE]",
         "howToWin": "Comment gagner ?",
         "winRule":"Le but est d'avoir le meilleur score final, ce qui correspond à la meilleure flexibilité possible. Pour cela votre consommation doit le moins possible dépasser la production. Ainsi que de vendre l'énergie supplémentaire."
+    },
+    "results": {
+        "confirmSeeResults": "Voulez-vous voir les résultats ?",
+        "situations": {
+            "initialSituation":{
+                "name": "Situation initiale",
+                "description": "La situation initiale est la situation de départ de la partie. Inspirée d'habitudes de consommation réelles, elle forme un standard que vous êtes chargé d'améliorer."
+            },
+            "finalSituation":{
+                "name": "Situation finale",
+                "description": "La situation finale est la situation dans laquelle vous vous trouvez à la fin de la partie. Elle reflète les changements que vous avec apporté à la situation initiale."
+            }
+        },
+        "performanceIndicators":{
+            "totalConsumption": "Consommation totale",
+            "totalProduction": "Production totale",
+            "totalOverConsumption": "Surconsommation totale",
+            "totalSoldEnergy": "Énergie vendue totale",
+            "totalBoughtEnergy": "Énergie achetée totale",
+            "totalStoredEnergy": "Stockage d'énergie total",
+            "totalUsedStoredEnergy": "Énergie stockée utilisée totale",
+            "ratios":{
+                "selfConsumptionRatio": "Taux d'autoconsommation",
+                "selfProductionRatio": "Taux d'autoproduction"
+            }
+        },
+        "sections":{
+            "consumption": "Consommation",
+            "production": "Production",
+            "ratios": "Taux"
+        }
     }
 }
