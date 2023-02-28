@@ -1,4 +1,4 @@
-function roundNumberToTwoDecimals(amount: number): number {
+export function roundNumberToTwoDecimals(amount: number): number {
     return Math.round(amount * 100) / 100;
 }
 

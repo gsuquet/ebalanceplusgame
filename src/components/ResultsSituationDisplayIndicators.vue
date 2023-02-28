@@ -29,7 +29,8 @@ import ResultsSituationDisplayIndicatorsRate from './ResultsSituationDisplayIndi
                 indicatorNameI18nKey="results.performanceIndicators.totalStoredEnergy"
                 :indicatorValue="performanceIndicators.totalStoredEnergy"
                 :is-initial-value="isInitialSituation"
-                :initial-value="initialPerformanceIndicators.totalStoredEnergy"/>
+                :initial-value="initialPerformanceIndicators.totalStoredEnergy"
+                :reverse-color-indicators="true"/>
         </div>
         <div class="line"/>
         <div class="indicators-section">
@@ -48,7 +49,8 @@ import ResultsSituationDisplayIndicatorsRate from './ResultsSituationDisplayIndi
                 indicatorNameI18nKey="results.performanceIndicators.totalUsedStoredEnergy"
                 :indicatorValue="performanceIndicators.totalUsedStoredEnergy"
                 :is-initial-value="isInitialSituation"
-                :initial-value="initialPerformanceIndicators.totalUsedStoredEnergy"/>
+                :initial-value="initialPerformanceIndicators.totalUsedStoredEnergy"
+                :reverse-color-indicators="true"/>
         </div>
         <div class="line"/>
         <div class="indicators-section">

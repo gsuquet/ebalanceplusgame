@@ -31,7 +31,14 @@
                 return this.$t(this.ratioNameI18nKey);
             },
             percentage(): number {
-                return this.ratioValue ? Math.round(this.ratioValue * 100) : 0;
+                const percentage = this.ratioValue ? Math.round(this.ratioValue * 100) : 0;
+                if(percentage > 100) {
+                    return 100;
+                }
+                if (percentage < 0) {
+                    return 0;
+                }
+                return percentage;
             },
         },
     }

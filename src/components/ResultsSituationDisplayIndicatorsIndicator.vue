@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import { convertWattsPer15minToWattsPerHour, convertWattsPer15minToKilowattsPerHour } from '../helpers/power';
+    import { convertWattsPer15minToWattsPerHour, convertWattsPer15minToKilowattsPerHour, roundNumberToTwoDecimals } from '../helpers/power';
     import { Icon } from '@iconify/vue';
 </script>
 
@@ -12,7 +12,9 @@
             <div class="indicator-value">
                 <p>{{ indicatorValueWithUnit }}</p>
             </div>
-            <div class="indicator-value-comparison" v-if="!isInitialValue && !isInitialValueEqual">
+            <div class="indicator-value-comparison"
+                v-if="!isInitialValue && !isInitialValueEqual"
+                :style="{'color':getColor}">
                 <Icon :icon="getIcon" class="icon"/>
                 <p :class="{ 'indicator-value-comparison-higher': isInitialValueHigher, 'indicator-value-comparison-lower': !isInitialValueHigher }">
                     {{ differenceBetweenInitialAndCurrent }}
@@ -64,6 +66,21 @@
                 required: false,
                 default: 0,
             },
+            reverseColorIndicators: {
+                type: Boolean,
+                required: false,
+                default: false,
+            },
+            colorIndicatorHigher: {
+                type: String,
+                required: false,
+                default: "#CC0000",
+            },
+            colorIndicatorLower: {
+                type: String,
+                required: false,
+                default: "#4AA72F",
+            }
         },
         data() {
             return {
@@ -85,10 +102,17 @@
                 return this.isUnitWh ? convertWattsPer15minToWattsPerHour(this.initialValue) : convertWattsPer15minToKilowattsPerHour(this.initialValue);
             },
             differenceBetweenInitialAndCurrent(): number {
-                return this.isInitialValueHigher ? this.initialValueWithUnit - this.indicatorValueWithUnit : this.indicatorValueWithUnit - this.initialValueWithUnit;
+                return roundNumberToTwoDecimals(this.isInitialValueHigher ? this.initialValueWithUnit - this.indicatorValueWithUnit : this.indicatorValueWithUnit - this.initialValueWithUnit);
             },
             getIcon(): string {
                 return this.isInitialValueHigher ? "mdi:arrow-down" : "mdi:arrow-up";
+            },
+            getColor(): string {
+                if(this.reverseColorIndicators){
+                    return this.isInitialValueHigher ? this.colorIndicatorHigher : this.colorIndicatorLower;
+                } else {
+                    return this.isInitialValueHigher ? this.colorIndicatorLower : this.colorIndicatorHigher;
+                }
             },
         },
         methods: {
