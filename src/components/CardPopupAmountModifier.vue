@@ -65,8 +65,7 @@
                 inputErrorMin: false as boolean,
                 inputErrorMax: false as boolean,
                 amountPlus: false as boolean,
-                amountMinus: false as boolean,
-                i18nKeyProcessed: '' as string
+                amountMinus: false as boolean
             }
         },
         methods: {
@@ -100,6 +99,11 @@
                 }
             }
         },
+        computed: {
+            i18nKeyProcessed(): string {
+                return this.$t(this.i18nKey);
+            }
+        },
         emits: ['amount'],
         watch: {
             amount: {
@@ -124,12 +128,6 @@
                         this.inputErrorMax = false;
                         this.inputErrorMin = false;
                     }
-                },
-                immediate: true
-            },
-            i18nKey: {
-                handler: function (newI18nKey: string) {
-                    this.i18nKeyProcessed = this.$t(newI18nKey);
                 },
                 immediate: true
             }

@@ -8,6 +8,7 @@
     },
     "button":{
         "cancel": "Cancel",
+        "confirm": "Confirm",
         "delete": "Delete",
         "edit": "Edit",
         "save": "Save",
@@ -25,8 +26,10 @@
         "join": "Join",
         "purchase": "Purchase",
         "sale": "Sale",
-        "total": "Total"
-
+        "total": "Total",
+        "close": "Close",
+        "yes": "Yes",
+        "no": "No"
     },
     "input":{
         "start": "Start",
@@ -38,8 +41,16 @@
     "alert":{
         "overConsumption": "Your demand is higher than your production. You will have to buy energy !"
     },
+    "error": {
+        "consumptionAmountHigherThanMax": "Your consumption amount is higher than the max consumption",
+        "consumptionAmountLowerThanMin": "Your consumption amount is lower than the min consumption",
+        "timeError": "The time must be comprised between 0 and 23. The start time must be before the end time.",
+        "amountErrorHigherThanEnergyStorageCapacity": "The total amount must be lower than the energy storage capacity",
+        "amountErrorHigherThanEnergyStored": "The total amount must be lower than the energy stored"
+    },
     "money":{
-        "cost": "Cost"
+        "cost": "Cost",
+        "personnalMoney": "Balance"
     },
     "energy":{
         "header": "Energy storage",
@@ -47,7 +58,9 @@
         "max": "Max",
         "batteriesManagement": "Batteries management",
         "capacity": "Capacity",
-        "storeEnergy": "Store energy"
+        "storeEnergy": "Store energy",
+        "useEnergy": "Use energy",
+        "cannotRemoveStoredEnergyUsed": "You cannot remove stored energy that you have already used"
     },
     "home":{
         "createGame": "Create a game",
@@ -69,5 +82,47 @@
     "market": {
         "header": "bot"
 
+    },
+    "rule": {
+        "title": "E-Balance game - Rule",
+        "gameObject": "The goal of the game is to understand how to make your energy consumption more flexible through different scenarios. For this you will have to modify the consumptions placed at the beginning of the game in order to correspond to the production of renewable energy.",
+        "howToPlay":"how to play?",
+        "AddConsumption": "To add a consumption, go to the drop-down menu on the left side of the screen. By clicking on your equipment you will have access to a window that will allow you to set the operating hours of your equipment. You can also click on an object placed on the board to open a window that will allow you to modify or delete your consumption",
+        "notification": "If your consumption exceeds production, a notification will appear on your screen.",
+        "batteryUsage": "In this game you can also store energy through the use of battery. By clicking on the battery icon on the left of the screen. You will then open a window where you can buy new batteries to store more energy. You will be able to recharge your batteries by clicking on store and choosing where you want to place the recharge. You can then place these batteries at a certain time to compensate for the consumption of equipment. [BATTERY USAGE LOGIC]",
+        "marketUsage":"You can also buy or sell energy according to your needs. By clicking on the 'market' icon. Here you will find the money you have as well as the possibility of buying or selling energy. When you click on the 'sell'  button you will have access to the sale window. The sale of energy works like a classic consumption. You must place this consumption on the board at the desired time. The sale will earn you money to buy new equipment or batteries. By clicking on the buy button you can buy energy at a certain price depending on the time of purchase. [ENERGY PURCHASE LOGIC]",
+        "howToWin": "How to win?",
+        "winRule":"The goal is to have the best final score, which corresponds to the best possible flexibility. For this, your consumption must exceed production as little as possible. As well as selling the extra energy."
+    },
+    "results": {
+        "confirmSeeResults": "Do you want to see the results ?",
+        "situations": {
+            "initialSituation": {
+                "name": "Initial situation",
+                "description": "This is the initial situation of the game. The numbers form a baseline you were tasked to improve."
+            },
+            "finalSituation": {
+                "name": "Final situation",
+                "description": "This is the final situation of the game. It represents in a few numbers the result of your actions, allowing you to compare your performance to the baseline."
+            }
+        },
+        "performanceIndicators":{
+            "totalConsumption": "Total consumption",
+            "totalProduction": "Total production",
+            "totalOverConsumption": "Total over-consumption",
+            "totalSoldEnergy": "Total sold energy",
+            "totalBoughtEnergy": "Total bought energy",
+            "totalStoredEnergy": "Total stored energy",
+            "totalUsedStoredEnergy": "Total used stored energy",
+            "ratios":{
+                "selfConsumptionRatio": "Self-consumption ratio",
+                "selfProductionRatio": "Self-production ratio"
+            }
+        },
+        "sections":{
+            "consumption": "Consumption",
+            "production": "Production",
+            "ratios": "Ratios"
+        }
     }
 }

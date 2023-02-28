@@ -1,46 +1,13 @@
 import { defineStore } from 'pinia';
+import { errorEquipment } from '../assets/entityErrorEquipment';
+import { convertI18nObjectToLocale } from '../helpers/translation';
 import { Equipment, EquipmentLocale } from '../types/Equipment';
 import { EquipmentType, EquipmentTypeLocale } from '../types/EquipmentType';
 
 export const useEquipmentStore = defineStore({id :'EquipmentStore',
     state: () => {
         return {
-            equipments: [{
-                id: '0',
-                energy_class: '',
-                type:{
-                    id:'0',
-                    names: 
-                    [{lang: 'fr',name: 'Vide'},
-                    {lang: 'en',name: 'Empty'}],
-                    icon_name:'vide',
-                    color: '#000000',
-                    isBattery: false,
-                    equipmentTypeDurationParams: {
-                        isDurationEditable: true,
-                        isDurationLengthEditable: true,
-                        originalDuration: '00:15',
-                        step: '00:15',
-                        minDuration: '00:15',
-                        maxDuration: '23:45'
-                    },
-                },
-                equipmentCostParams: {
-                    originalPrice: 0,
-                    hasCost: false,
-                    isCostEditable: false,
-                    step: 0,
-                    minCost: 0,
-                    maxCost: 0
-                },
-                equipmentConsumptionParams: {
-                    originalConsumption: 0,
-                    isConsumptionEditable: false,
-                    step: 0,
-                    minConsumption: 0,
-                    maxConsumption: 0
-                },
-            }] as Equipment [],
+            equipments: [errorEquipment] as Equipment [],
             clickedEquipment: null as null | Equipment
         };
     },
@@ -53,21 +20,9 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
             this.clickedEquipment = equipment;
         },
         getEquipmentTypeLocale(type: EquipmentType, locale:string){
-            for(const name of type.names) {
-                if(name.lang === locale){
-                    return {
-                        id: type.id,
-                        name: name.name,
-                        icon_name: type.icon_name,
-                        color: type.color,
-                        isBattery: type.isBattery,
-                        equipmentTypeDurationParams: type.equipmentTypeDurationParams
-                    } as EquipmentTypeLocale;
-                }
-            }
             return {
                 id: type.id,
-                name: type.names[0].name,
+                name: convertI18nObjectToLocale(type.names, locale),
                 icon_name: type.icon_name,
                 color: type.color,
                 isBattery: type.isBattery,

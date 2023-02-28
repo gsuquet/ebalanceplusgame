@@ -1,9 +1,12 @@
+import { I18nObject } from "./I18nObject"
+
 export interface EquipmentType{
     id: string,
-    names: EquipmentTypeName[],
+    names: I18nObject[],
     icon_name: string,
     color: string,
     isBattery: boolean,
+    isCharging: boolean,
     equipmentTypeDurationParams: EquipmentTypeDurationParams,
 }
 
@@ -13,12 +16,8 @@ export interface EquipmentTypeLocale{
     icon_name: string,
     color: string,
     isBattery: boolean,
+    isCharging: boolean,
     equipmentTypeDurationParams: EquipmentTypeDurationParams
-}
-
-export interface EquipmentTypeName{
-    lang: string,
-    name: string
 }
 
 export interface EquipmentTypeDurationParams{

@@ -1,9 +1,3 @@
-<script setup lang="ts">
-    import { useProductionStore } from '../stores/ProductionStore';
-    import { useScenarioStore } from '../stores/ScenarioStore';
-    import { useGameParametersStore } from '../stores/GameParametersStore';
-</script>
-
 <template>
     <section class="validation-section">
         <h2 class="section-title">{{ $t("setup.launchNewGame") }}</h2>
@@ -13,14 +7,14 @@
         <div class="btn-container">
             <button
                 class="btn random-btn"
-                @click="gameParametersStore.setRandomProductionCurveAndScenario()">
+                @click="validateRandomGame">
                 <Router-Link to="/game">
                     {{ $t("button.random") }}
                 </Router-Link>
             </button>
             <button
                 class="btn play-btn"
-                @click="gameParametersStore.setProductionCurveAndScenario(productionStore.clickedProductionCurve, scenarioStore.clickedScenario)">
+                @click="validateChosenScenarioAndProductionCurve">
                 <Router-Link to="/game">
                     {{ $t("button.play") }}
                 </Router-Link>
@@ -34,13 +28,35 @@
 </style>
 
 <script lang="ts">
-    const productionStore = useProductionStore();
-    const scenarioStore = useScenarioStore();
-    const gameParametersStore = useGameParametersStore();
     export default {
         name: 'SetupValidationSection',
+        data(){
+            return {
+                productionStore: useProductionStore(),
+                scenarioStore: useScenarioStore(),
+                gameParametersStore: useGameParametersStore(),
+                energyStore: useEnergyStore(),
+                consumptionStore: useConsumptionStore(),
+                moneyStore: useMoneyStore(),
+                resultsStore: useResultsStore()
+            }
+        },
         methods:{
-
+            validateRandomGame(){
+                this.gameParametersStore.setRandomProductionCurveAndScenario();
+                this.initiateGamePage();
+            },
+            validateChosenScenarioAndProductionCurve(){
+                this.gameParametersStore.setProductionCurveAndScenario(this.productionStore.clickedProductionCurve, this.scenarioStore.clickedScenario);
+                this.initiateGamePage();
+            },
+            initiateGamePage(){
+                this.consumptionStore.addInitialConsumptionToConsumptionList();
+                this.energyStore.getBatteryEquipmentTypes()
+                this.moneyStore.setInitialMoney();
+                this.gameParametersStore.isGameStarted = true;
+                this.resultsStore.setInitialSituationPerformanceIndicators();
+            }
         }
     }
 </script>

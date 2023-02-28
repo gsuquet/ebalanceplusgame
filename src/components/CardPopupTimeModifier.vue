@@ -60,6 +60,7 @@
 </style>
 
 <script lang="ts">
+    import { addTimeAmountToHour, removeTimeAmountFromHour, compareTwoHours } from '../helpers/time';
     export default {
         name: 'CardPopupTimeModifier',
         props: {
@@ -126,7 +127,6 @@
                     this.inputErrorEnd = true;
                 } else if(!this.isStartHourBeforeEndHour(this.startHour, newEndHour)) {
                     this.inputErrorEnd = true;
-                    console.log('end hour is not before start hour');
                 } else {
                     this.inputErrorEnd = false;
                     this.inputErrorStart = false;
@@ -135,101 +135,34 @@
             },
             addStepAmountToStartHour() {
                 if(!this.startHourPlus) {
-                    const newStartHour = this.addTimeAmountToHour(this.startHour, this.stepDuration);
+                    const newStartHour = addTimeAmountToHour(this.startHour, this.stepDuration);
                     this.$emit('start-hour', newStartHour);
                     this.updateEndHourIfStartHourChangedAndDurationLengthIsNotEditable(newStartHour);
                 }
             },
             addStepAmountToEndHour() {
                 if(!this.endHourPlus) {
-                    const newEndHour = this.addTimeAmountToHour(this.endHour, this.stepDuration);
+                    const newEndHour = addTimeAmountToHour(this.endHour, this.stepDuration);
                     this.$emit('end-hour', newEndHour);
                 }
             },
             removeStepAmountFromStartHour() {
                 if(!this.startHourMinus) {
-                    const newStartHour = this.removeTimeAmountFromHour(this.startHour, this.stepDuration);
+                    const newStartHour = removeTimeAmountFromHour(this.startHour, this.stepDuration);
                     this.$emit('start-hour', newStartHour);
                     this.updateEndHourIfStartHourChangedAndDurationLengthIsNotEditable(newStartHour);
                 }
             },
             removeStepAmountFromEndHour() {
                 if(!this.endHourMinus) {
-                    const newEndHour = this.removeTimeAmountFromHour(this.endHour, this.stepDuration);
+                    const newEndHour = removeTimeAmountFromHour(this.endHour, this.stepDuration);
                     this.$emit('end-hour', newEndHour);
                 }
             },
             updateEndHourIfStartHourChangedAndDurationLengthIsNotEditable(newStartHour: string) {
                 if(!this.isDurationLengthEditable) {
-                    const newEndHour = this.addTimeAmountToHour(newStartHour, this.originalDuration);
+                    const newEndHour = addTimeAmountToHour(newStartHour, this.originalDuration);
                     this.$emit('end-hour', newEndHour);
-                }
-            },
-            addTimeAmountToHour(hour: string, timeAmount: string) {
-                const hourNumbers = this.getHourAndMinutesNumbersFromHourString(hour);
-                const timeAmountNumbers = this.getHourAndMinutesNumbersFromHourString(timeAmount);
-                let newHourNumber = hourNumbers.hourNumber + timeAmountNumbers.hourNumber;
-                let newMinutesNumber = hourNumbers.minutesNumber + timeAmountNumbers.minutesNumber;
-                if(newMinutesNumber >= 60) {
-                    newHourNumber += 1;
-                    newMinutesNumber -= 60;
-                }
-                if(newHourNumber >= 24) {
-                    newHourNumber = 23;
-                    newMinutesNumber = 45;
-                }
-                return this.getHourStringFromHourAndMinutesNumbers(newHourNumber, newMinutesNumber);
-            },
-            removeTimeAmountFromHour(hour: string, timeAmount: string) {
-                const hourNumbers = this.getHourAndMinutesNumbersFromHourString(hour);
-                const timeAmountNumbers = this.getHourAndMinutesNumbersFromHourString(timeAmount);
-                let newHourNumber = hourNumbers.hourNumber - timeAmountNumbers.hourNumber;
-                let newMinutesNumber = hourNumbers.minutesNumber - timeAmountNumbers.minutesNumber;
-                if(newMinutesNumber < 0) {
-                    newHourNumber -= 1;
-                    newMinutesNumber += 60;
-                }
-                if(newHourNumber < 0) {
-                    newHourNumber = 0;
-                }
-                return this.getHourStringFromHourAndMinutesNumbers(newHourNumber, newMinutesNumber);
-            },
-            getHourStringFromHourAndMinutesNumbers(hourNumber: number, minutesNumber: number) {
-                let hourString = '';
-                let minutesString = '';
-                if(hourNumber < 10) {
-                    hourString = `0${hourNumber}`;
-                } else {
-                    hourString = `${hourNumber}`;
-                }
-                if(minutesNumber < 10) {
-                    minutesString = `0${minutesNumber}`;
-                } else {
-                    minutesString = `${minutesNumber}`;
-                }
-                return `${hourString}:${minutesString}`;
-            },
-            getHourAndMinutesNumbersFromHourString(hourString: string) {
-                const hourSplit = hourString.split(':');
-                const hourNumber = parseInt(hourSplit[0]);
-                const minutesNumber = parseInt(hourSplit[1]);
-                return {hourNumber, minutesNumber};
-            },
-            compareTwoHours(hour1: string, hour2: string) {
-                const hour1Numbers = this.getHourAndMinutesNumbersFromHourString(hour1);
-                const hour2Numbers = this.getHourAndMinutesNumbersFromHourString(hour2);
-                if(hour1Numbers.hourNumber < hour2Numbers.hourNumber) {
-                    return -1;
-                } else if(hour1Numbers.hourNumber > hour2Numbers.hourNumber) {
-                    return 1;
-                } else {
-                    if(hour1Numbers.minutesNumber < hour2Numbers.minutesNumber) {
-                        return -1;
-                    } else if(hour1Numbers.minutesNumber > hour2Numbers.minutesNumber) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
                 }
             },
             getStartAndEndHourNumbers() {
@@ -242,7 +175,7 @@
                 return {startHourNumber, startMinutesNumber, endHourNumber, endMinutesNumber};
             },
             isStartHourBeforeEndHour(startHour: string, endHour: string) {
-                if(this.compareTwoHours(this.addTimeAmountToHour(startHour, this.stepDuration), endHour) === -1) {
+                if(compareTwoHours(addTimeAmountToHour(startHour, this.stepDuration), endHour) === -1) {
                     return true;
                 } else {
                     return false;
@@ -283,25 +216,25 @@
                     this.inputErrorStart = false;
                     this.inputErrorEnd = false;
                     this.setTimeModificationParamsFromMinMaxDuration();
-                    if(this.startHour === '00:00' || this.startHour === '0:0') {
-                        this.startHourMinus = true;
-                    } else{
-                        this.startHourMinus = false;
-                    }
-                    if(this.endHour === '23:45') {
-                        this.endHourPlus = true;
-                    } else{
-                        this.endHourPlus = false;
-                    }
                 } else {
                     this.startHourPlus = true;
                     this.endHourMinus = true;
+                }
+                if(this.startHour === '00:00' || this.startHour === '0:0') {
+                    this.startHourMinus = true;
+                } else{
+                    this.startHourMinus = false;
+                }
+                if(this.endHour === '23:45') {
+                    this.endHourPlus = true;
+                } else{
+                    this.endHourPlus = false;
                 }
                 this.setTimeModificationParamsIfDurationLengthIsNotEditable();
             },
             setTimeModificationParamsIfDurationLengthIsNotEditable() {
                 if(!this.isDurationLengthEditable){
-                    if(this.addTimeAmountToHour(this.startHour, this.addTimeAmountToHour(this.originalDuration,this.stepDuration))==="23:45") {
+                    if(addTimeAmountToHour(this.startHour, addTimeAmountToHour(this.originalDuration,this.stepDuration))==="23:45") {
                         this.startHourPlus = true;
                     } else {
                         this.startHourPlus = false;

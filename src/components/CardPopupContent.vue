@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import { Icon } from '@iconify/vue';
-    import { useConsumptionStore } from '../stores/ConsumptionStore';
+    import { getTotalKilowattsPerHour }  from '../helpers/power';
+    import { convertTimesToIndexes } from '../helpers/time';
 </script>
 
 <template>
@@ -11,7 +12,7 @@
                 {{ consumptionAmount }} W/15min</h2>
             <h2 class="consumption-amount-Wh">
                 {{ $t("button.total") }} : 
-                {{ consumptionAmountWh }} W</h2>
+                {{ consumptionAmountWh }} kW/h</h2>
         </div>
         <div class="card-content-price card-content-item" v-if="isCost">
             <h2 class="consumption-price">
@@ -56,7 +57,6 @@
         },
         data() {
             return {
-                consumptionStore: useConsumptionStore(),
                 consumptionAmountWh: 0 as number,
                 flashIcon: 'mdi:flash' as string,
                 clockIcon: 'mdi:clock' as string,
@@ -65,8 +65,8 @@
         },
         methods: {
             calculateConsumptionAmountWh() {
-                const indexes = this.consumptionStore.convertTimesToIndexes(this.times.timeStart, this.times.timeEnd);
-                this.consumptionAmountWh = this.consumptionAmount * (indexes.indexEnd - indexes.indexStart+1);
+                const indexes = convertTimesToIndexes(this.times.timeStart, this.times.timeEnd);
+                this.consumptionAmountWh = getTotalKilowattsPerHour(this.consumptionAmount, indexes);
             }
         },
         watch : {

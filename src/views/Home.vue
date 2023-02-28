@@ -14,15 +14,23 @@ const equipmentStore = useEquipmentStore();
 const scenarioStore = useScenarioStore();
 const energyStore = useEnergyStore();
 const boardStore = useBoardStore();
-gameParametersStore.$reset();
-consumptionStore.$reset();
-productionStore.$reset();
-equipmentStore.$reset();
-scenarioStore.$reset();
-energyStore.$reset();
-boardStore.$reset();
-gameParametersStore.setLanguageFromBrowser();
-gameParametersStore.generateGameId();
+function resetStores() {
+    gameParametersStore.$reset();
+    consumptionStore.$reset();
+    productionStore.$reset();
+    equipmentStore.$reset();
+    scenarioStore.$reset();
+    energyStore.$reset();
+    boardStore.$reset();
+}
+function initializeParameters() {
+    if (!gameParametersStore.isGameStarted){
+        resetStores();
+        gameParametersStore.setLanguageFromBrowser();
+        gameParametersStore.generateGameId();
+    }
+}
+initializeParameters();
 </script>
 
 <template>

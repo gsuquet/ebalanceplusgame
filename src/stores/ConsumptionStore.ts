@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
-import { useGameParametersStore } from './GameParametersStore';
 import { useEnergyStore } from './EnergyStore';
 import { useBoardStore } from './BoardStore';
 import { Consumption, ConsumptionCurve } from '../types/Consumption';
 import { Equipment } from '../types/Equipment';
+import { convertTimesToIndexes } from '../helpers/time';
 
 export const useConsumptionStore = defineStore({
     id: 'ConsumptionStore',
@@ -22,11 +22,12 @@ export const useConsumptionStore = defineStore({
 
     actions: {
         addInitialConsumptionToConsumptionList() {
-            let clickedScenario = useScenarioStore().clickedScenario;
-            if(clickedScenario){
-                for(let initialConsumption of clickedScenario.initial_consumption){
-                    this.addToConsumptionList(initialConsumption);
-                }
+            const initialConsumption = useScenarioStore().getInitialConsumptionCopy();
+            if(initialConsumption){
+                this.consumptionList = [];
+                for(const consumption of initialConsumption){
+                    this.addToConsumptionList(consumption);
+                }   
             }
         },
         addToConsumptionList(newConsumption:Consumption) {
@@ -60,7 +61,7 @@ export const useConsumptionStore = defineStore({
                 for(let i=consumptionToModify.startIndex; i<=consumptionToModify.endIndex; i++){
                     this.removeFromConsumptionCurve(i,consumptionToModify.amount)
                 }
-                const indexes = this.convertTimesToIndexes(startHour, endHour);
+                const indexes = convertTimesToIndexes(startHour, endHour);
                 consumptionToModify.startIndex = indexes.indexStart;
                 consumptionToModify.endIndex = indexes.indexEnd;
                 for(let i=consumptionToModify.startIndex; i<=consumptionToModify.endIndex; i++){
@@ -69,7 +70,7 @@ export const useConsumptionStore = defineStore({
                 this.setListOfOverConsumption();
                 useBoardStore().setTilesFromConsumptionList();
                 if(consumptionToModify.equipment.type.isBattery){
-                    useEnergyStore().setValuesFromStoredEnergyList();
+                    useEnergyStore().updateValues();
                 }
             }
         },
@@ -86,7 +87,7 @@ export const useConsumptionStore = defineStore({
                 this.setListOfOverConsumption();
                 useBoardStore().setTilesFromConsumptionList();
                 if(consumptionToModify.equipment.type.isBattery){
-                    useEnergyStore().setValuesFromStoredEnergyList();
+                    useEnergyStore().updateValues();
                 }
             }
         },
@@ -105,11 +106,11 @@ export const useConsumptionStore = defineStore({
         },
         setListOfOverConsumption() {
             this.overConsumptionMap.clear();
-            const productionCurve = useGameParametersStore().getProductionCurve;
-            if (productionCurve) {
+            const totalProduction = useProductionStore().totalProduction;
+            if (totalProduction) {
                 for (const [time, consumption] of this.consumptionCurve.consumption) {
-                    if (consumption > productionCurve.total[time]) {
-                        this.overConsumptionMap.set(time, consumption - productionCurve.total[time]);
+                    if (consumption > totalProduction[time]) {
+                        this.overConsumptionMap.set(time, consumption - totalProduction[time]);
                     }
                 }
             }
@@ -123,40 +124,6 @@ export const useConsumptionStore = defineStore({
                 price:price,
                 equipment:equipment };
             this.addToConsumptionList(newConsumption);
-        },
-        convertTimeToIndex(hour: string): (number) {
-            let listHour: string[] = hour.split(":", 2);
-            let h:number = Number(listHour[0]);
-            let m:number = Number(listHour[1]);
-            let index:number = h*4+ m/15;
-            return index;
-        },
-        convertIndexToTime(index:number) {
-            let h:number = Math.floor(index/4);
-            let m:number = (index%4)*15;
-            let time:string = h.toString().padStart(2, '0') + ":" + m.toString().padStart(2, '0');
-            return time;
-        },
-        convertIndexesToTimes(indexStart:number, indexEnd:number) {
-            let timeStart:string = this.convertIndexToTime(indexStart);
-            let timeEnd:string = this.convertIndexToTime(indexEnd+1);
-            return {timeStart:timeStart, timeEnd:timeEnd};
-        },
-        convertTimesToIndexes(timeStart:string, timeEnd:string) {
-            let indexStart:number = this.convertTimeToIndex(timeStart);
-            let indexEnd:number = this.convertTimeToIndex(timeEnd)-1;
-            return {indexStart:indexStart, indexEnd:indexEnd};
-        },
-        checkTimeInput(timeStart:string, timeEnd:string) {
-            if(timeStart === '' || timeEnd === ''){
-                return false;
-            }
-            let indexStart:number = this.convertTimeToIndex(timeStart);
-            let indexEnd:number = this.convertTimeToIndex(timeEnd)-1;
-            if(indexStart > indexEnd || indexStart < 0 || indexEnd > 95){
-                return false;
-            }
-            return true;
         }
     },
 
@@ -172,6 +139,12 @@ export const useConsumptionStore = defineStore({
             return (id:string) => {
                 return state.consumptionList.find(consumption => consumption.id === id)
             }
-        }
+        },
+        getOverConsumptionMapCopy(state) {
+            return new Map(state.overConsumptionMap);
+        },
+        getConsumptionList(state) {
+            return state.consumptionList;
+        },
     }
 });

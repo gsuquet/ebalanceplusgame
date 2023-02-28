@@ -1,0 +1,11 @@
+.card-choice-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .btn-modify{
+        margin-right: 1rem;
+    }
+    .btn-delete{
+        margin-left: 1rem;
+    }
+}

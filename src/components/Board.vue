@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import Canvas from '../components/Canvas.vue';
+import BaseCanvas from './BaseCanvas.vue';
 import { useBoardStore } from '../stores/BoardStore';
 import { ProductionCurve } from '../types/Production';
-import { Tile } from '../types/Board';
+import { BoardVisualParams,Tile } from '../types/Board';
+import { convertValuesListToPixelsList } from '../helpers/drawInPixels';
 </script>
 
 <template>
     <section id="game-board" class="board">
-        <Canvas
+        <BaseCanvas
             :canvas-id="canvasId"
             :width="canvasWidth"
             :height="canvasHeight"
@@ -25,15 +26,29 @@ import { Tile } from '../types/Board';
     export default {
         name: 'Board',
         props: {
+            boardVisualParams: {
+                type: Object as () => BoardVisualParams,
+                default: () => ({}),
+                required: true
+            },
             boardWidth: Number,
             boardHeight: Number,
             pxSizeFor15m: Number,
             pxSizeFor10W: Number,
             productionCurveProps: null,
-            tilesList: null
+            consumptionTilesList: {
+                type: Array as () => Tile[],
+                default: () => [],
+                required: true
+            },
+            productionTilesList: {
+                type: Array as () => Tile[],
+                default: () => [],
+                required: true
+            },
         },
         components: {
-            Canvas
+            BaseCanvas
         },
         data() {
             return {
@@ -43,7 +58,8 @@ import { Tile } from '../types/Board';
                 canvasHeight: 1500,
                 lastPosition: { x: 0, y: 0 } as { x: number, y: number },
                 productionCurve: null as ProductionCurve | null,
-                tiles: [] as Tile[]
+                tiles: [] as Tile[],
+                productionTiles: [] as Tile[]
             };
         },
         mounted() {
@@ -58,11 +74,17 @@ import { Tile } from '../types/Board';
             canvasClick(event: MouseEvent) {
                 const x = event.offsetX;
                 const y = event.offsetY;
-                const clickedTile = this.tiles.filter((tile: Tile) => this.isInsideTile(x, y, tile));
-                if(clickedTile.length){
-                    boardStore.setClickedTile(clickedTile[0]);
+                const clickedTiles = this.tiles.filter((tile: Tile) => this.isInsideTile(x, y, tile));
+                const clickedProductionTiles = this.productionTiles.filter((tile: Tile) => this.isInsideTile(x, y, tile));
+                if(clickedTiles.length){
+                    boardStore.setClickedTile(clickedTiles[0]);
                 } else{
                     boardStore.setClickedTile(null);
+                }
+                if(clickedProductionTiles.length){
+                    boardStore.setClickedProductionTile(clickedProductionTiles[0]);
+                } else{
+                    boardStore.setClickedProductionTile(null);
                 }
             },
             canvasMouseMove(event: MouseEvent) {
@@ -75,7 +97,7 @@ import { Tile } from '../types/Board';
                     this.canvas.clearRect(startX,startY,endX,endY);
                 }
             },
-            drawTilesConsumption(tiles:Tile[]) {
+            drawTiles(tiles:Tile[]) {
                 for(const tile of tiles){
                     this.drawRectangle(tile.x,tile.y,tile.width,tile.height,tile.color)
                 }
@@ -86,53 +108,60 @@ import { Tile } from '../types/Board';
                     this.canvas.fillRect(x, y, width, height);
                 }
             },
-            drawProductionCurve(productionCurve: ProductionCurve | null) {
-                if(productionCurve){
+            drawProductionCurve(productionCurve: ProductionCurve | null, isCurveSmoothed: boolean, shouldDisplayProductionCurve: boolean) {
+                if(productionCurve && shouldDisplayProductionCurve){
                     const pxSize = this.pxSizeFor10W ? this.pxSizeFor10W : 5;
                     if(productionCurve.solar.length>0){
-                        this.drawCurve(this.getPointsInPixels(productionCurve.solar,pxSize), 'yellow');
+                        this.drawCurve(convertValuesListToPixelsList(productionCurve.solar,pxSize,10), 'yellow', isCurveSmoothed);
                     }
                     if(productionCurve.wind.length>0){
-                        this.drawCurve(this.getPointsInPixels(productionCurve.wind,pxSize), 'green');
+                        this.drawCurve(convertValuesListToPixelsList(productionCurve.wind,pxSize,10), 'green', isCurveSmoothed);
                     }
                     if(productionCurve.hydro.length>0){
-                        this.drawCurve(this.getPointsInPixels(productionCurve.hydro,pxSize), 'blue');
+                        this.drawCurve(convertValuesListToPixelsList(productionCurve.hydro,pxSize,10), 'blue', isCurveSmoothed);
                     }
                     if(productionCurve.total.length>0){
-                        this.drawCurve(this.getPointsInPixels(productionCurve.total,pxSize), 'black');
+                        this.drawCurve(convertValuesListToPixelsList(productionCurve.total,pxSize,10), 'black', isCurveSmoothed);
                     }
                 }
             },
-            getPointsInPixels(points: number[], pxSize: number) {
-                let pointsInPixels = [];
-                for(const point of points) {
-                    pointsInPixels.push(point*pxSize/10);
-                }
-                return pointsInPixels;
-            },
-            drawKWLines() {
-                const ySize = (this.pxSizeFor10W ? this.pxSizeFor10W : 5)*100;
-                let y=0;
-                for(let i =0; i<(this.canvasHeight/ySize); i++) {
-                    this.drawLine(0,y,this.canvasWidth,y, '#DBEBE7');
-                    y=y+ySize;
+            drawKWLines(displayKWLines: boolean,is3kWLineRed: boolean) {
+                if(displayKWLines){
+                    const ySize = (this.pxSizeFor10W ? this.pxSizeFor10W : 5)*100;
+                    let y=0;
+                    for(let i =0; i<(this.canvasHeight/ySize); i++) {
+                        const color = is3kWLineRed && i%3===0 ? 'red' : '#DBEBE7';
+                        this.drawLine(0,y,this.canvasWidth,y, color);
+                        y=y+ySize;
+                    }
                 }
             },
-            drawHoursLines() {
+            drawHoursLines(displayHoursLines: boolean) {
+                if(displayHoursLines) {
+                    const xSize = this.pxSizeFor15m ? this.pxSizeFor15m : 15;
+                    let x=0;
+                    for(let i =0; i<=24; i++) {
+                        this.drawLine(x,0,x,this.canvasHeight, '#DBEBE7');
+                        x=x+xSize*4;
+                    }
+                }
+            },
+            drawCurve(points: number[], color: string, isCurveSmoothed: boolean){
                 const xSize = this.pxSizeFor15m ? this.pxSizeFor15m : 15;
                 let x=0;
-                for(let i =0; i<=24; i++) {
-                    this.drawLine(x,0,x,this.canvasHeight, '#DBEBE7');
-                    x=x+xSize*4;
+                if(isCurveSmoothed){
+                    for(let i =0; i<points.length-1; i++) {
+                        this.drawLine(x,this.canvasHeight-points[i],x+xSize,this.canvasHeight-points[i+1], color);
+                        x=x+xSize;
+                    }
+                } else {
+                    for(let i =0; i<points.length-1; i++) {
+                        this.drawLine(x,this.canvasHeight-points[i],x+xSize,this.canvasHeight-points[i], color);
+                        this.drawLine(x+xSize,this.canvasHeight-points[i],x+xSize,this.canvasHeight-points[i+1], color);
+                        x=x+xSize;
+                    }
                 }
-            },
-            drawCurve(points: number[], color: string){
-                const xSize = this.pxSizeFor15m ? this.pxSizeFor15m : 15;
-                let x=0;
-                for(let i =0; i<points.length-1; i++) {
-                    this.drawLine(x,this.canvasHeight-points[i],x+xSize,this.canvasHeight-points[i+1], color);
-                    x=x+xSize;
-                }
+                this.drawLine(x,this.canvasHeight-points[points.length-1],x+xSize,this.canvasHeight-points[points.length-1], color);
             },
             drawLine(startX: number, startY: number, endX: number, endY: number, color: string) {
                 if(this.canvas){
@@ -148,10 +177,11 @@ import { Tile } from '../types/Board';
             },
             render() {
                 this.clearCanvas(0,0,this.canvasWidth,this.canvasHeight);
-                this.drawHoursLines();
-                this.drawKWLines();
-                this.drawTilesConsumption(this.tiles);
-                this.drawProductionCurve(this.productionCurve);
+                this.drawHoursLines(this.boardVisualParams.shouldDisplayHoursLines);
+                this.drawKWLines(this.boardVisualParams.shouldDisplayKWLines,this.boardVisualParams.is3kWLineRed);
+                this.drawTiles(this.productionTiles);
+                this.drawTiles(this.tiles);
+                this.drawProductionCurve(this.productionCurve,this.boardVisualParams.isProductionCurveSmoothed, this.boardVisualParams.shouldDisplayProductionCurve);
             }
         },
         watch: {
@@ -171,18 +201,25 @@ import { Tile } from '../types/Board';
             },
             productionCurveProps : {
                 handler(newProductionCurve) {
-                    this.productionCurve=newProductionCurve;
+                    this.productionCurve=ref(newProductionCurve);
                     this.render();
                 },
                 immediate: true
             },
-            tilesList : {
+            consumptionTilesList : {
                 handler(newTiles) {
                     this.tiles=newTiles;
                     this.render();
                 },
                 immediate: true
-            }
+            },
+            productionTilesList : {
+                handler(newTiles) {
+                    this.productionTiles=newTiles;
+                    this.render();
+                },
+                immediate: true
+            },
         }
     };
 </script>

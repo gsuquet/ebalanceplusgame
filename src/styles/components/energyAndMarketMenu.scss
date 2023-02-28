@@ -68,6 +68,9 @@
             @include button-base-style;
             @include button-background-color-style;
         }
+        *.disabled{
+            @include button-disabled-style(--theme-color-text, --theme-color-background-secondary);
+        }
     }
     .menu-batteries{
         display: flex;

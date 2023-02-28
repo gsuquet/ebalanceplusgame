@@ -3,27 +3,20 @@ import { useProductionStore } from './ProductionStore';
 import i18n from '../modules/i18n';
 import { ScenarioLocale } from '../types/Scenario';
 import { ProductionCurve } from '../types/Production';
+import { errorScenarioLocale } from '../assets/entityErrorScenario';
+import { generateStringId } from '../helpers/idGenerator';
 
 export const useGameParametersStore = defineStore({
     id: 'GameParametersStore',
     state: () => {
         return {
+            isGameStarted: false,
             gameId: '00000',
             date: new Date(),
             language: 'en',
             languageIsUserSet: false,
             theme: 'light',
-            scenario: {
-                id: '0',
-                name: 'No scenario',
-                day: '',
-                season: '',
-                icon: '',
-                color: '',
-                description: '',
-                equipment_type_local: [],
-                initial_consumption: []
-            } as ScenarioLocale,
+            scenario: errorScenarioLocale as ScenarioLocale,
             productionCurve: {
                 id: '0',
                 name: 'No production curve',
@@ -39,7 +32,8 @@ export const useGameParametersStore = defineStore({
             user: '',
             score: 0,
             moneyWon: 0,
-            availableMoney: 0
+            availableMoney: 0,
+            showedInfoOverlay: true
         };
     },
     actions: {
@@ -61,11 +55,18 @@ export const useGameParametersStore = defineStore({
             }
         },
         setScenario(scenarioId: string) {
+            const scenarioImport = useScenarioStore().getScenarioById(scenarioId);
+            if(scenarioImport){
+                this.scenario = useScenarioStore().convertScenarioToScenarioLocale(scenarioImport);
+            } else{
+                this.scenario = errorScenarioLocale;
+            }
         },
         setProductionCurveAndScenario(productionCurve: ProductionCurve | null, scenario: ScenarioLocale | null) {
             if(!productionCurve || !scenario) return;
             this.productionCurve = productionCurve;
-            this.scenario = scenario;            
+            this.scenario = scenario;
+            useEnergyStore().initializeEnergyStore();
         },
         setRandomProductionCurveAndScenario() {
             const randomProductionCurve = useProductionStore().getRandomProductionCurve();
@@ -97,32 +98,30 @@ export const useGameParametersStore = defineStore({
             }
         },
         generateGameId() {
-            this.gameId = Math.random().toString(36).substr(2, 5);
+            this.gameId = generateStringId(5);
         },
         createGame(isMultiplayer: boolean, isPublic: boolean) {
             this.isMultiplayer = isMultiplayer;
             this.isPublic = isPublic;
         },
-        storeToLocalStorage() {
-            localStorage.setItem('gameParameters', JSON.stringify(this));
+        withdrawMoney(amount: number) {
+            this.availableMoney -= amount;
         },
-        getFromLocalStorage() {
-            const gameParameters = JSON.parse(localStorage.getItem('gameParameters') || '{}');
-            if(gameParameters){
-                this.gameId = gameParameters.id;
-                this.date = gameParameters.date;
-                this.language = gameParameters.language;
-                this.scenario = gameParameters.scenario;
-                this.productionCurve = gameParameters.productionCurve;
-                this.user = gameParameters.user;
-                this.score = gameParameters.score;
-                this.moneyWon = gameParameters.moneyWon;
-                this.availableMoney = gameParameters.availableMoney;
-            }
+        addMoney(amount: number) {
+            this.availableMoney += amount;
+        },
+        showInfoOverlay() {
+            this.showedInfoOverlay = this.showedInfoOverlay ? false : true;
         }
     },
     getters: {
         getProductionCurve: (state) => state.productionCurve,
+        getProductionCurveTotal: (state) => state.productionCurve.total,
         getGameIdUpper: (state) => state.gameId.toUpperCase(),
+        isGameMultiplayer: (state) => state.isMultiplayer,
+        canWithdrawMoney: (state) => (amount: number) => state.availableMoney >= amount,
+        getScenarioEnergyStorageParameters: (state) => state.scenario.energyStorageParameters,
+        getScenarioEnergyMarketParameters: (state) => state.scenario.energyMarketParameters,
+        getScenarioMoneyParameters: (state) => state.scenario.moneyParameters,
     }
 });
