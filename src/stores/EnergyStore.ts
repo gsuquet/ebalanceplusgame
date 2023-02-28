@@ -26,7 +26,7 @@ export const useEnergyStore = defineStore({
             storedEnergyList: [] as Consumption[],
             availableStoredEnergyList: new Array(96).fill(0) as number[],
             usedEnergyList: [] as Consumption[],
-            clickedMarketIcon: false as boolean, 
+            clickedMarketIcon: false as boolean,
         };
     },
     actions: {
@@ -291,6 +291,10 @@ export const useEnergyStore = defineStore({
         },
         getTotalUsedEnergyOverTheGameCopy:(state) => {
             return JSON.parse(JSON.stringify(state.totalUsedEnergyOverTheGame));
+        },
+        getEnergyStorageUtilizationRate:(state) => {
+            const totalEnergyAvailableThroughoutTheDay = state.availableStoredEnergyList.reduce((a, b) => a + b, 0);
+            return (totalEnergyAvailableThroughoutTheDay/(state.maxEnergy*96));
         }
     },
 });

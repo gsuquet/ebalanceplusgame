@@ -28,7 +28,8 @@
         },
         methods: {
             confirm() {
-                // TODO : add function call to calculate results
+                this.resultsStore.closeResultsConfirmationWindow();
+                // TODO : add function call to calculate results ?
             },
             closeConfirmation() {
                 this.resultsStore.closeResultsConfirmationWindow();
