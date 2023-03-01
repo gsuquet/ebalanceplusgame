@@ -8,6 +8,14 @@ export interface Equipment{
     equipmentConsumptionParams: EquipmentConsumptionParams
 }
 
+export interface EquipmentDTO{
+    id: string,
+    energy_class: string,
+    typeID: string,
+    equipmentCostParams: EquipmentCostParams,
+    equipmentConsumptionParams: EquipmentConsumptionParams
+}
+
 export interface EquipmentLocale{
     id: string,
     type: EquipmentTypeLocale,
