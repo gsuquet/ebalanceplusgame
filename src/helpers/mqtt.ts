@@ -1,0 +1,95 @@
+import * as mqtt from 'mqtt/dist/mqtt.min';
+
+export function connectToBroker(url:string, options:mqtt.IClientOptions) {
+    try{
+        const client = mqtt.connect(url, options);
+        return client;
+    } catch (error:any) {
+        console.error(error.toString());
+        return null;
+    }
+}
+
+export function disconnectFromBroker(client:mqtt.MqttClient) {
+    try{
+        client.end();
+        return true;
+    } catch (error:any) {
+        console.error(error.toString());
+        return false;
+    }
+}
+
+export function handleMqttConnection(client:mqtt.MqttClient, callback:Function) {
+    try{
+        client.on('connect', () => {
+            callback();
+        });
+    } catch (error:any) {
+        console.error(error.toString());
+    }
+}
+
+export function handleMqttDisconnection(client:mqtt.MqttClient, callback:Function) {
+    try{
+        client.on('close', () => {
+            callback();
+        });
+    } catch (error:any) {
+        console.error(error.toString());
+    }
+}
+
+export function handleMqttError(client:mqtt.MqttClient, callback:Function) {
+    try{
+        client.on('error', (error:any) => {
+            callback(error);
+        });
+    } catch (error:any) {
+        console.error(error.toString());
+    }
+}
+
+export function handleMqttReconnection(client:mqtt.MqttClient, callback:Function) {
+    try{
+        client.on('reconnect', () => {
+            callback();
+        });
+    } catch (error:any) {
+        console.error(error.toString());
+    }
+}
+
+export function handleMqttMessage(client:mqtt.MqttClient, callback:Function) {
+    try{
+        client.on('message', (topic:string, message:any) => {
+            callback(topic, message.toString());
+        });
+    } catch (error:any) {
+        console.error(error.toString());
+    }
+}
+
+export function publishMessage(client:mqtt.MqttClient, topic:string, qos:number, retain:boolean, message:Object) {
+    try{
+        client.publish(topic, JSON.stringify(message), {qos:qos, retain:retain});
+    } catch (error:any) {
+        console.error(error.toString());
+    }
+}
+
+export function subscribeToTopic(client:mqtt.MqttClient, topic:string, qos:number, retain:boolean) {
+    try{
+        client.subscribe(topic, {qos:qos, retain:retain});
+    } catch (error:any) {
+        console.error(error.toString());
+    }
+}
+
+export function unsubscribeFromTopic(client:mqtt.MqttClient, topic:string) {
+    try{
+        client.unsubscribe(topic);
+    } catch (error:any) {
+        console.error(error.toString());
+    }
+}
