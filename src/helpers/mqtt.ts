@@ -70,7 +70,7 @@ export function handleMqttMessage(client:mqtt.MqttClient, callback:Function) {
     }
 }
 
-export function publishMessage(client:mqtt.MqttClient, topic:string, qos:number, retain:boolean, message:Object) {
+export function publishMessage(client:mqtt.MqttClient, topic:string, qos:mqtt.QoS, retain:boolean, message:Object) {
     try{
         client.publish(topic, JSON.stringify(message), {qos:qos, retain:retain});
     } catch (error:any) {
@@ -78,9 +78,10 @@ export function publishMessage(client:mqtt.MqttClient, topic:string, qos:number,
     }
 }
 
-export function subscribeToTopic(client:mqtt.MqttClient, topic:string, qos:number, retain:boolean) {
+export function subscribeToTopic(client:mqtt.MqttClient, topic:string | string[], qos:mqtt.QoS, retain:boolean) {
+    const options = {qos:qos, retain:retain} as mqtt.IClientSubscribeOptions;
     try{
-        client.subscribe(topic, {qos:qos, retain:retain});
+        client.subscribe(topic, options);
     } catch (error:any) {
         console.error(error.toString());
     }
