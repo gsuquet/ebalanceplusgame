@@ -6,6 +6,10 @@
         <p class="description">
             {{ $t("home.joinGameDescription") }}
         </p>
+        <div class="input-container">
+            <label for="game-id">{{ $t("home.gameCode") }}</label>
+            <input type="text" id="game-id" v-model="gameId" placeholder="D78UN"/>
+        </div>
         <div class="btn-container">
             <button class="btn join-game-btn" @click="joinGame">
                 <Router-Link to="/setup">
@@ -21,12 +25,16 @@
         name: "HomeJoinGame",
         data() {
             return {
-                gameParametersStore: useGameParametersStore()
+                gameParametersStore: useGameParametersStore(),
+                multiplayerStore: useMultiplayerStore(),
+                gameId: ""
             };
         },
         methods: {
             joinGame() {
                 console.debug("Joining game");
+                this.multiplayerStore.createConnection();
+                this.multiplayerStore.joinGame(this.gameId);
             }
         }
     }

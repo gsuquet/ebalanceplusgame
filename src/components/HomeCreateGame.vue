@@ -42,6 +42,7 @@ import BaseToggleSwitch from './BaseToggleSwitch.vue';
     data() {
         return {
             gameParametersStore: useGameParametersStore(),
+            multiplayerStore: useMultiplayerStore(),
             multiPlayer: false,
             public: false
         };
@@ -49,6 +50,10 @@ import BaseToggleSwitch from './BaseToggleSwitch.vue';
     methods: {
         createGame() {
             this.gameParametersStore.createGame(this.multiPlayer, this.public);
+            if(this.multiPlayer){
+                this.multiplayerStore.createConnection();
+                this.multiplayerStore.createGame(this.gameParametersStore.gameId, "init");
+            }
         }
     },
     components: { BaseToggleSwitch }

@@ -30,6 +30,7 @@ export const useGameParametersStore = defineStore({
             isMultiplayer: false,
             isPublic: false,
             user: '',
+            userId: 'e_balance_plus_game_player_' + generateStringId(),
             score: 0,
             moneyWon: 0,
             availableMoney: 0,

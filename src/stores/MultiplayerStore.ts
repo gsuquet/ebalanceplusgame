@@ -1,32 +1,23 @@
 import * as mqtt from 'mqtt/dist/mqtt.min';
 import { connectToBroker, disconnectFromBroker, publishMessage, subscribeToTopic, unsubscribeFromTopic } from '../helpers/mqtt';
 
-export const useMqttStore = defineStore({
-    id: 'MqttStore',
+export const useMultiplayerStore = defineStore({
+    id: 'MultiplayerStore',
     state: () => {
         return {
             connection: {
                 protocol: 'ws',
-                host: 'broker.emqx.io',
-                // ws: 8083; wss: 8084
-                port: 8083,
-                endpoint: '/mqtt',
+                host: 'test.mosquitto.org',
+                port: 8080, // ws: 8083; wss: 8084
+                endpoint: '',
                 // for more options, please refer to https://github.com/mqttjs/MQTT.js#mqttclientstreambuilder-options
                 clean: true,
                 connectTimeout: 30 * 1000, // ms
                 reconnectPeriod: 4000, // ms
-                clientId:
-                  'emqx_vue_' +
-                  Math.random()
-                    .toString(16)
-                    .substring(2, 8),
+                clientId: useGameParametersStore().userId,
                 // auth
-                username: 'emqx_test',
-                password: 'emqx_test',
-              },
-              subscription: {
-                topic: 'topic/mqttx',
-                qos: 0,
+                username: '',
+                password: '',
               },
               publish: {
                 topic: 'topic/browser',
@@ -92,22 +83,23 @@ export const useMqttStore = defineStore({
       },
       // subscribe topic
       // https://github.com/mqttjs/MQTT.js#mqttclientsubscribetopictopic-arraytopic-object-options-callback
-      doSubscribe() {
-        const { topic, qos } = this.subscription
+      joinGame(gameId:string) {
+        const topic = 'e_balance_plus_game/'+gameId;
         subscribeToTopic(this.client, topic, 1, false);
+      },
+      createGame(gameId:string, payload:string) {
+        const topic = 'e_balance_plus_game/'+gameId;
+        publishMessage(this.client, topic, 1, false ,payload);
       },
       // unsubscribe topic
       // https://github.com/mqttjs/MQTT.js#mqttclientunsubscribetopictopic-array-options-callback
       doUnSubscribe() {
-        const { topic } = this.subscription
+        const topic = "topic/browser";
         unsubscribeFromTopic(this.client, topic);
       },
       // publish message
       // https://github.com/mqttjs/MQTT.js#mqttclientpublishtopic-message-options-callback
-      doPublish() {
-        const { topic, qos, payload } = this.publish
-        publishMessage(this.client, topic, 1, false ,payload);
-      },
+      
       // disconnect
       // https://github.com/mqttjs/MQTT.js#mqttclientendforce-options-callback
       destroyConnection() {
