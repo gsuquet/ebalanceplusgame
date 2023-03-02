@@ -5,6 +5,7 @@ import { ScenarioLocale } from '../types/Scenario';
 import { ProductionCurve } from '../types/Production';
 import { errorScenarioLocale } from '../assets/entityErrorScenario';
 import { generateStringId } from '../helpers/idGenerator';
+import { Player } from '../types/Multiplayer';
 
 export const useGameParametersStore = defineStore({
     id: 'GameParametersStore',
@@ -29,10 +30,14 @@ export const useGameParametersStore = defineStore({
             } as ProductionCurve,
             isMultiplayer: false,
             isPublic: false,
-            user: '',
-            userId: 'e_balance_plus_game_player_' + generateStringId(),
-            score: 0,
-            moneyWon: 0,
+            user: {
+                id: 'e_balance_plus_game_player_' + generateStringId(),
+                name: 'Anonymous_player_' + generateStringId(),
+                score: 0,
+                moneyWon: 0,
+                isConnected: false,
+                isHost: false
+            } as Player,
             availableMoney: 0,
             showedInfoOverlay: true
         };
@@ -124,5 +129,8 @@ export const useGameParametersStore = defineStore({
         getScenarioEnergyStorageParameters: (state) => state.scenario.energyStorageParameters,
         getScenarioEnergyMarketParameters: (state) => state.scenario.energyMarketParameters,
         getScenarioMoneyParameters: (state) => state.scenario.moneyParameters,
+        getUser: (state) => state.user,
+        getUserId: (state) => state.user.id,
+        isUserHost: (state) => state.user.isHost,
     }
 });

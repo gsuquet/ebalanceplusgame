@@ -26,15 +26,14 @@
         </div>
         <div class="btn-container">
             <button class="btn create-game-btn" @click="createGame">
-                <Router-Link to="/setup">
-                    {{ $t("button.create") }}
-                </Router-Link>
+                {{ $t("button.create") }}
             </button>
         </div>
     </section>
 </template>
 
 <script lang="ts">
+import router from '../modules/router';
 import BaseToggleSwitch from './BaseToggleSwitch.vue';
 
     export default {
@@ -52,7 +51,9 @@ import BaseToggleSwitch from './BaseToggleSwitch.vue';
             this.gameParametersStore.createGame(this.multiPlayer, this.public);
             if(this.multiPlayer){
                 this.multiplayerStore.createConnection();
-                this.multiplayerStore.createGame(this.gameParametersStore.gameId, "init");
+                this.multiplayerStore.createGame(this.gameParametersStore.gameId) ? router.push("/setup") : alert(this.$t("home.unSuccessfulGameCreation"));
+            } else {
+                router.push("/setup");
             }
         }
     },

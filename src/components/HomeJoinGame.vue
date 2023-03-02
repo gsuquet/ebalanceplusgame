@@ -12,15 +12,15 @@
         </div>
         <div class="btn-container">
             <button class="btn join-game-btn" @click="joinGame">
-                <Router-Link to="/setup">
-                    {{ $t("button.join") }}
-                </Router-Link>
+                {{ $t("button.join") }}
             </button>
         </div>
     </section>
 </template>
 
 <script lang="ts">
+import router from '../modules/router';
+
     export default {
         name: "HomeJoinGame",
         data() {
@@ -32,9 +32,12 @@
         },
         methods: {
             joinGame() {
-                console.debug("Joining game");
+                if(this.gameId.length !== 5) {
+                    alert(this.$t("home.invalidGameCode"));
+                    return;
+                }
                 this.multiplayerStore.createConnection();
-                this.multiplayerStore.joinGame(this.gameId);
+                this.multiplayerStore.joinGame(this.gameId.toLowerCase()) ? router.push("/setup") : alert(this.$t("home.unSuccessfulGameJoin"));
             }
         }
     }

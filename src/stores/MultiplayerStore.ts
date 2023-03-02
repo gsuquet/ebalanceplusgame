@@ -1,50 +1,50 @@
 import * as mqtt from 'mqtt/dist/mqtt.min';
 import { connectToBroker, disconnectFromBroker, publishMessage, subscribeToTopic, unsubscribeFromTopic } from '../helpers/mqtt';
+import { ConnectionParameters, Player } from '../types/Multiplayer';
 
 export const useMultiplayerStore = defineStore({
     id: 'MultiplayerStore',
     state: () => {
         return {
-            connection: {
-                protocol: 'ws',
-                host: 'test.mosquitto.org',
-                port: 8080, // ws: 8083; wss: 8084
-                endpoint: '',
-                // for more options, please refer to https://github.com/mqttjs/MQTT.js#mqttclientstreambuilder-options
-                clean: true,
-                connectTimeout: 30 * 1000, // ms
-                reconnectPeriod: 4000, // ms
-                clientId: useGameParametersStore().userId,
-                // auth
+          connectionParameters: {
+              host: 'test.mosquitto.org',
+              port: 8080,
+              protocol: 'ws',
+              endpoint: '',
+              options: {
                 username: '',
                 password: '',
-              },
-              publish: {
-                topic: 'topic/browser',
-                qos: 0,
-                payload: '{ "msg": "Hello, I am browser." }',
-              },
-              receiveNews: '',
-              qosList: [0, 1, 2],
-              client: {} as mqtt.MqttClient,
-              subscribeSuccess: false,
-              connecting: false,
-              retryTimes: 0,
+                clean: true,
+                connectTimeout: 30 * 1000, // ms
+                reconnectPeriod: 4 * 1000, // ms
+                clientId: useGameParametersStore().getUserId,
+              }
+          } as ConnectionParameters,
+          playersList: [] as Player[],
+          mainTopic: 'e_balance_plus_game',
+          receiveNews: '',
+          client: {} as mqtt.MqttClient,
+          subscribeSuccess: false,
+          connecting: false,
+          retryTimes: 0,
         };
     },
     actions: {
-      initData() {
+      initializeStore() {
         this.client.connected = false
         this.retryTimes = 0
         this.connecting = false
         this.subscribeSuccess = false
+      },
+      addPlayerToPlayersList(player: Player) {
+        this.playersList = this.playersList.concat(player);
       },
       handleOnReConnect() {
         this.retryTimes += 1
         if (this.retryTimes > 5 && this.client) {
           try {
             this.client.end()
-            this.initData()
+            this.initializeStore()
             console.log('Connection maxReconnectTimes limit, stop retry')
           } catch (error:any) {
             console.log(error.toString())
@@ -54,7 +54,7 @@ export const useMultiplayerStore = defineStore({
       createConnection() {
         try {
           this.connecting = true
-          const { protocol, host, port, endpoint, ...options } = this.connection
+          const { protocol, host, port, endpoint, options } = this.connectionParameters
           const connectUrl = `${protocol}://${host}:${port}${endpoint}`
           this.client = connectToBroker(connectUrl, options)
           if (this.client.on) {
@@ -68,8 +68,7 @@ export const useMultiplayerStore = defineStore({
               console.log('Connection failed', error)
             })
             this.client.on('message', (topic, message) => {
-              this.receiveNews = this.receiveNews.concat(message.toString())
-              console.log(`Received message ${message} from topic ${topic}`)
+              this.handleIncomingMessage(topic, message.toString());
             })
             this.client.on('close', () => {
               this.client.connected = false
@@ -81,35 +80,46 @@ export const useMultiplayerStore = defineStore({
           console.log('mqtt.connect error', error)
         }
       },
-      // subscribe topic
-      // https://github.com/mqttjs/MQTT.js#mqttclientsubscribetopictopic-arraytopic-object-options-callback
       joinGame(gameId:string) {
-        const topic = 'e_balance_plus_game/'+gameId;
-        subscribeToTopic(this.client, topic, 1, false);
+        this.mainTopic='e_balance_plus_game/'+gameId;
+        const user = useGameParametersStore().getUser;
+        user.isConnected = true;
+        return subscribeToTopic(this.client, this.mainTopic+'/players', 1, true) && publishMessage(this.client, this.mainTopic+'/new_player', 1, true ,user);
       },
-      createGame(gameId:string, payload:string) {
-        const topic = 'e_balance_plus_game/'+gameId;
-        publishMessage(this.client, topic, 1, false ,payload);
+      createGame(gameId:string) {
+        this.mainTopic='e_balance_plus_game/'+gameId;
+        const user = useGameParametersStore().getUser;
+        user.isHost = true;
+        user.isConnected = true;
+        this.addPlayerToPlayersList(user);
+        subscribeToTopic(this.client, this.mainTopic+'/new_player', 1, true);
+        return publishMessage(this.client, this.mainTopic+'/players', 1, true ,this.playersList);
       },
-      // unsubscribe topic
-      // https://github.com/mqttjs/MQTT.js#mqttclientunsubscribetopictopic-array-options-callback
+      handleIncomingMessage(topic:string, message:string) {
+        this.handleNewPlayerMessage(topic, message);
+        this.handlePlayersListMessage(topic, message);
+      },
+      handleNewPlayerMessage(topic : string, message : string) {
+        if (topic === this.mainTopic+'/new_player' && useGameParametersStore().isUserHost) {
+          const newPlayer = JSON.parse(message) as Player;
+          this.addPlayerToPlayersList(newPlayer);
+          publishMessage(this.client, this.mainTopic+'/players', 1, true ,this.playersList);
+        }
+      },
+      handlePlayersListMessage(topic : string, message : string) {
+        if (topic === this.mainTopic+'/players' && !useGameParametersStore().isUserHost) {
+          this.playersList = JSON.parse(message) as Player[];
+        }
+      },
       doUnSubscribe() {
         const topic = "topic/browser";
         unsubscribeFromTopic(this.client, topic);
       },
-      // publish message
-      // https://github.com/mqttjs/MQTT.js#mqttclientpublishtopic-message-options-callback
-      
-      // disconnect
-      // https://github.com/mqttjs/MQTT.js#mqttclientendforce-options-callback
       destroyConnection() {
         if (this.client.connected) {
-          disconnectFromBroker(this.client) ? this.initData() : console.log('Disconnect failed')
+          disconnectFromBroker(this.client) ? this.initializeStore() : console.log('Disconnect failed')
         }
-      },
-      handleProtocolChange(value:string) {
-        this.connection.port = value === 'wss' ? 8084 : 8083
-      },
+      }
     },
     getters: {
     }

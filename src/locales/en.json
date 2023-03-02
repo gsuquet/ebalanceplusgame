@@ -73,7 +73,10 @@
         "singlePlayer": "Single player",
         "multiPlayer": "Multiplayer",
         "public": "Public",
-        "private": "Private"
+        "private": "Private",
+        "unSuccessfulGameCreation": "Failed tp create new multiplayer game",
+        "unSuccessfulGameJoin": "Failed to join game",
+        "invalidGameCode": "Invalid game ID"
     },
     "setup":{
         "launchNewGame": "Launch a new game",

@@ -8,7 +8,8 @@ export function connectToBroker(url:string, options:mqtt.IClientOptions) {
         return {} as mqtt.MqttClient;
     }
 }
-
+// disconnect
+// https://github.com/mqttjs/MQTT.js#mqttclientendforce-options-callback
 export function disconnectFromBroker(client:mqtt.MqttClient) {
     try{
         client.end();
@@ -68,28 +69,37 @@ export function handleMqttMessage(client:mqtt.MqttClient, callback:Function) {
         console.error(error.toString());
     }
 }
-
+// publish message
+// https://github.com/mqttjs/MQTT.js#mqttclientpublishtopic-message-options-callback
 export function publishMessage(client:mqtt.MqttClient, topic:string, qos:mqtt.QoS, retain:boolean, message:Object) {
     try{
         client.publish(topic, JSON.stringify(message), {qos:qos, retain:retain});
+        return true;
     } catch (error:any) {
         console.error(error.toString());
+        return false;
     }
 }
-
+// subscribe topic
+// https://github.com/mqttjs/MQTT.js#mqttclientsubscribetopictopic-arraytopic-object-options-callback
 export function subscribeToTopic(client:mqtt.MqttClient, topic:string | string[], qos:mqtt.QoS, retain:boolean) {
     const options = {qos:qos, retain:retain} as mqtt.IClientSubscribeOptions;
     try{
         client.subscribe(topic, options);
+        return true;
     } catch (error:any) {
         console.error(error.toString());
+        return false;
     }
 }
-
+// unsubscribe topic
+// https://github.com/mqttjs/MQTT.js#mqttclientunsubscribetopictopic-array-options-callback
 export function unsubscribeFromTopic(client:mqtt.MqttClient, topic:string) {
     try{
         client.unsubscribe(topic);
+        return true;
     } catch (error:any) {
         console.error(error.toString());
+        return false;
     }
 }

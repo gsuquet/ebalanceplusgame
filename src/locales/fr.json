@@ -73,7 +73,10 @@
         "singlePlayer": "Joueur unique",
         "multiPlayer": "Multi-joueurs",
         "public": "Publique",
-        "private": "Privée"
+        "private": "Privée",
+        "unSuccessfulGameCreation": "La création de la partie multijoueur a échoué.",
+        "unSuccessfulGameJoin": "La partie n'a pas pu être rejointe.",
+        "invalidGameCode": "Le code de la partie est invalide."
     },
     "setup":{
         "launchNewGame": "Lancer une nouvelle partie",
