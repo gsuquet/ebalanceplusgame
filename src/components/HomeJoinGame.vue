@@ -7,8 +7,8 @@
             {{ $t("home.joinGameDescription") }}
         </p>
         <div class="input-container">
-            <label for="game-id">{{ $t("home.gameCode") }}</label>
-            <input type="text" id="game-id" v-model="gameId" placeholder="D78UN"/>
+            <label for="game-id" class="label">{{ $t("home.gameCode") }}</label>
+            <input type="text" class="input" id="game-id" v-model="gameId" placeholder="D78UN"/>
         </div>
         <div class="btn-container">
             <button class="btn join-game-btn" @click="joinGame">

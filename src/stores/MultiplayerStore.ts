@@ -1,5 +1,5 @@
 import * as mqtt from 'mqtt/dist/mqtt.min';
-import { connectToBroker, disconnectFromBroker, publishMessage, subscribeToTopic, unsubscribeFromTopic } from '../helpers/mqtt';
+import { connectToBroker, disconnectFromBroker, publishMessage, subscribeToTopic, unsubscribeFromTopic, handleMqttReconnection, handleMqttMessage, } from '../helpers/mqtt';
 import { ConnectionParameters, Player } from '../types/Multiplayer';
 
 export const useMultiplayerStore = defineStore({
@@ -22,7 +22,6 @@ export const useMultiplayerStore = defineStore({
           } as ConnectionParameters,
           playersList: [] as Player[],
           mainTopic: 'e_balance_plus_game',
-          receiveNews: '',
           client: {} as mqtt.MqttClient,
           subscribeSuccess: false,
           connecting: false,
@@ -63,13 +62,11 @@ export const useMultiplayerStore = defineStore({
                 this.client.connected = true
                 console.log('Connection succeeded!')
             })
-            this.client.on('reconnect', this.handleOnReConnect)
+            handleMqttReconnection(this.client, this.handleOnReConnect)
             this.client.on('error', error => {
               console.log('Connection failed', error)
             })
-            this.client.on('message', (topic, message) => {
-              this.handleIncomingMessage(topic, message.toString());
-            })
+            handleMqttMessage(this.client, this.handleIncomingMessage)
             this.client.on('close', () => {
               this.client.connected = false
               this.destroyConnection();
@@ -84,7 +81,9 @@ export const useMultiplayerStore = defineStore({
         this.mainTopic='e_balance_plus_game/'+gameId;
         const user = useGameParametersStore().getUser;
         user.isConnected = true;
-        return subscribeToTopic(this.client, this.mainTopic+'/players', 1, true) && publishMessage(this.client, this.mainTopic+'/new_player', 1, true ,user);
+        const joinedGame = subscribeToTopic(this.client, this.mainTopic+'/players', 1, true) && publishMessage(this.client, this.mainTopic+'/new_player', 1, true ,user);
+        useGameParametersStore().isMultiplayer = joinedGame;
+        return joinedGame;
       },
       createGame(gameId:string) {
         this.mainTopic='e_balance_plus_game/'+gameId;
@@ -110,10 +109,6 @@ export const useMultiplayerStore = defineStore({
         if (topic === this.mainTopic+'/players' && !useGameParametersStore().isUserHost) {
           this.playersList = JSON.parse(message) as Player[];
         }
-      },
-      doUnSubscribe() {
-        const topic = "topic/browser";
-        unsubscribeFromTopic(this.client, topic);
       },
       destroyConnection() {
         if (this.client.connected) {
