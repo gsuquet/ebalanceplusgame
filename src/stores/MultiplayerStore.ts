@@ -1,5 +1,5 @@
 import * as mqtt from 'mqtt/dist/mqtt.min';
-import { connectToBroker, disconnectFromBroker, publishMessage, subscribeToTopic, unsubscribeFromTopic, handleMqttReconnection, handleMqttMessage, } from '../helpers/mqtt';
+import { connectToBroker, disconnectFromBroker, publishMessage, subscribeToTopic, handleMqttReconnection, handleMqttMessage, } from '../helpers/mqtt';
 import { ConnectionParameters, Player } from '../types/Multiplayer';
 
 export const useMultiplayerStore = defineStore({
