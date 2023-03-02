@@ -6,6 +6,7 @@ import { ProductionCurve } from '../types/Production';
 import { errorScenarioLocale } from '../assets/entityErrorScenario';
 import { generateStringId } from '../helpers/idGenerator';
 import { Player } from '../types/Multiplayer';
+import { errorProductionCurve } from '../assets/entityErrorProduction';
 
 export const useGameParametersStore = defineStore({
     id: 'GameParametersStore',
@@ -18,16 +19,7 @@ export const useGameParametersStore = defineStore({
             languageIsUserSet: false,
             theme: 'light',
             scenario: errorScenarioLocale as ScenarioLocale,
-            productionCurve: {
-                id: '0',
-                name: 'No production curve',
-                svg: '',
-                description: '', 
-                solar: [],
-                wind: [],
-                hydro: [],
-                total: []
-            } as ProductionCurve,
+            productionCurve: errorProductionCurve as ProductionCurve,
             isMultiplayer: false,
             isPublic: false,
             user: {
@@ -48,16 +40,7 @@ export const useGameParametersStore = defineStore({
             if(productionCurveImport){
                 this.productionCurve = productionCurveImport;
             } else{
-                this.productionCurve = {
-                    id: '0',
-                    name: 'No production curve',
-                    svg: '',
-                    description: '',
-                    solar: [],
-                    wind: [],
-                    hydro: [],
-                    total: []
-                };
+                this.productionCurve = errorProductionCurve;
             }
         },
         setScenario(scenarioId: string) {

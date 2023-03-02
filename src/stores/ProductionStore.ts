@@ -84,7 +84,7 @@ export const useProductionStore = defineStore({
         getProductionCurveById: state => (id: string) => state.productionCurves.get(id),
         getProductionCurveByName: state => (name: string) => {
             for (const curve of state.productionCurves.values()) {
-                if (curve.name === name) {
+                if (curve.names.find(n => n.text === name)) {
                     return curve;
                 }
             }
@@ -94,7 +94,7 @@ export const useProductionStore = defineStore({
             for (const curve of state.productionCurves.values()) {
                 allProductionCurves.push(curve);
             }
-            return allProductionCurves;
+            return allProductionCurves as ProductionCurve[];
         },
         getClickedProductionCurve: state => () => state.clickedProductionCurve,
         getRandomProductionCurve: state => () => {
