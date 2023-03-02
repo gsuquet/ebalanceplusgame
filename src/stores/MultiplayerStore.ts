@@ -1,6 +1,6 @@
 import * as mqtt from 'mqtt/dist/mqtt.min';
 import { connectToBroker, disconnectFromBroker, publishMessage, subscribeToTopic, handleMqttReconnection, handleMqttMessage, } from '../helpers/mqtt';
-import { ConnectionParameters, Player } from '../types/Multiplayer';
+import { ConnectionParameters, Player, playerGameParameters } from '../types/Multiplayer';
 
 export const useMultiplayerStore = defineStore({
     id: 'MultiplayerStore',
@@ -21,6 +21,7 @@ export const useMultiplayerStore = defineStore({
               }
           } as ConnectionParameters,
           playersList: [] as Player[],
+          playersGameParametersList: [] as playerGameParameters[],
           mainTopic: 'e_balance_plus_game',
           client: {} as mqtt.MqttClient,
           subscribeSuccess: false,

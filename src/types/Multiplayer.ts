@@ -21,3 +21,9 @@ export interface Player {
     isConnected: boolean;
     isHost: boolean;
 }
+
+export interface playerGameParameters {
+    playerId: string;
+    productionCurveId: string;
+    scenarioId: string;
+}

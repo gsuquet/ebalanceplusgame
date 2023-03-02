@@ -8,16 +8,12 @@
             <button
                 class="btn random-btn"
                 @click="validateRandomGame">
-                <Router-Link to="/game">
-                    {{ $t("button.random") }}
-                </Router-Link>
+                {{ $t("button.random") }}
             </button>
             <button
                 class="btn play-btn"
                 @click="validateChosenScenarioAndProductionCurve">
-                <Router-Link to="/game">
-                    {{ $t("button.play") }}
-                </Router-Link>
+                {{ $t("button.play") }}
             </button>
         </div>
     </section>
@@ -56,6 +52,10 @@
                 this.moneyStore.setInitialMoney();
                 this.gameParametersStore.isGameStarted = true;
                 this.resultsStore.setInitialSituationPerformanceIndicators();
+                this.sendUserToGamePage();
+            },
+            sendUserToGamePage(){
+                this.$router.push('/game');
             }
         }
     }
