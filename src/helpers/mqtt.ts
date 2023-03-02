@@ -2,11 +2,10 @@ import * as mqtt from 'mqtt/dist/mqtt.min';
 
 export function connectToBroker(url:string, options:mqtt.IClientOptions) {
     try{
-        const client = mqtt.connect(url, options);
-        return client;
+        return mqtt.connect(url, options) as mqtt.MqttClient;
     } catch (error:any) {
         console.error(error.toString());
-        return null;
+        return {} as mqtt.MqttClient;
     }
 }
 
