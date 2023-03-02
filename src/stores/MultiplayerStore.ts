@@ -8,8 +8,8 @@ export const useMultiplayerStore = defineStore({
         return {
           connectionParameters: {
               host: 'test.mosquitto.org',
-              port: 8080,
-              protocol: 'ws',
+              port: 8081,
+              protocol: 'wss',
               endpoint: '',
               options: {
                 username: '',
