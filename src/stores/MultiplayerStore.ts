@@ -37,10 +37,14 @@ export const useMultiplayerStore = defineStore({
         this.subscribeSuccess = false
       },
       addPlayerToPlayersList(player: Player) {
-        this.playersList = this.playersList.concat(player);
+        if(!this.playersList.find(player => player.id === player.id)) {
+          this.playersList = this.playersList.concat(player);
+        }
       },
       addPlayerGameParametersToPlayersGameParametersList(playerGameParameters: playerGameParameters) {
-        this.playersGameParametersList = this.playersGameParametersList.concat(playerGameParameters);
+        if(!this.playersGameParametersList.find(playerGameParameters => playerGameParameters.playerId === playerGameParameters.playerId)) {
+          this.playersGameParametersList = this.playersGameParametersList.concat(playerGameParameters);
+        }
       },
       setUserGameParameters(productionCurveId: string, scenarioId: string) {
         const user = useGameParametersStore().getUser;
