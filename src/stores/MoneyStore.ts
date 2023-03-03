@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ScenarioLocale } from "../types/Scenario";
+import { Scenario } from "../types/Scenario";
 import { errorMoneyParameters } from "../assets/entityErrorMoneyParameters";
 import { MoneyParameters } from "../types/Money";
 
@@ -52,7 +52,7 @@ export const useMoneyStore = defineStore({
                 console.log("error") //TODO make a real error message
         },
         setTotalPriceList(){
-            const scenario: ScenarioLocale | null = useScenarioStore().clickedScenario;
+            const scenario: Scenario | null = useScenarioStore().clickedScenario;
             if(scenario) {
                 this.pricesList = scenario.energyMarketParameters.salePricesList
             }
