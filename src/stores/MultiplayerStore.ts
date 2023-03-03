@@ -39,6 +39,21 @@ export const useMultiplayerStore = defineStore({
       addPlayerToPlayersList(player: Player) {
         this.playersList = this.playersList.concat(player);
       },
+      addPlayerGameParametersToPlayersGameParametersList(playerGameParameters: playerGameParameters) {
+        this.playersGameParametersList = this.playersGameParametersList.concat(playerGameParameters);
+      },
+      setUserGameParameters(productionCurveId: string, scenarioId: string) {
+        const user = useGameParametersStore().getUser;
+        const userGameParameters = {playerId: user.id, productionCurveId: productionCurveId, scenarioId: scenarioId};
+        if(user.isHost){
+          this.addPlayerGameParametersToPlayersGameParametersList(userGameParameters);
+          publishMessage(this.client, this.mainTopic+'/players_game_parameters', 1, true ,this.playersGameParametersList);
+          subscribeToTopic(this.client, this.mainTopic+'/new_player_game_parameters', 1, true);
+        } else {
+          publishMessage(this.client, this.mainTopic+'/new_player_game_parameters', 1, true ,userGameParameters);
+          subscribeToTopic(this.client, this.mainTopic+'/players_game_parameters', 1, true);
+        }
+      },
       handleOnReConnect() {
         this.retryTimes += 1
         if (this.retryTimes > 5 && this.client) {
@@ -96,19 +111,25 @@ export const useMultiplayerStore = defineStore({
         return publishMessage(this.client, this.mainTopic+'/players', 1, true ,this.playersList);
       },
       handleIncomingMessage(topic:string, message:string) {
-        this.handleNewPlayerMessage(topic, message);
-        this.handlePlayersListMessage(topic, message);
+        this.handleNewPlayerAndPlayerListMessages(topic, message);
+        this.handleNewPlayerGameParametersAndGameParametersListMessages(topic, message);
       },
-      handleNewPlayerMessage(topic : string, message : string) {
+      handleNewPlayerAndPlayerListMessages(topic : string, message : string) {
         if (topic === this.mainTopic+'/new_player' && useGameParametersStore().isUserHost) {
           const newPlayer = JSON.parse(message) as Player;
           this.addPlayerToPlayersList(newPlayer);
           publishMessage(this.client, this.mainTopic+'/players', 1, true ,this.playersList);
+        } else if (topic === this.mainTopic+'/players' && !useGameParametersStore().isUserHost) {
+          this.playersList = JSON.parse(message) as Player[];
         }
       },
-      handlePlayersListMessage(topic : string, message : string) {
-        if (topic === this.mainTopic+'/players' && !useGameParametersStore().isUserHost) {
-          this.playersList = JSON.parse(message) as Player[];
+      handleNewPlayerGameParametersAndGameParametersListMessages(topic : string, message : string) {
+        if (topic === this.mainTopic+'/new_player_game_parameters' && useGameParametersStore().isUserHost) {
+          const newPlayerGameParameters = JSON.parse(message) as playerGameParameters;
+          this.addPlayerGameParametersToPlayersGameParametersList(newPlayerGameParameters);
+          publishMessage(this.client, this.mainTopic+'/players_game_parameters', 1, true ,this.playersGameParametersList);
+        } else if (topic === this.mainTopic+'/players_game_parameters' && !useGameParametersStore().isUserHost) {
+          this.playersGameParametersList = JSON.parse(message) as playerGameParameters[];
         }
       },
       destroyConnection() {
