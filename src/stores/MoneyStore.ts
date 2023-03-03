@@ -31,6 +31,20 @@ export const useMoneyStore = defineStore({
             else
                 return false;
         },
+        canWithdrawMoney(moneyToWithdraw: number) {
+            if(this.money >= moneyToWithdraw)
+                return true;
+            else
+                return false;
+        },
+        withdrawMoney(moneyToWithdraw: number) {
+            if(this.canWithdrawMoney(moneyToWithdraw)) {
+                this.money = this.money - moneyToWithdraw;
+                return true;
+            } else {
+                return false;
+            }
+        },
         takeOffMoney(moneyToTakeOff: number) {
             if(this.checkIfMoneyCanBeTakeOff(moneyToTakeOff))
                 this.money = this.money - moneyToTakeOff;
