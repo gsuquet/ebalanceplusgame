@@ -8,16 +8,12 @@
             <button
                 class="btn random-btn"
                 @click="validateRandomGame">
-                <Router-Link to="/game">
-                    {{ $t("button.random") }}
-                </Router-Link>
+                {{ $t("button.random") }}
             </button>
             <button
                 class="btn play-btn"
                 @click="validateChosenScenarioAndProductionCurve">
-                <Router-Link to="/game">
-                    {{ $t("button.play") }}
-                </Router-Link>
+                {{ $t("button.play") }}
             </button>
         </div>
     </section>
@@ -38,7 +34,8 @@
                 energyStore: useEnergyStore(),
                 consumptionStore: useConsumptionStore(),
                 moneyStore: useMoneyStore(),
-                resultsStore: useResultsStore()
+                resultsStore: useResultsStore(),
+                multiplayerStore: useMultiplayerStore()
             }
         },
         methods:{
@@ -56,6 +53,16 @@
                 this.moneyStore.setInitialMoney();
                 this.gameParametersStore.isGameStarted = true;
                 this.resultsStore.setInitialSituationPerformanceIndicators();
+                this.sendGameParametersToMultiplayerStore();
+                this.sendUserToGamePage();
+            },
+            sendUserToGamePage(){
+                this.$router.push('/game');
+            },
+            sendGameParametersToMultiplayerStore(){
+                if(this.gameParametersStore.isMultiplayer){
+                    this.multiplayerStore.setUserGameParameters(this.gameParametersStore.productionCurve.id, this.gameParametersStore.scenario.id);
+                }
             }
         }
     }

@@ -8,6 +8,7 @@ src
     ├── drawInPixels.ts
     ├── idGenerator.ts
     ├── listProcessor.ts
+    ├── mqtt.ts
     ├── power.ts
     ├── time.ts
     └── translation.ts
@@ -22,6 +23,9 @@ Generates a random id string.
 
 ### `listProcessor`
 A helper function to process a list of items and get values : max, min, etc.
+
+### `mqtt`
+Contains functions to connect to the MQTT broker, subscribe to topics, publish messages, etc.
 
 ### `power`
 Contains functions to convert watts to kilowatts, round off values, convert watts per 15 minutes to watts per hour, etc.

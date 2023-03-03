@@ -50,10 +50,10 @@ export const useEnergyStore = defineStore({
             }
         },
         addBattery() {
-            if(useGameParametersStore().canWithdrawMoney(this.energyStorageParameters.batteryPrice)){
+            if(useMoneyStore().canWithdrawMoney(this.energyStorageParameters.batteryPrice)){
                 this.numberOfBatteries++;
                 this.maxEnergy += this.energyStorageParameters.batteryIndividualCapacity;
-                useGameParametersStore().withdrawMoney(this.energyStorageParameters.batteryPrice);
+                useMoneyStore().withdrawMoney(this.energyStorageParameters.batteryPrice);
             }
         },
         removeBattery() {
@@ -208,7 +208,7 @@ export const useEnergyStore = defineStore({
             return convertWattsPer15minToKilowattsPerHour(state.maxEnergy);
         },
         canUserAddABattery:(state) => {
-            return useGameParametersStore().canWithdrawMoney(state.energyStorageParameters.batteryPrice)
+            return useMoneyStore().canWithdrawMoney(state.energyStorageParameters.batteryPrice)
         },
         canUserRemoveABattery:(state) => {
             return state.numberOfBatteries > state.energyStorageParameters.numberOfBatteries

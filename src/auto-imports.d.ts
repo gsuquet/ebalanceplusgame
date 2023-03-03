@@ -70,6 +70,7 @@ declare global {
   const useI18n: typeof import('vue-i18n')['useI18n']
   const useLink: typeof import('vue-router')['useLink']
   const useMoneyStore: typeof import('./stores/MoneyStore')['useMoneyStore']
+  const useMultiplayerStore: typeof import('./stores/MultiplayerStore')['useMultiplayerStore']
   const useProductionStore: typeof import('./stores/ProductionStore')['useProductionStore']
   const useResultsStore: typeof import('./stores/ResultsStore')['useResultsStore']
   const useRoute: typeof import('vue-router')['useRoute']

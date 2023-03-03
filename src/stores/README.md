@@ -11,6 +11,7 @@ src
     ├── EquipmentStore.ts
     ├── GameParametersStore.ts
     ├── MoneyStore.ts
+    ├── MultiplayerStore.ts
     ├── ProductionStore.ts
     ├── ResultsStore.ts
     └── ScenarioStore.ts

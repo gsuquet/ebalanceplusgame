@@ -12,6 +12,7 @@ src
     ├── EquipmentType.ts
     ├── I18nObject.ts
     ├── Money.ts
+    ├── Multiplayer.ts
     ├── Production.ts
     ├── Results.ts
     └── Scenario.ts
