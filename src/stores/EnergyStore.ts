@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { Consumption } from '../types/Consumption';
-import { EnergyStorageParameters } from '../types/Energy';
+import { EnergyMarketParameters, EnergyStorageParameters } from '../types/Energy';
 import { convertWattsPer15minToKilowattsPerHour }  from '../helpers/power';
 import { getMaxUsableEnergyAmountPossibleOverPeriodWithoutConsumption, getMaxUsableEnergyAmountPossibleOverPeriod } from '../helpers/listProcessor';
 import { EquipmentType } from '../types/EquipmentType';
@@ -11,6 +11,7 @@ export const useEnergyStore = defineStore({
     state: () => {
         return {
             energyStorageParameters: errorEnergyStorageParameters as EnergyStorageParameters,
+            energyMarketParameters: {} as EnergyMarketParameters,
             batteryChargeEquipmentType: {} as EquipmentType,
             batteryDischargeEquipmentType: {} as EquipmentType,
             storedEnergy: 0 as number,
@@ -25,12 +26,13 @@ export const useEnergyStore = defineStore({
             storedEnergyList: [] as Consumption[],
             availableStoredEnergyList: new Array(96).fill(0) as number[],
             usedEnergyList: [] as Consumption[],
-            clickedMarketIcon: false as boolean, 
+            clickedMarketIcon: false as boolean,
         };
     },
     actions: {
         initializeEnergyStore() {
             this.energyStorageParameters = useGameParametersStore().getScenarioEnergyStorageParameters;
+            this.energyMarketParameters = useGameParametersStore().getScenarioEnergyMarketParameters;
             this.storedEnergy = 0 + this.energyStorageParameters.initialStoredEnergy;
             this.maxEnergy = 0 + this.energyStorageParameters.numberOfBatteries * this.energyStorageParameters.batteryIndividualCapacity;
             this.totalStoredEnergyOverTheGame = 0;
@@ -48,10 +50,10 @@ export const useEnergyStore = defineStore({
             }
         },
         addBattery() {
-            if(useGameParametersStore().canWithdrawMoney(this.energyStorageParameters.batteryPrice)){
+            if(useMoneyStore().canWithdrawMoney(this.energyStorageParameters.batteryPrice)){
                 this.numberOfBatteries++;
                 this.maxEnergy += this.energyStorageParameters.batteryIndividualCapacity;
-                useGameParametersStore().withdrawMoney(this.energyStorageParameters.batteryPrice);
+                useMoneyStore().withdrawMoney(this.energyStorageParameters.batteryPrice);
             }
         },
         removeBattery() {
@@ -206,7 +208,7 @@ export const useEnergyStore = defineStore({
             return convertWattsPer15minToKilowattsPerHour(state.maxEnergy);
         },
         canUserAddABattery:(state) => {
-            return useGameParametersStore().canWithdrawMoney(state.energyStorageParameters.batteryPrice)
+            return useMoneyStore().canWithdrawMoney(state.energyStorageParameters.batteryPrice)
         },
         canUserRemoveABattery:(state) => {
             return state.numberOfBatteries > state.energyStorageParameters.numberOfBatteries
@@ -216,6 +218,9 @@ export const useEnergyStore = defineStore({
         },
         displayEnergyMenu:(state) => {
             return state.energyStorageParameters.isEnergyStorage && state.clickedEnergyIcon;
+        },
+        displayMarketIcon:(state) => {
+            return state.energyMarketParameters.isEnergyMarket;
         },
         isEnergyAmountAvailableInAvailableStoredEnergyList:(state) => (index: number, amount:number) => {
             if(state.availableStoredEnergyList.length > index){
@@ -280,6 +285,16 @@ export const useEnergyStore = defineStore({
         },
         isStorageEmpty:(state) => {
             return state.storedEnergy <= 0;
+        },
+        getTotalStoredEnergyOverTheGameCopy:(state) => {
+            return JSON.parse(JSON.stringify(state.totalStoredEnergyOverTheGame));
+        },
+        getTotalUsedEnergyOverTheGameCopy:(state) => {
+            return JSON.parse(JSON.stringify(state.totalUsedEnergyOverTheGame));
+        },
+        getEnergyStorageUtilizationRate:(state) => {
+            const totalEnergyAvailableThroughoutTheDay = state.availableStoredEnergyList.reduce((a, b) => a + b, 0);
+            return (totalEnergyAvailableThroughoutTheDay/(state.maxEnergy*96));
         }
     },
 });

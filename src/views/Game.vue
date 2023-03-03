@@ -1,43 +1,29 @@
 <script setup lang="ts">
-import BaseAlert from '../components/BaseAlert.vue';
-import Board from '../components/Board.vue';
-import BoardSnackBar from '../components/BoardSnackBar.vue';
-import EquipmentList from '../components/EquipmentList.vue';
-import BoardConsumptionDetails from '../components/BoardConsumptionDetails.vue';
-import BoardConsumptionAddWindow from '../components/BoardConsumptionAddWindow.vue';
-import EnergyMenuAddEnergyWindow from '../components/EnergyMenuAddEnergyWindow.vue';
-import { useConsumptionStore } from '../stores/ConsumptionStore';
-import { useBoardStore } from '../stores/BoardStore';
-import { useEquipmentStore } from '../stores/EquipmentStore';
-import { useEnergyStore } from '../stores/EnergyStore';
-import EnergyMenuUseEnergyWindow from '../components/EnergyMenuUseEnergyWindow.vue';
-import MoneyInterface from '../components/MoneyInterface.vue';
-const consumptionStore = useConsumptionStore();
-const boardStore = useBoardStore();
-const gameParametersStore = useGameParametersStore();
-const equipmentStore = useEquipmentStore();
-const energyStore = useEnergyStore();
+    import Board from '../components/Board.vue';
+    import BaseAlert from '../components/BaseAlert.vue';
+    import EquipmentList from '../components/EquipmentList.vue';
+    import BoardIconsBar from '../components/BoardIconsBar.vue';
+    import BoardConsumptionDetails from '../components/BoardConsumptionDetails.vue';
+    import BoardConsumptionAddWindow from '../components/BoardConsumptionAddWindow.vue';
+    import EnergyMenuAddEnergyWindow from '../components/EnergyMenuAddEnergyWindow.vue';
+    import EnergyMenuUseEnergyWindow from '../components/EnergyMenuUseEnergyWindow.vue';
 </script>
 
 <template>
-
-    <div class="overlay" v-if="equipmentStore.clickedEquipment || boardStore.isTileClicked || energyStore.clickedStoreEnergy || gameParametersStore.showedInfoOverlay"/>
-    <TheGameInfoWindow v-if="gameParametersStore.showedInfoOverlay" />
-    
+    <div class="overlay" v-if="displayOverlay"/>
+    <TheGameInfoWindow v-if="gameParametersStore.showedInfoOverlay"/>
+    <ResultsMenuConfirmation/>
     <div id="game-page" class="view">
         <BaseAlert
             :should-display="consumptionStore.isOverConsumption"
             alert-class="danger-alert"
             alert-text="alert.overConsumption"/>        
-        <div class="consuption-window-container">
-            <BoardConsumptionAddWindow 
-                v-if="equipmentStore.clickedEquipment"
-                :equipment="equipmentStore.clickedEquipment"/>
-        </div>
-        <BoardSnackBar />
+        <BoardConsumptionAddWindow 
+            v-if="equipmentStore.clickedEquipment"
+            :equipment="equipmentStore.clickedEquipment"/>
+        <BoardIconsBar />
         <EnergyMenuAddEnergyWindow v-if="energyStore.clickedStoreEnergy"/>
         <EnergyMenuUseEnergyWindow v-if="energyStore.clickedConsumeEnergy"/>
-        <MoneyInterface/>
         <div class="board-list-container">
             <EquipmentList />
             <Board
@@ -56,6 +42,35 @@ const energyStore = useEnergyStore();
     </div>
 </template>
 
-<style scoped lang="scss">
-    //@import "../styles/views/game.scss";
-</style>
+<script lang="ts">
+    export default {
+        name: "Game",
+        components: {
+            BaseAlert,
+            Board,
+            BoardIconsBar,
+            EquipmentList,
+            BoardConsumptionDetails,
+            BoardConsumptionAddWindow,
+            EnergyMenuAddEnergyWindow,
+            EnergyMenuUseEnergyWindow
+        },
+        data() {
+            return {
+                consumptionStore: useConsumptionStore(),
+                boardStore: useBoardStore(),
+                gameParametersStore: useGameParametersStore(),
+                equipmentStore: useEquipmentStore(),
+                energyStore: useEnergyStore(),
+                resultsStore: useResultsStore()
+            }
+        },
+        computed: {
+            displayOverlay() {
+                return this.equipmentStore.clickedEquipment || this.boardStore.isTileClicked || 
+                this.energyStore.clickedStoreEnergy || this.gameParametersStore.showedInfoOverlay || 
+                this.resultsStore.getIsConfirmationWindowOpen;
+            }
+        }
+    }
+</script>
