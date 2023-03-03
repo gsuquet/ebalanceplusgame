@@ -228,5 +228,55 @@
             "minDuration": "00:15",
             "maxDuration": "23:45"
         }
+    },
+    {
+        "id":"Fridge",
+        "names":[{"text":"Réfrigérateur","lang":"fr"},{"text":"Fridge","lang":"en"}],
+        "icon_name":"mdi:fridge",
+        "color":"#5CE1E6",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "23:45",
+            "step": "00:15",
+            "minDuration": "23:45",
+            "maxDuration": "23:45"
+        } 
+    },
+    {
+
+        "id":"Computer",
+        "names":[{"text":"Ordinateur","lang":"fr"},{"text":"Computer","lang":"en"}],
+        "icon_name":"mdi:import MaterialSymbolsComputerOutlineSharp from '~icons/material-symbols/computer-outline-sharp'",
+        "color":"#5CE1E6",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+
+    },
+    {
+        "id":"Vaccum",
+        "names":[{"text":"Aspirateur","lang":"fr"},{"text":"Vacuum","lang":"en"}],
+        "icon_name":"mdi:vacuum",
+        "color":"#9C8C5A",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
     }
 ]
