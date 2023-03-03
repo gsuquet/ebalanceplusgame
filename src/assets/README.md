@@ -13,6 +13,7 @@ src
     ├── entityErrorEquipmentType.ts
     ├── entityErrorI18nObject.ts
     ├── entityErrorMoneyParameters.ts
+    ├── entityErrorProduction.ts
     └── entityErrorScenario.ts
 ```
 
