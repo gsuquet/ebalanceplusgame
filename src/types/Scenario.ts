@@ -7,10 +7,8 @@ import { MoneyParameters } from './Money';
 export interface Scenario{
     id: string,
     names: I18nObject[],
+    season: Season,
     days: I18nObject[],
-    season: string,
-    icon: string,
-    color: string,
     descriptions: I18nObject[],
     equipment_types: EquipmentType[],
     initial_consumption: Consumption[],
@@ -19,18 +17,9 @@ export interface Scenario{
     moneyParameters: MoneyParameters
 }
 
-
-export interface ScenarioLocale {
-    id: string;
-    name: string,
-    day: string,
-    season: string,
+export interface Season {
+    id: string,
+    names: I18nObject[],
     icon: string,
-    color: string,
-    description: string,
-    equipment_type_local: EquipmentTypeLocale[], 
-    initial_consumption: Consumption[],
-    energyStorageParameters: EnergyStorageParameters,
-    energyMarketParameters: EnergyMarketParameters,
-    moneyParameters: MoneyParameters
+    color: string
 }

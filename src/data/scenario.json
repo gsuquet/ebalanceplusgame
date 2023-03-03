@@ -1,25 +1,14 @@
 [
     {
         "id": "1",
-        "names": [
-            {
-                "text": "nom test_fr", "lang": "fr"
-            },
-            {
-                "text":"name test _en", "lang":"en"
-            }
-        ],
-        "days": [
-            {
-                "text":"jour 1", "lang": "fr"
-            },
-            {
-                "text": "day 1", "lang": "en"
-            }
-        ],
-        "season": "summer",
-        "icon": "mdi:white-balance-sunny",
-        "color": "#FFD700",
+        "names": [{"text": "nom test_fr", "lang": "fr"}, {"text": "name test _en", "lang": "en"}],
+        "days": [{"text":"jour 1", "lang": "fr"}, {"text": "day 1", "lang": "en"}],
+        "season": {
+            "id":"season_summer",
+            "names":[{"text":"été", "lang":"fr"}, {"text":"summer", "lang":"en"}],
+            "icon": "mdi:white-balance-sunny",
+            "color": "#FFD700"
+        },
         "descriptions": [
             {
                 "text": "description Française Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", "lang": "fr"

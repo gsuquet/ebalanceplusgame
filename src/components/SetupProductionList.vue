@@ -2,7 +2,7 @@
     import { useProductionStore } from '../stores/ProductionStore';
     import { ProductionCurve } from '../types/Production';
     import { Icon } from '@iconify/vue';
-import { convertI18nObjectToLocale } from '../helpers/translation';
+    import { convertI18nObjectToLocale } from '../helpers/translation';
 </script>
 
 <template>
@@ -45,7 +45,7 @@ import { convertI18nObjectToLocale } from '../helpers/translation';
         },
         computed : {
             productionCurves() {
-                return this.productionStore.productionCurves.values();
+                return this.productionStore.productionCurves;
             }
         },
         methods: {
