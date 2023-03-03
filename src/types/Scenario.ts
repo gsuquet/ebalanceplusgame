@@ -1,4 +1,4 @@
-import { EquipmentType, EquipmentTypeLocale } from './EquipmentType';
+import { EquipmentType } from './EquipmentType';
 import { EnergyStorageParameters, EnergyMarketParameters } from './Energy';
 import { Consumption } from './Consumption';
 import { I18nObject } from './I18nObject';
