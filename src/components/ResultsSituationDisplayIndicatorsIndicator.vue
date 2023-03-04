@@ -84,8 +84,8 @@
         },
         data() {
             return {
-                unitWh: "W/h",
-                unitKWh: "kW/h",
+                unitWh: "Wh",
+                unitKWh: "kWh",
                 isUnitWh: true,
                 isInitialValueHigher: false,
                 isInitialValueEqual: true,
