@@ -1,0 +1,30 @@
+[
+    {
+        "id":"day_monday",
+        "names": [{"text":"Lundi", "lang": "fr"}, {"text": "Monday", "lang": "en"}]
+    },
+    {
+        "id":"day_tuesday",
+        "names": [{"text":"Mardi", "lang": "fr"}, {"text": "Tuesday", "lang": "en"}]
+    },
+    {
+        "id":"day_wednesday",
+        "names": [{"text":"Mercredi", "lang": "fr"}, {"text": "Wednesday", "lang": "en"}]
+    },
+    {
+        "id":"day_thursday",
+        "names": [{"text":"Jeudi", "lang": "fr"}, {"text": "Thursday", "lang": "en"}]
+    },
+    {
+        "id":"day_friday",
+        "names": [{"text":"Vendredi", "lang": "fr"}, {"text": "Friday", "lang": "en"}]
+    },
+    {
+        "id":"day_saturday",
+        "names": [{"text":"Samedi", "lang": "fr"}, {"text": "Saturday", "lang": "en"}]
+    },
+    {
+        "id":"day_sunday",
+        "names": [{"text":"Dimanche", "lang": "fr"}, {"text": "Sunday", "lang": "en"}]
+    }
+]
