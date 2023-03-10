@@ -1,17 +1,12 @@
 <script setup lang="ts">
-    import { useEquipmentStore } from '../stores/EquipmentStore';
     import { Equipment } from '../types/Equipment';
 
     const {equipment} = defineProps<{
         equipment: Equipment;
     }>()
-
-    const store = useEquipmentStore();
-    store.getEquipmentData();
-
-
+    
     function isClicked(equipment:Equipment) {
-        store.setClickedEquipment(equipment);
+        useEquipmentStore().setClickedEquipment(equipment);
     }
 
 </script>

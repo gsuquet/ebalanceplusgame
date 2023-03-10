@@ -54,7 +54,7 @@
             },
             scenarioDay() {
                 const scenario = this.scenarioStore.clickedScenario;
-                return scenario ? convertI18nObjectToLocale(scenario.days,this.gameParametersStore.language) : errorScenario.days;
+                return scenario ? convertI18nObjectToLocale(scenario.day.names,this.gameParametersStore.language) : errorScenario.day.names;
             },
             scenarioIcon() {
                 const scenario = this.scenarioStore.clickedScenario;

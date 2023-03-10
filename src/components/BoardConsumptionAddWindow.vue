@@ -3,6 +3,7 @@
     import { useConsumptionStore } from '../stores/ConsumptionStore';
     import CardPopup from './CardPopup.vue';
 import { generateStringId } from '../helpers/idGenerator';
+import { convertI18nObjectToLocale } from '../helpers/translation';
 </script>
 
 <template>
@@ -40,13 +41,18 @@ import { generateStringId } from '../helpers/idGenerator';
         },
         data() {
             return {
-                equipmentType: '' as string,
+                gameParametersStore: useGameParametersStore(),
                 consumptionId: '' as string,
                 startIndex: 0 as number,
                 endIndex: 0 as number,
                 consumption: 0 as number,
                 price: 0 as number,
                 inputError: false as boolean
+            }
+        },
+        computed : {
+            equipmentType() {
+                return convertI18nObjectToLocale(this.equipment.type.names,this.gameParametersStore.language);
             }
         },
         methods: {
@@ -64,14 +70,6 @@ import { generateStringId } from '../helpers/idGenerator';
             },
             timeError() {
                 alert(this.$t('error.timeError'));
-            }
-        },
-        watch: {
-            equipment: {
-                handler: function (equipment: any) {
-                    this.equipmentType = equipmentStore.convertEquipmentToEquipmentLocale(equipment).type.name;
-                },
-                immediate: true
             }
         },
         mounted() {

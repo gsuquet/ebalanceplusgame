@@ -4,6 +4,7 @@ export interface Equipment{
     id: string,
     energy_class: string,
     type: EquipmentType,
+    isBought: boolean,
     equipmentCostParams: EquipmentCostParams,
     equipmentConsumptionParams: EquipmentConsumptionParams
 }

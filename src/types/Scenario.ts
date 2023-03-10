@@ -4,17 +4,30 @@ import { Consumption } from './Consumption';
 import { I18nObject } from './I18nObject';
 import { MoneyParameters } from './Money';
 
-export interface Scenario{
+export interface Scenario {
     id: string,
     names: I18nObject[],
     season: Season,
-    days: I18nObject[],
+    day: Day,
     descriptions: I18nObject[],
-    equipment_types: EquipmentType[],
-    initial_consumption: Consumption[],
+    equipmentTypes: EquipmentType[],
+    initialConsumption: Consumption[],
     energyStorageParameters: EnergyStorageParameters,
     energyMarketParameters: EnergyMarketParameters,
     moneyParameters: MoneyParameters
+}
+
+export interface ScenarioDTO {
+    id: string,
+    names: I18nObject[],
+    seasonId: string,
+    dayId: string,
+    descriptions: I18nObject[],
+    equipmentTypesIds: string[],
+    initialConsumptionIds: string[],
+    energyStorageParametersId: string,
+    energyMarketParametersId: string,
+    moneyParametersId: string
 }
 
 export interface Season {
@@ -22,4 +35,9 @@ export interface Season {
     names: I18nObject[],
     icon: string,
     color: string
+}
+
+export interface Day {
+    id: string,
+    names: I18nObject[]
 }

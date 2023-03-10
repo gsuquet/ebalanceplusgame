@@ -1,85 +1,21 @@
 [
     {
-        "id": "1",
+        "id": "scenario_1",
         "names": [{"text": "nom test_fr", "lang": "fr"}, {"text": "name test _en", "lang": "en"}],
-        "days": [{"text":"jour 1", "lang": "fr"}, {"text": "day 1", "lang": "en"}],
-        "season": {
-            "id":"season_summer",
-            "names":[{"text":"été", "lang":"fr"}, {"text":"summer", "lang":"en"}],
-            "icon": "mdi:white-balance-sunny",
-            "color": "#FFD700"
-        },
+        "dayId": "day_monday",
+        "seasonId": "season_summer",
         "descriptions": [
             {
-                "text": "description Française Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", "lang": "fr"
+                "text": "description Française", "lang": "fr"
             }, 
             {
-                "text": "English description Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur", "lang": "en"
+                "text": "English description", "lang": "en"
             }
         ],
-        "equipment_types": [
-            {
-                "id":"dishwasher",
-                "names":[{"text":"Lave-vaisselle","lang":"fr"},{"text":"Dishwasher","lang":"en"}],
-                "icon_name":"mdi:dishwasher",
-                "color":"#9A7751",
-                "isBattery": false,
-                "isCharging": false,
-                "equipmentTypeDurationParams": {
-                    "isDurationEditable": true,
-                    "isDurationLengthEditable": true,
-                    "originalDuration": "00:15",
-                    "step": "00:15",
-                    "minDuration": "00:15",
-                    "maxDuration": "23:45"
-                }
-            },
-            {
-                "id":"washingMachine",
-                "names":[{"text":"Machine à laver","lang":"fr"},{"text":"Washing-machine","lang":"en"}],
-                "icon_name":"mdi:washing-machine",
-                "color":"#00447C",
-                "isBattery": false,
-                "isCharging": false,
-                "equipmentTypeDurationParams": {
-                    "isDurationEditable": true,
-                    "isDurationLengthEditable": true,
-                    "originalDuration": "00:15",
-                    "step": "00:15",
-                    "minDuration": "00:15",
-                    "maxDuration": "23:45"
-                }
-            }
-        ],
-        "initial_consumption": [
-            
-        ],
-        "energyStorageParameters": {
-            "isEnergyStorage": true,
-            "initialStoredEnergy": 0,
-            "numberOfBatteries": 1,
-            "batteryPrice": 10,
-            "batteryIndividualCapacity": 200,
-            "batteryChargeEquipmentTypeId": "battery_charge",
-            "batteryDischargeEquipmentTypeId": "battery_discharge",
-            "batteryChargeLimitRate": 100,
-            "batteryDischargeLimitRate": 100,
-            "batteryChargeEfficiency": 100,
-            "batteryDischargeEfficiency": 100,
-            "batteryChargeLossRate": 0,
-            "batteryDischargeLossRate": 0
-        },
-        "energyMarketParameters": {
-            "isEnergyMarket": true,
-            "salePricesList": [8, 8, 5, 8, 9, 5, 6, 5, 6, 8, 8, 8,9,6,6,6,7,9,8,9,7,7,5,7,6,6,8,5,8,9,6,9,8,7,6,7,5,6,9,9,6,9,9,9,5,7,8,7,6,5,5,7,5,8,5,6,5,9,5,6,6,6,6,8,5,5,8,6,8,6,8,6,8,6,5,5,8,6,9,9,5,9,9,6,8,7,6,9,8,6,7,7,7,5,8,9],
-            "constantPrice": 0
-        },
-        "moneyParameters": {
-            "initialMoney": 200,
-            "isMoneyMenu": true,
-            "isMoneyUnlimited": false,
-            "moneyCurrency": "€",
-            "moneyCurrencyIcon": "mdi:currency-eur"
-        }
+        "equipmentTypesIds": ["et_dishwasher_1","et_washing_machine_1","et_tumble_dryer_1","et_television_1","et_electric_bike_1","et_micro_wave_1"],
+        "initialConsumptionIds": ["ic_dishwasher_0_1","ic_dishwasher_0_1"],
+        "energyStorageParametersId": "esp_1",
+        "energyMarketParametersId": "emp_1",
+        "moneyParametersId": "mp_1"
     }
 ]
