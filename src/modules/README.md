@@ -6,6 +6,7 @@ This directory contains the modules used in the project.
 src
 └── modules
     ├── i18n.ts
+    ├── module-mqtt.d.ts
     ├── pinia.ts
     └── router.ts
 ```
@@ -15,6 +16,9 @@ src
 Module to handle the internationalization of the project.
 The different languages are stored in the `locales` directory and then imported in the `i18n` module in an object called `messages`.  
 The created `i18n` instance is then exported and used in the `main.ts` file to initialize the `vue-i18n` plugin.
+
+### `module-mqtt.d.ts`
+Typescript module declaration file to allow the use of the [mqttjs library](https://github.com/mqttjs/MQTT.js) in this vueJs typescript project.  
 
 ### `pinia`
 Module to handle the state management of the project.

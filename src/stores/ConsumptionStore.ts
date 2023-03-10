@@ -1,14 +1,16 @@
 import { defineStore } from 'pinia';
 import { useEnergyStore } from './EnergyStore';
 import { useBoardStore } from './BoardStore';
-import { Consumption, ConsumptionCurve } from '../types/Consumption';
+import { Consumption, ConsumptionCurve, ConsumptionDTO } from '../types/Consumption';
 import { Equipment } from '../types/Equipment';
 import { convertTimesToIndexes } from '../helpers/time';
+import { emptyConsumption } from '../assets/entityErrorConsumption';
 
 export const useConsumptionStore = defineStore({
     id: 'ConsumptionStore',
     state: () => {
         return {
+            initialConsumptionsList: [] as ConsumptionDTO[],
             consumptionCurve: {
                 consumption: new Map<number, number>(),
                 peak: 0,
@@ -21,6 +23,11 @@ export const useConsumptionStore = defineStore({
     },
 
     actions: {
+        async fetchAllInitialConsumptions() {
+            const consumptionsDtoData = (await import ('../data/consumptions.json')).default;
+            this.initialConsumptionsList = consumptionsDtoData;
+            useScenarioStore().fetchAllScenarios();
+        },
         addInitialConsumptionToConsumptionList() {
             const initialConsumption = useScenarioStore().getInitialConsumptionCopy();
             if(initialConsumption){
@@ -146,5 +153,22 @@ export const useConsumptionStore = defineStore({
         getConsumptionList(state) {
             return state.consumptionList;
         },
+        getInitialConsumptionFromConsumptionDtoId:(state) => (id:string) => {
+            const consumptionDto = state.initialConsumptionsList.find(consumption => consumption.id === id);
+            if(consumptionDto) {
+                const equipment = useEquipmentStore().getEquipmentFromEquipmentDTOId(consumptionDto.equipmentID,true);
+                if(equipment) {
+                    return {
+                        id: consumptionDto.id,
+                        startIndex: consumptionDto.startIndex,
+                        endIndex: consumptionDto.endIndex,
+                        amount: equipment.equipmentConsumptionParams.originalConsumption,
+                        price: equipment.equipmentCostParams.originalPrice,
+                        equipment: equipment
+                    } as Consumption;
+                }
+            }
+            return emptyConsumption;
+        }
     }
 });

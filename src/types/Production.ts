@@ -10,3 +10,13 @@ export interface ProductionCurve {
     hydro: number[];
     total: number[];
 }
+
+export interface ProductionCurveDto {
+    id : string;
+    names: I18nObject[];
+    descriptions: I18nObject[];
+    svg: string;
+    solar: number[];
+    wind: number[];
+    hydro: number[];
+}

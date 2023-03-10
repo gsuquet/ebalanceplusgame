@@ -1,52 +1,25 @@
-<script lang="ts">
-    import {  useScenarioStore } from '../stores/ScenarioStore';
-    import { ScenarioLocale } from '../types/Scenario';
+<script setup lang="ts">
+    import { Scenario } from '../types/Scenario';
     import { Icon } from '@iconify/vue';
-    
-    const scenarioStore = useScenarioStore();
-    export default {
-        setup() {
-            const scenarioStore = useScenarioStore();
-            scenarioStore.getAllScenario(); 
-            return {scenarioStore}; 
-        },
-        components: {
-            Icon,
-        },
-        computed: {
-        },
-        methods: {
-            isClicked(scenario: ScenarioLocale) {
-                this.scenarioStore.setClickedScenario(scenario);
-            },
-            getEquipmentType(scenario: ScenarioLocale) {
-                return scenario.equipment_type_local
-            }, 
-            
-        }
-    }
-
-
+    import { convertI18nObjectToLocale } from '../helpers/translation';
+    import { I18nObject } from '../types/I18nObject';
 </script>
 
 <template>
     <section class="list-container">
-        <div class="boucle" v-for="scenario_locale in scenarioStore.scenariosLocale" @click="isClicked(scenario_locale)">
+        <div class="boucle" v-for="scenario in scenarioList" @click="isClicked(scenario)">
             <div class="box-container">
                 <div class="day-container">
                     <h1>
-                        {{ scenario_locale.day }}
+                        {{ convertI18nObject(scenario.day.names) }}
                     </h1>                
                     <div class="icon-season">
-                        <Icon :icon="scenario_locale.icon"/>
+                        <Icon :icon="scenario.season.icon"/>
                     </div>
                 </div>
-
                 <h1 class="title">
-                    {{ scenario_locale.name }}
+                    {{ convertI18nObject(scenario.names) }}
                 </h1>
-
-
                 <div class="icon-container" >
                     <div class="icon-type-prod" >
                         <!-- TODO add the icon  -->
@@ -60,3 +33,31 @@
 <style scoped lang="scss">
     @import "../styles/components/setupProductionAndScenarioList.scss";
 </style>
+
+<script lang="ts">
+    export default {
+        name: 'SetupScenarioList',
+        components: {
+            Icon,
+        },
+        data(){
+            return {
+                scenarioStore: useScenarioStore(),
+                gameParametersStore: useGameParametersStore(),
+            }
+        },
+        computed: {
+            scenarioList() {
+                return this.scenarioStore.scenarios;
+            },
+        },
+        methods: {
+            isClicked(scenario: Scenario) {
+                this.scenarioStore.setClickedScenario(scenario);
+            },
+            convertI18nObject(objList: I18nObject[]) {
+                return convertI18nObjectToLocale(objList, this.gameParametersStore.language);
+            },
+        }
+    }
+</script>

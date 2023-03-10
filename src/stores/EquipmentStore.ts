@@ -1,73 +1,88 @@
 import { defineStore } from 'pinia';
 import { errorEquipment } from '../assets/entityErrorEquipment';
-import { convertI18nObjectToLocale } from '../helpers/translation';
-import { Equipment, EquipmentLocale } from '../types/Equipment';
-import { EquipmentType, EquipmentTypeLocale } from '../types/EquipmentType';
+import { Equipment, EquipmentDTO } from '../types/Equipment';
+import { EquipmentType } from '../types/EquipmentType';
 
 export const useEquipmentStore = defineStore({id :'EquipmentStore',
     state: () => {
         return {
-            equipments: [errorEquipment] as Equipment [],
+            allEquipmentsTypes: [] as EquipmentType[],
+            allEquipments: [] as EquipmentDTO[],
+            initialEquipments: [errorEquipment] as Equipment[],
+            availableEquipments: [errorEquipment] as Equipment[],
             clickedEquipment: null as null | Equipment
         };
     },
     actions: {
-        async getEquipmentData() {
-            const data = (await import ('../data/equipments.json')).default;
-            this.equipments = data as Equipment[];
+        async fetchEquipments() {
+            const equipmentsTypesData = (await import ('../data/equipmentsTypes.json')).default;
+            const equipmentsData = (await import ('../data/equipments.json')).default;
+            this.allEquipmentsTypes = equipmentsTypesData;
+            this.allEquipments = equipmentsData;
+            useConsumptionStore().fetchAllInitialConsumptions();
         },
         setClickedEquipment(equipment: Equipment | null) {
             this.clickedEquipment = equipment;
         },
-        getEquipmentTypeLocale(type: EquipmentType, locale:string){
-            return {
-                id: type.id,
-                name: convertI18nObjectToLocale(type.names, locale),
-                icon_name: type.icon_name,
-                color: type.color,
-                isBattery: type.isBattery,
-                equipmentTypeDurationParams: type.equipmentTypeDurationParams
-            } as EquipmentTypeLocale;
+        convertEquipmentDtoToEquipment(equipmentDto: EquipmentDTO, isBought:boolean): Equipment {
+            const equipment: Equipment = {
+                id: equipmentDto.id,
+                energy_class: equipmentDto.energy_class,
+                type: this.getEquipmentTypeById(equipmentDto.typeID) as EquipmentType,
+                isBought: isBought,
+                equipmentCostParams: equipmentDto.equipmentCostParams,
+                equipmentConsumptionParams: equipmentDto.equipmentConsumptionParams
+            };
+            return equipment;
         },
-        getListOfEquipmentTypesLocale() {
-            const locale = useGameParametersStore().language;
-            const equipmentTypesLocale: EquipmentTypeLocale[] = [];
-            for(const equipment of this.equipments) {
-                const equipmentTypeLocale = this.getEquipmentTypeLocale(equipment.type, locale);
-                if(!equipmentTypesLocale.find(type => type.id === equipmentTypeLocale.id))
-                    equipmentTypesLocale.push(equipmentTypeLocale);
+        convertEquipments(equipmentsDtoList: EquipmentDTO[], areEquipmentsBought: boolean) {
+            return equipmentsDtoList.map(equipmentDto => this.convertEquipmentDtoToEquipment(equipmentDto,areEquipmentsBought));
+        },
+        getEquipmentFromEquipmentDTOId(id:string, isBought:boolean) {
+            const equipmentDto = this.allEquipments.find(equipmentDto => equipmentDto.id === id);
+            if(equipmentDto){
+                return this.convertEquipmentDtoToEquipment(equipmentDto,isBought);
             }
-            return equipmentTypesLocale;
+            return errorEquipment;
         },
-        convertEquipmentToEquipmentLocale(equipment: Equipment) {
-            const locale = useGameParametersStore().language;
-            const equipmentTypeLocale = this.getEquipmentTypeLocale(equipment.type, locale);
-            return {
-                id: equipment.id,
-                energy_class: equipment.energy_class,
-                type: equipmentTypeLocale,
-                equipmentCostParams: equipment.equipmentCostParams,
-                equipmentConsumptionParams: equipment.equipmentConsumptionParams
-            } as EquipmentLocale;
+        setAvailableEquipments(){
+            const availableEquipmentTypes = useScenarioStore().getEquipmentTypesFromClickedScenario;
+            let equipments = [] as Equipment[];
+            for (const type of availableEquipmentTypes) {
+                for(const equipmentDTO of this.allEquipments) {
+                    if(equipmentDTO.typeID===type.id) {
+                        equipments.push(this.convertEquipmentDtoToEquipment(equipmentDTO,false));
+                    }
+                }
+            }
+            this.availableEquipments=JSON.parse(JSON.stringify(equipments));
         }
     },
     getters: {
-        getEquipmentById:(state) => (id: string) => {
-            return state.equipments.find(equipment => equipment.id === id);
+        getEquipmentTypeById:(state) => (id: string) => {
+            return state.allEquipmentsTypes.find(type => type.id === id);
         },
-        getEquipmentByTypeId:(state) => (id:string) => {
-            const equipmentByType: Equipment[] = [];
-            for(const equipment of state.equipments) {
+        getAvailableEquipmentById:(state) => (id: string) => {
+            return state.availableEquipments.find(equipment => equipment.id === id);
+        },
+        getAvailableEquipmentByTypeId:(state) => (id:string) => {
+            let equipmentByType: Equipment[] = [];
+            for(const equipment of state.availableEquipments) {
                 if(equipment.type.id === id)
                     equipmentByType.push(equipment);
             }
             return equipmentByType;
         },
-        getListOfEquipmentTypes: (state) => () => {
-            const equipmentTypes: EquipmentType[] = [];
-            for(const equipment of state.equipments) {
-                if(!equipmentTypes.includes(equipment.type))
-                    equipmentTypes.push(equipment.type);
+        getEquipmentDTOById:(state) => (id:string) => {
+            return state.allEquipments.find(equipmentDto => equipmentDto.id === id);
+        },
+        getEquipmentsDTOFromIdList:(state) => (equipmentDtoIdList: string[]) => {
+            let equipmentsDtoList: EquipmentDTO[] = [];
+            for (const id of equipmentDtoIdList) {
+                const equipment = state.allEquipments.find(equipmentDto => equipmentDto.id === id);
+                if(equipment && !equipmentsDtoList.includes(equipment)){
+                    equipmentsDtoList.push(equipment);
+                }
             }
         }
     },

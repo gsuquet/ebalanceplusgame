@@ -9,6 +9,13 @@ export interface Consumption {
     equipment: Equipment;
 }
 
+export interface ConsumptionDTO {
+    id: string;
+    startIndex: number;
+    endIndex: number;
+    equipmentID: string;
+}
+
 export interface ConsumptionCurve {
     consumption: Map<number, number>;
     peak: number;
