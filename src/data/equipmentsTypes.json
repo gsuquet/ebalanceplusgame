@@ -1,6 +1,6 @@
 [
     {
-        "id":"dishwasher",
+        "id":"et_dishwasher_1",
         "names":[{"text":"Lave-vaisselle","lang":"fr"},{"text":"Dishwasher","lang":"en"}],
         "icon_name":"mdi:dishwasher",
         "color":"#9A7751",
@@ -16,7 +16,7 @@
         }
     },
     {
-        "id":"Washing-machine",
+        "id":"et_washing_machine_1",
         "names":[{"text":"Machine à laver","lang":"fr"},{"text":"Washing-machine","lang":"en"}],
         "icon_name":"mdi:washing-machine",
         "color":"#00447C",
@@ -33,7 +33,7 @@
 
     },
     {
-        "id":"Tumble dryer",
+        "id":"et_tumble_dryer_1",
         "names":[{"text":"Sèche-linge","lang":"fr"},{"text":"Tumble dryer","lang":"en"}],
         "icon_name":"mdi:tumble-dryer",
         "color":"#C8BBA4",
@@ -50,7 +50,7 @@
 
     },
     {
-        "id":"Television",
+        "id":"et_television_1",
         "names":[{"text":"Télévision","lang":"fr"},{"text":"Television","lang":"en"}],
         "icon_name":"mdi:television",
         "color":"#CCB46B",
@@ -67,7 +67,7 @@
 
     },
     {
-        "id":"Electric-bike",
+        "id":"et_electric_bike_1",
         "names":[{"text":"Vélo électrique","lang":"fr"},{"text":"Electric-bike","lang":"en"}],
         "icon_name":"mdi:bike",
         "color":"#8FCE00",
@@ -84,7 +84,7 @@
 
     },
     {
-        "id":"Electric car",
+        "id":"et_electric_car_1",
         "names":[{"text":"Voiture électrique","lang":"fr"},{"text":"Electric car","lang":"en"}],
         "icon_name":"mdi:car",
         "color":"#134F5C",
@@ -101,7 +101,7 @@
 
     },
     {
-        "id":"Micro-wave",
+        "id":"et_micro_wave_1",
         "names":[{"text":"Micro-ondes","lang":"fr"},{"text":"Micro-wave","lang":"en"}],
         "icon_name":"mdi:microwave",
         "color":"#BCBCBC",
@@ -117,8 +117,8 @@
         }
     },
     {
-        "id":"Kettle",
-        "names":[{"text":"Bouilloire","lang":"fr"},{"text":"Kettle","lang":"en"}],
+        "id":"et_kettle_1",
+        "names":[{"text":"Bouilloire","lang":"fr"},{"text":"Electric Kettle","lang":"en"}],
         "icon_name":"mdi:kettle",
         "color":"#93C47D",
         "isBattery": false,
@@ -134,7 +134,7 @@
 
     },
     {
-        "id":"Internet Box",
+        "id":"et_internet_box_1",
         "names":[{"text":"Box Internet","lang":"fr"},{"text":"Internet Box","lang":"en"}],
         "icon_name":"mdi:wifi",
         "color":"#247384",
@@ -150,7 +150,7 @@
         }
     },
     {
-        "id":"Water-boiler",
+        "id":"et_water_boiler_1",
         "names":[{"text":"Chaudière","lang":"fr"},{"text":"Water-boiler","lang":"en"}],
         "icon_name":"mdi:water-boiler",
         "color":"#247384",
@@ -166,7 +166,7 @@
         }
     },
     {
-        "id":"Toaster-oven",
+        "id":"et_toaster_oven_1",
         "names":[{"text":"Four","lang":"fr"},{"text":"Toaster-oven","lang":"en"}],
         "icon_name":"mdi:toaster-oven",
         "color":"#E69138",
@@ -182,7 +182,7 @@
         }
     },
     {
-        "id":"Toaster",
+        "id":"et_toaster_1",
         "names":[{"text":"Grille-pain","lang":"fr"},{"text":"Toaster","lang":"en"}],
         "icon_name":"mdi:toaster",
         "color":"#FFD966",
@@ -198,7 +198,7 @@
         }
     },
     {
-        "id":"Game console",
+        "id":"et_game_console_1",
         "names":[{"text":"Console de jeu","lang":"fr"},{"text":"Game console","lang":"en"}],
         "icon_name":"mdi:gamepad-variant",
         "color":"#5B5B5B",
@@ -214,7 +214,7 @@
         }
     },
     {
-        "id":"Coffee maker",
+        "id":"et_coffee_maker_1",
         "names":[{"text":"Cafetière","lang":"fr"},{"text":"Coffee maker","lang":"en"}],
         "icon_name":"mdi:coffee-maker",
         "color":"#783F04",
@@ -230,7 +230,7 @@
         }
     },
     {
-        "id":"Fridge",
+        "id":"et_fridge_1",
         "names":[{"text":"Réfrigérateur","lang":"fr"},{"text":"Fridge","lang":"en"}],
         "icon_name":"mdi:fridge",
         "color":"#5CE1E6",
@@ -247,7 +247,7 @@
     },
     {
 
-        "id":"Computer",
+        "id":"et_computer_1",
         "names":[{"text":"Ordinateur","lang":"fr"},{"text":"Computer","lang":"en"}],
         "icon_name":"mdi:import MaterialSymbolsComputerOutlineSharp from '~icons/material-symbols/computer-outline-sharp'",
         "color":"#5CE1E6",
@@ -264,7 +264,7 @@
 
     },
     {
-        "id":"Vaccum",
+        "id":"et_vaccum_1",
         "names":[{"text":"Aspirateur","lang":"fr"},{"text":"Vacuum","lang":"en"}],
         "icon_name":"mdi:vacuum",
         "color":"#9C8C5A",

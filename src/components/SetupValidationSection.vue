@@ -30,6 +30,7 @@
             return {
                 productionStore: useProductionStore(),
                 scenarioStore: useScenarioStore(),
+                equipmentStore: useEquipmentStore(),
                 gameParametersStore: useGameParametersStore(),
                 energyStore: useEnergyStore(),
                 consumptionStore: useConsumptionStore(),
@@ -49,7 +50,8 @@
             },
             initiateGamePage(){
                 this.consumptionStore.addInitialConsumptionToConsumptionList();
-                this.energyStore.getBatteryEquipmentTypes()
+                this.equipmentStore.setAvailableEquipments();
+                this.energyStore.getBatteryEquipmentTypes();
                 this.moneyStore.setInitialMoney();
                 this.gameParametersStore.isGameStarted = true;
                 this.resultsStore.setInitialSituationPerformanceIndicators();

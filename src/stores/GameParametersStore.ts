@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
 import { useProductionStore } from './ProductionStore';
 import i18n from '../modules/i18n';
-import { ScenarioLocale } from '../types/Scenario';
+import { Scenario } from '../types/Scenario';
 import { ProductionCurve } from '../types/Production';
-import { errorScenarioLocale } from '../assets/entityErrorScenario';
+import { errorScenario } from '../assets/entityErrorScenario';
 import { generateStringId } from '../helpers/idGenerator';
 import { Player } from '../types/Multiplayer';
 import { errorProductionCurve } from '../assets/entityErrorProduction';
@@ -18,7 +18,7 @@ export const useGameParametersStore = defineStore({
             language: 'en',
             languageIsUserSet: false,
             theme: 'light',
-            scenario: errorScenarioLocale as ScenarioLocale,
+            scenario: errorScenario as Scenario,
             productionCurve: errorProductionCurve as ProductionCurve,
             isMultiplayer: false,
             isPublic: false,
@@ -45,13 +45,9 @@ export const useGameParametersStore = defineStore({
         },
         setScenario(scenarioId: string) {
             const scenarioImport = useScenarioStore().getScenarioById(scenarioId);
-            if(scenarioImport){
-                this.scenario = useScenarioStore().convertScenarioToScenarioLocale(scenarioImport);
-            } else{
-                this.scenario = errorScenarioLocale;
-            }
+            scenarioImport ? this.scenario = scenarioImport : this.scenario = errorScenario;
         },
-        setProductionCurveAndScenario(productionCurve: ProductionCurve | null, scenario: ScenarioLocale | null) {
+        setProductionCurveAndScenario(productionCurve: ProductionCurve | null, scenario: Scenario| null) {
             if(!productionCurve || !scenario) return;
             this.productionCurve = productionCurve;
             this.scenario = scenario;
@@ -59,7 +55,7 @@ export const useGameParametersStore = defineStore({
         },
         setRandomProductionCurveAndScenario() {
             const randomProductionCurve = useProductionStore().getRandomProductionCurve();
-            const randomScenario = useScenarioStore().getRandomLocaleScenario();
+            const randomScenario = useScenarioStore().getRandomScenario();
             this.setProductionCurveAndScenario(randomProductionCurve, randomScenario);
         },
         setLanguageFromBrowser() {

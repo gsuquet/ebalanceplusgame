@@ -34,3 +34,7 @@ export function getMaxUsableEnergyAmountPossibleOverPeriodWithoutConsumption(
     }
     return getMaxUsableEnergyAmountPossibleOverPeriod(availableEnergyList, usedEnergyToRemoveList, startIndex, endIndex);
 }
+
+export function getUniqueElementsFromList(list: any[]): any[] {
+    return list.filter((item, index) => list.indexOf(item) === index);
+}

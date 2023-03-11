@@ -7,6 +7,7 @@ src
 └── assets
     ├── entityEmptyResults.ts
     ├── entityEmptyTile.ts
+    ├── entityErrorConsumption.ts
     ├── entityErrorEnergyMarketParameters.ts
     ├── entityErrorEnergyStorageParameters.ts
     ├── entityErrorEquipment.ts

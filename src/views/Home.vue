@@ -30,6 +30,7 @@ function initializeParameters() {
         gameParametersStore.setLanguageFromBrowser();
         gameParametersStore.generateGameId();
         productionStore.fetchProductionCurves();
+        equipmentStore.fetchEquipments();
     }
 }
 initializeParameters();
