@@ -1,41 +1,41 @@
 [
     {
-        "id": "1",
-        "names": [{"text": "nom test_fr", "lang": "fr"}, {"text": "name test _en", "lang": "en"}],
-        "days": [{"text":"jour 1", "lang": "fr"}, {"text": "day 1", "lang": "en"}],
+        "id": "2",
+        "names": [{"text": "Victoria et Greg", "lang": "fr"}, {"text": "Victoria and Greg", "lang": "en"}],
+        "days": [{"text":"Mercredi", "lang": "fr"}, {"text": "Wednesday", "lang": "en"}],
         "season": {
-            "id":"season_summer",
-            "names":[{"text":"été", "lang":"fr"}, {"text":"summer", "lang":"en"}],
-            "icon": "mdi:white-balance-sunny",
-            "color": "#FFD700"
+            "id":"season_winter",
+            "names":[{"text":"Hiver", "lang":"fr"}, {"text":"Winter", "lang":"en"}],
+            "icon": "mdi:snowflake",
+            "color": "#00BFFF"
         },
         "descriptions": [
             {
-                "text": "description Française Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", "lang": "fr"
+                "text": "Aujourd’hui il fait -4 degrés, le chauffage dans l’appartement de Gregory et Victoria est réglé sur 20 degrés. À 8 heures c’est le début du travail un café et les deux partent chacun de leur côté avant de se retrouver pour l’heure du midi et se préparer à manger devant la télé, avant de repartir pour une après-midi de travail. À 17 heures Victoria doit aller chercher ses petits frères à l’école et doit les garder 2 heures jusqu’à ce que sa mère finisse son travail. Les enfants prennent leur gouter devant les dessins animés pendant que Gregory prépare le repas, et que Victoria lance lave-vaisselle, la machine et aille prendre sa douche. Enfin les habits lavés sont mis à sécher avant de mettre la voiture électrique en charge et d’aller se coucher.", "lang": "fr"
             }, 
             {
-                "text": "English description Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur", "lang": "en"
+                "text": "today it is -4 degrees, the heat in the apartment of Gregory and Victoria is set to 20 degrees. At 8 o’clock the working day begin, a coffee and the two go their separate ways before cooking and eating together at noon in front of tv, before working again. At 5 pm o’clock Victoria must pick up her little brothers at school and babysit them for 2 hours until her mother leave work. Children eat in front of the cartoons while Gregory prepares the meal, Victoria start the washing machine, the dishwasher and take her shower. Finally, the watched clothes are put to dry, and they charge electric car before going to bed.", "lang": "en"
             }
         ],
         "equipment_types": [
             {
-                "id":"dishwasher",
-                "names":[{"text":"Lave-vaisselle","lang":"fr"},{"text":"Dishwasher","lang":"en"}],
-                "icon_name":"mdi:dishwasher",
-                "color":"#9A7751",
+                "id":"et_tumble_dryer_1",
+                "names":[{"text":"Sèche-linge","lang":"fr"},{"text":"Tumble dryer","lang":"en"}],
+                "icon_name":"mdi:tumble-dryer",
+                "color":"#C8BBA4",
                 "isBattery": false,
                 "isCharging": false,
                 "equipmentTypeDurationParams": {
                     "isDurationEditable": true,
-                    "isDurationLengthEditable": true,
-                    "originalDuration": "00:15",
+                    "isDurationLengthEditable": false,
+                    "originalDuration": "01:30",
                     "step": "00:15",
-                    "minDuration": "00:15",
+                    "minDuration": "01:30",
                     "maxDuration": "23:45"
                 }
             },
             {
-                "id":"washingMachine",
+                "id":"et_washing_machine_1",
                 "names":[{"text":"Machine à laver","lang":"fr"},{"text":"Washing-machine","lang":"en"}],
                 "icon_name":"mdi:washing-machine",
                 "color":"#00447C",
@@ -43,16 +43,738 @@
                 "isCharging": false,
                 "equipmentTypeDurationParams": {
                     "isDurationEditable": true,
+                    "isDurationLengthEditable": false,
+                    "originalDuration": "00:45",
+                    "step": "00:15",
+                    "minDuration": "00:45",
+                    "maxDuration": "23:45"
+                }
+        
+            },
+            {
+                "id":"et_water_boiler_1",
+                "names":[{"text":"Chaudière","lang":"fr"},{"text":"Water-boiler","lang":"en"}],
+                "icon_name":"mdi:water-boiler",
+                "color":"#247384",
+                "isBattery": false,
+                "isCharging": false,
+                "equipmentTypeDurationParams": {
+                    "isDurationEditable": true,
+                    "isDurationLengthEditable": false,
+                    "originalDuration": "1:00",
+                    "step": "00:15",
+                    "minDuration": "1:00",
+                    "maxDuration": "23:45"
+                }
+            },
+            {
+                "id":"et_electric_car_1",
+                "names":[{"text":"Voiture électrique","lang":"fr"},{"text":"Electric car","lang":"en"}],
+                "icon_name":"mdi:car",
+                "color":"#134F5C",
+                "isBattery": false,
+                "isCharging": false,
+                "equipmentTypeDurationParams": {
+                    "isDurationEditable": true,
                     "isDurationLengthEditable": true,
+                    "originalDuration": "8:00",
+                    "step": "00:30",
+                    "minDuration": "04:00",
+                    "maxDuration": "23:45"
+                }
+            },
+            {
+                "id":"et_coffee_maker_1",
+                "names":[{"text":"Cafetière","lang":"fr"},{"text":"Coffee maker","lang":"en"}],
+                "icon_name":"mdi:coffee-maker",
+                "color":"#783F04",
+                "isBattery": false,
+                "isCharging": false,
+                "equipmentTypeDurationParams": {
+                    "isDurationEditable": true,
+                    "isDurationLengthEditable": false,
                     "originalDuration": "00:15",
                     "step": "00:15",
                     "minDuration": "00:15",
                     "maxDuration": "23:45"
                 }
+            },
+            {
+                "id": "et_hob_1",
+                "names":[{"text":"Plaque de cuisson","lang":"fr"},{"text":"Hob","lang":"en"}],
+                "icon_name":"mdi:induction",
+                "color":"#E47436",
+                "isBattery": false,
+                "isCharging": false,
+                "equipmentTypeDurationParams": {
+                    "isDurationEditable": true,
+                    "isDurationLengthEditable": false,
+                    "originalDuration": "01:30",
+                    "step": "00:15",
+                    "minDuration": "01:30",
+                    "maxDuration": "23:45"
+                }
+            }, 
+            {
+                "id":"et_dishwasher_1",
+                "names":[{"text":"Lave-vaisselle","lang":"fr"},{"text":"Dishwasher","lang":"en"}],
+                "icon_name":"mdi:dishwasher",
+                "color":"#9A7751",
+                "isBattery": false,
+                "isCharging": false,
+                "equipmentTypeDurationParams": {
+                    "isDurationEditable": true,
+                    "isDurationLengthEditable": false,
+                    "originalDuration": "02:00",
+                    "step": "00:15",
+                    "minDuration": "02:00",
+                    "maxDuration": "23:45"
+                }
+            },
+            {
+
+                "id": "et_standby_1",
+                "names":[{"text":"Veille","lang":"fr"},{"text":"Standby","lang":"en"}],
+                "icon_name":"mdi:power-standby",
+                "color":"#0E3653",
+                "isBattery": false,
+                "isCharging": false,
+                "equipmentTypeDurationParams": {
+                    "isDurationEditable": true,
+                    "isDurationLengthEditable": true,
+                    "originalDuration": "23:45",
+                    "step": "00:30",
+                    "minDuration": "12:00",
+                    "maxDuration": "23:45"
+                }
+            },
+            {
+                "id":"et_fridge_1",
+                "names":[{"text":"Réfrigérateur","lang":"fr"},{"text":"Fridge","lang":"en"}],
+                "icon_name":"mdi:fridge",
+                "color":"#5CE1E6",
+                "isBattery": false,
+                "isCharging": false,
+                "equipmentTypeDurationParams": {
+                    "isDurationEditable": true,
+                    "isDurationLengthEditable": false,
+                    "originalDuration": "23:45",
+                    "step": "00:15",
+                    "minDuration": "23:45",
+                    "maxDuration": "23:45"
+                } 
+            },
+            {
+                "id":"et_television_1",
+                "names":[{"text":"Télévision","lang":"fr"},{"text":"Television","lang":"en"}],
+                "icon_name":"mdi:television",
+                "color":"#CCB46B",
+                "isBattery": false,
+                "isCharging": false,
+                "equipmentTypeDurationParams": {
+                    "isDurationEditable": true,
+                    "isDurationLengthEditable": true,
+                    "originalDuration": "3:00",
+                    "step": "00:15",
+                    "minDuration": "00:15",
+                    "maxDuration": "23:45"
+                }
+            },
+            {
+                "id":"et_heater_1",
+                "names":[{"text":"Chauffage","lang":"fr"},{"text":"Heater","lang":"en"}],
+                "icon_name":"material-symbols:water-heater",
+                "color":"#9C8C5A",
+                "isBattery": false,
+                "isCharging": false,
+                "equipmentTypeDurationParams": {
+                    "isDurationEditable": true,
+                    "isDurationLengthEditable": false,
+                    "originalDuration": "08:00",
+                    "step": "00:15",
+                    "minDuration": "8:00",
+                    "maxDuration": "23:45"
+                }
+            },
+            {
+                "id":"et_heater_2",
+                "names":[{"text":"Chauffage","lang":"fr"},{"text":"Heater","lang":"en"}],
+                "icon_name":"material-symbols:water-heater",
+                "color":"#9C8C5A",
+                "isBattery": false,
+                "isCharging": false,
+                "equipmentTypeDurationParams": {
+                    "isDurationEditable": true,
+                    "isDurationLengthEditable": false,
+                    "originalDuration": "07:00",
+                    "step": "00:15",
+                    "minDuration": "7:00",
+                    "maxDuration": "23:45"
+                }
             }
         ],
         "initial_consumption": [
-            
+            {
+                "id":"179019",
+                "startIndex":0,
+                "endIndex":23,
+                "amount":60,
+                "price":200,
+                "equipment":{
+                    "id":"17",
+                    "energy_class":"A",
+                    "type":{
+                        "id":"et_electric_car_1",
+                        "names":[
+                        {
+                            "text":"Voiture électrique",
+                            "lang":"fr"
+                        },
+                        {
+                            "text":"Electric car",
+                            "lang":"en"
+                        }
+                        ],
+                        "icon_name":"mdi:car",
+                        "color":"#134F5C",
+                        "isBattery":false,
+                        "isCharging":false,
+                        "equipmentTypeDurationParams":{
+                        "isDurationEditable":true,
+                        "isDurationLengthEditable":true,
+                        "originalDuration":"8:00",
+                        "step":"00:30",
+                        "minDuration":"04:00",
+                        "maxDuration":"23:45"
+                        }
+                    },
+                    "equipmentCostParams":{
+                        "originalPrice":200,
+                        "hasCost":true,
+                        "isCostEditable":false,
+                        "step":10,
+                        "minCost":25,
+                        "maxCost":500
+                    },
+                    "equipmentConsumptionParams":{
+                        "originalConsumption":60,
+                        "isConsumptionEditable":false,
+                        "step":100,
+                        "minConsumption":1200,
+                        "maxConsumption":2400
+                    }
+                }
+            },
+            {
+                "id":"16107",
+                "startIndex":0,
+                "endIndex":31,
+                "amount":50,
+                "price":200,
+                "equipment":{
+                    "id":"22",
+                    "energy_class":"A",
+                    "type":{
+                        "id":"et_heater_1",
+                        "names":[
+                        {
+                            "text":"Chauffage",
+                            "lang":"fr"
+                        },
+                        {
+                            "text":"Heater",
+                            "lang":"en"
+                        }
+                        ],
+                        "icon_name":"material-symbols:water-heater",
+                        "color":"#9C8C5A",
+                        "isBattery":false,
+                        "isCharging":false,
+                        "equipmentTypeDurationParams":{
+                        "isDurationEditable":true,
+                        "isDurationLengthEditable":false,
+                        "originalDuration":"08:00",
+                        "step":"00:15",
+                        "minDuration":"8:00",
+                        "maxDuration":"23:45"
+                        }
+                    },
+                    "equipmentCostParams":{
+                        "originalPrice":200,
+                        "hasCost":true,
+                        "isCostEditable":false,
+                        "step":10,
+                        "minCost":50,
+                        "maxCost":2000
+                    },
+                    "equipmentConsumptionParams":{
+                        "originalConsumption":50,
+                        "isConsumptionEditable":false,
+                        "step":10,
+                        "minConsumption":0,
+                        "maxConsumption":2000
+                    }
+                }
+            },
+            {
+                "id":"408803",
+                "startIndex":31,
+                "endIndex":31,
+                "amount":1000,
+                "price":100,
+                "equipment":{
+                    "id":"18",
+                    "energy_class":"A",
+                    "type":{
+                        "id":"et_coffee_maker_1",
+                        "names":[
+                        {
+                            "text":"Cafetière",
+                            "lang":"fr"
+                        },
+                        {
+                            "text":"Coffee maker",
+                            "lang":"en"
+                        }
+                        ],
+                        "icon_name":"mdi:coffee-maker",
+                        "color":"#783F04",
+                        "isBattery":false,
+                        "isCharging":false,
+                        "equipmentTypeDurationParams":{
+                        "isDurationEditable":true,
+                        "isDurationLengthEditable":false,
+                        "originalDuration":"00:15",
+                        "step":"00:15",
+                        "minDuration":"00:15",
+                        "maxDuration":"23:45"
+                        }
+                    },
+                    "equipmentCostParams":{
+                        "originalPrice":100,
+                        "hasCost":true,
+                        "isCostEditable":false,
+                        "step":10,
+                        "minCost":25,
+                        "maxCost":500
+                    },
+                    "equipmentConsumptionParams":{
+                        "originalConsumption":1000,
+                        "isConsumptionEditable":false,
+                        "step":100,
+                        "minConsumption":1200,
+                        "maxConsumption":2400
+                    }
+                }
+            },
+            {
+                "id":"944716",
+                "startIndex":48,
+                "endIndex":55,
+                "amount":100,
+                "price":400,
+                "equipment":{
+                    "id":"21",
+                    "energy_class":"A",
+                    "type":{
+                        "id":"et_television_1",
+                        "names":[
+                        {
+                            "text":"Télévision",
+                            "lang":"fr"
+                        },
+                        {
+                            "text":"Television",
+                            "lang":"en"
+                        }
+                        ],
+                        "icon_name":"mdi:television",
+                        "color":"#CCB46B",
+                        "isBattery":false,
+                        "isCharging":false,
+                        "equipmentTypeDurationParams":{
+                        "isDurationEditable":true,
+                        "isDurationLengthEditable":true,
+                        "originalDuration":"3:00",
+                        "step":"00:15",
+                        "minDuration":"00:15",
+                        "maxDuration":"23:45"
+                        }
+                    },
+                    "equipmentCostParams":{
+                        "originalPrice":400,
+                        "hasCost":true,
+                        "isCostEditable":false,
+                        "step":10,
+                        "minCost":50,
+                        "maxCost":2000
+                    },
+                    "equipmentConsumptionParams":{
+                        "originalConsumption":100,
+                        "isConsumptionEditable":false,
+                        "step":10,
+                        "minConsumption":0,
+                        "maxConsumption":2000
+                    }
+                }
+            },
+            {
+                "id":"426496",
+                "startIndex":48,
+                "endIndex":53,
+                "amount":2400,
+                "price":25,
+                "equipment":{
+                    "id":"19",
+                    "energy_class":"A",
+                    "type":{
+                        "id":"et_hob_1",
+                        "names":[
+                        {
+                            "text":"Plaque de cuisson",
+                            "lang":"fr"
+                        },
+                        {
+                            "text":"Hob",
+                            "lang":"en"
+                        }
+                        ],
+                        "icon_name":"mdi:induction",
+                        "color":"#E47436",
+                        "isBattery":false,
+                        "isCharging":false,
+                        "equipmentTypeDurationParams":{
+                        "isDurationEditable":true,
+                        "isDurationLengthEditable":false,
+                        "originalDuration":"01:30",
+                        "step":"00:15",
+                        "minDuration":"01:30",
+                        "maxDuration":"23:45"
+                        }
+                    },
+                    "equipmentCostParams":{
+                        "originalPrice":25,
+                        "hasCost":true,
+                        "isCostEditable":false,
+                        "step":10,
+                        "minCost":25,
+                        "maxCost":500
+                    },
+                    "equipmentConsumptionParams":{
+                        "originalConsumption":2400,
+                        "isConsumptionEditable":false,
+                        "step":100,
+                        "minConsumption":1200,
+                        "maxConsumption":2400
+                    }
+                }
+            },
+            {
+                "id":"599721",
+                "startIndex":64,
+                "endIndex":67,
+                "amount":2000,
+                "price":250,
+                "equipment":{
+                    "id":"16",
+                    "energy_class":"A",
+                    "type":{
+                        "id":"et_water_boiler_1",
+                        "names":[
+                        {
+                            "text":"Chaudière",
+                            "lang":"fr"
+                        },
+                        {
+                            "text":"Water-boiler",
+                            "lang":"en"
+                        }
+                        ],
+                        "icon_name":"mdi:water-boiler",
+                        "color":"#247384",
+                        "isBattery":false,
+                        "isCharging":false,
+                        "equipmentTypeDurationParams":{
+                        "isDurationEditable":true,
+                        "isDurationLengthEditable":false,
+                        "originalDuration":"1:00",
+                        "step":"00:15",
+                        "minDuration":"1:00",
+                        "maxDuration":"23:45"
+                        }
+                    },
+                    "equipmentCostParams":{
+                        "originalPrice":250,
+                        "hasCost":true,
+                        "isCostEditable":false,
+                        "step":10,
+                        "minCost":25,
+                        "maxCost":500
+                    },
+                    "equipmentConsumptionParams":{
+                        "originalConsumption":2000,
+                        "isConsumptionEditable":false,
+                        "step":100,
+                        "minConsumption":1200,
+                        "maxConsumption":2400
+                    }
+                }
+            },
+            {
+                "id":"591973",
+                "startIndex":68,
+                "endIndex":70,
+                "amount":1200,
+                "price":500,
+                "equipment":{
+                    "id":"7",
+                    "energy_class":"A",
+                    "type":{
+                        "id":"washingMachine",
+                        "names":[
+                        {
+                            "text":"Machine à laver",
+                            "lang":"fr"
+                        },
+                        {
+                            "text":"Washing-machine",
+                            "lang":"en"
+                        }
+                        ],
+                        "icon_name":"mdi:washing-machine",
+                        "color":"#00447C",
+                        "isBattery":false,
+                        "isCharging":false,
+                        "equipmentTypeDurationParams":{
+                        "isDurationEditable":true,
+                        "isDurationLengthEditable":true,
+                        "originalDuration":"00:15",
+                        "step":"00:15",
+                        "minDuration":"00:15",
+                        "maxDuration":"23:45"
+                        }
+                    },
+                    "equipmentCostParams":{
+                        "originalPrice":500,
+                        "hasCost":true,
+                        "isCostEditable":false,
+                        "step":10,
+                        "minCost":25,
+                        "maxCost":500
+                    },
+                    "equipmentConsumptionParams":{
+                        "originalConsumption":1200,
+                        "isConsumptionEditable":false,
+                        "step":100,
+                        "minConsumption":1200,
+                        "maxConsumption":2400
+                    }
+                }
+            },
+            {
+                "id":"707593",
+                "startIndex":70,
+                "endIndex":77,
+                "amount":100,
+                "price":400,
+                "equipment":{
+                    "id":"21",
+                    "energy_class":"A",
+                    "type":{
+                        "id":"et_television_1",
+                        "names":[
+                        {
+                            "text":"Télévision",
+                            "lang":"fr"
+                        },
+                        {
+                            "text":"Television",
+                            "lang":"en"
+                        }
+                        ],
+                        "icon_name":"mdi:television",
+                        "color":"#CCB46B",
+                        "isBattery":false,
+                        "isCharging":false,
+                        "equipmentTypeDurationParams":{
+                        "isDurationEditable":true,
+                        "isDurationLengthEditable":true,
+                        "originalDuration":"3:00",
+                        "step":"00:15",
+                        "minDuration":"00:15",
+                        "maxDuration":"23:45"
+                        }
+                    },
+                    "equipmentCostParams":{
+                        "originalPrice":400,
+                        "hasCost":true,
+                        "isCostEditable":false,
+                        "step":10,
+                        "minCost":50,
+                        "maxCost":2000
+                    },
+                    "equipmentConsumptionParams":{
+                        "originalConsumption":100,
+                        "isConsumptionEditable":false,
+                        "step":10,
+                        "minConsumption":0,
+                        "maxConsumption":2000
+                    }
+                }
+            },
+            {
+                "id":"311604",
+                "startIndex":88,
+                "endIndex":93,
+                "amount":2000,
+                "price":600,
+                "equipment":{
+                    "id":"15",
+                    "energy_class":"A",
+                    "type":{
+                        "id":"et_tumble_dryer_1",
+                        "names":[
+                        {
+                            "text":"Sèche-linge",
+                            "lang":"fr"
+                        },
+                        {
+                            "text":"Tumble dryer",
+                            "lang":"en"
+                        }
+                        ],
+                        "icon_name":"mdi:tumble-dryer",
+                        "color":"#C8BBA4",
+                        "isBattery":false,
+                        "isCharging":false,
+                        "equipmentTypeDurationParams":{
+                        "isDurationEditable":true,
+                        "isDurationLengthEditable":false,
+                        "originalDuration":"01:30",
+                        "step":"00:15",
+                        "minDuration":"01:30",
+                        "maxDuration":"23:45"
+                        }
+                    },
+                    "equipmentCostParams":{
+                        "originalPrice":600,
+                        "hasCost":true,
+                        "isCostEditable":false,
+                        "step":10,
+                        "minCost":25,
+                        "maxCost":650
+                    },
+                    "equipmentConsumptionParams":{
+                        "originalConsumption":2000,
+                        "isConsumptionEditable":false,
+                        "step":100,
+                        "minConsumption":1200,
+                        "maxConsumption":2400
+                    }
+                }
+            },
+            {
+                "id":"24731",
+                "startIndex":88,
+                "endIndex":94,
+                "amount":60,
+                "price":200,
+                "equipment":{
+                    "id":"17",
+                    "energy_class":"A",
+                    "type":{
+                        "id":"et_electric_car_1",
+                        "names":[
+                        {
+                            "text":"Voiture électrique",
+                            "lang":"fr"
+                        },
+                        {
+                            "text":"Electric car",
+                            "lang":"en"
+                        }
+                        ],
+                        "icon_name":"mdi:car",
+                        "color":"#134F5C",
+                        "isBattery":false,
+                        "isCharging":false,
+                        "equipmentTypeDurationParams":{
+                        "isDurationEditable":true,
+                        "isDurationLengthEditable":true,
+                        "originalDuration":"8:00",
+                        "step":"00:30",
+                        "minDuration":"04:00",
+                        "maxDuration":"23:45"
+                        }
+                    },
+                    "equipmentCostParams":{
+                        "originalPrice":200,
+                        "hasCost":true,
+                        "isCostEditable":false,
+                        "step":10,
+                        "minCost":25,
+                        "maxCost":500
+                    },
+                    "equipmentConsumptionParams":{
+                        "originalConsumption":60,
+                        "isConsumptionEditable":false,
+                        "step":100,
+                        "minConsumption":1200,
+                        "maxConsumption":2400
+                    }
+                }
+            },
+            {
+                "id":"325113",
+                "startIndex":88,
+                "endIndex":94,
+                "amount":1300,
+                "price":500,
+                "equipment":{
+                    "id":"1",
+                    "energy_class":"A",
+                    "type":{
+                        "id":"et_dishwasher_1",
+                        "names":[
+                        {
+                            "text":"Lave-vaisselle",
+                            "lang":"fr"
+                        },
+                        {
+                            "text":"Dishwasher",
+                            "lang":"en"
+                        }
+                        ],
+                        "icon_name":"mdi:dishwasher",
+                        "color":"#9A7751",
+                        "isBattery":false,
+                        "isCharging":false,
+                        "equipmentTypeDurationParams":{
+                        "isDurationEditable":true,
+                        "isDurationLengthEditable":false,
+                        "originalDuration":"02:00",
+                        "step":"00:15",
+                        "minDuration":"02:00",
+                        "maxDuration":"23:45"
+                        }
+                    },
+                    "equipmentCostParams":{
+                        "originalPrice":500,
+                        "hasCost":true,
+                        "isCostEditable":false,
+                        "step":10,
+                        "minCost":50,
+                        "maxCost":500
+                    },
+                    "equipmentConsumptionParams":{
+                        "originalConsumption":1300,
+                        "isConsumptionEditable":false,
+                        "step":100,
+                        "minConsumption":1300,
+                        "maxConsumption":2300
+                    }
+                }
+            }
         ],
         "energyStorageParameters": {
             "isEnergyStorage": true,
@@ -82,4 +804,5 @@
             "moneyCurrencyIcon": "mdi:currency-eur"
         }
     }
+
 ]

@@ -1,3 +1,5 @@
+
+
 [
     {
         "id":"et_dishwasher_1",
@@ -64,7 +66,6 @@
             "minDuration": "00:15",
             "maxDuration": "23:45"
         }
-
     },
     {
         "id":"et_electric_bike_1",
@@ -267,6 +268,55 @@
         "id":"et_vaccum_1",
         "names":[{"text":"Aspirateur","lang":"fr"},{"text":"Vacuum","lang":"en"}],
         "icon_name":"mdi:vacuum",
+        "color":"#9C8C5A",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id": "et_hob_1",
+        "names":[{"text":"Plaque de cuisson","lang":"fr"},{"text":"Hob","lang":"en"}],
+        "icon_name":"mdi:induction",
+        "color":"#E47436",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+
+        "id": "et_standby_1",
+        "names":[{"text":"Veille","lang":"fr"},{"text":"Standby","lang":"en"}],
+        "icon_name":"mdi:power-standby",
+        "color":"#0E3653",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "23:45",
+            "step": "00:30",
+            "minDuration": "12:00",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"et_heater_1",
+        "names":[{"text":"Chauffage","lang":"fr"},{"text":"Heater","lang":"en"}],
+        "icon_name":"material-symbols:water-heater",
         "color":"#9C8C5A",
         "isBattery": false,
         "isCharging": false,
