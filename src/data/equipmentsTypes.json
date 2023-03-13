@@ -278,5 +278,21 @@
             "minDuration": "00:15",
             "maxDuration": "23:45"
         }
+    },
+    {
+"id":"heater",
+        "names":[{"text":"Chauffage","lang":"fr"},{"text":"Heater","lang":"en"}],
+        "icon_name":"material-symbols:water-heater",
+        "color":"#9C8C5A",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
     }
 ]
