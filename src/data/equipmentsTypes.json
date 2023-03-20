@@ -264,7 +264,7 @@
 
     },
     {
-        "id":"et_vaccum_1",
+        "id":"et_vacuum_1",
         "names":[{"text":"Aspirateur","lang":"fr"},{"text":"Vacuum","lang":"en"}],
         "icon_name":"mdi:vacuum",
         "color":"#9C8C5A",
@@ -284,6 +284,182 @@
         "names":[{"text":"Chauffage","lang":"fr"},{"text":"Heater","lang":"en"}],
         "icon_name":"material-symbols:water-heater",
         "color":"#9C8C5A",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"et_baby_bottle_warmer_1",
+        "names":[{"text":"Chauffe-biberon","lang":"fr"},{"text":"Baby bottle warmer","lang":"en"}],
+        "icon_name":"mdi:baby-bottle",
+        "color":"#FF33F0",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"et_sewing_machine_1",
+        "names":[{"text":"Machine à coudre","lang":"fr"},{"text":"Sewing machine","lang":"en"}],
+        "icon_name":"game-icons:sewing-machine",
+        "color":"#B257AB",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"et_lighting_1",
+        "names":[{"text":"Éclairage","lang":"fr"},{"text":"Lighting","lang":"en"}],
+        "icon_name":"mdi:lightbulb",
+        "color":"#FFD801",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"et_wireless_speaker_1",
+        "names":[{"text":"Enceinte connectée","lang":"fr"},{"text":"Wireless speaker","lang":"en"}],
+        "icon_name":"mdi:speaker-wireless",
+        "color":"#052FEA",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"et_speaker_1",
+        "names":[{"text":"Enceinte","lang":"fr"},{"text":"Speaker","lang":"en"}],
+        "icon_name":"mdi:speaker",
+        "color":"#8A8A8A",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"et_electric_piano_1",
+        "names":[{"text":"Piano","lang":"fr"},{"text":"Piano","lang":"en"}],
+        "icon_name":"mdi:piano",
+        "color":"#3E3E3E",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"et_electric_guitar_1",
+        "names":[{"text":"Guitare","lang":"fr"},{"text":"Guitar","lang":"en"}],
+        "icon_name":"mdi:guitar-acoustic",
+        "color":"#772800",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"et_electric_drill_1",
+        "names":[{"text":"Perceuse","lang":"fr"},{"text":"Electric drill","lang":"en"}],
+        "icon_name":"material-symbols:tools-power-drill",
+        "color":"#970000",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"et_electric_fan_1",
+        "names":[{"text":"Ventilateur","lang":"fr"},{"text":"Electric fan","lang":"en"}],
+        "icon_name":"mdi:fan",
+        "color":"#008506",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"et_electric_mixer_1",
+        "names":[{"text":"Mélangeur","lang":"fr"},{"text":"Electric mixer","lang":"en"}],
+        "icon_name":"mdi:mixer",
+        "color":"#00857D",
+        "isBattery": false,
+        "isCharging": false,
+        "equipmentTypeDurationParams": {
+            "isDurationEditable": true,
+            "isDurationLengthEditable": true,
+            "originalDuration": "00:15",
+            "step": "00:15",
+            "minDuration": "00:15",
+            "maxDuration": "23:45"
+        }
+    },
+    {
+        "id":"et_electric_toothbrush_1",
+        "names":[{"text":"Brosse à dents","lang":"fr"},{"text":"Electric toothbrush","lang":"en"}],
+        "icon_name":"mdi:toothbrush",
+        "color":"#ADD3D1",
         "isBattery": false,
         "isCharging": false,
         "equipmentTypeDurationParams": {
