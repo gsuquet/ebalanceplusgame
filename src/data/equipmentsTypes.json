@@ -280,7 +280,7 @@
         }
     },
     {
-"id":"heater",
+        "id":"et_heater_1",
         "names":[{"text":"Chauffage","lang":"fr"},{"text":"Heater","lang":"en"}],
         "icon_name":"material-symbols:water-heater",
         "color":"#9C8C5A",
