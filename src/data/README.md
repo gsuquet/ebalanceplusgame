@@ -12,6 +12,7 @@ src
     ├── energyStorageParameters.json
     ├── equipments.json
     ├── equipmentTypes.json
+    ├── equipmentTypesDurationParameters.json
     ├── moneyParameters.json
     ├── productionCurves.json
     ├── scenarios.json
@@ -39,6 +40,10 @@ List of all available equipments, to be used by the different scenarios.
 
 ### `equipmentTypes.json`
 List of all available equipment types, to be used by the different equipments and scenarios.
+
+### `equipmentTypesDurationParameters.json`
+Different parameters used for the duration of the equipment types. Currently unused as the parameters are set directly in `equipmentTypes.json`.  
+To be used in a future version.
 
 ### `moneyParameters.json`
 Contains the parameters of the user's available money.
