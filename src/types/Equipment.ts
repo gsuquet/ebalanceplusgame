@@ -1,4 +1,4 @@
-import { EquipmentType, EquipmentTypeLocale } from './EquipmentType';
+import { EquipmentType } from './EquipmentType';
 
 export interface Equipment{
     id: string,
@@ -13,14 +13,6 @@ export interface EquipmentDTO{
     id: string,
     energy_class: string,
     typeID: string,
-    equipmentCostParams: EquipmentCostParams,
-    equipmentConsumptionParams: EquipmentConsumptionParams
-}
-
-export interface EquipmentLocale{
-    id: string,
-    type: EquipmentTypeLocale,
-    energy_class: string,
     equipmentCostParams: EquipmentCostParams,
     equipmentConsumptionParams: EquipmentConsumptionParams
 }
