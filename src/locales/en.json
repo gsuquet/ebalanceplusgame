@@ -46,7 +46,8 @@
         "consumptionAmountLowerThanMin": "Your consumption amount is lower than the min consumption",
         "timeError": "The time must be comprised between 0 and 23. The start time must be before the end time.",
         "amountErrorHigherThanEnergyStorageCapacity": "The total amount must be lower than the energy storage capacity",
-        "amountErrorHigherThanEnergyStored": "The total amount must be lower than the energy stored"
+        "amountErrorHigherThanEnergyStored": "The total amount must be lower than the energy stored",
+        "notEnoughMoney": "You don't have enough money"
     },
     "money":{
         "cost": "Cost",

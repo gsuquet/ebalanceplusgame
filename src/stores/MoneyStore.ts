@@ -25,12 +25,6 @@ export const useMoneyStore = defineStore({
         addMoney(moneyToAdd: number) {
             this.money = this.money + moneyToAdd;
         },
-        checkIfMoneyCanBeTakeOff(moneyToTakeOff: number) {
-            if(this.money > moneyToTakeOff)
-                return true;
-            else
-                return false;
-        },
         canWithdrawMoney(moneyToWithdraw: number) {
             if(this.money >= moneyToWithdraw)
                 return true;
@@ -44,12 +38,6 @@ export const useMoneyStore = defineStore({
             } else {
                 return false;
             }
-        },
-        takeOffMoney(moneyToTakeOff: number) {
-            if(this.checkIfMoneyCanBeTakeOff(moneyToTakeOff))
-                this.money = this.money - moneyToTakeOff;
-            else
-                console.log("error") //TODO make a real error message
         },
         setTotalPriceList(){
             const scenario: Scenario | null = useScenarioStore().clickedScenario;

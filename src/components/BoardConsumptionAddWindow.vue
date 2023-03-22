@@ -42,6 +42,7 @@ import { convertI18nObjectToLocale } from '../helpers/translation';
         data() {
             return {
                 gameParametersStore: useGameParametersStore(),
+                moneyStore: useMoneyStore(),
                 consumptionId: '' as string,
                 startIndex: 0 as number,
                 endIndex: 0 as number,
@@ -63,6 +64,7 @@ import { convertI18nObjectToLocale } from '../helpers/translation';
                 consumptionStore.addConsumption(
                     save.startIndex, save.endIndex, this.equipment, save.amount, save.price
                 );
+                this.moneyStore.withdrawMoney(save.price);
                 equipmentStore.clickedEquipment = null;
             },
             amountError() {
@@ -70,12 +72,19 @@ import { convertI18nObjectToLocale } from '../helpers/translation';
             },
             timeError() {
                 alert(this.$t('error.timeError'));
+            },
+            checkCost() {
+                if (!this.equipment.isBought && !this.moneyStore.canWithdrawMoney(this.equipment.equipmentCostParams.originalPrice)) {
+                    alert(this.$t('error.notEnoughMoney'));
+                    this.closeAddPopup();
+                }
             }
         },
         mounted() {
             this.consumption = this.equipment.equipmentConsumptionParams.originalConsumption;
             this.price = this.equipment.equipmentCostParams.originalPrice;
             this.consumptionId = generateStringId();
+            this.checkCost();
         }
     }
 </script>
