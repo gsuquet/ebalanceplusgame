@@ -1,4 +1,4 @@
-import { EquipmentType, EquipmentTypeLocale, EquipmentTypeDurationParams } from "../types/EquipmentType"
+import { EquipmentType, EquipmentTypeDurationParams } from "../types/EquipmentType"
 
 const errorEquipmentTypeDurationParams = {
     isDurationEditable: false,
@@ -18,13 +18,3 @@ export const errorEquipmentType = {
     isCharging: false,
     equipmentTypeDurationParams: errorEquipmentTypeDurationParams
 } as EquipmentType;
-
-export const errorEquipmentTypeLocale = {
-    id: 'error',
-    name: 'Error',
-    icon_name: 'mdi:null',
-    color: '#000000',
-    isBattery: false,
-    isCharging: false,
-    equipmentTypeDurationParams: errorEquipmentTypeDurationParams
-} as EquipmentTypeLocale;
