@@ -10,7 +10,16 @@ export interface EquipmentType{
     equipmentTypeDurationParams: EquipmentTypeDurationParams,
 }
 
+export interface EquipmentTypeDTO {
+    id: string,
+    names: I18nObject[],
+    icon_name: string,
+    color: string,
+    equipmentTypeDurationParamsId: string,
+}
+
 export interface EquipmentTypeDurationParams{
+    id: string,
     isDurationEditable: boolean,
     isDurationLengthEditable: boolean,
     originalDuration: string,

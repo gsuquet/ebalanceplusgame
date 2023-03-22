@@ -1,6 +1,7 @@
 import { EquipmentType, EquipmentTypeDurationParams } from "../types/EquipmentType"
 
 const errorEquipmentTypeDurationParams = {
+    id: 'error',
     isDurationEditable: false,
     isDurationLengthEditable: false,
     originalDuration: '00:15',

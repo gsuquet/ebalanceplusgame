@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia';
 import { errorEquipment } from '../assets/entityErrorEquipment';
 import { Equipment, EquipmentDTO } from '../types/Equipment';
-import { EquipmentType } from '../types/EquipmentType';
+import { EquipmentType, EquipmentTypeDTO, EquipmentTypeDurationParams } from '../types/EquipmentType';
 
 export const useEquipmentStore = defineStore({id :'EquipmentStore',
     state: () => {
         return {
+            equipmentsTypesDurationParameters: [] as EquipmentTypeDurationParams[],
             allEquipmentsTypes: [] as EquipmentType[],
             allEquipments: [] as EquipmentDTO[],
             availableEquipments: [errorEquipment] as Equipment[],
@@ -14,14 +15,30 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
     },
     actions: {
         async fetchEquipments() {
+            this.equipmentsTypesDurationParameters = (await import ('../data/equipmentsTypesDurationParameters.json')).default;
             const equipmentsTypesData = (await import ('../data/equipmentsTypes.json')).default;
             const equipmentsData = (await import ('../data/equipments.json')).default;
-            this.allEquipmentsTypes = equipmentsTypesData;
+            this.allEquipmentsTypes = this.convertEquipmentTypes(equipmentsTypesData);
             this.allEquipments = equipmentsData;
             useConsumptionStore().fetchAllInitialConsumptions();
         },
         setClickedEquipment(equipment: Equipment | null) {
             this.clickedEquipment = equipment;
+        },
+        convertEquipmentTypeDtoToEquipmentType(equipmentTypeDto: EquipmentTypeDTO, isBattery:boolean, isCharging:boolean): EquipmentType {
+            const equipmentType: EquipmentType = {
+                id: equipmentTypeDto.id,
+                names: equipmentTypeDto.names,
+                icon_name: equipmentTypeDto.icon_name,
+                color: equipmentTypeDto.color,
+                isBattery: isBattery,
+                isCharging: isCharging,
+                equipmentTypeDurationParams: this.equipmentsTypesDurationParameters.find(equipmentTypeDurationParams => equipmentTypeDurationParams.id === equipmentTypeDto.equipmentTypeDurationParamsId) as EquipmentTypeDurationParams
+            }
+            return equipmentType;
+        },
+        convertEquipmentTypes(equipmentTypesDtoList: EquipmentTypeDTO[]) {
+            return equipmentTypesDtoList.map(equipmentTypeDto => this.convertEquipmentTypeDtoToEquipmentType(equipmentTypeDto, false, false));
         },
         convertEquipmentDtoToEquipment(equipmentDto: EquipmentDTO, isBought:boolean): Equipment {
             const equipment: Equipment = {
