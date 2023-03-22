@@ -1,3 +1,5 @@
+@import '../utilities/mixins.scss';
+
 .list-equipment {
 	position: fixed;
 	display: flex;
@@ -6,6 +8,8 @@
 	background-color: var(--theme-color-secondary);
 	border-radius: 15px;
 	margin-left: 0.2rem;
+	overflow-y: auto;
+	@include scrollbar();
 	.icon-container {
 		display: flex;
 		align-items: center;
