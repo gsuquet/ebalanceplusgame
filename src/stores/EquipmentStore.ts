@@ -8,7 +8,6 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
         return {
             allEquipmentsTypes: [] as EquipmentType[],
             allEquipments: [] as EquipmentDTO[],
-            initialEquipments: [errorEquipment] as Equipment[],
             availableEquipments: [errorEquipment] as Equipment[],
             clickedEquipment: null as null | Equipment
         };
@@ -55,7 +54,21 @@ export const useEquipmentStore = defineStore({id :'EquipmentStore',
                     }
                 }
             }
-            this.availableEquipments=JSON.parse(JSON.stringify(equipments));
+            const equipmentsCopy = JSON.parse(JSON.stringify(equipments)) as Equipment[];
+            const usedEquipments = useConsumptionStore().getUsedEquipmentList;
+            for (const usedEquipment of usedEquipments) {
+                const index = equipmentsCopy.findIndex(equipment => equipment.id === usedEquipment.id);
+                if(index !== -1) {
+                    equipmentsCopy[index] = usedEquipment;
+                }
+            }
+            this.availableEquipments = equipmentsCopy;
+        },
+        updateAvailableEquipments(equipment: Equipment) {
+            const index = this.availableEquipments.findIndex(equipmentInList => equipmentInList.id === equipment.id);
+            if(index !== -1) {
+                this.availableEquipments[index] = equipment;
+            }
         }
     },
     getters: {

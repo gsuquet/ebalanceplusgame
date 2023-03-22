@@ -23,7 +23,7 @@ export interface ScenarioDTO {
     seasonId: string,
     dayId: string,
     descriptions: I18nObject[],
-    equipmentTypesIds: string[],
+    additionalEquipmentTypesIds: string[],
     initialConsumptionIds: string[],
     energyStorageParametersId: string,
     energyMarketParametersId: string,
