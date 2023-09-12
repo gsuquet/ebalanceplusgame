@@ -210,5 +210,19 @@
         "icon_name":"mdi:toothbrush",
         "color":"#ADD3D1",
         "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_stove_1",
+        "names":[{"text":"Plaque de cuisson","lang":"fr"},{"text":"Stove","lang":"en"}],
+        "icon_name":"mdi:induction",
+        "color":"#E47436",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_standby_1",
+        "names":[{"text":"Veille","lang":"fr"},{"text":"Standby","lang":"en"}],
+        "icon_name":"mdi:power-standby",
+        "color":"#0E3653",
+        "equipmentTypeDurationParamsId": "etdp_24h_editable"
     }
 ]
