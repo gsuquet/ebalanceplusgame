@@ -19,3 +19,55 @@ updates:
     target-branch: "main"
     commit-message:
       prefix: ':green_heart: chore(deps)'
+    groups:
+      vue:
+        patterns:
+        - "vue*"
+        - "@vue*"
+        - "pinia*"
+        update-types:
+        - "minor"
+        - "patch"
+      vite:
+        patterns:
+        - "vite*"
+        - "@vite*"
+        update-types:
+        - "minor"
+        - "patch"
+      unplugin:
+        patterns:
+        - "unplugin*"
+        - "*unplugin*"
+        update-types:
+        - "minor"
+        - "patch"
+      vueuse:
+        patterns:
+        - "vueuse*"
+        - "@vueuse*"
+        update-types:
+        - "minor"
+        - "patch"
+      iconify:
+        patterns:
+        - "@iconify*"
+        update-types:
+        - "minor"
+        - "patch"
+      dev-tools:
+        patterns:
+        - "eslint*"
+        - "*eslint*"
+        - "prettier*"
+        - "husky*"
+        - "typescript*"
+        update-types:
+        - "minor"
+        - "patch"
+      style:
+        patterns:
+        - "sass*"
+        update-types:
+        - "minor"
+        - "patch"
