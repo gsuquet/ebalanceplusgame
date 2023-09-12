@@ -1,10 +1,12 @@
 import { defineStore } from 'pinia';
 import { useProductionStore } from './ProductionStore';
 import i18n from '../modules/i18n';
-import { ScenarioLocale } from '../types/Scenario';
+import { Scenario } from '../types/Scenario';
 import { ProductionCurve } from '../types/Production';
-import { errorScenarioLocale } from '../assets/entityErrorScenario';
+import { errorScenario } from '../assets/entityErrorScenario';
 import { generateStringId } from '../helpers/idGenerator';
+import { Player } from '../types/Multiplayer';
+import { errorProductionCurve } from '../assets/entityErrorProduction';
 
 export const useGameParametersStore = defineStore({
     id: 'GameParametersStore',
@@ -16,22 +18,18 @@ export const useGameParametersStore = defineStore({
             language: 'en',
             languageIsUserSet: false,
             theme: 'light',
-            scenario: errorScenarioLocale as ScenarioLocale,
-            productionCurve: {
-                id: '0',
-                name: 'No production curve',
-                svg: '',
-                description: '', 
-                solar: [],
-                wind: [],
-                hydro: [],
-                total: []
-            } as ProductionCurve,
+            scenario: errorScenario as Scenario,
+            productionCurve: errorProductionCurve as ProductionCurve,
             isMultiplayer: false,
             isPublic: false,
-            user: '',
-            score: 0,
-            moneyWon: 0,
+            user: {
+                id: 'e_balance_plus_game_player_' + generateStringId(),
+                name: 'Anonymous_player_' + generateStringId(),
+                score: 0,
+                moneyWon: 0,
+                isConnected: false,
+                isHost: false
+            } as Player,
             availableMoney: 0,
             showedInfoOverlay: true
         };
@@ -42,27 +40,14 @@ export const useGameParametersStore = defineStore({
             if(productionCurveImport){
                 this.productionCurve = productionCurveImport;
             } else{
-                this.productionCurve = {
-                    id: '0',
-                    name: 'No production curve',
-                    svg: '',
-                    description: '',
-                    solar: [],
-                    wind: [],
-                    hydro: [],
-                    total: []
-                };
+                this.productionCurve = errorProductionCurve;
             }
         },
         setScenario(scenarioId: string) {
             const scenarioImport = useScenarioStore().getScenarioById(scenarioId);
-            if(scenarioImport){
-                this.scenario = useScenarioStore().convertScenarioToScenarioLocale(scenarioImport);
-            } else{
-                this.scenario = errorScenarioLocale;
-            }
+            scenarioImport ? this.scenario = scenarioImport : this.scenario = errorScenario;
         },
-        setProductionCurveAndScenario(productionCurve: ProductionCurve | null, scenario: ScenarioLocale | null) {
+        setProductionCurveAndScenario(productionCurve: ProductionCurve | null, scenario: Scenario| null) {
             if(!productionCurve || !scenario) return;
             this.productionCurve = productionCurve;
             this.scenario = scenario;
@@ -70,7 +55,7 @@ export const useGameParametersStore = defineStore({
         },
         setRandomProductionCurveAndScenario() {
             const randomProductionCurve = useProductionStore().getRandomProductionCurve();
-            const randomScenario = useScenarioStore().getRandomLocaleScenario();
+            const randomScenario = useScenarioStore().getRandomScenario();
             this.setProductionCurveAndScenario(randomProductionCurve, randomScenario);
         },
         setLanguageFromBrowser() {
@@ -123,5 +108,8 @@ export const useGameParametersStore = defineStore({
         getScenarioEnergyStorageParameters: (state) => state.scenario.energyStorageParameters,
         getScenarioEnergyMarketParameters: (state) => state.scenario.energyMarketParameters,
         getScenarioMoneyParameters: (state) => state.scenario.moneyParameters,
+        getUser: (state) => state.user,
+        getUserId: (state) => state.user.id,
+        isUserHost: (state) => state.user.isHost,
     }
 });

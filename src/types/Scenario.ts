@@ -1,36 +1,43 @@
-import { EquipmentType, EquipmentTypeLocale } from './EquipmentType';
+import { EquipmentType } from './EquipmentType';
 import { EnergyStorageParameters, EnergyMarketParameters } from './Energy';
 import { Consumption } from './Consumption';
 import { I18nObject } from './I18nObject';
 import { MoneyParameters } from './Money';
 
-export interface Scenario{
+export interface Scenario {
     id: string,
     names: I18nObject[],
-    days: I18nObject[],
-    season: string,
-    icon: string,
-    color: string,
+    season: Season,
+    day: Day,
     descriptions: I18nObject[],
-    equipment_types: EquipmentType[],
-    initial_consumption: Consumption[],
+    equipmentTypes: EquipmentType[],
+    initialConsumption: Consumption[],
     energyStorageParameters: EnergyStorageParameters,
     energyMarketParameters: EnergyMarketParameters,
     moneyParameters: MoneyParameters
 }
 
+export interface ScenarioDTO {
+    id: string,
+    names: I18nObject[],
+    seasonId: string,
+    dayId: string,
+    descriptions: I18nObject[],
+    additionalEquipmentTypesIds: string[],
+    initialConsumptionIds: string[],
+    energyStorageParametersId: string,
+    energyMarketParametersId: string,
+    moneyParametersId: string
+}
 
-export interface ScenarioLocale {
-    id: string;
-    name: string,
-    day: string,
-    season: string,
+export interface Season {
+    id: string,
+    names: I18nObject[],
     icon: string,
-    color: string,
-    description: string,
-    equipment_type_local: EquipmentTypeLocale[], 
-    initial_consumption: Consumption[],
-    energyStorageParameters: EnergyStorageParameters,
-    energyMarketParameters: EnergyMarketParameters,
-    moneyParameters: MoneyParameters
+    color: string
+}
+
+export interface Day {
+    id: string,
+    names: I18nObject[]
 }

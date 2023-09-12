@@ -46,7 +46,8 @@
         "consumptionAmountLowerThanMin": "Your consumption amount is lower than the min consumption",
         "timeError": "The time must be comprised between 0 and 23. The start time must be before the end time.",
         "amountErrorHigherThanEnergyStorageCapacity": "The total amount must be lower than the energy storage capacity",
-        "amountErrorHigherThanEnergyStored": "The total amount must be lower than the energy stored"
+        "amountErrorHigherThanEnergyStored": "The total amount must be lower than the energy stored",
+        "notEnoughMoney": "You don't have enough money"
     },
     "money":{
         "cost": "Cost",
@@ -66,14 +67,17 @@
         "createGame": "Create a game",
         "joinGame": "Join a game",
         "createGameDescription": "Create a new game and choose your scenario and production curve. The goal is to manage your energy consumption to keep it under your production curve. You can also buy and sell energy to the market. Multiplayer is also available, just note down the game ID bellow and share it with your friends.",
-        "joinGameDescription": "Join a game by entering the game ID. You can also join a game by clicking on the link sent by your friend.",
+        "joinGameDescription": "Join a game by entering the game ID. In the same principle as the single player game, you will have to manage your energy consumption to keep it under your production curve. While you can still buy and sell energy to the market, you are encouraged to trade with other players and experiment the principle of an energy community.",
         "publicGames": "Public games",
         "noPublicGames": "No public games available",
         "gameCode": "Game ID",
         "singlePlayer": "Single player",
         "multiPlayer": "Multiplayer",
         "public": "Public",
-        "private": "Private"
+        "private": "Private",
+        "unSuccessfulGameCreation": "Failed tp create new multiplayer game",
+        "unSuccessfulGameJoin": "Failed to join game",
+        "invalidGameCode": "Invalid game ID"
     },
     "setup":{
         "launchNewGame": "Launch a new game",

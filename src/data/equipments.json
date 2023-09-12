@@ -1,23 +1,8 @@
 [
-    {
-        "id":"1",
+    { 
+        "id":"dishwasher_a_1",
         "energy_class": "A",
-        "type":{
-            "id":"dishwasher",
-            "names":[{"text":"Lave-vaisselle","lang":"fr"},{"text":"Dishwasher","lang":"en"}],
-            "icon_name":"mdi:dishwasher",
-            "color":"#9A7751",
-            "isBattery": false,
-            "isCharging": false,
-            "equipmentTypeDurationParams": {
-                "isDurationEditable": true,
-                "isDurationLengthEditable": true,
-                "originalDuration": "00:15",
-                "step": "00:15",
-                "minDuration": "00:15",
-                "maxDuration": "23:45"
-            }
-        },
+        "typeID": "et_dishwasher_1",
         "equipmentCostParams": {
             "originalPrice": 500,
             "hasCost": true,
@@ -35,234 +20,9 @@
         }
     },
     {
-        "id":"2",
+        "id":"dishwasher_b_1",
         "energy_class": "B",
-        "type":{
-            "id":"dishwasher",
-            "names":[{"text":"Lave-vaisselle","lang":"fr"},{"text":"Dishwasher","lang":"en"}],
-            "icon_name":"mdi:dishwasher",
-            "color":"#9A7751",
-            "isBattery": false,
-            "isCharging": false,
-            "equipmentTypeDurationParams": {
-                "isDurationEditable": true,
-                "isDurationLengthEditable": true,
-                "originalDuration": "00:15",
-                "step": "00:15",
-                "minDuration": "00:15",
-                "maxDuration": "23:45"
-            }
-        },
-        "equipmentCostParams": {
-            "originalPrice": 400,
-            "hasCost": true,
-            "isCostEditable": false,
-            "step": 10,
-            "minCost": 50,
-            "maxCost": 500
-        },
-        "equipmentConsumptionParams": {
-            "originalConsumption": 1400,
-            "isConsumptionEditable": false,
-            "step": 100,
-            "minConsumption": 1300,
-            "maxConsumption": 2300
-        }
-    },
-    {
-        "id":"3",
-        "energy_class": "C",
-        "type":{
-            "id":"dishwasher",
-            "names":[{"text":"Lave-vaisselle","lang":"fr"},{"text":"Dishwasher","lang":"en"}],
-            "icon_name":"mdi:dishwasher",
-            "color":"#9A7751",
-            "isBattery": false,
-            "isCharging": false,
-            "equipmentTypeDurationParams": {
-                "isDurationEditable": true,
-                "isDurationLengthEditable": true,
-                "originalDuration": "00:15",
-                "step": "00:15",
-                "minDuration": "00:15",
-                "maxDuration": "23:45"
-            }
-        },
-        "equipmentCostParams": {
-            "originalPrice": 300,
-            "hasCost": true,
-            "isCostEditable": false,
-            "step": 10,
-            "minCost": 50,
-            "maxCost": 500
-        },
-        "equipmentConsumptionParams": {
-            "originalConsumption": 1600,
-            "isConsumptionEditable": false,
-            "step": 100,
-            "minConsumption": 1300,
-            "maxConsumption": 2300
-        }
-    },
-    {
-        "id":"14",
-        "energy_class": "D",
-        "type":{
-            "id":"dishwasher",
-            "names":[{"text":"Lave-vaisselle","lang":"fr"},{"text":"Dishwasher","lang":"en"}],
-            "icon_name":"mdi:dishwasher",
-            "color":"#9A7751",
-            "isBattery": false,
-            "isCharging": false,
-            "equipmentTypeDurationParams": {
-                "isDurationEditable": true,
-                "isDurationLengthEditable": true,
-                "originalDuration": "00:15",
-                "step": "00:15",
-                "minDuration": "00:15",
-                "maxDuration": "23:45"
-            }
-        },
-        "equipmentCostParams": {
-            "originalPrice": 250,
-            "hasCost": true,
-            "isCostEditable": false,
-            "step": 10,
-            "minCost": 50,
-            "maxCost": 500
-        },
-        "equipmentConsumptionParams": {
-            "originalConsumption": 1800,
-            "isConsumptionEditable": false,
-            "step": 100,
-            "minConsumption": 1300,
-            "maxConsumption": 2300
-        }
-    },
-    {
-        "id":"4",
-        "energy_class": "E",
-        "type":{
-            "id":"dishwasher",
-            "names":[{"text":"Lave-vaisselle","lang":"fr"},{"text":"Dishwasher","lang":"en"}],
-            "icon_name":"mdi:dishwasher",
-            "color":"#9A7751",
-            "isBattery": false,
-            "isCharging": false,
-            "equipmentTypeDurationParams": {
-                "isDurationEditable": true,
-                "isDurationLengthEditable": true,
-                "originalDuration": "00:15",
-                "step": "00:15",
-                "minDuration": "00:15",
-                "maxDuration": "23:45"
-            }
-        },
-        "equipmentCostParams": {
-            "originalPrice": 200,
-            "hasCost": true,
-            "isCostEditable": false,
-            "step": 10,
-            "minCost": 50,
-            "maxCost": 500
-        },
-        "equipmentConsumptionParams": {
-            "originalConsumption": 2000,
-            "isConsumptionEditable": false,
-            "step": 100,
-            "minConsumption": 1300,
-            "maxConsumption": 2300
-        }
-    },
-    {
-        "id":"5",
-        "energy_class": "F",
-        "type":{
-            "id":"dishwasher",
-            "names":[{"text":"Lave-vaisselle","lang":"fr"},{"text":"Dishwasher","lang":"en"}],
-            "icon_name":"mdi:dishwasher",
-            "color":"#9A7751",
-            "isBattery": false,
-            "isCharging": false,
-            "equipmentTypeDurationParams": {
-                "isDurationEditable": true,
-                "isDurationLengthEditable": true,
-                "originalDuration": "00:15",
-                "step": "00:15",
-                "minDuration": "00:15",
-                "maxDuration": "23:45"
-            }
-        },
-        "equipmentCostParams": {
-            "originalPrice": 100,
-            "hasCost": true,
-            "isCostEditable": false,
-            "step": 10,
-            "minCost": 50,
-            "maxCost": 500
-        },
-        "equipmentConsumptionParams": {
-            "originalConsumption": 2100,
-            "isConsumptionEditable": false,
-            "step": 100,
-            "minConsumption": 1300,
-            "maxConsumption": 2300
-        }
-    },
-    {
-        "id":"6",
-        "energy_class": "G",
-        "type":{
-            "id":"dishwasher",
-            "names":[{"text":"Lave-vaisselle","lang":"fr"},{"text":"Dishwasher","lang":"en"}],
-            "icon_name":"mdi:dishwasher",
-            "color":"#9A7751",
-            "isBattery": false,
-            "isCharging": false,
-            "equipmentTypeDurationParams": {
-                "isDurationEditable": true,
-                "isDurationLengthEditable": true,
-                "originalDuration": "00:15",
-                "step": "00:15",
-                "minDuration": "00:15",
-                "maxDuration": "23:45"
-            }
-        },
-        "equipmentCostParams": {
-            "originalPrice": 50,
-            "hasCost": true,
-            "isCostEditable": false,
-            "step": 10,
-            "minCost": 50,
-            "maxCost": 500
-        },
-        "equipmentConsumptionParams": {
-            "originalConsumption": 2300,
-            "isConsumptionEditable": false,
-            "step": 100,
-            "minConsumption": 1300,
-            "maxConsumption": 2300
-        }
-    },
-    {
-        "id":"7",
-        "energy_class": "A",
-        "type":{
-            "id":"washingMachine",
-            "names":[{"text":"Machine à laver","lang":"fr"},{"text":"Washing-machine","lang":"en"}],
-            "icon_name":"mdi:washing-machine",
-            "color":"#00447C",
-            "isBattery": false,
-            "isCharging": false,
-            "equipmentTypeDurationParams": {
-                "isDurationEditable": true,
-                "isDurationLengthEditable": true,
-                "originalDuration": "00:15",
-                "step": "00:15",
-                "minDuration": "00:15",
-                "maxDuration": "23:45"
-            }
-        },
+        "typeID": "et_dishwasher_1",
         "equipmentCostParams": {
             "originalPrice": 500,
             "hasCost": true,
@@ -280,24 +40,9 @@
         }
     },
     {
-        "id":"8",
-        "energy_class": "B",
-        "type":{
-            "id":"washingMachine",
-            "names":[{"text":"Machine à laver","lang":"fr"},{"text":"Washing-machine","lang":"en"}],
-            "icon_name":"mdi:washing-machine",
-            "color":"#00447C",
-            "isBattery": false,
-            "isCharging": false,
-            "equipmentTypeDurationParams": {
-                "isDurationEditable": true,
-                "isDurationLengthEditable": true,
-                "originalDuration": "00:15",
-                "step": "00:15",
-                "minDuration": "00:15",
-                "maxDuration": "23:45"
-            }
-        },
+        "id":"dishwasher_c_1",
+        "energy_class": "C",
+        "typeID": "et_dishwasher_1",
         "equipmentCostParams": {
             "originalPrice": 400,
             "hasCost": true,
@@ -315,24 +60,9 @@
         }
     },
     {
-        "id":"9",
-        "energy_class": "C",
-        "type":{
-            "id":"washingMachine",
-            "names":[{"text":"Machine à laver","lang":"fr"},{"text":"Washing-machine","lang":"en"}],
-            "icon_name":"mdi:washing-machine",
-            "color":"#00447C",
-            "isBattery": false,
-            "isCharging": false,
-            "equipmentTypeDurationParams": {
-                "isDurationEditable": true,
-                "isDurationLengthEditable": true,
-                "originalDuration": "00:15",
-                "step": "00:15",
-                "minDuration": "00:15",
-                "maxDuration": "23:45"
-            }
-        },
+        "id":"dishwasher_d_1",
+        "energy_class": "D",
+        "typeID": "et_dishwasher_1",
         "equipmentCostParams": {
             "originalPrice": 300,
             "hasCost": true,
@@ -350,24 +80,9 @@
         }
     },
     {
-        "id":"10",
-        "energy_class": "D",
-        "type":{
-            "id":"washingMachine",
-            "names":[{"text":"Machine à laver","lang":"fr"},{"text":"Washing-machine","lang":"en"}],
-            "icon_name":"mdi:washing-machine",
-            "color":"#00447C",
-            "isBattery": false,
-            "isCharging": false,
-            "equipmentTypeDurationParams": {
-                "isDurationEditable": true,
-                "isDurationLengthEditable": true,
-                "originalDuration": "00:15",
-                "step": "00:15",
-                "minDuration": "00:15",
-                "maxDuration": "23:45"
-            }
-        },
+        "id":"dishwasher_e_1",
+        "energy_class": "E",
+        "typeID": "et_dishwasher_1",
         "equipmentCostParams": {
             "originalPrice": 200,
             "hasCost": true,
@@ -385,24 +100,9 @@
         }
     },
     {
-        "id":"11",
-        "energy_class": "E",
-        "type":{
-            "id":"washingMachine",
-            "names":[{"text":"Machine à laver","lang":"fr"},{"text":"Washing-machine","lang":"en"}],
-            "icon_name":"mdi:washing-machine",
-            "color":"#00447C",
-            "isBattery": false,
-            "isCharging": false,
-            "equipmentTypeDurationParams": {
-                "isDurationEditable": true,
-                "isDurationLengthEditable": true,
-                "originalDuration": "00:15",
-                "step": "00:15",
-                "minDuration": "00:15",
-                "maxDuration": "23:45"
-            }
-        },
+        "id":"dishwasher_f_1",
+        "energy_class": "F",
+        "typeID": "et_dishwasher_1",
         "equipmentCostParams": {
             "originalPrice": 100,
             "hasCost": true,
@@ -420,24 +120,9 @@
         }
     },
     {
-        "id":"12",
-        "energy_class": "F",
-        "type":{
-            "id":"washingMachine",
-            "names":[{"text":"Machine à laver","lang":"fr"},{"text":"Washing-machine","lang":"en"}],
-            "icon_name":"mdi:washing-machine",
-            "color":"#00447C",
-            "isBattery": false,
-            "isCharging": false,
-            "equipmentTypeDurationParams": {
-                "isDurationEditable": true,
-                "isDurationLengthEditable": true,
-                "originalDuration": "00:15",
-                "step": "00:15",
-                "minDuration": "00:15",
-                "maxDuration": "23:45"
-            }
-        },
+        "id":"dishwasher_g_1",
+        "energy_class": "G",
+        "typeID": "et_dishwasher_1",
         "equipmentCostParams": {
             "originalPrice": 50,
             "hasCost": true,
@@ -455,24 +140,9 @@
         }
     },
     {
-        "id":"13",
-        "energy_class": "G",
-        "type":{
-            "id":"washingMachine",
-            "names":[{"text":"Machine à laver","lang":"fr"},{"text":"Washing-machine","lang":"en"}],
-            "icon_name":"mdi:washing-machine",
-            "color":"#00447C",
-            "isBattery": false,
-            "isCharging": false,
-            "equipmentTypeDurationParams": {
-                "isDurationEditable": true,
-                "isDurationLengthEditable": true,
-                "originalDuration": "00:15",
-                "step": "00:15",
-                "minDuration": "00:15",
-                "maxDuration": "23:45"
-            }
-        },
+        "id":"washing_machine_a_1",
+        "energy_class": "A",
+        "typeID": "et_washing_machine_1",
         "equipmentCostParams": {
             "originalPrice": 25,
             "hasCost": true,
@@ -487,6 +157,127 @@
             "step": 100,
             "minConsumption": 1200,
             "maxConsumption": 2400
+        }
+    },
+    {
+        "id":"washing_machine_b_1",
+        "energy_class": "B",
+        "typeID": "et_washing_machine_1",
+        "equipmentCostParams": {
+            "originalPrice": 600,
+            "hasCost": true,
+            "isCostEditable": false,
+            "step": 10,
+            "minCost": 25,
+            "maxCost": 650
+        },
+        "equipmentConsumptionParams": {
+            "originalConsumption": 2000,
+            "isConsumptionEditable": false,
+            "step": 100,
+            "minConsumption": 1200,
+            "maxConsumption": 2400
+        }
+    },
+    {
+        "id":"washing_machine_c_1",
+        "energy_class": "C",
+        "typeID": "et_washing_machine_1",
+        "equipmentCostParams": {
+            "originalPrice": 250,
+            "hasCost": true,
+            "isCostEditable": false,
+            "step": 10,
+            "minCost": 25,
+            "maxCost": 500
+        },
+        "equipmentConsumptionParams": {
+            "originalConsumption": 2000,
+            "isConsumptionEditable": false,
+            "step": 100,
+            "minConsumption": 1200,
+            "maxConsumption": 2400
+        }
+    },
+    {
+        "id":"washing_machine_d_1",
+        "energy_class": "D",
+        "typeID": "et_washing_machine_1",
+        "equipmentCostParams": {
+            "originalPrice": 200,
+            "hasCost": true,
+            "isCostEditable": false,
+            "step": 10,
+            "minCost": 25,
+            "maxCost": 500
+        },
+        "equipmentConsumptionParams": {
+            "originalConsumption": 60,
+            "isConsumptionEditable": false,
+            "step": 100,
+            "minConsumption": 1200,
+            "maxConsumption": 2400
+        }
+    },
+    {
+        "id":"washing_machine_e_1",
+        "energy_class": "E",
+        "typeID": "et_washing_machine_1",
+        "equipmentCostParams": {
+            "originalPrice":  100,
+            "hasCost": true,
+            "isCostEditable": false,
+            "step": 10,
+            "minCost": 25,
+            "maxCost": 500
+        },
+        "equipmentConsumptionParams": {
+            "originalConsumption": 1000,
+            "isConsumptionEditable": false,
+            "step": 100,
+            "minConsumption": 1200,
+            "maxConsumption": 2400
+        }
+    },
+    
+    {
+        "id":"washing_machine_f_1",
+        "energy_class": "F",
+        "typeID": "et_washing_machine_1",
+        "equipmentCostParams": {
+            "originalPrice":    400,
+            "hasCost": true,
+            "isCostEditable": false,
+            "step": 10,
+            "minCost": 50,
+            "maxCost": 2000
+        },
+        "equipmentConsumptionParams": {
+            "originalConsumption": 100,
+            "isConsumptionEditable": false,
+            "step": 10,
+            "minConsumption": 0,
+            "maxConsumption": 2000
+        }
+    },
+    {
+        "id":"washing_machine_g_1",
+        "energy_class": "G",
+        "typeID": "et_washing_machine_1",
+        "equipmentCostParams": {
+            "originalPrice": 200,
+            "hasCost": true,
+            "isCostEditable": false,
+            "step": 10,
+            "minCost": 50,
+            "maxCost": 2000
+        },
+        "equipmentConsumptionParams": {
+            "originalConsumption": 50,
+            "isConsumptionEditable": false,
+            "step": 10,
+            "minConsumption": 0,
+            "maxConsumption": 2000
         }
     }
 ]

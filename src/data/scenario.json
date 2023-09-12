@@ -1,96 +1,22 @@
 [
     {
-        "id": "1",
-        "names": [
-            {
-                "text": "nom test_fr", "lang": "fr"
-            },
-            {
-                "text":"name test _en", "lang":"en"
-            }
-        ],
-        "days": [
-            {
-                "text":"jour 1", "lang": "fr"
-            },
-            {
-                "text": "day 1", "lang": "en"
-            }
-        ],
-        "season": "summer",
-        "icon": "mdi:white-balance-sunny",
-        "color": "#FFD700",
+        "id": "scenario_1",
+        "names": [{"text": "Victoria et Greg", "lang": "fr"}, {"text": "Victoria and Greg", "lang": "en"}],
+        "dayId": "day_wednesday",
+        "seasonId": "season_winter",
         "descriptions": [
             {
-                "text": "description Française Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", "lang": "fr"
+                "text": "Aujourd’hui il fait -4 degrés, le chauffage dans l’appartement de Gregory et Victoria est réglé sur 20 degrés. À 8 heures c’est le début du travail un café et les deux partent chacun de leur côté avant de se retrouver pour l’heure du midi et se préparer à manger devant la télé, avant de repartir pour une après-midi de travail. À 17 heures Victoria doit aller chercher ses petits frères à l’école et doit les garder 2 heures jusqu’à ce que sa mère finisse son travail. Les enfants prennent leur gouter devant les dessins animés pendant que Gregory prépare le repas, et que Victoria lance lave-vaisselle, la machine et aille prendre sa douche. Enfin les habits lavés sont mis à sécher avant de mettre la voiture électrique en charge et d’aller se coucher.", "lang": "fr"
             }, 
             {
-                "text": "English description Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur", "lang": "en"
+                "text": "today it is -4 degrees, the heat in the apartment of Gregory and Victoria is set to 20 degrees. At 8 o’clock the working day begin, a coffee and the two go their separate ways before cooking and eating together at noon in front of tv, before working again. At 5 pm o’clock Victoria must pick up her little brothers at school and babysit them for 2 hours until her mother leave work. Children eat in front of the cartoons while Gregory prepares the meal, Victoria start the washing machine, the dishwasher and take her shower. Finally, the watched clothes are put to dry, and they charge electric car before going to bed.", "lang": "en"
             }
         ],
-        "equipment_types": [
-            {
-                "id":"dishwasher",
-                "names":[{"text":"Lave-vaisselle","lang":"fr"},{"text":"Dishwasher","lang":"en"}],
-                "icon_name":"mdi:dishwasher",
-                "color":"#9A7751",
-                "isBattery": false,
-                "isCharging": false,
-                "equipmentTypeDurationParams": {
-                    "isDurationEditable": true,
-                    "isDurationLengthEditable": true,
-                    "originalDuration": "00:15",
-                    "step": "00:15",
-                    "minDuration": "00:15",
-                    "maxDuration": "23:45"
-                }
-            },
-            {
-                "id":"washingMachine",
-                "names":[{"text":"Machine à laver","lang":"fr"},{"text":"Washing-machine","lang":"en"}],
-                "icon_name":"mdi:washing-machine",
-                "color":"#00447C",
-                "isBattery": false,
-                "isCharging": false,
-                "equipmentTypeDurationParams": {
-                    "isDurationEditable": true,
-                    "isDurationLengthEditable": true,
-                    "originalDuration": "00:15",
-                    "step": "00:15",
-                    "minDuration": "00:15",
-                    "maxDuration": "23:45"
-                }
-            }
-        ],
-        "initial_consumption": [
-            
-        ],
-        "energyStorageParameters": {
-            "isEnergyStorage": true,
-            "initialStoredEnergy": 0,
-            "numberOfBatteries": 1,
-            "batteryPrice": 10,
-            "batteryIndividualCapacity": 200,
-            "batteryChargeEquipmentTypeId": "battery_charge",
-            "batteryDischargeEquipmentTypeId": "battery_discharge",
-            "batteryChargeLimitRate": 100,
-            "batteryDischargeLimitRate": 100,
-            "batteryChargeEfficiency": 100,
-            "batteryDischargeEfficiency": 100,
-            "batteryChargeLossRate": 0,
-            "batteryDischargeLossRate": 0
-        },
-        "energyMarketParameters": {
-            "isEnergyMarket": true,
-            "salePricesList": [8, 8, 5, 8, 9, 5, 6, 5, 6, 8, 8, 8,9,6,6,6,7,9,8,9,7,7,5,7,6,6,8,5,8,9,6,9,8,7,6,7,5,6,9,9,6,9,9,9,5,7,8,7,6,5,5,7,5,8,5,6,5,9,5,6,6,6,6,8,5,5,8,6,8,6,8,6,8,6,5,5,8,6,9,9,5,9,9,6,8,7,6,9,8,6,7,7,7,5,8,9],
-            "constantPrice": 0
-        },
-        "moneyParameters": {
-            "initialMoney": 200,
-            "isMoneyMenu": true,
-            "isMoneyUnlimited": false,
-            "moneyCurrency": "€",
-            "moneyCurrencyIcon": "mdi:currency-eur"
-        }
+        "additionalEquipmentTypesIds": ["et_tumble_dryer_1","et_washing_machine_1","et_water_boiler_1","et_electric_car_1","et_coffee_maker_1","et_stove_1","et_dishwasher_1","et_standby_1","et_fridge_1","et_television_1","et_heater_1","et_heater_2"],
+        "initialConsumptionIds": ["ic_dishwasher_0_1"],
+        "energyStorageParametersId": "esp_1",
+        "energyMarketParametersId": "emp_1",
+        "moneyParametersId": "mp_1"
     }
+
 ]

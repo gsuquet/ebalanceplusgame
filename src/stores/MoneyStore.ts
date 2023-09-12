@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ScenarioLocale } from "../types/Scenario";
+import { Scenario } from "../types/Scenario";
 import { errorMoneyParameters } from "../assets/entityErrorMoneyParameters";
 import { MoneyParameters } from "../types/Money";
 
@@ -25,20 +25,22 @@ export const useMoneyStore = defineStore({
         addMoney(moneyToAdd: number) {
             this.money = this.money + moneyToAdd;
         },
-        checkIfMoneyCanBeTakeOff(moneyToTakeOff: number) {
-            if(this.money > moneyToTakeOff)
+        canWithdrawMoney(moneyToWithdraw: number) {
+            if(this.money >= moneyToWithdraw)
                 return true;
             else
                 return false;
         },
-        takeOffMoney(moneyToTakeOff: number) {
-            if(this.checkIfMoneyCanBeTakeOff(moneyToTakeOff))
-                this.money = this.money - moneyToTakeOff;
-            else
-                console.log("error") //TODO make a real error message
+        withdrawMoney(moneyToWithdraw: number) {
+            if(this.canWithdrawMoney(moneyToWithdraw)) {
+                this.money = this.money - moneyToWithdraw;
+                return true;
+            } else {
+                return false;
+            }
         },
         setTotalPriceList(){
-            const scenario: ScenarioLocale | null = useScenarioStore().clickedScenario;
+            const scenario: Scenario | null = useScenarioStore().clickedScenario;
             if(scenario) {
                 this.pricesList = scenario.energyMarketParameters.salePricesList
             }

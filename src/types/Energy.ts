@@ -1,4 +1,5 @@
 export interface EnergyStorageParameters {
+    id: string;
     isEnergyStorage: boolean;
     initialStoredEnergy: number;
     numberOfBatteries: number;
@@ -14,8 +15,8 @@ export interface EnergyStorageParameters {
     batteryDischargeLossRate: number;
 }
 
-
 export interface EnergyMarketParameters {
+    id: string;
     isEnergyMarket: boolean;
     salePricesList: number[],
     constantPrice: number

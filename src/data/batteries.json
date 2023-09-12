@@ -11,6 +11,7 @@
         "isBattery":true,
         "isCharging":true,
         "equipmentTypeDurationParams":{
+            "id":"etdp_battery_charge",
             "isDurationEditable": true,
             "isDurationLengthEditable": true,
             "originalDuration": "00:15",
@@ -30,6 +31,7 @@
         "isBattery":true,
         "isCharging":false,
         "equipmentTypeDurationParams":{
+            "id": "etdp_battery_discharge",
             "isDurationEditable": true,
             "isDurationLengthEditable": true,
             "originalDuration": "00:15",

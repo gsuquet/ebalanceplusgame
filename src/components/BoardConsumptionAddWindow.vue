@@ -3,6 +3,7 @@
     import { useConsumptionStore } from '../stores/ConsumptionStore';
     import CardPopup from './CardPopup.vue';
 import { generateStringId } from '../helpers/idGenerator';
+import { convertI18nObjectToLocale } from '../helpers/translation';
 </script>
 
 <template>
@@ -40,13 +41,19 @@ import { generateStringId } from '../helpers/idGenerator';
         },
         data() {
             return {
-                equipmentType: '' as string,
+                gameParametersStore: useGameParametersStore(),
+                moneyStore: useMoneyStore(),
                 consumptionId: '' as string,
                 startIndex: 0 as number,
                 endIndex: 0 as number,
                 consumption: 0 as number,
                 price: 0 as number,
                 inputError: false as boolean
+            }
+        },
+        computed : {
+            equipmentType() {
+                return convertI18nObjectToLocale(this.equipment.type.names,this.gameParametersStore.language);
             }
         },
         methods: {
@@ -57,6 +64,7 @@ import { generateStringId } from '../helpers/idGenerator';
                 consumptionStore.addConsumption(
                     save.startIndex, save.endIndex, this.equipment, save.amount, save.price
                 );
+                this.moneyStore.withdrawMoney(save.price);
                 equipmentStore.clickedEquipment = null;
             },
             amountError() {
@@ -64,20 +72,19 @@ import { generateStringId } from '../helpers/idGenerator';
             },
             timeError() {
                 alert(this.$t('error.timeError'));
-            }
-        },
-        watch: {
-            equipment: {
-                handler: function (equipment: any) {
-                    this.equipmentType = equipmentStore.convertEquipmentToEquipmentLocale(equipment).type.name;
-                },
-                immediate: true
+            },
+            checkCost() {
+                if (!this.equipment.isBought && !this.moneyStore.canWithdrawMoney(this.equipment.equipmentCostParams.originalPrice)) {
+                    alert(this.$t('error.notEnoughMoney'));
+                    this.closeAddPopup();
+                }
             }
         },
         mounted() {
             this.consumption = this.equipment.equipmentConsumptionParams.originalConsumption;
             this.price = this.equipment.equipmentCostParams.originalPrice;
             this.consumptionId = generateStringId();
+            this.checkCost();
         }
     }
 </script>

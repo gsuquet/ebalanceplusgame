@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia';
 import { convertTimesToIndexes } from '../helpers/time';
 import { Consumption } from '../types/Consumption';
-import { ProductionCurve } from '../types/Production';
+import { ProductionCurve, ProductionCurveDto } from '../types/Production';
 
 export const useProductionStore = defineStore({
     id: 'ProductionStore',
     state: () => {
         return {
-            productionCurves: new Map<string, ProductionCurve>(), 
+            productionCurves: [] as ProductionCurve[], 
             clickedProductionCurve: null as null | ProductionCurve,
             addedProductionList: [] as Consumption[],
             totalProduction: new Array(96).fill(0) as number[],
@@ -16,14 +16,17 @@ export const useProductionStore = defineStore({
     actions: {
         async fetchProductionCurves() {
             const data = (await import ('../data/productionCurves.json')).default;
-            const productionCurvesWithoutTotal = new Map(Object.entries(data));
-            this.productionCurves = new Map([...productionCurvesWithoutTotal.entries()].map(([key, value]) => {
-                const total = this.getProductonCurveTotal(value.solar, value.wind, value.hydro);
-                return [key, {...value, total}];
-            }));
+            const productionCurvesWithoutTotal = data as ProductionCurveDto[];
+            this.productionCurves = productionCurvesWithoutTotal.map(productionCurve => {
+                const total = this.getProductionCurveTotal(productionCurve.solar, productionCurve.wind, productionCurve.hydro);
+                return {
+                    ...productionCurve,
+                    total
+                };
+            });
             this.setClickedProductionCurveToFirstCurve();
         },
-        getProductonCurveTotal(solar: number[], wind: number[], hydro: number[]) {
+        getProductionCurveTotal(solar: number[], wind: number[], hydro: number[]) {
             const solarPoints = solar.length>0 ? solar : new Array(96).fill(0);
             const windPoints = wind.length>0 ? wind : new Array(96).fill(0);
             const hydroPoints = hydro.length>0 ? hydro : new Array(96).fill(0);
@@ -81,10 +84,10 @@ export const useProductionStore = defineStore({
         },
     },
     getters: {
-        getProductionCurveById: state => (id: string) => state.productionCurves.get(id),
+        getProductionCurveById: state => (id: string) => state.productionCurves.find(curve => curve.id === id),
         getProductionCurveByName: state => (name: string) => {
             for (const curve of state.productionCurves.values()) {
-                if (curve.name === name) {
+                if (curve.names.find(n => n.text === name)) {
                     return curve;
                 }
             }
@@ -94,7 +97,7 @@ export const useProductionStore = defineStore({
             for (const curve of state.productionCurves.values()) {
                 allProductionCurves.push(curve);
             }
-            return allProductionCurves;
+            return allProductionCurves as ProductionCurve[];
         },
         getClickedProductionCurve: state => () => state.clickedProductionCurve,
         getRandomProductionCurve: state => () => {

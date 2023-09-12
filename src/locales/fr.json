@@ -46,7 +46,8 @@
         "consumptionAmountLowerThanMin": "Votre consommation est inférieure au minimum autorisé.",
         "timeError": "Les heures de début et de fin doivent être comprises entre 0 et 23, et l'heure de début doit être inférieure à l'heure de fin.",
         "amountErrorHigherThanEnergyStorageCapacity": "Le montant total doit être inférieur ou égal à la capacité de stockage d'énergie.",
-        "amountErrorHigherThanEnergyStored": "Le montant total doit être inférieur ou égal à l'énergie stockée."
+        "amountErrorHigherThanEnergyStored": "Le montant total doit être inférieur ou égal à l'énergie stockée.",
+        "notEnoughMoney": "Vous n'avez pas assez d'argent."
     },
     "money":{
         "cost": "Coût",
@@ -66,14 +67,17 @@
         "createGame": "Créer une partie",
         "joinGame": "Rejoindre une partie",
         "createGameDescription": "Créez une nouvelle partie et choisissez ensuite votre scénario et l'allure de votre courbe de production. L'objectif est de gérer votre consommation d'énergie afin de ne pas dépasser la production. Vous pouvez également acheter et vendre de l'énergie sur le marché. Il est également possible de jouer en multi-joueurs en créant une partie et en invitant vos amis à la rejoindre via le code affiché en-dessous.",
-        "joinGameDescription": "Rejoignez une partie en saisissant le code de la partie que vous souhaitez rejoindre. Vous pouvez également rejoindre une partie en cliquant sur le bouton \"Rejoindre\" dans la liste des parties publiques.",
+        "joinGameDescription": "Rejoignez une partie en saisissant le code de la partie que vous souhaitez rejoindre. Suivant le même principe que le mode solo, le but est de gérer votre consommation d'énergie afin de ne pas dépasser la production. Même si vous pouvez toujours acheter et vendre de l'énergie sur le marché, il vous es recommandé d'échanger avec d'autres joueurs afin de faire l'experience du concept de communauté d'énergie.",
         "publicGames": "Parties publiques",
         "noPublicGames": "Aucune partie publique n'est actuellement disponible.",
         "gameCode": "Code de la partie",
         "singlePlayer": "Joueur unique",
         "multiPlayer": "Multi-joueurs",
         "public": "Publique",
-        "private": "Privée"
+        "private": "Privée",
+        "unSuccessfulGameCreation": "La création de la partie multijoueur a échoué.",
+        "unSuccessfulGameJoin": "La partie n'a pas pu être rejointe.",
+        "invalidGameCode": "Le code de la partie est invalide."
     },
     "setup":{
         "launchNewGame": "Lancer une nouvelle partie",

@@ -1,0 +1,74 @@
+[
+    {
+        "id": "etdp_basics",
+        "isDurationEditable": true,
+        "isDurationLengthEditable": true,
+        "originalDuration": "00:15",
+        "step": "00:15",
+        "minDuration": "00:15",
+        "maxDuration": "23:45"
+    },
+    {
+        "id": "etdp_45min",
+        "isDurationEditable": true,
+        "isDurationLengthEditable": false,
+        "originalDuration": "00:45",
+        "step": "00:15",
+        "minDuration": "00:45",
+        "maxDuration": "23:45"
+    },
+    {
+        "id": "etdp_1h30min",
+        "isDurationEditable": true,
+        "isDurationLengthEditable": false,
+        "originalDuration": "01:30",
+        "step": "00:15",
+        "minDuration": "01:30",
+        "maxDuration": "23:45"
+    },
+    {
+        "id": "etdp_2h",
+        "isDurationEditable": true,
+        "isDurationLengthEditable": false,
+        "originalDuration": "02:00",
+        "step": "00:15",
+        "minDuration": "02:00",
+        "maxDuration": "23:45"
+    },
+    {
+        "id": "etdp_4h_editable",
+        "isDurationEditable": true,
+        "isDurationLengthEditable": true,
+        "originalDuration": "04:00",
+        "step": "00:15",
+        "minDuration": "00:15",
+        "maxDuration": "23:45"
+    },
+    {
+        "id": "etdp_7h",
+        "isDurationEditable": true,
+        "isDurationLengthEditable": false,
+        "originalDuration": "07:00",
+        "step": "00:15",
+        "minDuration": "07:00",
+        "maxDuration": "23:45"
+    },
+    {
+        "id": "etdp_8h_editable",
+        "isDurationEditable": true,
+        "isDurationLengthEditable": true,
+        "originalDuration": "08:00",
+        "step": "00:15",
+        "minDuration": "00:15",
+        "maxDuration": "23:45"
+    },
+    {
+        "id": "etdp_24h_editable",
+        "isDurationEditable": true,
+        "isDurationLengthEditable": true,
+        "originalDuration": "23:45",
+        "step": "00:30",
+        "minDuration": "12:00",
+        "maxDuration": "23:45"
+    }
+]

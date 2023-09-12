@@ -1,4 +1,5 @@
 <script setup lang="ts">
+    import { convertI18nObjectToLocale } from '../helpers/translation';
     import CardPopup from './CardPopup.vue';
 </script>
 
@@ -33,12 +34,16 @@
             return {
                 energyStore: useEnergyStore(),
                 boardStore: useBoardStore(),
-                equipmentStore: useEquipmentStore(),
-                consumptionType: '' as string,
+                gameParametersStore: useGameParametersStore(),
                 maxConsumptionAmount: 0 as number,
                 originalConsumptionAmount: ref(this.consumption.amount),
                 originalIndexes: ref({start: this.consumption.startIndex, end: this.consumption.endIndex})
             };
+        },
+        computed : {
+            consumptionType() {
+                return convertI18nObjectToLocale(this.consumption.equipment.type.names,this.gameParametersStore.language);
+            }
         },
         methods: {
             closeDetails() {
@@ -85,13 +90,5 @@
                 alert(this.$t('error.timeError'));
             }
         },
-        watch: {
-            consumption: {
-                handler() {
-                    this.consumptionType = this.equipmentStore.convertEquipmentToEquipmentLocale(this.consumption.equipment).type.name;
-                },
-                immediate: true
-            }
-        }
     };
 </script>

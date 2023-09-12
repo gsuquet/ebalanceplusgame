@@ -1,0 +1,228 @@
+
+
+[
+    {
+        "id":"et_dishwasher_1",
+        "names":[{"text":"Lave-vaisselle","lang":"fr"},{"text":"Dishwasher","lang":"en"}],
+        "icon_name":"mdi:dishwasher",
+        "color":"#9A7751",
+        "equipmentTypeDurationParamsId": "etdp_2h" 
+    },
+    {
+        "id":"et_washing_machine_1",
+        "names":[{"text":"Machine à laver","lang":"fr"},{"text":"Washing-machine","lang":"en"}],
+        "icon_name":"mdi:washing-machine",
+        "color":"#00447C",
+        "equipmentTypeDurationParamsId": "etdp_45min"
+
+    },
+    {
+        "id":"et_tumble_dryer_1",
+        "names":[{"text":"Sèche-linge","lang":"fr"},{"text":"Tumble dryer","lang":"en"}],
+        "icon_name":"mdi:tumble-dryer",
+        "color":"#C8BBA4",
+        "equipmentTypeDurationParamsId": "etdp_1h30min"
+
+    },
+    {
+        "id":"et_television_1",
+        "names":[{"text":"Télévision","lang":"fr"},{"text":"Television","lang":"en"}],
+        "icon_name":"mdi:television",
+        "color":"#CCB46B",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_electric_bike_1",
+        "names":[{"text":"Vélo électrique","lang":"fr"},{"text":"Electric-bike","lang":"en"}],
+        "icon_name":"mdi:bike",
+        "color":"#8FCE00",
+        "equipmentTypeDurationParamsId": "etdp_4h_editable"
+
+    },
+    {
+        "id":"et_electric_car_1",
+        "names":[{"text":"Voiture électrique","lang":"fr"},{"text":"Electric car","lang":"en"}],
+        "icon_name":"mdi:car",
+        "color":"#134F5C",
+        "equipmentTypeDurationParamsId": "etdp_8h_editable"
+
+    },
+    {
+        "id":"et_micro_wave_1",
+        "names":[{"text":"Micro-ondes","lang":"fr"},{"text":"Micro-wave","lang":"en"}],
+        "icon_name":"mdi:microwave",
+        "color":"#BCBCBC",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_kettle_1",
+        "names":[{"text":"Bouilloire","lang":"fr"},{"text":"Electric Kettle","lang":"en"}],
+        "icon_name":"mdi:kettle",
+        "color":"#93C47D",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+
+    },
+    {
+        "id":"et_internet_box_1",
+        "names":[{"text":"Box Internet","lang":"fr"},{"text":"Internet Box","lang":"en"}],
+        "icon_name":"mdi:wifi",
+        "color":"#247384",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_water_boiler_1",
+        "names":[{"text":"Chaudière","lang":"fr"},{"text":"Water-boiler","lang":"en"}],
+        "icon_name":"mdi:water-boiler",
+        "color":"#247384",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_toaster_oven_1",
+        "names":[{"text":"Four","lang":"fr"},{"text":"Toaster-oven","lang":"en"}],
+        "icon_name":"mdi:toaster-oven",
+        "color":"#E69138",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_toaster_1",
+        "names":[{"text":"Grille-pain","lang":"fr"},{"text":"Toaster","lang":"en"}],
+        "icon_name":"mdi:toaster",
+        "color":"#FFD966",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_game_console_1",
+        "names":[{"text":"Console de jeu","lang":"fr"},{"text":"Game console","lang":"en"}],
+        "icon_name":"mdi:gamepad-variant",
+        "color":"#5B5B5B",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_coffee_maker_1",
+        "names":[{"text":"Cafetière","lang":"fr"},{"text":"Coffee maker","lang":"en"}],
+        "icon_name":"mdi:coffee-maker",
+        "color":"#783F04",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_fridge_1",
+        "names":[{"text":"Réfrigérateur","lang":"fr"},{"text":"Fridge","lang":"en"}],
+        "icon_name":"mdi:fridge",
+        "color":"#5CE1E6",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+
+        "id":"et_computer_1",
+        "names":[{"text":"Ordinateur","lang":"fr"},{"text":"Computer","lang":"en"}],
+        "icon_name":"mdi:import MaterialSymbolsComputerOutlineSharp from '~icons/material-symbols/computer-outline-sharp'",
+        "color":"#5CE1E6",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+
+    },
+    {
+        "id":"et_vacuum_1",
+        "names":[{"text":"Aspirateur","lang":"fr"},{"text":"Vacuum","lang":"en"}],
+        "icon_name":"mdi:vacuum",
+        "color":"#9C8C5A",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_heater_1",
+        "names":[{"text":"Chauffage","lang":"fr"},{"text":"Heater","lang":"en"}],
+        "icon_name":"material-symbols:water-heater",
+        "color":"#9C8C5A",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_baby_bottle_warmer_1",
+        "names":[{"text":"Chauffe-biberon","lang":"fr"},{"text":"Baby bottle warmer","lang":"en"}],
+        "icon_name":"mdi:baby-bottle",
+        "color":"#FF33F0",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_sewing_machine_1",
+        "names":[{"text":"Machine à coudre","lang":"fr"},{"text":"Sewing machine","lang":"en"}],
+        "icon_name":"game-icons:sewing-machine",
+        "color":"#B257AB",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_lighting_1",
+        "names":[{"text":"Éclairage","lang":"fr"},{"text":"Lighting","lang":"en"}],
+        "icon_name":"mdi:lightbulb",
+        "color":"#FFD801",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_wireless_speaker_1",
+        "names":[{"text":"Enceinte connectée","lang":"fr"},{"text":"Wireless speaker","lang":"en"}],
+        "icon_name":"mdi:speaker-wireless",
+        "color":"#052FEA",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_speaker_1",
+        "names":[{"text":"Enceinte","lang":"fr"},{"text":"Speaker","lang":"en"}],
+        "icon_name":"mdi:speaker",
+        "color":"#8A8A8A",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_electric_piano_1",
+        "names":[{"text":"Piano","lang":"fr"},{"text":"Piano","lang":"en"}],
+        "icon_name":"mdi:piano",
+        "color":"#3E3E3E",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_electric_guitar_1",
+        "names":[{"text":"Guitare","lang":"fr"},{"text":"Guitar","lang":"en"}],
+        "icon_name":"mdi:guitar-acoustic",
+        "color":"#772800",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_electric_drill_1",
+        "names":[{"text":"Perceuse","lang":"fr"},{"text":"Electric drill","lang":"en"}],
+        "icon_name":"material-symbols:tools-power-drill",
+        "color":"#970000",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_electric_fan_1",
+        "names":[{"text":"Ventilateur","lang":"fr"},{"text":"Electric fan","lang":"en"}],
+        "icon_name":"mdi:fan",
+        "color":"#008506",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_electric_mixer_1",
+        "names":[{"text":"Mélangeur","lang":"fr"},{"text":"Electric mixer","lang":"en"}],
+        "icon_name":"mdi:mixer",
+        "color":"#00857D",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_electric_toothbrush_1",
+        "names":[{"text":"Brosse à dents","lang":"fr"},{"text":"Electric toothbrush","lang":"en"}],
+        "icon_name":"mdi:toothbrush",
+        "color":"#ADD3D1",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_stove_1",
+        "names":[{"text":"Plaque de cuisson","lang":"fr"},{"text":"Stove","lang":"en"}],
+        "icon_name":"mdi:induction",
+        "color":"#E47436",
+        "equipmentTypeDurationParamsId": "etdp_basics"
+    },
+    {
+        "id":"et_standby_1",
+        "names":[{"text":"Veille","lang":"fr"},{"text":"Standby","lang":"en"}],
+        "icon_name":"mdi:power-standby",
+        "color":"#0E3653",
+        "equipmentTypeDurationParamsId": "etdp_24h_editable"
+    }
+]
