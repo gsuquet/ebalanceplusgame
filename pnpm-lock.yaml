@@ -178,8 +178,8 @@ packages:
       find-up: 5.0.0
     dev: true
 
-  /@antfu/utils@0.7.2:
-    resolution: {integrity: sha512-vy9fM3pIxZmX07dL+VX1aZe7ynZ+YyB0jY+jE6r3hOK6GNY2t6W8rzpFC4tgpbXUYABkFQwgJq2XYXlxbXAI0g==}
+  /@antfu/utils@0.7.6:
+    resolution: {integrity: sha512-pvFiLP2BeOKA/ZOS6jxx4XhKzdVLHDhGlFEaZ2flWWYf2xOqVniqpk38I04DFRyz+L0ASggl7SkItTc+ZLju4w==}
     dev: true
 
   /@apideck/better-ajv-errors@0.3.6(ajv@8.12.0):
@@ -1612,7 +1612,7 @@ packages:
     resolution: {integrity: sha512-hhUyt1/k5RRhfcW/PRRdBw8e1ACehJT5QEZJRm7HnkCiUx11/0ccLr7K0OMlPSwjnfYcBS2gAUD3EpmL0iJCkQ==}
     dependencies:
       '@antfu/install-pkg': 0.1.1
-      '@antfu/utils': 0.7.2
+      '@antfu/utils': 0.7.6
       '@iconify/types': 2.0.0
       debug: 4.3.4
       kolorist: 1.6.0
@@ -5038,7 +5038,7 @@ packages:
       '@vueuse/core':
         optional: true
     dependencies:
-      '@antfu/utils': 0.7.2
+      '@antfu/utils': 0.7.6
       '@rollup/pluginutils': 5.0.2(rollup@2.79.1)
       '@vueuse/core': 9.11.1(vue@3.2.45)
       local-pkg: 0.4.3
@@ -5067,7 +5067,7 @@ packages:
         optional: true
     dependencies:
       '@antfu/install-pkg': 0.1.1
-      '@antfu/utils': 0.7.2
+      '@antfu/utils': 0.7.6
       '@iconify/utils': 2.0.12
       debug: 4.3.4
       kolorist: 1.6.0
@@ -5087,7 +5087,7 @@ packages:
       '@babel/parser':
         optional: true
     dependencies:
-      '@antfu/utils': 0.7.2
+      '@antfu/utils': 0.7.6
       '@rollup/pluginutils': 5.0.2(rollup@2.79.1)
       chokidar: 3.5.3
       debug: 4.3.4
