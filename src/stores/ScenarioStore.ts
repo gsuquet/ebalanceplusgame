@@ -61,7 +61,7 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
                 season: this.getSeasonById(scenarioDto.seasonId) as Season,
                 day: this.getDayById(scenarioDto.dayId) as Day,
                 descriptions: scenarioDto.descriptions,
-                equipmentTypes: scenarioDto.equipmentTypesIds.map(equipmentTypeId => useEquipmentStore().getEquipmentTypeById(equipmentTypeId) as EquipmentType),
+                equipmentTypes: scenarioDto.additionalEquipmentTypesIds.map(equipmentTypeId => useEquipmentStore().getEquipmentTypeById(equipmentTypeId) as EquipmentType),
                 initialConsumption: scenarioDto.initialConsumptionIds.map(id => useConsumptionStore().getInitialConsumptionFromConsumptionDtoId(id)),
                 energyStorageParameters: this.getEnergyStorageParametersById(scenarioDto.energyStorageParametersId) as EnergyStorageParameters,
                 energyMarketParameters: this.getEnergyMarketParametersById(scenarioDto.energyMarketParametersId) as EnergyMarketParameters,
@@ -96,27 +96,24 @@ export const useScenarioStore = defineStore({ id: "ScenarioStore",
     getters: {
         getScenarioById:(state)=>(id: string) => {
             return state.scenarios.find(scenario => scenario.id === id);
-        }, getEquipmentBySeasonId:(state)=>(seasonId: string) => {
-            return state.scenarios.find(scenario => scenario.season.id === seasonId);
         },
-        getEquipmentTypesFromScenario:(state)=>(scenario : Scenario) => {
-            const equipmentByTypes : EquipmentType[] = [];
-            for(const equipment of scenario.equipmentTypes){
-                if(!equipmentByTypes.includes(equipment)){
-                    equipmentByTypes.push(equipment);
-                }
-            }
-            return equipmentByTypes;
+        getEquipmentBySeasonId:(state)=>(seasonId: string) => {
+            return state.scenarios.find(scenario => scenario.season.id === seasonId);
         },
         getEquipmentTypesFromClickedScenario:(state)=> {
             const equipmentByTypes : EquipmentType[] = [];
             if(state.clickedScenario) {
+                for(const consumption of state.clickedScenario.initialConsumption){
+                    if(!equipmentByTypes.includes(consumption.equipment.type)){
+                        equipmentByTypes.push(consumption.equipment.type);
+                    }
+                }
                 for(const equipment of state.clickedScenario.equipmentTypes){
                     if(!equipmentByTypes.includes(equipment)){
                         equipmentByTypes.push(equipment);
                     }
                 }
-                return equipmentByTypes;
+                return JSON.parse(JSON.stringify(equipmentByTypes));
             }
             return [];
         },

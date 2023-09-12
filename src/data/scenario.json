@@ -12,8 +12,8 @@
                 "text": "English description", "lang": "en"
             }
         ],
-        "equipmentTypesIds": ["et_dishwasher_1","et_washing_machine_1","et_tumble_dryer_1","et_television_1","et_electric_bike_1","et_micro_wave_1"],
-        "initialConsumptionIds": ["ic_dishwasher_0_1","ic_dishwasher_0_1"],
+        "additionalEquipmentTypesIds": ["et_tumble_dryer_1","et_television_1","et_electric_bike_1","et_micro_wave_1"],
+        "initialConsumptionIds": ["ic_dishwasher_0_1"],
         "energyStorageParametersId": "esp_1",
         "energyMarketParametersId": "emp_1",
         "moneyParametersId": "mp_1"

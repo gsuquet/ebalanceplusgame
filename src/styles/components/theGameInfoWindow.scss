@@ -8,10 +8,10 @@
     margin: 0 auto;
     border-radius: 5px;
     background-color: var(--theme-color-background);
-    width:800px;
+    width:90%;
     text-align: center;
     margin-top: 1.5rem;
-
+    color: var(--theme-color-text);
     .card{
 
         overflow-y: auto;
@@ -46,6 +46,7 @@
                 align-items: center;
                 justify-content: center;
                 cursor: pointer;
+                color: var(--theme-color-text);
                 .btn-icon{
                     margin-right: 10px;
                 }

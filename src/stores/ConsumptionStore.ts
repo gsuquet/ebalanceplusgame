@@ -33,6 +33,7 @@ export const useConsumptionStore = defineStore({
             if(initialConsumption){
                 this.consumptionList = [];
                 for(const consumption of initialConsumption){
+                    consumption.equipment.isBought = true;
                     this.addToConsumptionList(consumption);
                 }   
             }
@@ -55,6 +56,8 @@ export const useConsumptionStore = defineStore({
                     this.removeFromConsumptionCurve(i,consumptionToRemove.amount)
                 }
                 this.consumptionList = this.consumptionList.filter(consumption => consumption.id !== consumptionId);
+                //consumptionToRemove.equipment.isBought = false; TODO : implement a way to sell unused equipment ?!
+                useEquipmentStore().updateAvailableEquipments(consumptionToRemove.equipment);
                 this.setListOfOverConsumption();
                 useBoardStore().setTilesFromConsumptionList();
                 if(consumptionToRemove.equipment.type.isBattery){
@@ -131,6 +134,8 @@ export const useConsumptionStore = defineStore({
                 price:price,
                 equipment:equipment };
             this.addToConsumptionList(newConsumption);
+            equipment.isBought = true;
+            useEquipmentStore().updateAvailableEquipments(equipment);
         }
     },
 
@@ -169,6 +174,9 @@ export const useConsumptionStore = defineStore({
                 }
             }
             return emptyConsumption;
+        },
+        getUsedEquipmentList(state) {
+            return state.consumptionList.map(consumption => consumption.equipment);
         }
     }
 });

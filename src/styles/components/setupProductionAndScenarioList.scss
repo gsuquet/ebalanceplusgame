@@ -1,3 +1,4 @@
+@import '../utilities/mixins.scss';
 
 .list-container {
 	display: flex;
@@ -7,16 +8,17 @@
     //height: 1520px;
     height: 54rem;
     //width: calc(17rem + 32px );
-    padding: 1rem;
+    padding: 0.5rem 0;
     margin-top: 0.4rem;
     transition: 0.2s ease-in-out;
     overflow-y: auto;
+    @include scrollbar();
+    color: var(--theme-color-text);
     .boucle {
         .box-container {
-            margin: 0 0.5rem 0.5rem 0;
             background-color: var(--theme-color-background-secondary);
             border-radius: 10px;
-            margin: 1rem;
+            margin: 0.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
