@@ -1,3 +1,5 @@
+
+
 [
     {
         "id":"et_dishwasher_1",
@@ -28,7 +30,6 @@
         "icon_name":"mdi:television",
         "color":"#CCB46B",
         "equipmentTypeDurationParamsId": "etdp_basics"
-
     },
     {
         "id":"et_electric_bike_1",
