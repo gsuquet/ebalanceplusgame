@@ -1,0 +1,14 @@
+name: "Dependencies Reviewer"
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+  workflow_dispatch:
+
+jobs:
+  dependency-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout Repository'
+        uses: actions/checkout@v4
+      - name: 'Dependencies Review'
+        uses: actions/dependency-review-action@v3
