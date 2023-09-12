@@ -44,8 +44,8 @@ devDependencies:
     specifier: ^8.34.0
     version: 8.34.0
   sass:
-    specifier: ^1.57.1
-    version: 1.57.1
+    specifier: ^1.66.1
+    version: 1.66.1
   typescript:
     specifier: ^4.9.3
     version: 4.9.4
@@ -60,7 +60,7 @@ devDependencies:
     version: 0.25.2(rollup@2.79.1)(vue@3.3.4)
   vite:
     specifier: ^4.0.5
-    version: 4.0.5(sass@1.57.1)
+    version: 4.0.5(sass@1.66.1)
   vite-plugin-pwa:
     specifier: ^0.14.1
     version: 0.14.1(vite@4.0.5)(workbox-build@6.6.0)(workbox-window@6.6.0)
@@ -2067,7 +2067,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.0.5(sass@1.57.1)
+      vite: 4.0.5(sass@1.66.1)
       vue: 3.3.4
     dev: true
 
@@ -3722,8 +3722,8 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
-  /immutable@4.2.2:
-    resolution: {integrity: sha512-fTMKDwtbvO5tldky9QZ2fMX7slR0mYpY5nbnFWYp0fOzDhHqhgIw9KoYgxLWsoNTS9ZHGauHj18DTyEw6BK3Og==}
+  /immutable@4.3.4:
+    resolution: {integrity: sha512-fsXeu4J4i6WNWSikpI88v/PcVflZz+6kMhUfIwc5SY+poQRPnaf5V7qds6SUyUN3cVxEzuCab7QIoLOQ+DQ1wA==}
     dev: true
 
   /import-fresh@3.3.0:
@@ -4830,13 +4830,13 @@ packages:
       regexp-tree: 0.1.24
     dev: true
 
-  /sass@1.57.1:
-    resolution: {integrity: sha512-O2+LwLS79op7GI0xZ8fqzF7X2m/m8WFfI02dHOdsK5R2ECeS5F62zrwg/relM1rjSLy7Vd/DiMNIvPrQGsA0jw==}
-    engines: {node: '>=12.0.0'}
+  /sass@1.66.1:
+    resolution: {integrity: sha512-50c+zTsZOJVgFfTgwwEzkjA3/QACgdNsKueWPyAR0mRINIvLAStVQBbPg14iuqEQ74NPDbXzJARJ/O4SI1zftA==}
+    engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
       chokidar: 3.5.3
-      immutable: 4.2.2
+      immutable: 4.3.4
       source-map-js: 1.0.2
     dev: true
 
@@ -5461,14 +5461,14 @@ packages:
       fast-glob: 3.2.12
       pretty-bytes: 6.0.0
       rollup: 3.10.1
-      vite: 4.0.5(sass@1.57.1)
+      vite: 4.0.5(sass@1.66.1)
       workbox-build: 6.6.0
       workbox-window: 6.6.0
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite@4.0.5(sass@1.57.1):
+  /vite@4.0.5(sass@1.66.1):
     resolution: {integrity: sha512-7m87RC+caiAxG+8j3jObveRLqaWA/neAdCat6JAZwMkSWqFHOvg8MYe5fAQxVBRAuKAQ1S6XDh3CBQuLNbY33w==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -5497,7 +5497,7 @@ packages:
       postcss: 8.4.21
       resolve: 1.22.1
       rollup: 3.10.1
-      sass: 1.57.1
+      sass: 1.66.1
     optionalDependencies:
       fsevents: 2.3.3
     dev: true
