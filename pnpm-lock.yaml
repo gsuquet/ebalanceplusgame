@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@iconify/vue':
-    specifier: ^4.1.0
-    version: 4.1.0(vue@3.3.4)
+    specifier: ^4.1.1
+    version: 4.1.1(vue@3.3.4)
   '@vueuse/core':
     specifier: ^9.11.1
     version: 9.11.1(vue@3.3.4)
@@ -32,8 +32,8 @@ devDependencies:
     specifier: ^0.41.2
     version: 0.41.2(eslint@8.49.0)(typescript@4.9.4)
   '@iconify/json':
-    specifier: ^2.2.10
-    version: 2.2.10
+    specifier: ^2.2.114
+    version: 2.2.114
   '@intlify/unplugin-vue-i18n':
     specifier: ^0.8.1
     version: 0.8.1(vue-i18n@9.4.0)
@@ -1617,11 +1617,11 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@iconify/json@2.2.10:
-    resolution: {integrity: sha512-WaAHE6+o2YssA768FRx0a6FdJnW4jYMrVw6eXA8iwucoM+abaGMwxaGderlGS/kovFXCHyV1vViJgW12BPErcg==}
+  /@iconify/json@2.2.114:
+    resolution: {integrity: sha512-KxZUi3yvruewUcDKK3kGXIZTqRQxN/LuO0uvoduBtCdntQ9NqKlY2cKchgt9cSv950teGzvRUv2nFEgd7Ywuvw==}
     dependencies:
       '@iconify/types': 2.0.0
-      pathe: 1.1.0
+      pathe: 1.1.1
     dev: true
 
   /@iconify/types@2.0.0:
@@ -1640,8 +1640,8 @@ packages:
       - supports-color
     dev: true
 
-  /@iconify/vue@4.1.0(vue@3.3.4):
-    resolution: {integrity: sha512-rBQVxNoSDooqgWkQg2MqkIHkH/huNuvXGqui5wijc1zLnU7TKzbBHW9VGmbnV4asNTmIHmqV4Nvt0M2rZ/9nHA==}
+  /@iconify/vue@4.1.1(vue@3.3.4):
+    resolution: {integrity: sha512-RL85Bm/DAe8y6rT6pux7D2FJSiUEM/TPfyK7GrbAOfTSwrhvwJW+S5yijdGcmtXouA8MtuH9C7l4hiSE4mLMjg==}
     peerDependencies:
       vue: '>=3'
     dependencies:
