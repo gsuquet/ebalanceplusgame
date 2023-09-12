@@ -106,10 +106,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            color: var(--theme-color-text);
             .btn{
                 @include button-plus-minus-style;
                 background-color: var(--theme-color-background);
-                color: var(--theme-color-text);
                 &:hover{
                     color: var(--theme-color-text-secondary);
                     background-color: var(--theme-color-primary);

@@ -1,26 +1,12 @@
 <script setup lang="ts">
-    import { useEquipmentStore } from '../stores/EquipmentStore';
     import { Equipment } from '../types/Equipment';
-
-    const {equipment} = defineProps<{
-        equipment: Equipment;
-    }>()
-
-    const store = useEquipmentStore();
-    store.getEquipmentData();
-
-
-    function isClicked(equipment:Equipment) {
-        store.setClickedEquipment(equipment);
-    }
-
 </script>
 
 <template>
     <div class="equi-container" @click="isClicked(equipment)">
         <div class="conso-class " :class="equipment.energy_class">{{ equipment.energy_class }}</div>
-        <h1 class="name">{{ equipment.equipmentConsumptionParams.originalConsumption }} W</h1>
-        <p class="price">{{ equipment.equipmentCostParams.originalPrice }} €</p>
+        <h1 class="name">{{ consumptionDisplay }}</h1>
+        <p class="price">{{ priceDisplay }}</p>
     </div>
 
 </template>
@@ -28,3 +14,27 @@
 <style scoped lang="scss">
     @import "../styles/components/equipments.scss";
 </style>
+
+<script lang="ts">
+    export default {
+        props: {
+            equipment: {
+                type: Object as () => Equipment,
+                required: true,
+            },
+        },
+        methods: {
+            isClicked(equipment:Equipment) {
+                useEquipmentStore().setClickedEquipment(equipment);
+            }
+        },
+        computed: {
+            consumptionDisplay() {
+                return this.equipment.equipmentConsumptionParams.originalConsumption + ' W';
+            },
+            priceDisplay() {
+                return this.equipment.isBought ? "" : this.equipment.equipmentCostParams.originalPrice + ' €';
+            },
+        }
+    }
+</script>

@@ -46,7 +46,8 @@
         "consumptionAmountLowerThanMin": "Votre consommation est inférieure au minimum autorisé.",
         "timeError": "Les heures de début et de fin doivent être comprises entre 0 et 23, et l'heure de début doit être inférieure à l'heure de fin.",
         "amountErrorHigherThanEnergyStorageCapacity": "Le montant total doit être inférieur ou égal à la capacité de stockage d'énergie.",
-        "amountErrorHigherThanEnergyStored": "Le montant total doit être inférieur ou égal à l'énergie stockée."
+        "amountErrorHigherThanEnergyStored": "Le montant total doit être inférieur ou égal à l'énergie stockée.",
+        "notEnoughMoney": "Vous n'avez pas assez d'argent."
     },
     "money":{
         "cost": "Coût",

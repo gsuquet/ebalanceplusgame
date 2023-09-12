@@ -2,7 +2,7 @@
     import { Scenario } from '../types/Scenario';
     import { Icon } from '@iconify/vue';
     import { convertI18nObjectToLocale } from '../helpers/translation';
-import { I18nObject } from '../types/I18nObject';
+    import { I18nObject } from '../types/I18nObject';
 </script>
 
 <template>
@@ -11,7 +11,7 @@ import { I18nObject } from '../types/I18nObject';
             <div class="box-container">
                 <div class="day-container">
                     <h1>
-                        {{ convertI18nObject(scenario.days) }}
+                        {{ convertI18nObject(scenario.day.names) }}
                     </h1>                
                     <div class="icon-season">
                         <Icon :icon="scenario.season.icon"/>

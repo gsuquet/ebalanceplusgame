@@ -121,3 +121,19 @@
     z-index: 20;
     background-color: var(--theme-color-background);
 }
+
+@mixin scrollbar() {
+    scrollbar-width: thin;
+    scrollbar-color: var(--theme-color-primary) var(--theme-color-background-secondary);
+    &::-webkit-scrollbar {
+        width: 12px;
+    }
+    &::-webkit-scrollbar-track {
+        background: var(--theme-color-background-secondary);
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--theme-color-primary);
+        border-radius: 20px;
+        border: 3px solid var(--theme-color-background-secondary);
+    }
+}
