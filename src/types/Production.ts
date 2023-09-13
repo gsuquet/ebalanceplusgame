@@ -1,22 +1,22 @@
-import { I18nObject } from "./I18nObject";
+import type { I18nObject } from './I18nObject'
 
 export interface ProductionCurve {
-    id : string;
-    names: I18nObject[];
-    descriptions: I18nObject[];
-    svg: string;
-    solar: number[];
-    wind: number[];
-    hydro: number[];
-    total: number[];
+  id: string
+  names: I18nObject[]
+  descriptions: I18nObject[]
+  svg: string
+  solar: number[]
+  wind: number[]
+  hydro: number[]
+  total: number[]
 }
 
 export interface ProductionCurveDto {
-    id : string;
-    names: I18nObject[];
-    descriptions: I18nObject[];
-    svg: string;
-    solar: number[];
-    wind: number[];
-    hydro: number[];
+  id: string
+  names: I18nObject[]
+  descriptions: I18nObject[]
+  svg: string
+  solar: number[]
+  wind: number[]
+  hydro: number[]
 }

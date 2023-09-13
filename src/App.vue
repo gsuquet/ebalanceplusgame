@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import { useGameParametersStore } from '../src/stores/GameParametersStore';
-  import TheNavBar from './layout/TheNavBar.vue';
+import { useGameParametersStore } from '../src/stores/GameParametersStore'
+import TheNavBar from './layout/TheNavBar.vue'
 </script>
 
 <template>

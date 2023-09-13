@@ -1,27 +1,28 @@
 <script setup lang="ts">
-    import BaseMenuIcon from './BaseMenuIcon.vue';
+import BaseMenuIcon from './BaseMenuIcon.vue'
+</script>
+
+<script lang="ts">
+export default {
+  name: 'MultiplayerMenuIcon',
+  components: {
+    BaseMenuIcon,
+  },
+  data() {
+    return {
+      gameParametersStore: useGameParametersStore(),
+    }
+  },
+}
 </script>
 
 <template>
-    <BaseMenuIcon
-        :menuIconId="'multiplayer-menu-icon'"
-        :className="'multiplayer'"
-        :iconString="'mdi:account-multiple'"
-        :hasAmount="false"
-        :isDisplayed="gameParametersStore.isMultiplayer"
-        @click=""/>
+  <BaseMenuIcon
+    menu-icon-id="multiplayer-menu-icon"
+    class-name="multiplayer"
+    icon-string="mdi:account-multiple"
+    :has-amount="false"
+    :is-displayed="gameParametersStore.isMultiplayer"
+    @click=""
+  />
 </template>
-
-<script lang="ts">
-    export default {
-        name: "MultiplayerMenuIcon",
-        components: {
-            BaseMenuIcon
-        },
-        data() {
-            return {
-                gameParametersStore: useGameParametersStore()
-            }
-        }
-    }
-</script>

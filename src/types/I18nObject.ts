@@ -1,4 +1,4 @@
-export interface I18nObject{
-    text: string,
-    lang: string,
+export interface I18nObject {
+  text: string
+  lang: string
 }

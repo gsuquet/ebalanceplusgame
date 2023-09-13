@@ -1,27 +1,28 @@
 <script setup lang="ts">
-    import BaseMenuIcon from './BaseMenuIcon.vue';
+import BaseMenuIcon from './BaseMenuIcon.vue'
+</script>
+
+<script lang="ts">
+export default {
+  name: 'MoneyMenuIcon',
+  components: {
+    BaseMenuIcon,
+  },
+  data() {
+    return {
+      moneyStore: useMoneyStore(),
+    }
+  },
+}
 </script>
 
 <template>
-    <BaseMenuIcon
-        :menuIconId="'money-menu-icon'"
-        :className="'money'"
-        :iconString="moneyStore.getMoneyCurrencyIcon"
-        :hasAmount="true"
-        :amount="moneyStore.getMoneyAmountToDisplay + ' ' + moneyStore.getMoneyCurrency"
-        :isDisplayed="moneyStore.displayMoneyIcon"/>
+  <BaseMenuIcon
+    menu-icon-id="money-menu-icon"
+    class-name="money"
+    :icon-string="moneyStore.getMoneyCurrencyIcon"
+    :has-amount="true"
+    :amount="`${moneyStore.getMoneyAmountToDisplay} ${moneyStore.getMoneyCurrency}`"
+    :is-displayed="moneyStore.displayMoneyIcon"
+  />
 </template>
-
-<script lang="ts">
-    export default {
-        name: "MoneyMenuIcon",
-        components: {
-            BaseMenuIcon
-        },
-        data() {
-            return {
-                moneyStore: useMoneyStore()
-            }
-        }
-    }
-</script>

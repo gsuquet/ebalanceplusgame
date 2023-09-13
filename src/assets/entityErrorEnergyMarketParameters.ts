@@ -1,7 +1,7 @@
-import { EnergyMarketParameters } from "../types/Energy";
+import type { EnergyMarketParameters } from '../types/Energy'
 
 export const errorEnergyMarketParameters = {
-    isEnergyMarket: false,
-    salePricesList: [] as number[],
-    constantPrice: 0
-} as EnergyMarketParameters;
+  isEnergyMarket: false,
+  salePricesList: [] as number[],
+  constantPrice: 0,
+} as EnergyMarketParameters
