@@ -231,14 +231,13 @@ export const useEnergyStore = defineStore({
       return true
     },
     getMaxAmountOfEnergyUserCanUseOverPeriod: state => (startIndex: number, endIndex: number) => {
-      const usedEnergyToRemoveList = Array.from({ length: state.availableStoredEnergyList.length }).fill(0)
+      const usedEnergyToRemoveList = [...Array(state.availableStoredEnergyList.length).keys()].map(() => 0)
       return getMaxUsableEnergyAmountPossibleOverPeriod(state.availableStoredEnergyList, usedEnergyToRemoveList, startIndex, endIndex)
     },
     getMaxAmountOfEnergyUserCanUseOverPeriodWithoutConsumption: state => (consumptionId: string, startIndex: number, endIndex: number) => {
       const usedEnergy = state.usedEnergyList.find(consumption => consumption.id === consumptionId)
       if (usedEnergy)
         return getMaxUsableEnergyAmountPossibleOverPeriodWithoutConsumption(usedEnergy, state.availableStoredEnergyList, startIndex, endIndex)
-
       return 0
     },
     getMaxChargeRate: (state) => {

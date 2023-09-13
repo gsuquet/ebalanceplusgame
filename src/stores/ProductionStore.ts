@@ -27,15 +27,15 @@ export const useProductionStore = defineStore({
       this.setClickedProductionCurveToFirstCurve()
     },
     getProductionCurveTotal(solar: number[], wind: number[], hydro: number[]) {
-      const solarPoints = solar.length > 0 ? solar : Array.from({ length: 96 }).fill(0)
-      const windPoints = wind.length > 0 ? wind : Array.from({ length: 96 }).fill(0)
-      const hydroPoints = hydro.length > 0 ? hydro : Array.from({ length: 96 }).fill(0)
+      const solarPoints = solar.length > 0 ? solar : [...Array(96).keys()].map(() => 0)
+      const windPoints = wind.length > 0 ? wind : [...Array(96).keys()].map(() => 0)
+      const hydroPoints = hydro.length > 0 ? hydro : [...Array(96).keys()].map(() => 0)
       const total = solarPoints.map((solarPoint: number, index: number) => solarPoint + windPoints[index] + hydroPoints[index])
       return total
     },
     initTotalProductionFromProductionCurve(productionCurve: ProductionCurve | null) {
       if (productionCurve) {
-        this.totalProduction = Array.from({ length: 96 }).fill(0)
+        this.totalProduction = [...Array(96).keys()].map(() => 0)
         this.totalProduction = this.totalProduction.map((production: number, index: number) => production + productionCurve.total[index])
       }
     },

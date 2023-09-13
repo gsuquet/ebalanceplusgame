@@ -25,7 +25,7 @@ export function getMaxUsableEnergyAmountPossibleOverPeriodWithoutConsumption(
   endIndex: number,
 ): number {
   let indexMultiplier = 1
-  const usedEnergyToRemoveList = Array.from({ length: availableEnergyList.length }).fill(0)
+  const usedEnergyToRemoveList = [...Array(availableEnergyList.length).keys()].map(() => 0)
   for (let i = consumption.startIndex; i < usedEnergyToRemoveList.length; i++) {
     usedEnergyToRemoveList[i] = consumption.amount * indexMultiplier
     if (i < consumption.endIndex) {
