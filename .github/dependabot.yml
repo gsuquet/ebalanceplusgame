@@ -1,73 +1,73 @@
 version: 2
 updates:
   # GitHub Actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: github-actions
+    directory: /
     schedule:
-      interval: "weekly"
-      day: "saturday"
-    target-branch: "main"
+      interval: weekly
+      day: saturday
+    target-branch: main
     commit-message:
       prefix: ':green_heart: chore(ci)'
 
   # Pnpm
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: npm
+    directory: /
     schedule:
-      interval: "weekly"
-      day: "saturday"
-    target-branch: "main"
+      interval: weekly
+      day: saturday
+    target-branch: main
     commit-message:
       prefix: ':green_heart: chore(deps)'
     groups:
       vue:
         patterns:
-        - "vue*"
-        - "@vue*"
-        - "pinia*"
+          - 'vue*'
+          - '@vue*'
+          - 'pinia*'
         update-types:
-        - "minor"
-        - "patch"
+          - minor
+          - patch
       vite:
         patterns:
-        - "vite*"
-        - "@vite*"
+          - 'vite*'
+          - '@vite*'
         update-types:
-        - "minor"
-        - "patch"
+          - minor
+          - patch
       unplugin:
         patterns:
-        - "unplugin*"
-        - "*unplugin*"
+          - 'unplugin*'
+          - '*unplugin*'
         update-types:
-        - "minor"
-        - "patch"
+          - minor
+          - patch
       vueuse:
         patterns:
-        - "vueuse*"
-        - "@vueuse*"
+          - 'vueuse*'
+          - '@vueuse*'
         update-types:
-        - "minor"
-        - "patch"
+          - minor
+          - patch
       iconify:
         patterns:
-        - "@iconify*"
+          - '@iconify*'
         update-types:
-        - "minor"
-        - "patch"
+          - minor
+          - patch
       dev-tools:
         patterns:
-        - "eslint*"
-        - "*eslint*"
-        - "prettier*"
-        - "husky*"
-        - "typescript*"
+          - 'eslint*'
+          - '*eslint*'
+          - 'prettier*'
+          - 'husky*'
+          - 'typescript*'
         update-types:
-        - "minor"
-        - "patch"
+          - minor
+          - patch
       style:
         patterns:
-        - "sass*"
+          - 'sass*'
         update-types:
-        - "minor"
-        - "patch"
+          - minor
+          - patch

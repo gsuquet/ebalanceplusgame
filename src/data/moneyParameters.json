@@ -1,10 +1,10 @@
 [
-    {
-        "id":"mp_1",
-        "initialMoney": 200,
-        "isMoneyMenu": true,
-        "isMoneyUnlimited": false,
-        "moneyCurrency": "€",
-        "moneyCurrencyIcon": "mdi:currency-eur"
-    }
+  {
+    "id": "mp_1",
+    "initialMoney": 200,
+    "isMoneyMenu": true,
+    "isMoneyUnlimited": false,
+    "moneyCurrency": "€",
+    "moneyCurrencyIcon": "mdi:currency-eur"
+  }
 ]

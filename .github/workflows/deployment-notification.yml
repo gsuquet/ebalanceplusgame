@@ -1,5 +1,5 @@
 name: Deployment notification
-on: [deployment_status] #Triggered for deployment status changes
+on: [deployment_status] # Triggered for deployment status changes
 
 jobs:
   add-failure-comment:

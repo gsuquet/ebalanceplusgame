@@ -1,38 +1,38 @@
 # PR labeler configuration file
 ci:
-- any: ['.github/**/*','!.github/ISSUE_TEMPLATE/*','!.github/pull_request_template.md']
-- .pre-commit-config.yaml
+  - any: ['.github/**/*', '!.github/ISSUE_TEMPLATE/*', '!.github/pull_request_template.md']
+  - .pre-commit-config.yaml
 
 gitignore:
-- .gitignore
+  - .gitignore
 
 github_actions:
-- any: ['.github/**/*','!.github/ISSUE_TEMPLATE/*','!.github/pull_request_template.md']
+  - any: ['.github/**/*', '!.github/ISSUE_TEMPLATE/*', '!.github/pull_request_template.md']
 
 tests:
-- any: ['tests/**/*']
+  - any: ['tests/**/*']
 
 documentation:
-- CHANGELOG.md
-- CODE_OF_CONDUCT.md
-- CONTRIBUTING.md
-- LICENSE
-- SECURITY.md
-- .github/ISSUE_TEMPLATE/**/*
-- .github/pull_request_template.md
-- '**/README.md'
+  - CHANGELOG.md
+  - CODE_OF_CONDUCT.md
+  - CONTRIBUTING.md
+  - LICENSE
+  - SECURITY.md
+  - .github/ISSUE_TEMPLATE/**/*
+  - .github/pull_request_template.md
+  - '**/README.md'
 
 configuration:
-- vite.config.ts
-- tsconfig.json
-- tsconfig.node.json
-- .pre-commit-config.yaml
-- .eslintrc
-- .eslintignore
-- .editorconfig
+  - vite.config.ts
+  - tsconfig.json
+  - tsconfig.node.json
+  - .pre-commit-config.yaml
+  - .eslintrc
+  - .eslintignore
+  - .editorconfig
 
 dependencies:
-- package.json
-- package-lock.json
-- yarn.lock
-- pnpm-lock.yaml
+  - package.json
+  - package-lock.json
+  - yarn.lock
+  - pnpm-lock.yaml

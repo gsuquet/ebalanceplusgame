@@ -1,33 +1,33 @@
 name: Documentation Update 📝
 description: Suggest an update to the documentation
-labels: ["documentation","to sort"]
+labels: [documentation, to sort]
 body:
-- type: markdown
-  attributes:
-    value: |
-      ## Documentation Update
-- type: textarea
-  id: changes-description
-  attributes:
-    label: Description of the changes
-    placeholder: |
-      Describe the exact changes you wish to implement and why in as many details as possible.
-      If you're providing snippets in the issue, use Markdown code blocks : https://help.github.com/articles/markdown-basics/#multiple-lines.
-  validations:
-    required: true
-- type: textarea
-  id: ebalanceplusgame-version
-  attributes:
-    label: Game version(s)
-    placeholder: |
-      Version(s) of the game's documentation you are updating.
-  validations:
-    required: true
-- type: textarea
-  id: additional-info
-  attributes:
-    label: Additional infos
-    placeholder: |
-      Add any additional context information or screenshots you think are useful.
-  validations:
-    required: false
+  - type: markdown
+    attributes:
+      value: |
+        ## Documentation Update
+  - type: textarea
+    id: changes-description
+    attributes:
+      label: Description of the changes
+      placeholder: |
+        Describe the exact changes you wish to implement and why in as many details as possible.
+        If you're providing snippets in the issue, use Markdown code blocks : https://help.github.com/articles/markdown-basics/#multiple-lines.
+    validations:
+      required: true
+  - type: textarea
+    id: ebalanceplusgame-version
+    attributes:
+      label: Game version(s)
+      placeholder: |
+        Version(s) of the game's documentation you are updating.
+    validations:
+      required: true
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional infos
+      placeholder: |
+        Add any additional context information or screenshots you think are useful.
+    validations:
+      required: false

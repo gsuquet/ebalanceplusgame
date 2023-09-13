@@ -1,26 +1,26 @@
 [
-    {
-        "id":"season_summer",
-        "names":[{"text":"Été", "lang":"fr"}, {"text":"Summer", "lang":"en"}],
-        "icon": "mdi:white-balance-sunny",
-        "color": "#FFD700"
-    },
-    {
-        "id":"season_autumn",
-        "names":[{"text":"Automne", "lang":"fr"}, {"text":"Autumn", "lang":"en"}],
-        "icon": "mdi:leaf",
-        "color": "#FFA500"
-    },
-    {
-        "id":"season_winter",
-        "names":[{"text":"Hiver", "lang":"fr"}, {"text":"Winter", "lang":"en"}],
-        "icon": "mdi:snowflake",
-        "color": "#00BFFF"
-    },
-    {
-        "id":"season_spring",
-        "names":[{"text":"Printemps", "lang":"fr"}, {"text":"Spring", "lang":"en"}],
-        "icon": "mdi:flower",
-        "color": "#00FF00"
-    }
+  {
+    "id": "season_summer",
+    "names": [{ "text": "Été", "lang": "fr" }, { "text": "Summer", "lang": "en" }],
+    "icon": "mdi:white-balance-sunny",
+    "color": "#FFD700"
+  },
+  {
+    "id": "season_autumn",
+    "names": [{ "text": "Automne", "lang": "fr" }, { "text": "Autumn", "lang": "en" }],
+    "icon": "mdi:leaf",
+    "color": "#FFA500"
+  },
+  {
+    "id": "season_winter",
+    "names": [{ "text": "Hiver", "lang": "fr" }, { "text": "Winter", "lang": "en" }],
+    "icon": "mdi:snowflake",
+    "color": "#00BFFF"
+  },
+  {
+    "id": "season_spring",
+    "names": [{ "text": "Printemps", "lang": "fr" }, { "text": "Spring", "lang": "en" }],
+    "icon": "mdi:flower",
+    "color": "#00FF00"
+  }
 ]

@@ -1,10 +1,10 @@
 [
-    {
-        "lang": "fr",
-        "icon": "flag:fr-4x3"
-    },
-    {
-        "lang": "en",
-        "icon": "flag:gb-4x3"
-    }
+  {
+    "lang": "fr",
+    "icon": "flag:fr-4x3"
+  },
+  {
+    "lang": "en",
+    "icon": "flag:gb-4x3"
+  }
 ]

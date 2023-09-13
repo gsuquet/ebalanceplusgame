@@ -1,4 +1,4 @@
-name: "Dependencies Reviewer"
+name: Dependencies Reviewer
 on:
   pull_request:
     types: [opened, edited, synchronize, reopened]
@@ -12,9 +12,9 @@ jobs:
   dependency-review:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout Repository'
+      - name: Checkout Repository
         uses: actions/checkout@v4
-      - name: 'Dependencies Review'
+      - name: Dependencies Review
         uses: actions/dependency-review-action@v3
         with:
           comment-summary-in-pr: always

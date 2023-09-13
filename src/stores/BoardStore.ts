@@ -44,7 +44,7 @@ export const useBoardStore = defineStore({
     TilesFromConsumption(consumptionList: Consumption[]) {
       this.board.consumptionTiles = this.generateTilesFromList(consumptionList, null)
     },
-    generate15MinTilesFromList(listOfConsumptions: Consumption[], productionCurve: number[] | null) : Tile[] {
+    generate15MinTilesFromList(listOfConsumptions: Consumption[], productionCurve: number[] | null): Tile[] {
       const occupiedSlotHeightsOnBoardByIndex: number[] = this.getOccupiedSlotHeightsOnBoardByIndex(productionCurve)
       const tiles: Tile[] = []
       for (const consumption of listOfConsumptions) {
@@ -56,7 +56,7 @@ export const useBoardStore = defineStore({
       }
       return tiles
     },
-    generateTilesFromList(listOfConsumptions: Consumption[], productionCurve: number[] | null) : Tile[] {
+    generateTilesFromList(listOfConsumptions: Consumption[], productionCurve: number[] | null): Tile[] {
       const occupiedSlotHeightsOnBoardByIndex: number[] = this.getOccupiedSlotHeightsOnBoardByIndex(productionCurve)
       const tiles: Tile[] = []
       for (const consumption of listOfConsumptions) {
@@ -94,7 +94,7 @@ export const useBoardStore = defineStore({
       };
       return tiles
     },
-    getOccupiedSlotHeightsOnBoardByIndex(productionCurve: number[] | null) : number[] {
+    getOccupiedSlotHeightsOnBoardByIndex(productionCurve: number[] | null): number[] {
       if (productionCurve) {
         const occupiedSlotHeightsOnBoardByIndex: number[] = [...Array(96).keys()].map(() => 0)
         for (let i = 0; i < 96; i++)
@@ -106,7 +106,7 @@ export const useBoardStore = defineStore({
         return [...Array(96).keys()].map(() => 0)
       }
     },
-    generateTile(consumption: Consumption, startIndex: number, endIndex: number, y: number) : Tile {
+    generateTile(consumption: Consumption, startIndex: number, endIndex: number, y: number): Tile {
       const height = convertValueToPixels(consumption.amount, this.tileParams.pxSizeFor10W, 10)
       return {
         id: consumption.id,

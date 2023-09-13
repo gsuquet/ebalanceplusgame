@@ -27,17 +27,17 @@ The stores are grouped by the domain they belong to. For example, the `BoardStor
 Each store has the following structure:
 ```ts
 export const useStore = defineStore({
-    id: 'storeName',
-    state: () => ({
-        // state
-    }),
-    actions: {
-        // actions
-    },
-    getters: {
-        // getters
-    }
-});
+  id: 'storeName',
+  state: () => ({
+    // state
+  }),
+  actions: {
+    // actions
+  },
+  getters: {
+    // getters
+  }
+})
 ```
 The id is used by Pinia to connect the store to the devtools. Naming the returned function use... is a convention across composable to make its usage idiomatic.  
 

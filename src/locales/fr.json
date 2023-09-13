@@ -1,131 +1,131 @@
 {
-    "page":{
-        "home": "Accueil",
-        "setup": "Configuration",
-        "game": "Jeu",
-        "account": "Compte",
-        "about": "A propos"
+  "page": {
+    "home": "Accueil",
+    "setup": "Configuration",
+    "game": "Jeu",
+    "account": "Compte",
+    "about": "A propos"
+  },
+  "button": {
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "save": "Sauvegarder",
+    "add": "Ajouter",
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "register": "Inscription",
+    "random": "Aléatoire",
+    "play": "Jouer",
+    "store": "Stocker",
+    "use": "Utiliser",
+    "buy": "Acheter",
+    "sell": "Vendre",
+    "create": "Créer",
+    "join": "Rejoindre",
+    "purchase": "achat",
+    "sale": "vente",
+    "total": "Total",
+    "close": "Fermer",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "input": {
+    "start": "Début",
+    "end": "Fin",
+    "amount": "Montant",
+    "consumption": "Consommation",
+    "cost": "Coût"
+  },
+  "alert": {
+    "overConsumption": "Votre demande est supérieure à la production !"
+  },
+  "error": {
+    "consumptionAmountHigherThanMax": "Votre consommation est supérieure au maximum autorisé.",
+    "consumptionAmountLowerThanMin": "Votre consommation est inférieure au minimum autorisé.",
+    "timeError": "Les heures de début et de fin doivent être comprises entre 0 et 23, et l'heure de début doit être inférieure à l'heure de fin.",
+    "amountErrorHigherThanEnergyStorageCapacity": "Le montant total doit être inférieur ou égal à la capacité de stockage d'énergie.",
+    "amountErrorHigherThanEnergyStored": "Le montant total doit être inférieur ou égal à l'énergie stockée.",
+    "notEnoughMoney": "Vous n'avez pas assez d'argent."
+  },
+  "money": {
+    "cost": "Coût",
+    "personnalMoney": "Solde"
+  },
+  "energy": {
+    "header": "Stockage d'énergie",
+    "stored": "Stockée",
+    "max": "Maximum",
+    "batteriesManagement": "Gestion des batteries",
+    "capacity": "Capacité",
+    "storeEnergy": "Stocker de l'énergie",
+    "useEnergy": "Utiliser de l'énergie",
+    "cannotRemoveStoredEnergyUsed": "Vous ne pouvez pas supprimer de l'énergie stockée qui a été utilisée."
+  },
+  "home": {
+    "createGame": "Créer une partie",
+    "joinGame": "Rejoindre une partie",
+    "createGameDescription": "Créez une nouvelle partie et choisissez ensuite votre scénario et l'allure de votre courbe de production. L'objectif est de gérer votre consommation d'énergie afin de ne pas dépasser la production. Vous pouvez également acheter et vendre de l'énergie sur le marché. Il est également possible de jouer en multi-joueurs en créant une partie et en invitant vos amis à la rejoindre via le code affiché en-dessous.",
+    "joinGameDescription": "Rejoignez une partie en saisissant le code de la partie que vous souhaitez rejoindre. Suivant le même principe que le mode solo, le but est de gérer votre consommation d'énergie afin de ne pas dépasser la production. Même si vous pouvez toujours acheter et vendre de l'énergie sur le marché, il vous es recommandé d'échanger avec d'autres joueurs afin de faire l'experience du concept de communauté d'énergie.",
+    "publicGames": "Parties publiques",
+    "noPublicGames": "Aucune partie publique n'est actuellement disponible.",
+    "gameCode": "Code de la partie",
+    "singlePlayer": "Joueur unique",
+    "multiPlayer": "Multi-joueurs",
+    "public": "Publique",
+    "private": "Privée",
+    "unSuccessfulGameCreation": "La création de la partie multijoueur a échoué.",
+    "unSuccessfulGameJoin": "La partie n'a pas pu être rejointe.",
+    "invalidGameCode": "Le code de la partie est invalide."
+  },
+  "setup": {
+    "launchNewGame": "Lancer une nouvelle partie",
+    "setupExplanation": "Choisissez le scénario de votre partie et l'allure de votre courbe de production. Pour faire cela, il vous suffit de cliquer sur la courbe et le scénario qui vous intéresse a gauche et a droite. Une description plus détaillée sera affichée ci-dessus. Vous pouvez également choisir le mode aléatoire."
+  },
+  "market": {
+    "header": "pnj"
+  },
+  "rule": {
+    "title": "Jeu E-Balance - régle du jeu",
+    "gameObject": "Le but du jeu est de comprendre comment rendre plus flexible sa consommation énergétique à travers différents scénarios. Pour cela vous devrez modifier les consommations placées en début de jeu afin de correspondre à la production d'énergie renouvelable.",
+    "howToPlay": "Comment jouer ?",
+    "AddConsumption": "Pour ajouter une consommation rendez vous dans le menu déroulant sur le coté gauche de l'écran. En cliquant sur votre équipement vous aurez accès à une fenêtre qui vous permettra de régler les heures de fonctionnement de votre équipement. Vous pouvez également cliqué sur un objet placé sur le plateau pour ouvrir une fenêtre qui vous permettra de modifier ou supprimer votre consommation.",
+    "notification": "Si votre consommation dépasse la production une notification s'affichera sur votre écran.",
+    "batteryUsage": "Dans ce jeu vous pouvez également stocker de l'energie grâce à l'utilisation de batterie. En cliquant sur l'icône de batterie à gauche de l'écran. Vous ouvrirez alors une fenêtre où vous pourrez acheter de nouvelle batterie pour stocker plus d'énergie. Vous pourrez recharger vos batteries en cliquant sur stocker et en choisissant où vous souhaitez placer la recharge. Vous pourrez ensuite placer ces batteries à un certain horaire pour compenser la consommation d'un équipement. [LOGIQUE UTILISATION DE LA BATTERIE]",
+    "marketUsage": "Vous pourrez également acheter ou vendre de l'énergie selon vos besoin. En cliquant sur l'icones « marché ». Vous trouverez ici l'argent que vous possédez ainsi que la possibilité d'acheter ou vendre de l'énergie. Lorsque vous cliquez sur le bouton « vendre » vous aurez accès à la fenêtre de vente. La vente d'énergie fonctionne comme une consommation classique. Vous devez placer cette consommation sur le plateau à l'horaire voulu. La vente vous rapportera de l'argent pour acheter de nouveaux équipements ou batteries. En cliquant sur le bouton achat vous pourrez acheter de l'énergie à un certain prix dépendant de l'heure d'achat. [LOGIQUE ACHAT D'ENERGIE]",
+    "howToWin": "Comment gagner ?",
+    "winRule": "Le but est d'avoir le meilleur score final, ce qui correspond à la meilleure flexibilité possible. Pour cela votre consommation doit le moins possible dépasser la production. Ainsi que de vendre l'énergie supplémentaire."
+  },
+  "results": {
+    "confirmSeeResults": "Voulez-vous voir les résultats ?",
+    "situations": {
+      "initialSituation": {
+        "name": "Situation initiale",
+        "description": "La situation initiale est la situation de départ de la partie. Inspirée d'habitudes de consommation réelles, elle forme un standard que vous êtes chargé d'améliorer."
+      },
+      "finalSituation": {
+        "name": "Situation finale",
+        "description": "La situation finale est la situation dans laquelle vous vous trouvez à la fin de la partie. Elle reflète les changements que vous avec apporté à la situation initiale."
+      }
     },
-    "button":{
-        "cancel": "Annuler",
-        "confirm": "Confirmer",
-        "delete": "Supprimer",
-        "edit": "Modifier",
-        "save": "Sauvegarder",
-        "add": "Ajouter",
-        "login": "Connexion",
-        "logout": "Déconnexion",
-        "register": "Inscription",
-        "random": "Aléatoire",
-        "play": "Jouer",
-        "store": "Stocker",
-        "use": "Utiliser",
-        "buy": "Acheter",
-        "sell": "Vendre",
-        "create": "Créer",
-        "join": "Rejoindre",
-        "purchase":"achat",
-        "sale": "vente",
-        "total": "Total",
-        "close": "Fermer",
-        "yes": "Oui",
-        "no": "Non"
+    "performanceIndicators": {
+      "totalConsumption": "Consommation totale",
+      "totalProduction": "Production totale",
+      "totalOverConsumption": "Surconsommation totale",
+      "totalSoldEnergy": "Énergie vendue totale",
+      "totalBoughtEnergy": "Énergie achetée totale",
+      "totalStoredEnergy": "Stockage d'énergie total",
+      "totalUsedStoredEnergy": "Énergie stockée utilisée totale",
+      "ratios": {
+        "selfConsumptionRatio": "Taux d'autoconsommation",
+        "selfProductionRatio": "Taux d'autoproduction"
+      }
     },
-    "input":{
-        "start": "Début",
-        "end": "Fin",
-        "amount": "Montant",
-        "consumption": "Consommation",
-        "cost": "Coût"
-    },
-    "alert":{
-        "overConsumption": "Votre demande est supérieure à la production !"
-    },
-    "error": {
-        "consumptionAmountHigherThanMax": "Votre consommation est supérieure au maximum autorisé.",
-        "consumptionAmountLowerThanMin": "Votre consommation est inférieure au minimum autorisé.",
-        "timeError": "Les heures de début et de fin doivent être comprises entre 0 et 23, et l'heure de début doit être inférieure à l'heure de fin.",
-        "amountErrorHigherThanEnergyStorageCapacity": "Le montant total doit être inférieur ou égal à la capacité de stockage d'énergie.",
-        "amountErrorHigherThanEnergyStored": "Le montant total doit être inférieur ou égal à l'énergie stockée.",
-        "notEnoughMoney": "Vous n'avez pas assez d'argent."
-    },
-    "money":{
-        "cost": "Coût",
-        "personnalMoney": "Solde"
-    },
-    "energy":{
-        "header": "Stockage d'énergie",
-        "stored": "Stockée",
-        "max": "Maximum",
-        "batteriesManagement": "Gestion des batteries",
-        "capacity": "Capacité",
-        "storeEnergy": "Stocker de l'énergie",
-        "useEnergy": "Utiliser de l'énergie",
-        "cannotRemoveStoredEnergyUsed": "Vous ne pouvez pas supprimer de l'énergie stockée qui a été utilisée."
-    },
-    "home":{
-        "createGame": "Créer une partie",
-        "joinGame": "Rejoindre une partie",
-        "createGameDescription": "Créez une nouvelle partie et choisissez ensuite votre scénario et l'allure de votre courbe de production. L'objectif est de gérer votre consommation d'énergie afin de ne pas dépasser la production. Vous pouvez également acheter et vendre de l'énergie sur le marché. Il est également possible de jouer en multi-joueurs en créant une partie et en invitant vos amis à la rejoindre via le code affiché en-dessous.",
-        "joinGameDescription": "Rejoignez une partie en saisissant le code de la partie que vous souhaitez rejoindre. Suivant le même principe que le mode solo, le but est de gérer votre consommation d'énergie afin de ne pas dépasser la production. Même si vous pouvez toujours acheter et vendre de l'énergie sur le marché, il vous es recommandé d'échanger avec d'autres joueurs afin de faire l'experience du concept de communauté d'énergie.",
-        "publicGames": "Parties publiques",
-        "noPublicGames": "Aucune partie publique n'est actuellement disponible.",
-        "gameCode": "Code de la partie",
-        "singlePlayer": "Joueur unique",
-        "multiPlayer": "Multi-joueurs",
-        "public": "Publique",
-        "private": "Privée",
-        "unSuccessfulGameCreation": "La création de la partie multijoueur a échoué.",
-        "unSuccessfulGameJoin": "La partie n'a pas pu être rejointe.",
-        "invalidGameCode": "Le code de la partie est invalide."
-    },
-    "setup":{
-        "launchNewGame": "Lancer une nouvelle partie",
-        "setupExplanation": "Choisissez le scénario de votre partie et l'allure de votre courbe de production. Pour faire cela, il vous suffit de cliquer sur la courbe et le scénario qui vous intéresse a gauche et a droite. Une description plus détaillée sera affichée ci-dessus. Vous pouvez également choisir le mode aléatoire."
-    },
-    "market": {
-        "header": "pnj"
-    },
-    "rule": {
-        "title": "Jeu E-Balance - régle du jeu",
-        "gameObject": "Le but du jeu est de comprendre comment rendre plus flexible sa consommation énergétique à travers différents scénarios. Pour cela vous devrez modifier les consommations placées en début de jeu afin de correspondre à la production d'énergie renouvelable.",
-        "howToPlay":"Comment jouer ?",
-        "AddConsumption": "Pour ajouter une consommation rendez vous dans le menu déroulant sur le coté gauche de l'écran. En cliquant sur votre équipement vous aurez accès à une fenêtre qui vous permettra de régler les heures de fonctionnement de votre équipement. Vous pouvez également cliqué sur un objet placé sur le plateau pour ouvrir une fenêtre qui vous permettra de modifier ou supprimer votre consommation.",
-        "notification": "Si votre consommation dépasse la production une notification s'affichera sur votre écran.",
-        "batteryUsage": "Dans ce jeu vous pouvez également stocker de l'energie grâce à l'utilisation de batterie. En cliquant sur l'icône de batterie à gauche de l'écran. Vous ouvrirez alors une fenêtre où vous pourrez acheter de nouvelle batterie pour stocker plus d'énergie. Vous pourrez recharger vos batteries en cliquant sur stocker et en choisissant où vous souhaitez placer la recharge. Vous pourrez ensuite placer ces batteries à un certain horaire pour compenser la consommation d'un équipement. [LOGIQUE UTILISATION DE LA BATTERIE]",
-        "marketUsage":"Vous pourrez également acheter ou vendre de l'énergie selon vos besoin. En cliquant sur l'icones « marché ». Vous trouverez ici l'argent que vous possédez ainsi que la possibilité d'acheter ou vendre de l'énergie. Lorsque vous cliquez sur le bouton « vendre » vous aurez accès à la fenêtre de vente. La vente d'énergie fonctionne comme une consommation classique. Vous devez placer cette consommation sur le plateau à l'horaire voulu. La vente vous rapportera de l'argent pour acheter de nouveaux équipements ou batteries. En cliquant sur le bouton achat vous pourrez acheter de l'énergie à un certain prix dépendant de l'heure d'achat. [LOGIQUE ACHAT D'ENERGIE]",
-        "howToWin": "Comment gagner ?",
-        "winRule":"Le but est d'avoir le meilleur score final, ce qui correspond à la meilleure flexibilité possible. Pour cela votre consommation doit le moins possible dépasser la production. Ainsi que de vendre l'énergie supplémentaire."
-    },
-    "results": {
-        "confirmSeeResults": "Voulez-vous voir les résultats ?",
-        "situations": {
-            "initialSituation":{
-                "name": "Situation initiale",
-                "description": "La situation initiale est la situation de départ de la partie. Inspirée d'habitudes de consommation réelles, elle forme un standard que vous êtes chargé d'améliorer."
-            },
-            "finalSituation":{
-                "name": "Situation finale",
-                "description": "La situation finale est la situation dans laquelle vous vous trouvez à la fin de la partie. Elle reflète les changements que vous avec apporté à la situation initiale."
-            }
-        },
-        "performanceIndicators":{
-            "totalConsumption": "Consommation totale",
-            "totalProduction": "Production totale",
-            "totalOverConsumption": "Surconsommation totale",
-            "totalSoldEnergy": "Énergie vendue totale",
-            "totalBoughtEnergy": "Énergie achetée totale",
-            "totalStoredEnergy": "Stockage d'énergie total",
-            "totalUsedStoredEnergy": "Énergie stockée utilisée totale",
-            "ratios":{
-                "selfConsumptionRatio": "Taux d'autoconsommation",
-                "selfProductionRatio": "Taux d'autoproduction"
-            }
-        },
-        "sections":{
-            "consumption": "Consommation",
-            "production": "Production",
-            "ratios": "Taux"
-        }
+    "sections": {
+      "consumption": "Consommation",
+      "production": "Production",
+      "ratios": "Taux"
     }
+  }
 }

@@ -28,10 +28,11 @@ We use the flag icons in a 4*3 version from the [Flag-icons](https://icon-sets.i
 
 ```ts
 import es from '../locales/es.json'
+
 const messages = {
-  fr:fr,
-  en:en,
-  es:es
+  fr,
+  en,
+  es
 }
 ```
 5. Don't forget to add translations for all the objects in the `src\data` directory. You'll find properties with arrays of objects like so :
@@ -43,5 +44,5 @@ const messages = {
 ```
 You'll need to add a new object to the array for the new language. For example, to add the `es` language, add the following code to the `propertyName` array:
 ```json
-{"lang":"es","text":"Name in spanish"}
+{ "lang": "es", "text": "Name in spanish" }
 ```

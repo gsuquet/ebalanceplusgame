@@ -138,7 +138,7 @@ Inspired by : https://github.com/antfu/vscode-settings
     "**/pnpm-lock.yaml": true,
     "**/tmp": true,
     "**/yarn.lock": true
-  },
+  }
 }
 ```
 ## Project Setup

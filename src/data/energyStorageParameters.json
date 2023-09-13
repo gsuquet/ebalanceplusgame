@@ -1,18 +1,18 @@
 [
-    {
-        "id":"esp_1",
-        "isEnergyStorage": true,
-        "initialStoredEnergy": 0,
-        "numberOfBatteries": 1,
-        "batteryPrice": 10,
-        "batteryIndividualCapacity": 200,
-        "batteryChargeEquipmentTypeId": "battery_charge",
-        "batteryDischargeEquipmentTypeId": "battery_discharge",
-        "batteryChargeLimitRate": 100,
-        "batteryDischargeLimitRate": 100,
-        "batteryChargeEfficiency": 100,
-        "batteryDischargeEfficiency": 100,
-        "batteryChargeLossRate": 0,
-        "batteryDischargeLossRate": 0
-    }
+  {
+    "id": "esp_1",
+    "isEnergyStorage": true,
+    "initialStoredEnergy": 0,
+    "numberOfBatteries": 1,
+    "batteryPrice": 10,
+    "batteryIndividualCapacity": 200,
+    "batteryChargeEquipmentTypeId": "battery_charge",
+    "batteryDischargeEquipmentTypeId": "battery_discharge",
+    "batteryChargeLimitRate": 100,
+    "batteryDischargeLimitRate": 100,
+    "batteryChargeEfficiency": 100,
+    "batteryDischargeEfficiency": 100,
+    "batteryChargeLossRate": 0,
+    "batteryDischargeLossRate": 0
+  }
 ]
