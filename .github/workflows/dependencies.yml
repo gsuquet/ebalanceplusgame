@@ -37,5 +37,5 @@ jobs:
           -d '{
             "title":"${{ github.event.pull_request.title }} - Unsecure Dependencies",
             "body":"${{ github.event.pull_request.html_url }}",
-            "labels":["dependencies"]
+            "labels":["dependencies","to sort"]
           }'
