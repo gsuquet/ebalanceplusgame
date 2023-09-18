@@ -89,6 +89,8 @@ jobs:
         id: deployment_status_success
         if: ${{ success() }}
         run: |
+          echo ${{ steps.create_deployment.outputs }}
+          echo ${{ steps.vercel_deploy.outputs }}
           curl -L \
           -X POST \
           -H 'Accept: application/vnd.github+json' \
