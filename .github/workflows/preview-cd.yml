@@ -80,7 +80,7 @@ jobs:
       - name: Deploy Project Artifacts to Vercel
         id: vercel_deploy
         run: |
-          $DEPLOYMENT_OUTPUT=$(vercel deploy --prebuilt --token ${{ secrets.VERCEL_TOKEN }})
+          echo $(vercel deploy --prebuilt --token ${{ secrets.VERCEL_TOKEN }}) >> $DEPLOYMENT_OUTPUT
           echo "log_url=$(grep -oP 'Inspect: \Khttps://\S+' $DEPLOYMENT_OUTPUT)" >> $GITHUB_OUTPUT
           echo "preview_url=$(grep -oP 'Preview: \Khttps://\S+' $DEPLOYMENT_OUTPUT)" >> $GITHUB_OUTPUT
           echo "deployment_output=$DEPLOYMENT_OUTPUT" >> $GITHUB_OUTPUT
