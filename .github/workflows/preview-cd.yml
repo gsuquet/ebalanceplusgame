@@ -89,39 +89,43 @@ jobs:
         id: deployment_status_success
         if: ${{ success() }}
         run: |
-          curl -L \
-          -X POST \
-          -H 'Accept: application/vnd.github+json' \
-          -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          -H 'X-GitHub-Api-Version: 2022-11-28' \
-          -H 'Content-type: application/json' \
-          https://api.github.com/repos/${{ github.repository }}/deployments/${{ fromJson(steps.create_deployment.outputs.github_deployment_output).id }}/statuses \
-          -d '{
-            "environment":"preview",
-            "state":"success",
-            "log_url":"${{ steps.vercel_deploy.outputs.log_url }}",
-            "environment_url":"${{ steps.vercel_deploy.outputs.preview_url }}",
-            "description":"Deployment finished successfully."
-          }' >> $GITHUB_OUTPUT
+          echo deployment_status_update_output=$(
+            curl -L \
+            -X POST \
+            -H 'Accept: application/vnd.github+json' \
+            -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+            -H 'X-GitHub-Api-Version: 2022-11-28' \
+            -H 'Content-type: application/json' \
+            https://api.github.com/repos/${{ github.repository }}/deployments/${{ fromJson(steps.create_deployment.outputs.github_deployment_output).id }}/statuses \
+            -d '{
+              "environment":"preview",
+              "state":"success",
+              "log_url":"${{ steps.vercel_deploy.outputs.log_url }}",
+              "environment_url":"${{ steps.vercel_deploy.outputs.preview_url }}",
+              "description":"Deployment finished successfully."
+            }'
+          ) >> $GITHUB_OUTPUT
 
       - name: Update deployment status to failure in GitHub
         id: deployment_status_failure
         if: ${{ failure() }}
         run: |
-          curl -L \
-          -X POST \
-          -H 'Accept: application/vnd.github+json' \
-          -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          -H 'X-GitHub-Api-Version: 2022-11-28' \
-          -H 'Content-type: application/json' \
-          https://api.github.com/repos/${{ github.repository }}/deployments/${{ fromJson(steps.create_deployment.outputs.github_deployment_output).id }}/statuses \
-          -d '{
-            "environment":"preview",
-            "state":"failure",
-            "log_url":"${{ steps.vercel_deploy.outputs.log_url }}",
-            "environment_url":"${{ steps.vercel_deploy.outputs.preview_url }}",
-            "description":"Deployment failed."
-          }' >> $GITHUB_OUTPUT
+          echo deployment_status_update_output=$(
+            curl -L \
+            -X POST \
+            -H 'Accept: application/vnd.github+json' \
+            -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+            -H 'X-GitHub-Api-Version: 2022-11-28' \
+            -H 'Content-type: application/json' \
+            https://api.github.com/repos/${{ github.repository }}/deployments/${{ fromJson(steps.create_deployment.outputs.github_deployment_output).id }}/statuses \
+            -d '{
+              "environment":"preview",
+              "state":"failure",
+              "log_url":"${{ steps.vercel_deploy.outputs.log_url }}",
+              "environment_url":"${{ steps.vercel_deploy.outputs.preview_url }}",
+              "description":"Deployment failed."
+            }'
+          ) >> $GITHUB_OUTPUT
 
       - name: Create issue
         if: ${{ failure() }}
