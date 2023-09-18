@@ -80,16 +80,15 @@ jobs:
       - name: Deploy Project Artifacts to Vercel
         id: vercel_deploy
         run: |
-          echo $(vercel deploy --prebuilt --token ${{ secrets.VERCEL_TOKEN }}) >> $DEPLOYMENT_OUTPUT
-          echo "log_url=$(grep -oP 'Inspect: \Khttps://\S+' $DEPLOYMENT_OUTPUT)" >> $GITHUB_OUTPUT
-          echo "preview_url=$(grep -oP 'Preview: \Khttps://\S+' $DEPLOYMENT_OUTPUT)" >> $GITHUB_OUTPUT
+          vercel deploy --prebuilt --token ${{ secrets.VERCEL_TOKEN }} >> output.log
+          echo "log_url=$(grep -oP 'Inspect: \Khttps://\S+' output.log)" >> $GITHUB_OUTPUT
+          echo "preview_url=$(grep -oP 'Preview: \Khttps://\S+' output.log)" >> $GITHUB_OUTPUT
           echo "deployment_output=$DEPLOYMENT_OUTPUT" >> $GITHUB_OUTPUT
 
       - name: Update deployment status to success in GitHub
         id: deployment_status_success
         if: ${{ success() }}
         run: |
-          echo $(
           curl -L \
           -X POST \
           -H 'Accept: application/vnd.github+json' \
