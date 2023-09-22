@@ -34,7 +34,9 @@ jobs:
             "environment":"preview",
             "description":"Preview deployment for ${{ github.event.head_commit.message }}",
           }')
-          echo deployment_id=$(echo $create_deployment | jq -r '.id') >> $GITHUB_OUTPUT
+          deployment_id=$(echo $create_deployment | jq -r '.id')
+          echo "deployment_id=$deployment_id" >> $GITHUB_OUTPUT
+          echo "Deployment created with ID: $deployment_id"
 
       - name: Install NodeJS
         uses: actions/setup-node@v3
@@ -69,12 +71,12 @@ jobs:
       - name: Pull Vercel Environment Information
         id: vercel_pull
         run: |
-          echo pull_output=$(vercel pull --yes --environment=preview --token ${{ secrets.VERCEL_TOKEN }}) >> $GITHUB_OUTPUT
+          echo "pull_output=$(vercel pull --yes --environment=preview --token ${{ secrets.VERCEL_TOKEN }})" >> $GITHUB_OUTPUT
 
       - name: Build Project Artifacts
         id: vercel_build
         run: |
-          echo build_output=$(vercel build --yes --token=${{ secrets.VERCEL_TOKEN }}) >> $GITHUB_OUTPUT
+          echo "build_output=$(vercel build --yes --token=${{ secrets.VERCEL_TOKEN }})" >> $GITHUB_OUTPUT
 
       - name: Deploy Project Artifacts to Vercel
         id: vercel_deploy
@@ -82,8 +84,9 @@ jobs:
           vercel deploy --prebuilt --token ${{ secrets.VERCEL_TOKEN }} | tee output.log
           log_url=$(grep -oP 'Inspect: \Khttps://\S+' output.log)
           preview_url=$(grep -oP 'Preview: \Khttps://\S+' output.log)
-          echo log_url=$log_url >> $GITHUB_OUTPUT
-          echo preview_url=$preview_url >> $GITHUB_OUTPUT
+          echo "Project deployed to $preview_url, logs available at $log_url"
+          echo "log_url=$log_url" >> $GITHUB_OUTPUT
+          echo "preview_url=$preview_url" >> $GITHUB_OUTPUT
 
       - name: Update deployment status to success in GitHub
         id: deployment_status_success
