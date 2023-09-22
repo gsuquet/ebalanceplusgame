@@ -34,7 +34,7 @@ jobs:
             "environment":"preview",
             "description":"Preview deployment for ${{ github.event.head_commit.message }}",
           }')
-          echo ::set-output name=deployment_id::$(echo $create_deployment | jq -r '.id')
+          echo "deployment_id=$(echo $create_deployment | jq -r '.id')" >> $GITHUB_OUTPUT
 
       - name: Install NodeJS
         uses: actions/setup-node@v3
@@ -82,8 +82,8 @@ jobs:
           vercel deploy --prebuilt --token ${{ secrets.VERCEL_TOKEN }} | tee output.log
           log_url=$(grep -oP 'Inspect: \Khttps://\S+' output.log)
           preview_url=$(grep -oP 'Preview: \Khttps://\S+' output.log)
-          echo "::set-output name=log_url::$log_url"
-          echo "::set-output name=preview_url::$preview_url"
+          echo "log_url=$log_url" >> $GITHUB_OUTPUT
+          echo "preview_url=$preview_url" >> $GITHUB_OUTPUT
 
       - name: Update deployment status to success in GitHub
         id: deployment_status_success
