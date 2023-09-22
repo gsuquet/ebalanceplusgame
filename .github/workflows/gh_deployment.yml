@@ -1,0 +1,48 @@
+name: GitHub Deployment
+
+on:
+  workflow_call:
+    inputs:
+      action:
+        description: 'The action to perform on the deployment endpoint'
+        required: true
+        type: string
+        default: 'POST'
+      environment:
+        description: 'The environment to deploy to'
+        required: true
+        type: string
+        default: 'preview'
+      payload:
+        description: 'The payload to send to the deployment endpoint'
+        required: false
+        type: string
+        default: '{}'
+    outputs:
+      response:
+        description: 'The response from the GitHub API'
+        value: ${{ jobs.Request-Deployment.outputs.response }}
+
+jobs:
+  Request-Deployment:
+    runs-on: ubuntu-latest
+    outputs:
+      response: ${{ steps.github_deployment.outputs.github_deployment_output }}
+    steps:
+      - name: Call the GitHub API
+        id: github_deployment
+        run: |
+          deployment=$(curl -L \
+          -X ${{ inputs.action }} \
+          -H 'Accept: application/vnd.github+json' \
+          -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          -H 'X-GitHub-Api-Version: 2022-11-28' \
+          -H 'Content-type: application/json' \
+          https://api.github.com/repos/${{ github.repository }}/deployments \
+          -d '{
+            "ref":"${{ github.event.ref }}",
+            "payload":"${{ inputs.payload }}",
+            "environment":"${{ inputs.environment }}",
+            "description":"${{ inputs.environment }} deployment for ${{ github.event.head_commit.message }}",
+          }')
+          echo github_deployment_output=$deployment >> $GITHUB_OUTPUT
