@@ -34,7 +34,7 @@ jobs:
             "environment":"preview",
             "description":"Preview deployment for ${{ github.event.head_commit.message }}",
           }')
-          deployment_id=$(echo $create_deployment | jq -r '.id')
+          deployment_id=$(echo $create_deployment | jq -r 'id')
           echo "deployment_id=$deployment_id" >> $GITHUB_OUTPUT
           echo "Deployment created with ID: $deployment_id"
 
@@ -76,7 +76,7 @@ jobs:
       - name: Build Project Artifacts
         id: vercel_build
         run: |
-          echo "build_output=$(vercel build --yes --token=${{ secrets.VERCEL_TOKEN }})" >> $GITHUB_OUTPUT
+          echo build_output=$(vercel build --yes --token=${{ secrets.VERCEL_TOKEN }}) >> $GITHUB_OUTPUT
 
       - name: Deploy Project Artifacts to Vercel
         id: vercel_deploy
