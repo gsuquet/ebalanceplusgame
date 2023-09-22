@@ -34,8 +34,10 @@ jobs:
             "environment":"preview",
             "description":"Preview deployment for ${{ github.event.head_commit.message }}",
           }')
-          deployment_id=$(echo $create_deployment | jq -r 'id')
+          deployment_response=$(echo $create_deployment)
+          deployment_id=$(echo $deployment_response | jq -r '.id')
           echo "deployment_id=$deployment_id" >> $GITHUB_OUTPUT
+          echo "Deployment API response: $deployment_response"
           echo "Deployment created with ID: $deployment_id"
 
       - name: Install NodeJS
