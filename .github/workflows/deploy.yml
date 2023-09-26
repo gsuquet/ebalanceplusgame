@@ -85,7 +85,6 @@ jobs:
           vercel deploy --prebuilt --token ${{ secrets.VERCEL_TOKEN }} ${{ inputs.cmd_flag }} | tee output.log
           echo log_url=$(grep -oP '(?<=Preview: ).*' output.log) >> $GITHUB_OUTPUT
           echo preview_url=$(grep -oP '(?<=Inspect: ).*' output.log) >> $GITHUB_OUTPUT
-          echo "log_url: $log_url, preview_url: $preview_url"
 
       - name: Create issue
         if: ${{ failure() }}
