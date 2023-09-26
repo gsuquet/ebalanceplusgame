@@ -27,12 +27,12 @@ jobs:
   Request-Deployment:
     runs-on: ubuntu-latest
     outputs:
-      response: ${{ steps.github_deployment.outputs.github_deployment_output }}
+      response: ${{ steps.github_deployment.outputs.response }}
     steps:
       - name: Call the GitHub API
         id: github_deployment
         run: |
-          deployment=$(curl -L \
+          create_deployment=$(curl -L \
           -X ${{ inputs.action }} \
           -H 'Accept: application/vnd.github+json' \
           -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
@@ -45,4 +45,6 @@ jobs:
             "environment":"${{ inputs.environment }}",
             "description":"${{ inputs.environment }} deployment for ${{ github.event.head_commit.message }}",
           }')
-          echo github_deployment_output=$deployment >> $GITHUB_OUTPUT
+          deployment_response=$(echo $create_deployment)
+          echo "response=$deployment_response" >> $GITHUB_OUTPUT
+          echo "Deployment API response: $deployment_response"

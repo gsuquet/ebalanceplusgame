@@ -1,0 +1,17 @@
+name: Deployment workflow
+on:
+  push:
+
+jobs:
+  Preview:
+    if: github.ref != 'refs/heads/main'
+    uses: ./.github/workflows/deploy.yml
+    with:
+      environment: preview
+
+  Production:
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/deploy.yml
+    with:
+      environment: production
+      cmd_flag: --prod

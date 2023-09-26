@@ -1,18 +1,29 @@
 name: GitHub Actions Vercel Preview Deployment
-concurrency: preview
+
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
 on:
-  push:
-    branches-ignore:
-      - main
+  workflow_call:
+    inputs:
+      environment:
+        description: 'The environment to deploy to'
+        required: true
+        type: string
+      cmd_flag:
+        description: 'The command flag to pass to Vercel (e.g. --prod)'
+        required: false
+        type: string
+        default: ''
+
 permissions:
   contents: read
   issues: write
   pull-requests: write
+
 jobs:
-  Deploy-Preview:
+  Deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -31,7 +42,7 @@ jobs:
           -d '{
             "ref":"${{ github.event.ref }}",
             "payload":"{}",
-            "environment":"preview",
+            "environment":"${{ inputs.environment }}",
             "description":"Preview deployment for ${{ github.event.head_commit.message }}",
           }')
           deployment_response=$(echo $create_deployment)
@@ -73,17 +84,17 @@ jobs:
       - name: Pull Vercel Environment Information
         id: vercel_pull
         run: |
-          echo "pull_output=$(vercel pull --yes --environment=preview --token ${{ secrets.VERCEL_TOKEN }})" >> $GITHUB_OUTPUT
+          echo "pull_output=$(vercel pull --yes --environment=${{ inputs.environment }} --token ${{ secrets.VERCEL_TOKEN }})" >> $GITHUB_OUTPUT
 
       - name: Build Project Artifacts
         id: vercel_build
         run: |
-          echo build_output=$(vercel build --yes --token=${{ secrets.VERCEL_TOKEN }}) >> $GITHUB_OUTPUT
+          echo build_output=$(vercel build --yes --token=${{ secrets.VERCEL_TOKEN }} ${{ inputs.cmd_flag }}) >> $GITHUB_OUTPUT
 
       - name: Deploy Project Artifacts to Vercel
         id: vercel_deploy
         run: |
-          vercel deploy --prebuilt --token ${{ secrets.VERCEL_TOKEN }} | tee output.log
+          vercel deploy --prebuilt --token ${{ secrets.VERCEL_TOKEN }} ${{ inputs.cmd_flag }} | tee output.log
           log_url=$(grep -oP 'Inspect: \Khttps://\S+' output.log)
           preview_url=$(grep -oP 'Preview: \Khttps://\S+' output.log)
           echo "Project deployed to $preview_url, logs available at $log_url"
@@ -102,7 +113,7 @@ jobs:
           -H 'Content-type: application/json' \
           https://api.github.com/repos/${{ github.repository }}/deployments/${{ steps.create_deployment.outputs.deployment_id }}/statuses \
           -d '{
-            "environment":"preview",
+            "environment":"${{ inputs.environment }}",
             "state":"success",
             "log_url":"${{ steps.vercel_deploy.outputs.log_url }}",
             "environment_url":"${{ steps.vercel_deploy.outputs.preview_url }}",
@@ -121,7 +132,7 @@ jobs:
           -H 'Content-type: application/json' \
           https://api.github.com/repos/${{ github.repository }}/deployments/${{ steps.create_deployment.outputs.deployment_id }}/statuses \
           -d '{
-            "environment":"preview",
+            "environment":"${{ inputs.environment }}",
             "state":"failure",
             "log_url":"${{ steps.vercel_deploy.outputs.log_url }}",
             "environment_url":"${{ steps.vercel_deploy.outputs.preview_url }}",
@@ -139,7 +150,7 @@ jobs:
           -H 'Content-type: application/json' \
           https://api.github.com/repos/${{ github.repository }}/issues \
           -d '{
-            "title":"Failed to deploy preview for ${{ github.event.head_commit.message }}",
+            "title":"Failed to deploy to ${{ inputs.environment }} for ${{ github.event.head_commit.message }}",
             "body":"${{ join(steps.*.outputs.*, '\n') }}",
             "labels":["bug","to sort"]
           }'
