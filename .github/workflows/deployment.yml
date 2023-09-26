@@ -1,4 +1,5 @@
 name: Deployment workflow
+
 on:
   push:
 
@@ -13,6 +14,9 @@ jobs:
     uses: ./.github/workflows/deploy.yml
     with:
       environment: preview
+    secrets:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
 
   Production:
     if: github.ref == 'refs/heads/main'
@@ -20,3 +24,5 @@ jobs:
     with:
       environment: production
       cmd_flag: --prod
+    secrets:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}

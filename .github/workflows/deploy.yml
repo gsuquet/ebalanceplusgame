@@ -16,6 +16,10 @@ on:
         required: false
         type: string
         default: ''
+    secrets:
+      VERCEL_TOKEN:
+        description: 'The Vercel token to use for deployments'
+        required: true
 
 permissions:
   contents: read
